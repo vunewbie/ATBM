@@ -100,6 +100,7 @@
             this.Controls.Add(this.txbUsername);
             this.Controls.Add(this.lblUsername);
             this.Name = "UpdateUserStatusForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UpdateUserStatus";
             this.ResumeLayout(false);
             this.PerformLayout();
