@@ -30,9 +30,9 @@
         {
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.tlpUsersExecution = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpUsersButton = new System.Windows.Forms.TableLayoutPanel();
             this.btnCreateUser = new System.Windows.Forms.Button();
             this.btnUpdateUser = new System.Windows.Forms.Button();
             this.btnDeleteUser = new System.Windows.Forms.Button();
@@ -41,21 +41,33 @@
             this.btnSearchUser = new System.Windows.Forms.Button();
             this.tpageRoles = new System.Windows.Forms.TabPage();
             this.tlpRoles = new System.Windows.Forms.TableLayoutPanel();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvRoles = new System.Windows.Forms.DataGridView();
+            this.tlpRolesButton = new System.Windows.Forms.TableLayoutPanel();
+            this.btnDeleteRole = new System.Windows.Forms.Button();
+            this.btnUpdateRole = new System.Windows.Forms.Button();
+            this.btnCreateRole = new System.Windows.Forms.Button();
+            this.tlpSearchRole = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSearchRole = new System.Windows.Forms.Button();
+            this.txbSearchRole = new System.Windows.Forms.TextBox();
+            this.tpagePriviledges = new System.Windows.Forms.TabPage();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
-            this.tlpUsersExecution.SuspendLayout();
+            this.tlpUsersButton.SuspendLayout();
             this.tlpSearchUser.SuspendLayout();
             this.tpageRoles.SuspendLayout();
+            this.tlpRoles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
+            this.tlpRolesButton.SuspendLayout();
+            this.tlpSearchRole.SuspendLayout();
             this.SuspendLayout();
             // 
             // tctrlDBA
             // 
             this.tctrlDBA.Controls.Add(this.tpageUsers);
             this.tctrlDBA.Controls.Add(this.tpageRoles);
-            this.tctrlDBA.Controls.Add(this.tabPage1);
+            this.tctrlDBA.Controls.Add(this.tpagePriviledges);
             this.tctrlDBA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tctrlDBA.ItemSize = new System.Drawing.Size(85, 30);
             this.tctrlDBA.Location = new System.Drawing.Point(0, 0);
@@ -66,7 +78,7 @@
             // 
             // tpageUsers
             // 
-            this.tpageUsers.Controls.Add(this.tableLayoutPanel1);
+            this.tpageUsers.Controls.Add(this.tlpUsers);
             this.tpageUsers.Location = new System.Drawing.Point(4, 34);
             this.tpageUsers.Name = "tpageUsers";
             this.tpageUsers.Padding = new System.Windows.Forms.Padding(3);
@@ -76,21 +88,21 @@
             this.tpageUsers.UseVisualStyleBackColor = true;
             this.tpageUsers.Enter += new System.EventHandler(this.tpageUsers_Enter);
             // 
-            // tableLayoutPanel1
+            // tlpUsers
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.dgvUsers, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tlpUsersExecution, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1279, 668);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tlpUsers.ColumnCount = 1;
+            this.tlpUsers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpUsers.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpUsers.Controls.Add(this.dgvUsers, 0, 0);
+            this.tlpUsers.Controls.Add(this.tlpUsersButton, 0, 1);
+            this.tlpUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpUsers.Location = new System.Drawing.Point(3, 3);
+            this.tlpUsers.Name = "tlpUsers";
+            this.tlpUsers.RowCount = 2;
+            this.tlpUsers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tlpUsers.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tlpUsers.Size = new System.Drawing.Size(1279, 668);
+            this.tlpUsers.TabIndex = 0;
             // 
             // dgvUsers
             // 
@@ -105,25 +117,25 @@
             this.dgvUsers.Size = new System.Drawing.Size(1273, 461);
             this.dgvUsers.TabIndex = 0;
             // 
-            // tlpUsersExecution
+            // tlpUsersButton
             // 
-            this.tlpUsersExecution.ColumnCount = 4;
-            this.tlpUsersExecution.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpUsersExecution.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpUsersExecution.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpUsersExecution.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpUsersExecution.Controls.Add(this.btnCreateUser, 0, 0);
-            this.tlpUsersExecution.Controls.Add(this.btnUpdateUser, 1, 0);
-            this.tlpUsersExecution.Controls.Add(this.btnDeleteUser, 2, 0);
-            this.tlpUsersExecution.Controls.Add(this.tlpSearchUser, 3, 0);
-            this.tlpUsersExecution.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpUsersExecution.Location = new System.Drawing.Point(3, 470);
-            this.tlpUsersExecution.Name = "tlpUsersExecution";
-            this.tlpUsersExecution.RowCount = 1;
-            this.tlpUsersExecution.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpUsersExecution.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 195F));
-            this.tlpUsersExecution.Size = new System.Drawing.Size(1273, 195);
-            this.tlpUsersExecution.TabIndex = 1;
+            this.tlpUsersButton.ColumnCount = 4;
+            this.tlpUsersButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpUsersButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpUsersButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpUsersButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpUsersButton.Controls.Add(this.btnCreateUser, 0, 0);
+            this.tlpUsersButton.Controls.Add(this.btnUpdateUser, 1, 0);
+            this.tlpUsersButton.Controls.Add(this.btnDeleteUser, 2, 0);
+            this.tlpUsersButton.Controls.Add(this.tlpSearchUser, 3, 0);
+            this.tlpUsersButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpUsersButton.Location = new System.Drawing.Point(3, 470);
+            this.tlpUsersButton.Name = "tlpUsersButton";
+            this.tlpUsersButton.RowCount = 1;
+            this.tlpUsersButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpUsersButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tlpUsersButton.Size = new System.Drawing.Size(1273, 195);
+            this.tlpUsersButton.TabIndex = 1;
             // 
             // btnCreateUser
             // 
@@ -208,12 +220,15 @@
             this.tpageRoles.TabIndex = 1;
             this.tpageRoles.Text = "Roles";
             this.tpageRoles.UseVisualStyleBackColor = true;
+            this.tpageRoles.Enter += new System.EventHandler(this.tpageRoles_Enter);
             // 
             // tlpRoles
             // 
             this.tlpRoles.ColumnCount = 1;
             this.tlpRoles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpRoles.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpRoles.Controls.Add(this.dgvRoles, 0, 0);
+            this.tlpRoles.Controls.Add(this.tlpRolesButton, 0, 1);
             this.tlpRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpRoles.Location = new System.Drawing.Point(3, 3);
             this.tlpRoles.Name = "tlpRoles";
@@ -223,15 +238,121 @@
             this.tlpRoles.Size = new System.Drawing.Size(1279, 668);
             this.tlpRoles.TabIndex = 0;
             // 
-            // tabPage1
+            // dgvRoles
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1285, 674);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRoles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRoles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvRoles.Location = new System.Drawing.Point(3, 3);
+            this.dgvRoles.Name = "dgvRoles";
+            this.dgvRoles.RowHeadersWidth = 51;
+            this.dgvRoles.RowTemplate.Height = 24;
+            this.dgvRoles.Size = new System.Drawing.Size(1273, 461);
+            this.dgvRoles.TabIndex = 0;
+            // 
+            // tlpRolesButton
+            // 
+            this.tlpRolesButton.ColumnCount = 4;
+            this.tlpRolesButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpRolesButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpRolesButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpRolesButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpRolesButton.Controls.Add(this.btnDeleteRole, 2, 0);
+            this.tlpRolesButton.Controls.Add(this.btnUpdateRole, 1, 0);
+            this.tlpRolesButton.Controls.Add(this.btnCreateRole, 0, 0);
+            this.tlpRolesButton.Controls.Add(this.tlpSearchRole, 3, 0);
+            this.tlpRolesButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpRolesButton.Location = new System.Drawing.Point(3, 470);
+            this.tlpRolesButton.Name = "tlpRolesButton";
+            this.tlpRolesButton.RowCount = 1;
+            this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 195F));
+            this.tlpRolesButton.Size = new System.Drawing.Size(1273, 195);
+            this.tlpRolesButton.TabIndex = 1;
+            // 
+            // btnDeleteRole
+            // 
+            this.btnDeleteRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDeleteRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDeleteRole.Location = new System.Drawing.Point(639, 3);
+            this.btnDeleteRole.Name = "btnDeleteRole";
+            this.btnDeleteRole.Size = new System.Drawing.Size(312, 189);
+            this.btnDeleteRole.TabIndex = 2;
+            this.btnDeleteRole.Text = "Delete Role";
+            this.btnDeleteRole.UseVisualStyleBackColor = true;
+            this.btnDeleteRole.Click += new System.EventHandler(this.btnDeleteRole_Click);
+            // 
+            // btnUpdateRole
+            // 
+            this.btnUpdateRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnUpdateRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnUpdateRole.Location = new System.Drawing.Point(321, 3);
+            this.btnUpdateRole.Name = "btnUpdateRole";
+            this.btnUpdateRole.Size = new System.Drawing.Size(312, 189);
+            this.btnUpdateRole.TabIndex = 1;
+            this.btnUpdateRole.Text = "Update Role";
+            this.btnUpdateRole.UseVisualStyleBackColor = true;
+            this.btnUpdateRole.Click += new System.EventHandler(this.btnUpdateRole_Click);
+            // 
+            // btnCreateRole
+            // 
+            this.btnCreateRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCreateRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnCreateRole.Location = new System.Drawing.Point(3, 3);
+            this.btnCreateRole.Name = "btnCreateRole";
+            this.btnCreateRole.Size = new System.Drawing.Size(312, 189);
+            this.btnCreateRole.TabIndex = 0;
+            this.btnCreateRole.Text = "Create Role";
+            this.btnCreateRole.UseVisualStyleBackColor = true;
+            this.btnCreateRole.Click += new System.EventHandler(this.btnCreateRole_Click);
+            // 
+            // tlpSearchRole
+            // 
+            this.tlpSearchRole.ColumnCount = 1;
+            this.tlpSearchRole.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpSearchRole.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpSearchRole.Controls.Add(this.btnSearchRole, 0, 1);
+            this.tlpSearchRole.Controls.Add(this.txbSearchRole, 0, 0);
+            this.tlpSearchRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpSearchRole.Location = new System.Drawing.Point(957, 3);
+            this.tlpSearchRole.Name = "tlpSearchRole";
+            this.tlpSearchRole.RowCount = 2;
+            this.tlpSearchRole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpSearchRole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpSearchRole.Size = new System.Drawing.Size(313, 189);
+            this.tlpSearchRole.TabIndex = 3;
+            // 
+            // btnSearchRole
+            // 
+            this.btnSearchRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSearchRole.Location = new System.Drawing.Point(3, 97);
+            this.btnSearchRole.Name = "btnSearchRole";
+            this.btnSearchRole.Size = new System.Drawing.Size(307, 89);
+            this.btnSearchRole.TabIndex = 3;
+            this.btnSearchRole.Text = "Search Role";
+            this.btnSearchRole.UseVisualStyleBackColor = true;
+            this.btnSearchRole.Click += new System.EventHandler(this.btnSearchRole_Click);
+            // 
+            // txbSearchRole
+            // 
+            this.txbSearchRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txbSearchRole.Location = new System.Drawing.Point(3, 27);
+            this.txbSearchRole.Name = "txbSearchRole";
+            this.txbSearchRole.Size = new System.Drawing.Size(307, 39);
+            this.txbSearchRole.TabIndex = 0;
+            // 
+            // tpagePriviledges
+            // 
+            this.tpagePriviledges.Location = new System.Drawing.Point(4, 34);
+            this.tpagePriviledges.Name = "tpagePriviledges";
+            this.tpagePriviledges.Padding = new System.Windows.Forms.Padding(3);
+            this.tpagePriviledges.Size = new System.Drawing.Size(1285, 674);
+            this.tpagePriviledges.TabIndex = 2;
+            this.tpagePriviledges.Text = "tabPage1";
+            this.tpagePriviledges.UseVisualStyleBackColor = true;
             // 
             // DBAForm
             // 
@@ -245,12 +366,17 @@
             this.Load += new System.EventHandler(this.DBAForm_Load);
             this.tctrlDBA.ResumeLayout(false);
             this.tpageUsers.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tlpUsers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
-            this.tlpUsersExecution.ResumeLayout(false);
+            this.tlpUsersButton.ResumeLayout(false);
             this.tlpSearchUser.ResumeLayout(false);
             this.tlpSearchUser.PerformLayout();
             this.tpageRoles.ResumeLayout(false);
+            this.tlpRoles.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
+            this.tlpRolesButton.ResumeLayout(false);
+            this.tlpSearchRole.ResumeLayout(false);
+            this.tlpSearchRole.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -261,15 +387,23 @@
         private System.Windows.Forms.TabPage tpageUsers;
         private System.Windows.Forms.TabPage tpageRoles;
         private System.Windows.Forms.TableLayoutPanel tlpRoles;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpUsers;
         private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TableLayoutPanel tlpUsersExecution;
+        private System.Windows.Forms.TabPage tpagePriviledges;
+        private System.Windows.Forms.TableLayoutPanel tlpUsersButton;
         private System.Windows.Forms.Button btnCreateUser;
         private System.Windows.Forms.Button btnUpdateUser;
         private System.Windows.Forms.Button btnDeleteUser;
         private System.Windows.Forms.TableLayoutPanel tlpSearchUser;
         private System.Windows.Forms.TextBox txbSearchUser;
         private System.Windows.Forms.Button btnSearchUser;
+        private System.Windows.Forms.DataGridView dgvRoles;
+        private System.Windows.Forms.TableLayoutPanel tlpRolesButton;
+        private System.Windows.Forms.Button btnDeleteRole;
+        private System.Windows.Forms.Button btnUpdateRole;
+        private System.Windows.Forms.Button btnCreateRole;
+        private System.Windows.Forms.TableLayoutPanel tlpSearchRole;
+        private System.Windows.Forms.Button btnSearchRole;
+        private System.Windows.Forms.TextBox txbSearchRole;
     }
 }

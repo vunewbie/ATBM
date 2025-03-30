@@ -68,7 +68,7 @@ namespace QLTDH
                     dt.Load(reader);
 
                     // Gán DataTable vào DataGridView
-                    DBAForm.data_grid_view.DataSource = dt;
+                    DBAForm.user_data_grid_view.DataSource = dt;
 
                     this.Close();
                 }

@@ -13,11 +13,13 @@ namespace QLTDH
 {
     public partial class DBAForm : Form
     {
-        public static DataGridView data_grid_view;
+        public static DataGridView user_data_grid_view; // Truyền user data giữa các form
+        public static DataGridView role_data_grid_view; // Truyền role data giữa các form
         public DBAForm()
         {
             InitializeComponent();
-            data_grid_view = dgvUsers;
+            user_data_grid_view = dgvUsers;
+            role_data_grid_view = dgvRoles;
         }
 
         private void tpageUsers_Enter(object sender, EventArgs e)
@@ -26,12 +28,21 @@ namespace QLTDH
             LoadUsers();
         }
 
+        private void tpageRoles_Enter(object sender, EventArgs e)
+        {
+            // Gọi phương thức để tải dữ liệu roles
+            LoadRoles();
+        }
+
         private void DBAForm_Load(object sender, EventArgs e)
         {
             // Gọi phương thức để tải dữ liệu người dùng
             LoadUsers();
+            // Gọi phương thức để tải dữ liệu roles
+            LoadRoles();
         }
 
+        // Tải dữ liệu users lên datagridview
         private void LoadUsers()
         {
             try
@@ -58,7 +69,7 @@ namespace QLTDH
                     dt.Load(reader);
 
                     // Gán DataTable vào DataGridView
-                    data_grid_view.DataSource = dt;
+                    user_data_grid_view.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -68,6 +79,42 @@ namespace QLTDH
             }
         }
 
+        // Tải dữ liệu roles lên datagridview 
+        private void LoadRoles()
+        {
+            try
+            {
+                // Tạo kết nối từ ConnectionManager
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    // Khai báo một OracleCommand để gọi stored procedure
+                    OracleCommand cmd = new OracleCommand("GET_ROLE_LIST", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Tạo một cursor output parameter
+                    OracleParameter cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    // Thực thi procedure và lấy kết quả về
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    // Tạo DataTable để chứa kết quả trả về
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    // Gán DataTable vào DataGridView
+                    role_data_grid_view.DataSource= dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Hiển thị lỗi nếu có
+                MessageBox.Show("Lỗi khi tải dữ liệu Roles: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         // Sự kiện khi nhấn nút "Create User"
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -76,14 +123,7 @@ namespace QLTDH
             CreateUserForm newUserForm = new CreateUserForm();
             newUserForm.ShowDialog();
         }
-
-        private void btnDeleteUser_Click(object sender, EventArgs e)
-        {
-            // Mở form DeleteUser
-            DeleteUserForm deleteUserForm = new DeleteUserForm();
-            deleteUserForm.ShowDialog();
-        }
-
+        // Sự kiện khi nhấn nút "Update User"
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
             // Mỏ form UpdateUserStatus
@@ -91,7 +131,15 @@ namespace QLTDH
             updateUserStatusForm.ShowDialog();
         }
 
-        // Thêm phương thức tìm kiếm người dùng
+        // Sự kiện khi nhấn nút "Delete User"
+        private void btnDeleteUser_Click(object sender, EventArgs e)
+        {
+            // Mở form DeleteUser
+            DeleteUserForm deleteUserForm = new DeleteUserForm();
+            deleteUserForm.ShowDialog();
+        }
+
+
         // Thêm phương thức tìm kiếm người dùng
         private void SearchUsers(string username)
         {
@@ -114,7 +162,7 @@ namespace QLTDH
                     OracleDataReader reader = cmd.ExecuteReader();
                     DataTable dt = new DataTable();
                     dt.Load(reader);
-                    data_grid_view.DataSource = dt;
+                    user_data_grid_view.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -136,6 +184,80 @@ namespace QLTDH
             {
                 // Nếu ô tìm kiếm có dữ liệu, tìm kiếm người dùng
                 SearchUsers(searchQuery);
+            }
+        }
+
+        // Sự kiện khi nhấn nút "Create Role"
+        private void btnCreateRole_Click(object sender, EventArgs e)
+        {
+            // Mở form CreateRole
+            CreateRoleForm createRoleForm = new CreateRoleForm();
+            createRoleForm.ShowDialog();
+        }
+
+        // Sự kiện khi nhấn nút "Update Role"
+        private void btnUpdateRole_Click(object sender, EventArgs e)
+        {
+            // Mở form UpdateRolePassword
+            UpdateRolePasswordForm updateRolePasswordForm = new UpdateRolePasswordForm();
+            updateRolePasswordForm.ShowDialog();
+        }
+        
+        // Sự kiện khi nhấn nút "Delete Role"
+        private void btnDeleteRole_Click(object sender, EventArgs e)
+        {
+            // Mở form DeleteRole
+            DeleteRoleForm deleteRoleForm = new DeleteRoleForm();
+            deleteRoleForm.ShowDialog();
+        }
+
+        // Thêm phương thức tìm kiếm Roles
+        private void SearchRoles(string role)
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    // Khai báo OracleCommand để gọi stored procedure tìm kiếm role
+                    OracleCommand cmd = new OracleCommand("QLTDH.SEARCH_ROLE", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Thêm tham số tìm kiếm
+                    cmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
+                    OracleParameter cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    // Thực thi thủ tục và lấy kết quả
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    // Gán DataTable vào DataGridView để hiển thị kết quả
+                    role_data_grid_view.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm role: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Sự kiện khi nhấn vào nút "Search Roles"
+        private void btnSearchRole_Click(object sender, EventArgs e)
+        {
+            string searchQuery = txbSearchRole.Text.Trim(); // txbSearchRole là TextBox để nhập tên Role
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // Nếu ô tìm kiếm trống, tải lại tất cả roles
+                LoadRoles();
+            }
+            else
+            {
+                // Nếu ô tìm kiếm có dữ liệu, tìm kiếm role
+                SearchRoles(searchQuery);
             }
         }
     }

@@ -1,25 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
 namespace QLTDH
 {
-    public partial class CreateUserForm : Form
+    public partial class UpdateRolePasswordForm : Form
     {
-        public CreateUserForm()
+        public UpdateRolePasswordForm()
         {
             InitializeComponent();
         }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
+        private void btnUpdateRole_Click(object sender, EventArgs e)
         {
-            string username = txbUsername.Text.Trim();
+            string role = txbRole.Text.Trim();
             string password = txbPassword.Text.Trim();
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(role))
             {
-                MessageBox.Show("Vui lòng nhập tên đăng nhập và mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập tên vai trò.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -29,37 +35,37 @@ namespace QLTDH
                 {
                     conn.Open();
 
-                    // Kiểm tra xem người dùng đã tồn tại
-                    OracleCommand checkCmd = new OracleCommand("CHECK_USER_EXISTS", conn);
+                    // Kiểm tra xem role đã tồn tại
+                    OracleCommand checkCmd = new OracleCommand("CHECK_ROLE_EXISTS", conn);
                     checkCmd.CommandType = CommandType.StoredProcedure;
-                    checkCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    checkCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
                     OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Varchar2, 10);
                     existsParam.Direction = ParameterDirection.Output;
                     checkCmd.Parameters.Add(existsParam);
 
                     checkCmd.ExecuteNonQuery();
 
-                    string userExists = existsParam.Value.ToString();
-                    if (userExists == "TRUE")
+                    string roleExists = existsParam.Value.ToString();
+                    if (roleExists == "FALSE")
                     {
-                        MessageBox.Show("Người dùng đã tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Vai trò không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
                     // Tạo người dùng mới
-                    OracleCommand createCmd = new OracleCommand("CREATE_USER", conn);
+                    OracleCommand createCmd = new OracleCommand("UPDATE_ROLE_PASSWORD", conn);
                     createCmd.CommandType = CommandType.StoredProcedure;
-                    createCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
+                    createCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
                     createCmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
 
                     createCmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Tạo người dùng thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cập nhật vai trò thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // Cập nhật danh sách người dùng trong DBAForm
-                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
+                    // Cập nhật danh sách vai trò trong DBAForm
+                    OracleCommand cmd = new OracleCommand("GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    OracleParameter cursorParam = new OracleParameter("users_cursor", OracleDbType.RefCursor);
+                    OracleParameter cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(cursorParam);
                     OracleDataReader reader = cmd.ExecuteReader();
@@ -67,7 +73,7 @@ namespace QLTDH
                     dt.Load(reader);
 
                     // Gán DataTable vào DataGridView
-                    DBAForm.user_data_grid_view.DataSource = dt;
+                    DBAForm.role_data_grid_view.DataSource = dt;
 
                     this.Close();
                 }

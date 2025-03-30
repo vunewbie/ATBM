@@ -41,3 +41,6 @@ D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.DBAForm.resources
 D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.CreateUserForm.resources
 D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.DeleteUserForm.resources
 D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.UpdateUserStatusForm.resources
+D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.CreateRoleForm.resources
+D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.DeleteRoleForm.resources
+D:\ATBM\Project\QLTDH\QLTDH\obj\Debug\QLTDH.UpdateRolePasswordForm.resources
