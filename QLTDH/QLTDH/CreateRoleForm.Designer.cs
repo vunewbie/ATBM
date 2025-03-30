@@ -39,36 +39,41 @@
             // 
             // btnCreateRole
             // 
+            this.btnCreateRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCreateRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCreateRole.Location = new System.Drawing.Point(285, 361);
+            this.btnCreateRole.Location = new System.Drawing.Point(294, 394);
+            this.btnCreateRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateRole.Name = "btnCreateRole";
-            this.btnCreateRole.Size = new System.Drawing.Size(248, 57);
+            this.btnCreateRole.Size = new System.Drawing.Size(214, 54);
             this.btnCreateRole.TabIndex = 17;
             this.btnCreateRole.Text = "Tạo vai trò";
-            this.btnCreateRole.UseVisualStyleBackColor = true;
+            this.btnCreateRole.UseVisualStyleBackColor = false;
             this.btnCreateRole.Click += new System.EventHandler(this.btnCreateRole_Click);
             // 
             // txbPassword
             // 
             this.txbPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbPassword.Location = new System.Drawing.Point(378, 236);
+            this.txbPassword.Location = new System.Drawing.Point(294, 228);
+            this.txbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbPassword.Name = "txbPassword";
-            this.txbPassword.Size = new System.Drawing.Size(266, 30);
+            this.txbPassword.Size = new System.Drawing.Size(214, 30);
             this.txbPassword.TabIndex = 16;
             // 
             // txbRole
             // 
             this.txbRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRole.Location = new System.Drawing.Point(378, 155);
+            this.txbRole.Location = new System.Drawing.Point(294, 129);
+            this.txbRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbRole.Name = "txbRole";
-            this.txbRole.Size = new System.Drawing.Size(266, 30);
+            this.txbRole.Size = new System.Drawing.Size(214, 30);
             this.txbRole.TabIndex = 15;
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblPassword.Location = new System.Drawing.Point(157, 238);
+            this.lblPassword.Location = new System.Drawing.Point(116, 230);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(91, 23);
             this.lblPassword.TabIndex = 14;
@@ -78,7 +83,8 @@
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblRole.Location = new System.Drawing.Point(157, 153);
+            this.lblRole.Location = new System.Drawing.Point(116, 131);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(67, 23);
             this.lblRole.TabIndex = 13;
@@ -88,7 +94,8 @@
             // 
             this.lblNewRole.AutoSize = true;
             this.lblNewRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblNewRole.Location = new System.Drawing.Point(302, 59);
+            this.lblNewRole.Location = new System.Drawing.Point(301, 55);
+            this.lblNewRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewRole.Name = "lblNewRole";
             this.lblNewRole.Size = new System.Drawing.Size(220, 32);
             this.lblNewRole.TabIndex = 12;
@@ -97,19 +104,20 @@
             // lblRolePaswordRequired
             // 
             this.lblRolePaswordRequired.AutoSize = true;
-            this.lblRolePaswordRequired.Font = new System.Drawing.Font("Times New Roman", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblRolePaswordRequired.Font = new System.Drawing.Font("Times New Roman", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lblRolePaswordRequired.ForeColor = System.Drawing.Color.Red;
-            this.lblRolePaswordRequired.Location = new System.Drawing.Point(203, 294);
+            this.lblRolePaswordRequired.Location = new System.Drawing.Point(234, 322);
+            this.lblRolePaswordRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRolePaswordRequired.Name = "lblRolePaswordRequired";
-            this.lblRolePaswordRequired.Size = new System.Drawing.Size(447, 34);
+            this.lblRolePaswordRequired.Size = new System.Drawing.Size(407, 32);
             this.lblRolePaswordRequired.TabIndex = 18;
             this.lblRolePaswordRequired.Text = "Bỏ trống mật khẩu nếu không cần";
             // 
             // CreateRoleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(782, 503);
             this.Controls.Add(this.lblRolePaswordRequired);
             this.Controls.Add(this.btnCreateRole);
             this.Controls.Add(this.txbPassword);
@@ -117,7 +125,10 @@
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblRole);
             this.Controls.Add(this.lblNewRole);
+            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "CreateRoleForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateRoleForm";
             this.ResumeLayout(false);
             this.PerformLayout();
