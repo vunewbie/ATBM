@@ -21,8 +21,15 @@ namespace QLTDH
                 throw new InvalidOperationException("Chưa có thông tin đăng nhập hợp lệ.");
             }
 
-            string connectionString;
-            connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/QUANLYTRUONGDAIHOC;";
+            string connectionString = "";
+            if (Username == "SYS")
+            {
+                connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/XE;DBA Privilege=SYSDBA;";
+            }
+            //else
+            //{
+            //    connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/XE;";
+            //}
 
             OracleConnection connection = new OracleConnection(connectionString);
             return connection;

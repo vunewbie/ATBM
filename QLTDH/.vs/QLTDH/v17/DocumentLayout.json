@@ -3,20 +3,64 @@
   "WorkspaceRootPath": "D:\\ATBM\\Project\\QLTDH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\connectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\connectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\deleteuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\deleteuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\deleteroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\deleteroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|d:\\atbm\\project\\qltdh\\qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\deleteuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -27,52 +71,8 @@
       "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\deleteroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|d:\\atbm\\project\\qltdh\\qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\dbaform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|d:\\atbm\\project\\qltdh\\qltdh\\connectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\connectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updaterolepasswordform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\deleteroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\deleteroleform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\deleteuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\deleteuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createroleform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createroleform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\createuserform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|solutionrelative:qltdh\\updateuserstatusform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1BABD39C-07E7-4FF3-81BF-968E8021A8EA}|QLTDH\\QLTDH.csproj|D:\\ATBM\\Project\\QLTDH\\qltdh\\updateuserstatusform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -102,39 +102,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 34,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LoginForm.cs [Design]",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\LoginForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs [Design]",
-              "RelativeToolTip": "QLTDH\\LoginForm.cs [Design]",
+              "Title": "ConnectionManager.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\ConnectionManager.cs",
+              "RelativeDocumentMoniker": "QLTDH\\ConnectionManager.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\ConnectionManager.cs",
+              "RelativeToolTip": "QLTDH\\ConnectionManager.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwCYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T09:49:29.401Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-30T14:38:22.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateRoleForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\CreateRoleForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
+              "RelativeToolTip": "QLTDH\\CreateRoleForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T10:04:12.015Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UpdateRolePasswordForm.cs [Design]",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\UpdateRolePasswordForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs [Design]",
-              "RelativeToolTip": "QLTDH\\UpdateRolePasswordForm.cs [Design]",
+              "Title": "CreateUserForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateUserForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\CreateUserForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateUserForm.cs",
+              "RelativeToolTip": "QLTDH\\CreateUserForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T13:01:18.275Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-30T09:47:21.368Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DBAForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DBAForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\DBAForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DBAForm.cs",
+              "RelativeToolTip": "QLTDH\\DBAForm.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAswN8AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T12:47:01.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "UpdateUserStatusForm.cs [Design]",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateUserStatusForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\UpdateUserStatusForm.cs",
@@ -146,43 +178,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateRoleForm.cs [Design]",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\CreateRoleForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs [Design]",
-              "RelativeToolTip": "QLTDH\\CreateRoleForm.cs [Design]",
+              "DocumentIndex": 6,
+              "Title": "UpdateRolePasswordForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\UpdateRolePasswordForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
+              "RelativeToolTip": "QLTDH\\UpdateRolePasswordForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T10:00:25.412Z",
+              "WhenOpened": "2025-03-30T13:05:08.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UpdateRolePasswordForm.cs [Design]",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\UpdateRolePasswordForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs [Design]",
+              "RelativeToolTip": "QLTDH\\UpdateRolePasswordForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T13:01:18.275Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DeleteUserForm.cs [Design]",
+              "Title": "UpdateUserStatusForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateUserStatusForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\UpdateUserStatusForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateUserStatusForm.cs",
+              "RelativeToolTip": "QLTDH\\UpdateUserStatusForm.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAAADwAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T18:19:04.994Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\LoginForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs [Design]",
+              "RelativeToolTip": "QLTDH\\LoginForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T09:49:29.401Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DeleteUserForm.cs",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\DeleteUserForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs [Design]",
-              "RelativeToolTip": "QLTDH\\DeleteUserForm.cs [Design]",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs",
+              "RelativeToolTip": "QLTDH\\DeleteUserForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T17:53:42.588Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-30T09:47:33.308Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DeleteRoleForm.cs [Design]",
+              "DocumentIndex": 10,
+              "Title": "DeleteRoleForm.cs",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\DeleteRoleForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs [Design]",
-              "RelativeToolTip": "QLTDH\\DeleteRoleForm.cs [Design]",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs",
+              "RelativeToolTip": "QLTDH\\DeleteRoleForm.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAACUAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T12:47:30.127Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-03-30T12:53:55.166Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "CreateUserForm.cs [Design]",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateUserForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\CreateUserForm.cs",
@@ -194,7 +266,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
+              "Title": "CreateRoleForm.cs [Design]",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\CreateRoleForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs [Design]",
+              "RelativeToolTip": "QLTDH\\CreateRoleForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T10:00:25.412Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\LoginForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
+              "RelativeToolTip": "QLTDH\\LoginForm.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwA8AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T08:56:19.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "DBAForm.cs [Design]",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DBAForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\DBAForm.cs",
@@ -206,98 +303,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CreateRoleForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\CreateRoleForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.cs",
-              "RelativeToolTip": "QLTDH\\CreateRoleForm.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAD4v1UAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T10:04:12.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DBAForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DBAForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\DBAForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DBAForm.cs",
-              "RelativeToolTip": "QLTDH\\DBAForm.cs",
-              "ViewState": "AgIAAMQAAAAAAAAAAAAtwNAAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T12:47:01.171Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\LoginForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\LoginForm.cs",
-              "RelativeToolTip": "QLTDH\\LoginForm.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAIwDcAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T08:56:19.791Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ConnectionManager.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\ConnectionManager.cs",
-              "RelativeDocumentMoniker": "QLTDH\\ConnectionManager.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\ConnectionManager.cs",
-              "RelativeToolTip": "QLTDH\\ConnectionManager.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T14:38:22.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UpdateRolePasswordForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\UpdateRolePasswordForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateRolePasswordForm.cs",
-              "RelativeToolTip": "QLTDH\\UpdateRolePasswordForm.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAIwD4AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T13:05:08.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "DeleteRoleForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\DeleteRoleForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs",
-              "RelativeToolTip": "QLTDH\\DeleteRoleForm.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAD4v1EAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T12:53:55.166Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "DeleteUserForm.cs",
+              "DocumentIndex": 15,
+              "Title": "DeleteUserForm.cs [Design]",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs",
               "RelativeDocumentMoniker": "QLTDH\\DeleteUserForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs",
-              "RelativeToolTip": "QLTDH\\DeleteUserForm.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwBYAAAAMAAAAAAAAAA==",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteUserForm.cs [Design]",
+              "RelativeToolTip": "QLTDH\\DeleteUserForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T09:47:33.308Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-29T17:53:42.588Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
+              "Title": "DeleteRoleForm.cs [Design]",
+              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs",
+              "RelativeDocumentMoniker": "QLTDH\\DeleteRoleForm.cs",
+              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\DeleteRoleForm.cs [Design]",
+              "RelativeToolTip": "QLTDH\\DeleteRoleForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T12:47:30.127Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "CreateRoleForm.Designer.cs",
               "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateRoleForm.Designer.cs",
               "RelativeDocumentMoniker": "QLTDH\\CreateRoleForm.Designer.cs",
@@ -306,32 +336,6 @@
               "ViewState": "AgIAAAcAAAAAAAAAAADwv4gAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-30T10:08:53.979Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "CreateUserForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateUserForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\CreateUserForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\CreateUserForm.cs",
-              "RelativeToolTip": "QLTDH\\CreateUserForm.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAYwEoAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T09:47:21.368Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "UpdateUserStatusForm.cs",
-              "DocumentMoniker": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateUserStatusForm.cs",
-              "RelativeDocumentMoniker": "QLTDH\\UpdateUserStatusForm.cs",
-              "ToolTip": "D:\\ATBM\\Project\\QLTDH\\QLTDH\\UpdateUserStatusForm.cs",
-              "RelativeToolTip": "QLTDH\\UpdateUserStatusForm.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAADwv0YAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T18:19:04.994Z",
               "EditorCaption": ""
             },
             {
@@ -396,7 +400,8 @@
               "RelativeToolTip": "QLTDH\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T07:49:27.7Z"
+              "WhenOpened": "2025-03-29T07:49:27.7Z",
+              "EditorCaption": ""
             }
           ]
         }
