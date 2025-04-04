@@ -30,25 +30,25 @@
         {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblUsernameRole = new System.Windows.Forms.Label();
-            this.lblResult = new System.Windows.Forms.Label();
-            this.lblPrivilege = new System.Windows.Forms.Label();
-            this.lblTable = new System.Windows.Forms.Label();
-            this.cbbPrivilege = new System.Windows.Forms.ComboBox();
-            this.cbbTable = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCheck = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.txbUsernameRole = new System.Windows.Forms.TextBox();
+            this.cbbObject = new System.Windows.Forms.ComboBox();
             this.cbWithGrantOption = new System.Windows.Forms.CheckBox();
+            this.lblUsernameRole = new System.Windows.Forms.Label();
+            this.cbbPrivilege = new System.Windows.Forms.ComboBox();
+            this.lblObject = new System.Windows.Forms.Label();
+            this.lblPrivilege = new System.Windows.Forms.Label();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.txbUsernameRole = new System.Windows.Forms.TextBox();
+            this.txbResult = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblWarning = new System.Windows.Forms.Label();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
+            this.lblWarning = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.cklbAttribute = new System.Windows.Forms.CheckedListBox();
             this.lblAttribute = new System.Windows.Forms.Label();
-            this.txbResult = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -79,11 +79,11 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.23376F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.76624F));
-            this.tableLayoutPanel1.Controls.Add(this.cbbTable, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.cbbObject, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.cbWithGrantOption, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.lblUsernameRole, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbbPrivilege, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblTable, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblObject, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.lblPrivilege, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblResult, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
@@ -102,6 +102,28 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(469, 371);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // cbbObject
+            // 
+            this.cbbObject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbObject.FormattingEnabled = true;
+            this.cbbObject.Location = new System.Drawing.Point(219, 254);
+            this.cbbObject.Name = "cbbObject";
+            this.cbbObject.Size = new System.Drawing.Size(247, 35);
+            this.cbbObject.TabIndex = 2;
+            // 
+            // cbWithGrantOption
+            // 
+            this.cbWithGrantOption.AutoSize = true;
+            this.cbWithGrantOption.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbWithGrantOption.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbWithGrantOption.Location = new System.Drawing.Point(219, 311);
+            this.cbWithGrantOption.Name = "cbWithGrantOption";
+            this.cbWithGrantOption.Size = new System.Drawing.Size(247, 57);
+            this.cbWithGrantOption.TabIndex = 1;
+            this.cbWithGrantOption.Text = "WITH GRANT OPTION";
+            this.cbWithGrantOption.UseVisualStyleBackColor = true;
+            // 
             // lblUsernameRole
             // 
             this.lblUsernameRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -116,20 +138,29 @@
             this.lblUsernameRole.Text = "Username/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblResult
+            // cbbPrivilege
             // 
-            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.cbbPrivilege.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbPrivilege.FormattingEnabled = true;
+            this.cbbPrivilege.Location = new System.Drawing.Point(219, 182);
+            this.cbbPrivilege.Name = "cbbPrivilege";
+            this.cbbPrivilege.Size = new System.Drawing.Size(247, 35);
+            this.cbbPrivilege.TabIndex = 1;
+            // 
+            // lblObject
+            // 
+            this.lblObject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblResult.AutoSize = true;
-            this.lblResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(3, 110);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(210, 55);
-            this.lblResult.TabIndex = 1;
-            this.lblResult.Text = "Kết quả";
-            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblObject.AutoSize = true;
+            this.lblObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObject.Location = new System.Drawing.Point(3, 235);
+            this.lblObject.Name = "lblObject";
+            this.lblObject.Size = new System.Drawing.Size(210, 73);
+            this.lblObject.TabIndex = 1;
+            this.lblObject.Text = "Đối tượng";
+            this.lblObject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblPrivilege
             // 
@@ -145,39 +176,20 @@
             this.lblPrivilege.Text = "Quyền";
             this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblTable
+            // lblResult
             // 
-            this.lblTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTable.AutoSize = true;
-            this.lblTable.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTable.Location = new System.Drawing.Point(3, 235);
-            this.lblTable.Name = "lblTable";
-            this.lblTable.Size = new System.Drawing.Size(210, 73);
-            this.lblTable.TabIndex = 1;
-            this.lblTable.Text = "Bảng";
-            this.lblTable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // cbbPrivilege
-            // 
-            this.cbbPrivilege.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbPrivilege.FormattingEnabled = true;
-            this.cbbPrivilege.Location = new System.Drawing.Point(219, 182);
-            this.cbbPrivilege.Name = "cbbPrivilege";
-            this.cbbPrivilege.Size = new System.Drawing.Size(247, 35);
-            this.cbbPrivilege.TabIndex = 1;
-            // 
-            // cbbTable
-            // 
-            this.cbbTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbTable.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbTable.FormattingEnabled = true;
-            this.cbbTable.Location = new System.Drawing.Point(219, 254);
-            this.cbbTable.Name = "cbbTable";
-            this.cbbTable.Size = new System.Drawing.Size(247, 35);
-            this.cbbTable.TabIndex = 2;
+            this.lblResult.AutoSize = true;
+            this.lblResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResult.ForeColor = System.Drawing.Color.Red;
+            this.lblResult.Location = new System.Drawing.Point(3, 110);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(210, 55);
+            this.lblResult.TabIndex = 1;
+            this.lblResult.Text = "Kết quả";
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel3
             // 
@@ -196,27 +208,29 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(253, 48);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
-            // btnCheck
-            // 
-            this.btnCheck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCheck.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheck.Location = new System.Drawing.Point(3, 3);
-            this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(128, 42);
-            this.btnCheck.TabIndex = 0;
-            this.btnCheck.Text = "Kiểm tra";
-            this.btnCheck.UseVisualStyleBackColor = true;
-            // 
             // btnReset
             // 
+            this.btnReset.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnReset.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Location = new System.Drawing.Point(137, 3);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(113, 42);
             this.btnReset.TabIndex = 1;
             this.btnReset.Text = "Đặt lại";
-            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.UseVisualStyleBackColor = false;
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnCheck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCheck.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheck.Location = new System.Drawing.Point(3, 3);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(128, 42);
+            this.btnCheck.TabIndex = 0;
+            this.btnCheck.Text = "Kiểm tra";
+            this.btnCheck.UseVisualStyleBackColor = false;
             // 
             // txbUsernameRole
             // 
@@ -228,17 +242,18 @@
             this.txbUsernameRole.TabIndex = 4;
             this.txbUsernameRole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // cbWithGrantOption
+            // txbResult
             // 
-            this.cbWithGrantOption.AutoSize = true;
-            this.cbWithGrantOption.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbWithGrantOption.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbWithGrantOption.Location = new System.Drawing.Point(219, 311);
-            this.cbWithGrantOption.Name = "cbWithGrantOption";
-            this.cbWithGrantOption.Size = new System.Drawing.Size(247, 57);
-            this.cbWithGrantOption.TabIndex = 1;
-            this.cbWithGrantOption.Text = "WITH GRANT OPTION";
-            this.cbWithGrantOption.UseVisualStyleBackColor = true;
+            this.txbResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbResult.ForeColor = System.Drawing.Color.Red;
+            this.txbResult.Location = new System.Drawing.Point(219, 123);
+            this.txbResult.Name = "txbResult";
+            this.txbResult.ReadOnly = true;
+            this.txbResult.Size = new System.Drawing.Size(247, 28);
+            this.txbResult.TabIndex = 5;
+            this.txbResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tableLayoutPanel4
             // 
@@ -257,6 +272,18 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(475, 126);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
+            // btnGrantPrivilege
+            // 
+            this.btnGrantPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(153, 55);
+            this.btnGrantPrivilege.Name = "btnGrantPrivilege";
+            this.btnGrantPrivilege.Size = new System.Drawing.Size(169, 53);
+            this.btnGrantPrivilege.TabIndex = 1;
+            this.btnGrantPrivilege.Text = "Cấp quyền";
+            this.btnGrantPrivilege.UseVisualStyleBackColor = false;
+            // 
             // lblWarning
             // 
             this.lblWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -267,21 +294,10 @@
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
             this.lblWarning.Location = new System.Drawing.Point(3, 0);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(469, 39);
+            this.lblWarning.Size = new System.Drawing.Size(469, 38);
             this.lblWarning.TabIndex = 0;
-            this.lblWarning.Text = "Vui lòng nhấn nút \"Kiểm tra\"  để được cấp quyền";
+            this.lblWarning.Text = "Vui lòng nhấn nút \"Kiểm tra\"  để có thể cấp quyền";
             this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnGrantPrivilege
-            // 
-            this.btnGrantPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantPrivilege.Location = new System.Drawing.Point(154, 61);
-            this.btnGrantPrivilege.Name = "btnGrantPrivilege";
-            this.btnGrantPrivilege.Size = new System.Drawing.Size(167, 42);
-            this.btnGrantPrivilege.TabIndex = 1;
-            this.btnGrantPrivilege.Text = "Cấp quyền";
-            this.btnGrantPrivilege.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
@@ -337,19 +353,6 @@
             this.lblAttribute.Text = "Thuộc tính";
             this.lblAttribute.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // txbResult
-            // 
-            this.txbResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbResult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbResult.ForeColor = System.Drawing.Color.Red;
-            this.txbResult.Location = new System.Drawing.Point(219, 120);
-            this.txbResult.Name = "txbResult";
-            this.txbResult.ReadOnly = true;
-            this.txbResult.Size = new System.Drawing.Size(247, 28);
-            this.txbResult.TabIndex = 5;
-            this.txbResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // GrantPrivilegeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -378,8 +381,8 @@
         private System.Windows.Forms.Label lblUsernameRole;
         private System.Windows.Forms.Label lblPrivilege;
         private System.Windows.Forms.Label lblResult;
-        private System.Windows.Forms.Label lblTable;
-        private System.Windows.Forms.ComboBox cbbTable;
+        private System.Windows.Forms.Label lblObject;
+        private System.Windows.Forms.ComboBox cbbObject;
         private System.Windows.Forms.ComboBox cbbPrivilege;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnCheck;
