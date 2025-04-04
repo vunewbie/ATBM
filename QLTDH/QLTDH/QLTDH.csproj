@@ -121,6 +121,12 @@
     <Compile Include="DeleteUserForm.Designer.cs">
       <DependentUpon>DeleteUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrantPrivilegeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GrantPrivilegeForm.Designer.cs">
+      <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DeleteUserForm.resx">
       <DependentUpon>DeleteUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrantPrivilegeForm.resx">
+      <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

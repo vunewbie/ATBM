@@ -260,5 +260,15 @@ namespace QLTDH
                 SearchRoles(searchQuery);
             }
         }
+
+        private void btnGrantPrivilege_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRevokePrivilege_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
