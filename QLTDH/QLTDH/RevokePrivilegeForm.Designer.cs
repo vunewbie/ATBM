@@ -35,19 +35,23 @@
             this.lblPrivilege = new System.Windows.Forms.Label();
             this.tbUsernamRole = new System.Windows.Forms.TextBox();
             this.cbbObject = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbWithGrantOption = new System.Windows.Forms.CheckBox();
-            this.cbDelete = new System.Windows.Forms.CheckBox();
-            this.cbUpdate = new System.Windows.Forms.CheckBox();
-            this.cbInsert = new System.Windows.Forms.CheckBox();
-            this.cbSelect = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnRevoke = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnRevoke = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.ckbSelect = new System.Windows.Forms.CheckBox();
+            this.ckbInsert = new System.Windows.Forms.CheckBox();
+            this.ckbUpdate = new System.Windows.Forms.CheckBox();
+            this.ckbDelete = new System.Windows.Forms.CheckBox();
+            this.ckbWithGrantOption = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -70,8 +74,8 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.36573F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.63427F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.50639F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.49361F));
             this.tableLayoutPanel2.Controls.Add(this.lblUsernameRole, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblObject, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblPrivilege, 0, 2);
@@ -98,7 +102,7 @@
             this.lblUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsernameRole.Location = new System.Drawing.Point(3, 0);
             this.lblUsernameRole.Name = "lblUsernameRole";
-            this.lblUsernameRole.Size = new System.Drawing.Size(208, 119);
+            this.lblUsernameRole.Size = new System.Drawing.Size(170, 119);
             this.lblUsernameRole.TabIndex = 0;
             this.lblUsernameRole.Text = "Username/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -112,7 +116,7 @@
             this.lblObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblObject.Location = new System.Drawing.Point(3, 119);
             this.lblObject.Name = "lblObject";
-            this.lblObject.Size = new System.Drawing.Size(208, 119);
+            this.lblObject.Size = new System.Drawing.Size(170, 119);
             this.lblObject.TabIndex = 1;
             this.lblObject.Text = "Đối tượng";
             this.lblObject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,7 +130,7 @@
             this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPrivilege.Location = new System.Drawing.Point(3, 238);
             this.lblPrivilege.Name = "lblPrivilege";
-            this.lblPrivilege.Size = new System.Drawing.Size(208, 121);
+            this.lblPrivilege.Size = new System.Drawing.Size(170, 121);
             this.lblPrivilege.TabIndex = 2;
             this.lblPrivilege.Text = "Quyền";
             this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -135,7 +139,7 @@
             // 
             this.tbUsernamRole.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbUsernamRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsernamRole.Location = new System.Drawing.Point(221, 42);
+            this.tbUsernamRole.Location = new System.Drawing.Point(202, 42);
             this.tbUsernamRole.Name = "tbUsernamRole";
             this.tbUsernamRole.Size = new System.Drawing.Size(554, 35);
             this.tbUsernamRole.TabIndex = 3;
@@ -145,96 +149,10 @@
             this.cbbObject.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbbObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbObject.FormattingEnabled = true;
-            this.cbbObject.Location = new System.Drawing.Point(221, 161);
+            this.cbbObject.Location = new System.Drawing.Point(202, 161);
             this.cbbObject.Name = "cbbObject";
             this.cbbObject.Size = new System.Drawing.Size(554, 35);
             this.cbbObject.TabIndex = 4;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 5;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.48746F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.5914F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.92115F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.2043F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.61649F));
-            this.tableLayoutPanel3.Controls.Add(this.cbWithGrantOption, 4, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cbDelete, 3, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cbUpdate, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cbInsert, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.cbSelect, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(217, 241);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(562, 115);
-            this.tableLayoutPanel3.TabIndex = 5;
-            // 
-            // cbWithGrantOption
-            // 
-            this.cbWithGrantOption.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbWithGrantOption.AutoSize = true;
-            this.cbWithGrantOption.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbWithGrantOption.Location = new System.Drawing.Point(378, 44);
-            this.cbWithGrantOption.Name = "cbWithGrantOption";
-            this.cbWithGrantOption.Size = new System.Drawing.Size(181, 26);
-            this.cbWithGrantOption.TabIndex = 4;
-            this.cbWithGrantOption.Text = "With Grant Option";
-            this.cbWithGrantOption.UseVisualStyleBackColor = true;
-            // 
-            // cbDelete
-            // 
-            this.cbDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbDelete.AutoSize = true;
-            this.cbDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbDelete.Location = new System.Drawing.Point(283, 44);
-            this.cbDelete.Name = "cbDelete";
-            this.cbDelete.Size = new System.Drawing.Size(88, 26);
-            this.cbDelete.TabIndex = 3;
-            this.cbDelete.Text = "Delete";
-            this.cbDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbDelete.UseVisualStyleBackColor = true;
-            // 
-            // cbUpdate
-            // 
-            this.cbUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbUpdate.AutoSize = true;
-            this.cbUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbUpdate.Location = new System.Drawing.Point(183, 44);
-            this.cbUpdate.Name = "cbUpdate";
-            this.cbUpdate.Size = new System.Drawing.Size(92, 26);
-            this.cbUpdate.TabIndex = 2;
-            this.cbUpdate.Text = "Update";
-            this.cbUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbUpdate.UseVisualStyleBackColor = true;
-            // 
-            // cbInsert
-            // 
-            this.cbInsert.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbInsert.AutoSize = true;
-            this.cbInsert.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbInsert.Location = new System.Drawing.Point(95, 44);
-            this.cbInsert.Name = "cbInsert";
-            this.cbInsert.Size = new System.Drawing.Size(80, 26);
-            this.cbInsert.TabIndex = 1;
-            this.cbInsert.Text = "Insert";
-            this.cbInsert.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbInsert.UseVisualStyleBackColor = true;
-            // 
-            // cbSelect
-            // 
-            this.cbSelect.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbSelect.AutoSize = true;
-            this.cbSelect.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cbSelect.Location = new System.Drawing.Point(3, 44);
-            this.cbSelect.Name = "cbSelect";
-            this.cbSelect.Size = new System.Drawing.Size(85, 26);
-            this.cbSelect.TabIndex = 0;
-            this.cbSelect.Text = "Select";
-            this.cbSelect.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cbSelect.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
@@ -252,18 +170,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(776, 138);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
-            // btnRevoke
-            // 
-            this.btnRevoke.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRevoke.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnRevoke.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevoke.Location = new System.Drawing.Point(167, 32);
-            this.btnRevoke.Name = "btnRevoke";
-            this.btnRevoke.Size = new System.Drawing.Size(209, 73);
-            this.btnRevoke.TabIndex = 0;
-            this.btnRevoke.Text = "Thu hồi quyền";
-            this.btnRevoke.UseVisualStyleBackColor = false;
-            // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -275,22 +181,149 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Đóng";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnRevoke
+            // 
+            this.btnRevoke.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnRevoke.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRevoke.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRevoke.Location = new System.Drawing.Point(244, 22);
+            this.btnRevoke.Name = "btnRevoke";
+            this.btnRevoke.Size = new System.Drawing.Size(296, 93);
+            this.btnRevoke.TabIndex = 0;
+            this.btnRevoke.Text = "Thu hồi quyền";
+            this.btnRevoke.UseVisualStyleBackColor = false;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(179, 241);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(600, 115);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Controls.Add(this.ckbUpdate, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.ckbInsert, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.ckbSelect, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(594, 51);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.6835F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.3165F));
+            this.tableLayoutPanel6.Controls.Add(this.ckbWithGrantOption, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.ckbDelete, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 60);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(594, 52);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // ckbSelect
+            // 
+            this.ckbSelect.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ckbSelect.AutoSize = true;
+            this.ckbSelect.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbSelect.Location = new System.Drawing.Point(56, 22);
+            this.ckbSelect.Name = "ckbSelect";
+            this.ckbSelect.Size = new System.Drawing.Size(85, 26);
+            this.ckbSelect.TabIndex = 0;
+            this.ckbSelect.Text = "Select";
+            this.ckbSelect.UseVisualStyleBackColor = true;
+            // 
+            // ckbInsert
+            // 
+            this.ckbInsert.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ckbInsert.AutoSize = true;
+            this.ckbInsert.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbInsert.Location = new System.Drawing.Point(257, 22);
+            this.ckbInsert.Name = "ckbInsert";
+            this.ckbInsert.Size = new System.Drawing.Size(80, 26);
+            this.ckbInsert.TabIndex = 1;
+            this.ckbInsert.Text = "Insert";
+            this.ckbInsert.UseVisualStyleBackColor = true;
+            // 
+            // ckbUpdate
+            // 
+            this.ckbUpdate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.ckbUpdate.AutoSize = true;
+            this.ckbUpdate.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbUpdate.Location = new System.Drawing.Point(449, 22);
+            this.ckbUpdate.Name = "ckbUpdate";
+            this.ckbUpdate.Size = new System.Drawing.Size(92, 26);
+            this.ckbUpdate.TabIndex = 2;
+            this.ckbUpdate.Text = "Update";
+            this.ckbUpdate.UseVisualStyleBackColor = true;
+            // 
+            // ckbDelete
+            // 
+            this.ckbDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.ckbDelete.AutoSize = true;
+            this.ckbDelete.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbDelete.Location = new System.Drawing.Point(109, 3);
+            this.ckbDelete.Name = "ckbDelete";
+            this.ckbDelete.Size = new System.Drawing.Size(88, 26);
+            this.ckbDelete.TabIndex = 1;
+            this.ckbDelete.Text = "Delete";
+            this.ckbDelete.UseVisualStyleBackColor = true;
+            // 
+            // ckbWithGrantOption
+            // 
+            this.ckbWithGrantOption.AutoSize = true;
+            this.ckbWithGrantOption.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbWithGrantOption.Location = new System.Drawing.Point(310, 3);
+            this.ckbWithGrantOption.Name = "ckbWithGrantOption";
+            this.ckbWithGrantOption.Size = new System.Drawing.Size(181, 26);
+            this.ckbWithGrantOption.TabIndex = 2;
+            this.ckbWithGrantOption.Text = "With Grant Option";
+            this.ckbWithGrantOption.UseVisualStyleBackColor = true;
             // 
             // RevokePrivilegeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 503);
+            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RevokePrivilegeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thu hồi quyền từ user/role";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -304,14 +337,16 @@
         private System.Windows.Forms.Label lblPrivilege;
         private System.Windows.Forms.TextBox tbUsernamRole;
         private System.Windows.Forms.ComboBox cbbObject;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.CheckBox cbSelect;
-        private System.Windows.Forms.CheckBox cbWithGrantOption;
-        private System.Windows.Forms.CheckBox cbDelete;
-        private System.Windows.Forms.CheckBox cbUpdate;
-        private System.Windows.Forms.CheckBox cbInsert;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRevoke;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.CheckBox ckbUpdate;
+        private System.Windows.Forms.CheckBox ckbInsert;
+        private System.Windows.Forms.CheckBox ckbSelect;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.CheckBox ckbWithGrantOption;
+        private System.Windows.Forms.CheckBox ckbDelete;
     }
 }

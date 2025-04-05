@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
             this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
@@ -127,14 +127,14 @@
             // 
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsers.Location = new System.Drawing.Point(8, 9);
@@ -443,10 +443,10 @@
             // btnRevokePrivilege
             // 
             this.btnRevokePrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevokePrivilege.Location = new System.Drawing.Point(328, 9);
+            this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRevokePrivilege.Location = new System.Drawing.Point(327, 4);
             this.btnRevokePrivilege.Name = "btnRevokePrivilege";
-            this.btnRevokePrivilege.Size = new System.Drawing.Size(223, 70);
+            this.btnRevokePrivilege.Size = new System.Drawing.Size(226, 84);
             this.btnRevokePrivilege.TabIndex = 5;
             this.btnRevokePrivilege.Text = "Hủy quyền của user/role";
             this.btnRevokePrivilege.UseVisualStyleBackColor = false;
@@ -456,10 +456,10 @@
             // btnGrantPrivilege
             // 
             this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantPrivilege.Location = new System.Drawing.Point(67, 9);
+            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(67, 4);
             this.btnGrantPrivilege.Name = "btnGrantPrivilege";
-            this.btnGrantPrivilege.Size = new System.Drawing.Size(230, 70);
+            this.btnGrantPrivilege.Size = new System.Drawing.Size(231, 84);
             this.btnGrantPrivilege.TabIndex = 4;
             this.btnGrantPrivilege.Text = "Cấp quyền cho user/role";
             this.btnGrantPrivilege.UseVisualStyleBackColor = false;
@@ -485,7 +485,7 @@
             this.txbTablePrivilege.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbTablePrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTablePrivilege.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txbTablePrivilege.Location = new System.Drawing.Point(67, 75);
+            this.txbTablePrivilege.Location = new System.Drawing.Point(67, 94);
             this.txbTablePrivilege.Name = "txbTablePrivilege";
             this.txbTablePrivilege.Size = new System.Drawing.Size(93, 28);
             this.txbTablePrivilege.TabIndex = 2;
@@ -505,7 +505,7 @@
             // dgvTablePrivilege
             // 
             this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTablePrivilege.Location = new System.Drawing.Point(67, 103);
+            this.dgvTablePrivilege.Location = new System.Drawing.Point(67, 124);
             this.dgvTablePrivilege.Name = "dgvTablePrivilege";
             this.dgvTablePrivilege.RowHeadersWidth = 62;
             this.dgvTablePrivilege.Size = new System.Drawing.Size(1130, 256);

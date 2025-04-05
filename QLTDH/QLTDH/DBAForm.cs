@@ -263,12 +263,16 @@ namespace QLTDH
 
         private void btnGrantPrivilege_Click(object sender, EventArgs e)
         {
-
+            // Mở form GrantPrivilege
+            GrantPrivilegeForm newGrantPrivilegeForm = new GrantPrivilegeForm();
+            newGrantPrivilegeForm.ShowDialog();
         }
 
         private void btnRevokePrivilege_Click(object sender, EventArgs e)
         {
-
+            // Mở form RevokePrivilege
+            RevokePrivilegeForm newRevokePrivilegeForm = new RevokePrivilegeForm();
+            newRevokePrivilegeForm.ShowDialog();
         }
     }
 }

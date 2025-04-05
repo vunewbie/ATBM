@@ -198,8 +198,64 @@ BEGIN
 END;
 /
 
+-- Kiểm tra username/role
+CREATE OR REPLACE PROCEDURE PH1_CHECK_USER_ROLE(
+     p_username_or_role IN VARCHAR2,
+     p_type OUT VARCHAR2
+)
+AS
+    v_count NUMBER;
+BEGIN
+    -- Kiểm tra nếu là USER
+    SELECT COUNT(*)
+    INTO v_count
+    FROM ALL_USERS
+    WHERE USERNAME = p_username_or_role;
 
+    IF v_count > 0 THEN
+        p_type := 'Đây là user';
+        RETURN;
+    END IF;
 
+    -- Kiểm tra nếu là ROLE
+    SELECT COUNT(*)
+    INTO v_count
+    FROM DBA_ROLES
+    WHERE ROLE = UPPER(p_username_or_role);
 
+    IF v_count > 0 THEN
+        p_type := 'Đây là role';
+        RETURN;
+    END IF;
+
+    -- Không phải user hoặc role
+    p_type := 'Không hợp lệ';
+END;
+/
+
+-- Liệt kê danh sách bảng để cấp quyền
+CREATE OR REPLACE PROCEDURE PH1_GET_TABLES_FOR_GRANT(
+    p_cursor OUT SYS_REFCURSOR
+)
+IS
+BEGIN
+    OPEN p_cursor FOR
+    SELECT DISTINCT 
+        t.TABLE_NAME
+    FROM 
+        DBA_TABLES t
+    WHERE 
+        -- Chỉ hiển thị các bảng từ schema phổ biến hoặc schema của người dùng SYSDBA
+        (
+            t.OWNER IN ('SYS', 'SYSTEM', USER) 
+            OR t.OWNER IN (
+                SELECT USERNAME 
+                FROM DBA_USERS 
+                WHERE DEFAULT_TABLESPACE NOT IN ('SYSTEM', 'SYSAUX')
+            )
+        )
+    ORDER BY t.TABLE_NAME;
+END;
+/
 
 
