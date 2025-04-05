@@ -35,7 +35,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Kiểm tra xem role đã tồn tại
-                    OracleCommand checkCmd = new OracleCommand("CHECK_ROLE_EXISTS", conn);
+                    OracleCommand checkCmd = new OracleCommand("SYS.PH1_CHECK_ROLE_EXISTS", conn);
                     checkCmd.CommandType = CommandType.StoredProcedure;
                     checkCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
                     OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Varchar2, 10);
@@ -52,7 +52,7 @@ namespace QLTDH
                     }
 
                     // Xóa vai trò
-                    OracleCommand deleteCmd = new OracleCommand("DELETE_ROLE", conn);
+                    OracleCommand deleteCmd = new OracleCommand("SYS.PH1_DELETE_ROLE", conn);
                     deleteCmd.CommandType = CommandType.StoredProcedure;
                     deleteCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
 
@@ -61,7 +61,7 @@ namespace QLTDH
                     MessageBox.Show("Vai trò đã được xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách vai trò trong DBAForm
-                    OracleCommand cmd = new OracleCommand("GET_ROLE_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     OracleParameter cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;

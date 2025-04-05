@@ -30,3 +30,13 @@ INSERT INTO DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PCTSV', 'Phòng Công t�
 INSERT INTO DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PKHCN', 'Phòng Khoa học công nghệ', 'Phòng', NULL);
 -- Kiểm tra dữ liệu của DONVI
 SELECT * FROM DONVI;
+
+
+
+
+
+
+
+
+
+
