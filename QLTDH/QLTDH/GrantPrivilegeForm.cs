@@ -18,13 +18,10 @@ namespace QLTDH
         public GrantPrivilegeForm()
         {
             InitializeComponent();
-            btnGrantPrivilege.Enabled=false;
-        }
-        private void txbUsernameRole_TextChanged(object sender, EventArgs e)
-        {
-            // Khi thay đổi nội dung, yêu cầu kiểm tra lại
-            lblResultCheck.Text = ""; 
-            btnGrantPrivilege.Enabled = false;
+            cbbPrivilege.Enabled = false;
+            cbbObjectType.Enabled = false;
+            cbbObject.Enabled = false;
+            ckbWithGrantOption.Enabled = false;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
@@ -56,6 +53,13 @@ namespace QLTDH
 
                         // Lấy kết quả từ tham số OUT
                         lblResultCheck.Text = outputParam.Value.ToString();
+                        if (lblResultCheck.Text!="Không hợp lệ")
+                        {
+                            txbUsernameRole.Enabled = false;
+                            cbbPrivilege.Enabled = true;
+                            cbbObjectType.Enabled = true;
+                            ckbWithGrantOption.Enabled = true;
+                        }
                     }
                     conn.Close();
                 }
@@ -69,9 +73,21 @@ namespace QLTDH
         {
             txbUsernameRole.Text = "";
             lblResultCheck.Text = "";
+            txbUsernameRole.Enabled=true;
+            cbbPrivilege.SelectedIndex = -1;
+            cbbPrivilege.Enabled = false;
+            cbbObjectType.SelectedIndex = -1;
+            cbbObjectType.Enabled = false;
+            cbbObject.SelectedIndex = -1;
+            cbbObject.Enabled = false;
+            cklbAttribute.Items.Clear();
+            cklbAttribute.Enabled = false;
+            ckbWithGrantOption.Checked = false;
+            ckbWithGrantOption.Enabled = false;
         }
         private void cbbPrivilege_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cbbObjectType.Enabled = true;
             if (cbbPrivilege.Text.ToString() == "Select" || cbbPrivilege.Text.ToString() == "Update")
             {
                 cklbAttribute.Enabled = true;
@@ -87,36 +103,51 @@ namespace QLTDH
         }
         private void cbbObjectType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedValue = cbbObjectType.SelectedItem.ToString();
+            cbbObject.SelectedIndex = -1;
+            cbbObject.Items.Clear();
+            cklbAttribute.Items.Clear();
+            cbbObject.Enabled = true;
+            if (cbbObjectType.SelectedItem != null)
+            {
+                string selectedValue = cbbObjectType.SelectedItem.ToString();
+                if (selectedValue == "Table")
+                {
+                    string[] items = { "QLDT_DETAI", "QLDT_GIAOVIEN", "QLDT_PHONGBAN", "QLDT_THAMGIA" };
+                    cbbObject.Items.AddRange(items);
+                }
+                else if (selectedValue == "View")
+                {
+                    string[] items = { "GV_MATKHAU", "GV_THAMGIADETAI" };
+                    cbbObject.Items.AddRange(items);
+                }
+                else if (selectedValue == "Stored Procedure")
+                {
+                    string[] items = { "PROC_CAPNHAT_PHUCAP", "PROC_DSTHAMGIA_GV" };
+                    cbbObject.Items.AddRange(items);
+                }
+                else {
+                    string[] items = { "FN_TONG_THOIGIAN_THAMGIA" };
+                    cbbObject.Items.AddRange(items);
+                }
+            }
+        }
+
+        private void cbbObject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cklbAttribute.Items.Clear();
             try
             {
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
-                    if (selectedValue == "Table")
+                    string query = "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = \'" + cbbObject.Text.ToString() + '\'';
+                    OracleDataAdapter adapter = new OracleDataAdapter(query, conn);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        using (OracleCommand cmd = new OracleCommand("PH1_GET_TABLES_FOR_GRANT", conn))
-                        {
-                            cmd.CommandType = CommandType.StoredProcedure;
-
-                            // Tham số OUT
-                            OracleParameter outputParam = cmd.Parameters.Add("p_cursor", OracleDbType.RefCursor);
-                            outputParam.Direction = ParameterDirection.Output;
-
-                            // Gọi procedure
-                            using (OracleDataReader reader = cmd.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    string tableName = reader.GetString(0);
-                                    cbbObject.Items.Add(tableName);
-                                }
-
-                            }
-
-                        }
+                        cklbAttribute.Items.Add(row["column_name"].ToString());
                     }
-                    
                     conn.Close();
                 }
             }
@@ -130,5 +161,6 @@ namespace QLTDH
         {
             this.Close();
         }
+
     }
 }

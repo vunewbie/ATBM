@@ -228,6 +228,7 @@ BEGIN
     WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
     ORDER BY GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, PRIVILEGE;
 END;
+
 -- Kiểm tra username/role
 CREATE OR REPLACE PROCEDURE PH1_CHECK_USER_ROLE(
      p_username_or_role IN VARCHAR2,
@@ -262,30 +263,4 @@ BEGIN
     p_type := 'Không hợp lệ';
 END;
 /
-
--- Liệt kê danh sách bảng để cấp quyền
-CREATE OR REPLACE PROCEDURE PH1_GET_TABLES_FOR_GRANT(
-    p_cursor OUT SYS_REFCURSOR
-)
-IS
-BEGIN
-    OPEN p_cursor FOR
-    SELECT DISTINCT 
-        t.TABLE_NAME
-    FROM 
-        DBA_TABLES t
-    WHERE 
-        -- Chỉ hiển thị các bảng từ schema phổ biến hoặc schema của người dùng SYSDBA
-        (
-            t.OWNER IN ('SYS', 'SYSTEM', USER) 
-            OR t.OWNER IN (
-                SELECT USERNAME 
-                FROM DBA_USERS 
-                WHERE DEFAULT_TABLESPACE NOT IN ('SYSTEM', 'SYSAUX')
-            )
-        )
-    ORDER BY t.TABLE_NAME;
-END;
-/
-
 

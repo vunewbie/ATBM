@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
             this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
@@ -53,6 +52,19 @@
             this.btnSearchRole = new System.Windows.Forms.Button();
             this.txbSearchRole = new System.Windows.Forms.TextBox();
             this.tpagePrivileges = new System.Windows.Forms.TabPage();
+            this.btnRevokePrivilege = new System.Windows.Forms.Button();
+            this.btnGrantPrivilege = new System.Windows.Forms.Button();
+            this.dgvColumnPrivilege = new System.Windows.Forms.DataGridView();
+            this.col_GRANTEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_TABLE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_GRANTOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_PRIVILEGE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_GRANTABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_HIERARCHY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_COMMON = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_INHERITED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txbColumnPrivilege = new System.Windows.Forms.TextBox();
             this.txbTablePrivilege = new System.Windows.Forms.TextBox();
             this.dgvTablePrivilege = new System.Windows.Forms.DataGridView();
@@ -66,17 +78,6 @@
             this.tbl_COMMON = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_INHERITED = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvColumnPrivilege = new System.Windows.Forms.DataGridView();
-            this.col_GRANTEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_TABLE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_GRANTOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_PRIVILEGE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_GRANTABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_HIERARCHY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_COMMON = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col_INHERITED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
             this.tlpUsers.SuspendLayout();
@@ -144,16 +145,6 @@
             // 
             // dgvUsers
             // 
-            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvUsers.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -164,6 +155,7 @@
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.Size = new System.Drawing.Size(1228, 473);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.UseWaitCursor = true;
             // 
             // tlpUsersButton
             // 
@@ -256,10 +248,10 @@
             // 
             this.txbSearchUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSearchUser.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchUser.Location = new System.Drawing.Point(8, 26);
+            this.txbSearchUser.Location = new System.Drawing.Point(8, 23);
             this.txbSearchUser.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txbSearchUser.Name = "txbSearchUser";
-            this.txbSearchUser.Size = new System.Drawing.Size(278, 39);
+            this.txbSearchUser.Size = new System.Drawing.Size(278, 45);
             this.txbSearchUser.TabIndex = 0;
             this.txbSearchUser.UseWaitCursor = true;
             // 
@@ -434,16 +426,18 @@
             // 
             this.txbSearchRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchRole.Location = new System.Drawing.Point(8, 26);
+            this.txbSearchRole.Location = new System.Drawing.Point(8, 23);
             this.txbSearchRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txbSearchRole.Name = "txbSearchRole";
-            this.txbSearchRole.Size = new System.Drawing.Size(278, 39);
+            this.txbSearchRole.Size = new System.Drawing.Size(278, 45);
             this.txbSearchRole.TabIndex = 0;
             this.txbSearchRole.UseWaitCursor = true;
             // 
             // tpagePrivileges
             // 
             this.tpagePrivileges.BackColor = System.Drawing.SystemColors.Control;
+            this.tpagePrivileges.Controls.Add(this.btnRevokePrivilege);
+            this.tpagePrivileges.Controls.Add(this.btnGrantPrivilege);
             this.tpagePrivileges.Controls.Add(this.dgvColumnPrivilege);
             this.tpagePrivileges.Controls.Add(this.txbColumnPrivilege);
             this.tpagePrivileges.Controls.Add(this.txbTablePrivilege);
@@ -458,175 +452,44 @@
             this.tpagePrivileges.UseWaitCursor = true;
             this.tpagePrivileges.Enter += new System.EventHandler(this.tpagePrivileges_Enter);
             // 
-            // txbColumnPrivilege
+            // btnRevokePrivilege
             // 
-            this.txbColumnPrivilege.BackColor = System.Drawing.SystemColors.Control;
-            this.txbColumnPrivilege.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbColumnPrivilege.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbColumnPrivilege.Location = new System.Drawing.Point(67, 393);
-            this.txbColumnPrivilege.Name = "txbColumnPrivilege";
-            this.txbColumnPrivilege.Size = new System.Drawing.Size(107, 25);
-            this.txbColumnPrivilege.TabIndex = 3;
-            this.txbColumnPrivilege.Text = "COLUMN";
-            this.txbColumnPrivilege.UseWaitCursor = true;
+            this.btnRevokePrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRevokePrivilege.Location = new System.Drawing.Point(381, 0);
+            this.btnRevokePrivilege.Name = "btnRevokePrivilege";
+            this.btnRevokePrivilege.Size = new System.Drawing.Size(254, 76);
+            this.btnRevokePrivilege.TabIndex = 6;
+            this.btnRevokePrivilege.Text = "Thu hồi quyền của user/role";
+            this.btnRevokePrivilege.UseVisualStyleBackColor = false;
+            this.btnRevokePrivilege.UseWaitCursor = true;
+            this.btnRevokePrivilege.Click += new System.EventHandler(this.btnRevokePrivilege_Click);
             // 
-            // txbTablePrivilege
+            // btnGrantPrivilege
             // 
-            this.txbTablePrivilege.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
-            this.txbTablePrivilege.BackColor = System.Drawing.SystemColors.Control;
-            this.txbTablePrivilege.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbTablePrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTablePrivilege.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txbTablePrivilege.Location = new System.Drawing.Point(67, 72);
-            this.txbTablePrivilege.Name = "txbTablePrivilege";
-            this.txbTablePrivilege.Size = new System.Drawing.Size(90, 25);
-            this.txbTablePrivilege.TabIndex = 2;
-            this.txbTablePrivilege.Text = "TABLE";
-            this.txbTablePrivilege.UseWaitCursor = true;
-            // 
-            // dgvTablePrivilege
-            // 
-            this.dgvTablePrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dgvTablePrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTablePrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tbl_GRANTEE,
-            this.tbl_OWNER,
-            this.tbl_TABLE_NAME,
-            this.tbl_GRANTOR,
-            this.tbl_PRIVILEGE,
-            this.tbl_GRANTABLE,
-            this.tbl_HIERARCHY,
-            this.tbl_COMMON,
-            this.tbl_TYPE,
-            this.tbl_INHERITED});
-            this.dgvTablePrivilege.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvTablePrivilege.Location = new System.Drawing.Point(67, 103);
-            this.dgvTablePrivilege.Name = "dgvTablePrivilege";
-            this.dgvTablePrivilege.RowHeadersWidth = 51;
-            this.dgvTablePrivilege.Size = new System.Drawing.Size(1130, 256);
-            this.dgvTablePrivilege.TabIndex = 0;
-            // 
-            // tbl_GRANTEE
-            // 
-            this.tbl_GRANTEE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_GRANTEE.DataPropertyName = "GRANTEE";
-            this.tbl_GRANTEE.HeaderText = "GRANTEE";
-            this.tbl_GRANTEE.MinimumWidth = 6;
-            this.tbl_GRANTEE.Name = "tbl_GRANTEE";
-            this.tbl_GRANTEE.ReadOnly = true;
-            this.tbl_GRANTEE.Width = 143;
-            // 
-            // tbl_OWNER
-            // 
-            this.tbl_OWNER.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_OWNER.DataPropertyName = "OWNER";
-            this.tbl_OWNER.HeaderText = "OWNER";
-            this.tbl_OWNER.MinimumWidth = 6;
-            this.tbl_OWNER.Name = "tbl_OWNER";
-            this.tbl_OWNER.ReadOnly = true;
-            this.tbl_OWNER.Width = 120;
-            // 
-            // tbl_TABLE_NAME
-            // 
-            this.tbl_TABLE_NAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_TABLE_NAME.DataPropertyName = "TABLE_NAME";
-            this.tbl_TABLE_NAME.HeaderText = "TABLE_NAME";
-            this.tbl_TABLE_NAME.MinimumWidth = 6;
-            this.tbl_TABLE_NAME.Name = "tbl_TABLE_NAME";
-            this.tbl_TABLE_NAME.ReadOnly = true;
-            this.tbl_TABLE_NAME.Width = 183;
-            // 
-            // tbl_GRANTOR
-            // 
-            this.tbl_GRANTOR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_GRANTOR.DataPropertyName = "GRANTOR";
-            this.tbl_GRANTOR.HeaderText = "GRANTOR";
-            this.tbl_GRANTOR.MinimumWidth = 6;
-            this.tbl_GRANTOR.Name = "tbl_GRANTOR";
-            this.tbl_GRANTOR.ReadOnly = true;
-            this.tbl_GRANTOR.Width = 147;
-            // 
-            // tbl_PRIVILEGE
-            // 
-            this.tbl_PRIVILEGE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_PRIVILEGE.DataPropertyName = "PRIVILEGE";
-            this.tbl_PRIVILEGE.HeaderText = "PRIVILEGE";
-            this.tbl_PRIVILEGE.MinimumWidth = 6;
-            this.tbl_PRIVILEGE.Name = "tbl_PRIVILEGE";
-            this.tbl_PRIVILEGE.ReadOnly = true;
-            this.tbl_PRIVILEGE.Width = 148;
-            // 
-            // tbl_GRANTABLE
-            // 
-            this.tbl_GRANTABLE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_GRANTABLE.DataPropertyName = "GRANTABLE";
-            this.tbl_GRANTABLE.HeaderText = "GRANTABLE";
-            this.tbl_GRANTABLE.MinimumWidth = 6;
-            this.tbl_GRANTABLE.Name = "tbl_GRANTABLE";
-            this.tbl_GRANTABLE.ReadOnly = true;
-            this.tbl_GRANTABLE.Width = 170;
-            // 
-            // tbl_HIERARCHY
-            // 
-            this.tbl_HIERARCHY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_HIERARCHY.DataPropertyName = "HIERARCHY";
-            this.tbl_HIERARCHY.HeaderText = "HIERARCHY";
-            this.tbl_HIERARCHY.MinimumWidth = 6;
-            this.tbl_HIERARCHY.Name = "tbl_HIERARCHY";
-            this.tbl_HIERARCHY.ReadOnly = true;
-            this.tbl_HIERARCHY.Width = 165;
-            // 
-            // tbl_COMMON
-            // 
-            this.tbl_COMMON.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_COMMON.DataPropertyName = "COMMON";
-            this.tbl_COMMON.HeaderText = "COMMON";
-            this.tbl_COMMON.MinimumWidth = 6;
-            this.tbl_COMMON.Name = "tbl_COMMON";
-            this.tbl_COMMON.ReadOnly = true;
-            this.tbl_COMMON.Width = 142;
-            // 
-            // tbl_TYPE
-            // 
-            this.tbl_TYPE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_TYPE.DataPropertyName = "TYPE";
-            this.tbl_TYPE.HeaderText = "TYPE";
-            this.tbl_TYPE.MinimumWidth = 6;
-            this.tbl_TYPE.Name = "tbl_TYPE";
-            this.tbl_TYPE.ReadOnly = true;
-            this.tbl_TYPE.Width = 96;
-            // 
-            // tbl_INHERITED
-            // 
-            this.tbl_INHERITED.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.tbl_INHERITED.DataPropertyName = "INHERITED";
-            this.tbl_INHERITED.HeaderText = "INHERITED";
-            this.tbl_INHERITED.MinimumWidth = 6;
-            this.tbl_INHERITED.Name = "tbl_INHERITED";
-            this.tbl_INHERITED.ReadOnly = true;
-            this.tbl_INHERITED.Width = 154;
+            this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(67, 0);
+            this.btnGrantPrivilege.Name = "btnGrantPrivilege";
+            this.btnGrantPrivilege.Size = new System.Drawing.Size(276, 76);
+            this.btnGrantPrivilege.TabIndex = 5;
+            this.btnGrantPrivilege.Text = "Cấp quyền cho user/role";
+            this.btnGrantPrivilege.UseVisualStyleBackColor = false;
+            this.btnGrantPrivilege.UseWaitCursor = true;
+            this.btnGrantPrivilege.Click += new System.EventHandler(this.btnGrantPrivilege_Click);
             // 
             // dgvColumnPrivilege
             // 
             this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_GRANTEE,
@@ -639,12 +502,13 @@
             this.col_COMMON,
             this.col_TYPE,
             this.col_INHERITED});
-            this.dgvColumnPrivilege.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvColumnPrivilege.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.dgvColumnPrivilege.Location = new System.Drawing.Point(67, 424);
             this.dgvColumnPrivilege.Name = "dgvColumnPrivilege";
             this.dgvColumnPrivilege.RowHeadersWidth = 51;
             this.dgvColumnPrivilege.Size = new System.Drawing.Size(1130, 256);
             this.dgvColumnPrivilege.TabIndex = 4;
+            this.dgvColumnPrivilege.UseWaitCursor = true;
             // 
             // col_GRANTEE
             // 
@@ -654,7 +518,7 @@
             this.col_GRANTEE.MinimumWidth = 6;
             this.col_GRANTEE.Name = "col_GRANTEE";
             this.col_GRANTEE.ReadOnly = true;
-            this.col_GRANTEE.Width = 143;
+            this.col_GRANTEE.Width = 168;
             // 
             // col_OWNER
             // 
@@ -664,7 +528,7 @@
             this.col_OWNER.MinimumWidth = 6;
             this.col_OWNER.Name = "col_OWNER";
             this.col_OWNER.ReadOnly = true;
-            this.col_OWNER.Width = 120;
+            this.col_OWNER.Width = 144;
             // 
             // col_TABLE_NAME
             // 
@@ -674,7 +538,7 @@
             this.col_TABLE_NAME.MinimumWidth = 6;
             this.col_TABLE_NAME.Name = "col_TABLE_NAME";
             this.col_TABLE_NAME.ReadOnly = true;
-            this.col_TABLE_NAME.Width = 183;
+            this.col_TABLE_NAME.Width = 218;
             // 
             // col_GRANTOR
             // 
@@ -684,7 +548,7 @@
             this.col_GRANTOR.MinimumWidth = 6;
             this.col_GRANTOR.Name = "col_GRANTOR";
             this.col_GRANTOR.ReadOnly = true;
-            this.col_GRANTOR.Width = 147;
+            this.col_GRANTOR.Width = 172;
             // 
             // col_PRIVILEGE
             // 
@@ -694,7 +558,7 @@
             this.col_PRIVILEGE.MinimumWidth = 6;
             this.col_PRIVILEGE.Name = "col_PRIVILEGE";
             this.col_PRIVILEGE.ReadOnly = true;
-            this.col_PRIVILEGE.Width = 148;
+            this.col_PRIVILEGE.Width = 180;
             // 
             // col_GRANTABLE
             // 
@@ -704,7 +568,7 @@
             this.col_GRANTABLE.MinimumWidth = 6;
             this.col_GRANTABLE.Name = "col_GRANTABLE";
             this.col_GRANTABLE.ReadOnly = true;
-            this.col_GRANTABLE.Width = 170;
+            this.col_GRANTABLE.Width = 200;
             // 
             // col_HIERARCHY
             // 
@@ -714,7 +578,7 @@
             this.col_HIERARCHY.MinimumWidth = 6;
             this.col_HIERARCHY.Name = "col_HIERARCHY";
             this.col_HIERARCHY.ReadOnly = true;
-            this.col_HIERARCHY.Width = 165;
+            this.col_HIERARCHY.Width = 199;
             // 
             // col_COMMON
             // 
@@ -724,7 +588,7 @@
             this.col_COMMON.MinimumWidth = 6;
             this.col_COMMON.Name = "col_COMMON";
             this.col_COMMON.ReadOnly = true;
-            this.col_COMMON.Width = 142;
+            this.col_COMMON.Width = 169;
             // 
             // col_TYPE
             // 
@@ -734,7 +598,7 @@
             this.col_TYPE.MinimumWidth = 6;
             this.col_TYPE.Name = "col_TYPE";
             this.col_TYPE.ReadOnly = true;
-            this.col_TYPE.Width = 96;
+            this.col_TYPE.Width = 115;
             // 
             // col_INHERITED
             // 
@@ -744,11 +608,169 @@
             this.col_INHERITED.MinimumWidth = 6;
             this.col_INHERITED.Name = "col_INHERITED";
             this.col_INHERITED.ReadOnly = true;
-            this.col_INHERITED.Width = 154;
+            this.col_INHERITED.Width = 187;
+            // 
+            // txbColumnPrivilege
+            // 
+            this.txbColumnPrivilege.BackColor = System.Drawing.SystemColors.Control;
+            this.txbColumnPrivilege.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbColumnPrivilege.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbColumnPrivilege.Location = new System.Drawing.Point(67, 393);
+            this.txbColumnPrivilege.Name = "txbColumnPrivilege";
+            this.txbColumnPrivilege.Size = new System.Drawing.Size(107, 30);
+            this.txbColumnPrivilege.TabIndex = 3;
+            this.txbColumnPrivilege.Text = "COLUMN";
+            this.txbColumnPrivilege.UseWaitCursor = true;
+            // 
+            // txbTablePrivilege
+            // 
+            this.txbTablePrivilege.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.HistoryList;
+            this.txbTablePrivilege.BackColor = System.Drawing.SystemColors.Control;
+            this.txbTablePrivilege.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbTablePrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbTablePrivilege.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txbTablePrivilege.Location = new System.Drawing.Point(67, 77);
+            this.txbTablePrivilege.Name = "txbTablePrivilege";
+            this.txbTablePrivilege.Size = new System.Drawing.Size(90, 28);
+            this.txbTablePrivilege.TabIndex = 2;
+            this.txbTablePrivilege.Text = "TABLE";
+            this.txbTablePrivilege.UseWaitCursor = true;
+            // 
+            // dgvTablePrivilege
+            // 
+            this.dgvTablePrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvTablePrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTablePrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tbl_GRANTEE,
+            this.tbl_OWNER,
+            this.tbl_TABLE_NAME,
+            this.tbl_GRANTOR,
+            this.tbl_PRIVILEGE,
+            this.tbl_GRANTABLE,
+            this.tbl_HIERARCHY,
+            this.tbl_COMMON,
+            this.tbl_TYPE,
+            this.tbl_INHERITED});
+            this.dgvTablePrivilege.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.dgvTablePrivilege.Location = new System.Drawing.Point(67, 108);
+            this.dgvTablePrivilege.Name = "dgvTablePrivilege";
+            this.dgvTablePrivilege.RowHeadersWidth = 51;
+            this.dgvTablePrivilege.Size = new System.Drawing.Size(1130, 256);
+            this.dgvTablePrivilege.TabIndex = 0;
+            this.dgvTablePrivilege.UseWaitCursor = true;
+            // 
+            // tbl_GRANTEE
+            // 
+            this.tbl_GRANTEE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_GRANTEE.DataPropertyName = "GRANTEE";
+            this.tbl_GRANTEE.HeaderText = "GRANTEE";
+            this.tbl_GRANTEE.MinimumWidth = 6;
+            this.tbl_GRANTEE.Name = "tbl_GRANTEE";
+            this.tbl_GRANTEE.ReadOnly = true;
+            this.tbl_GRANTEE.Width = 168;
+            // 
+            // tbl_OWNER
+            // 
+            this.tbl_OWNER.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_OWNER.DataPropertyName = "OWNER";
+            this.tbl_OWNER.HeaderText = "OWNER";
+            this.tbl_OWNER.MinimumWidth = 6;
+            this.tbl_OWNER.Name = "tbl_OWNER";
+            this.tbl_OWNER.ReadOnly = true;
+            this.tbl_OWNER.Width = 144;
+            // 
+            // tbl_TABLE_NAME
+            // 
+            this.tbl_TABLE_NAME.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_TABLE_NAME.DataPropertyName = "TABLE_NAME";
+            this.tbl_TABLE_NAME.HeaderText = "TABLE_NAME";
+            this.tbl_TABLE_NAME.MinimumWidth = 6;
+            this.tbl_TABLE_NAME.Name = "tbl_TABLE_NAME";
+            this.tbl_TABLE_NAME.ReadOnly = true;
+            this.tbl_TABLE_NAME.Width = 218;
+            // 
+            // tbl_GRANTOR
+            // 
+            this.tbl_GRANTOR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_GRANTOR.DataPropertyName = "GRANTOR";
+            this.tbl_GRANTOR.HeaderText = "GRANTOR";
+            this.tbl_GRANTOR.MinimumWidth = 6;
+            this.tbl_GRANTOR.Name = "tbl_GRANTOR";
+            this.tbl_GRANTOR.ReadOnly = true;
+            this.tbl_GRANTOR.Width = 172;
+            // 
+            // tbl_PRIVILEGE
+            // 
+            this.tbl_PRIVILEGE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_PRIVILEGE.DataPropertyName = "PRIVILEGE";
+            this.tbl_PRIVILEGE.HeaderText = "PRIVILEGE";
+            this.tbl_PRIVILEGE.MinimumWidth = 6;
+            this.tbl_PRIVILEGE.Name = "tbl_PRIVILEGE";
+            this.tbl_PRIVILEGE.ReadOnly = true;
+            this.tbl_PRIVILEGE.Width = 180;
+            // 
+            // tbl_GRANTABLE
+            // 
+            this.tbl_GRANTABLE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_GRANTABLE.DataPropertyName = "GRANTABLE";
+            this.tbl_GRANTABLE.HeaderText = "GRANTABLE";
+            this.tbl_GRANTABLE.MinimumWidth = 6;
+            this.tbl_GRANTABLE.Name = "tbl_GRANTABLE";
+            this.tbl_GRANTABLE.ReadOnly = true;
+            this.tbl_GRANTABLE.Width = 200;
+            // 
+            // tbl_HIERARCHY
+            // 
+            this.tbl_HIERARCHY.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_HIERARCHY.DataPropertyName = "HIERARCHY";
+            this.tbl_HIERARCHY.HeaderText = "HIERARCHY";
+            this.tbl_HIERARCHY.MinimumWidth = 6;
+            this.tbl_HIERARCHY.Name = "tbl_HIERARCHY";
+            this.tbl_HIERARCHY.ReadOnly = true;
+            this.tbl_HIERARCHY.Width = 199;
+            // 
+            // tbl_COMMON
+            // 
+            this.tbl_COMMON.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_COMMON.DataPropertyName = "COMMON";
+            this.tbl_COMMON.HeaderText = "COMMON";
+            this.tbl_COMMON.MinimumWidth = 6;
+            this.tbl_COMMON.Name = "tbl_COMMON";
+            this.tbl_COMMON.ReadOnly = true;
+            this.tbl_COMMON.Width = 169;
+            // 
+            // tbl_TYPE
+            // 
+            this.tbl_TYPE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_TYPE.DataPropertyName = "TYPE";
+            this.tbl_TYPE.HeaderText = "TYPE";
+            this.tbl_TYPE.MinimumWidth = 6;
+            this.tbl_TYPE.Name = "tbl_TYPE";
+            this.tbl_TYPE.ReadOnly = true;
+            this.tbl_TYPE.Width = 115;
+            // 
+            // tbl_INHERITED
+            // 
+            this.tbl_INHERITED.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.tbl_INHERITED.DataPropertyName = "INHERITED";
+            this.tbl_INHERITED.HeaderText = "INHERITED";
+            this.tbl_INHERITED.MinimumWidth = 6;
+            this.tbl_INHERITED.Name = "tbl_INHERITED";
+            this.tbl_INHERITED.ReadOnly = true;
+            this.tbl_INHERITED.Width = 187;
             // 
             // DBAForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(18F, 36F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 753);
             this.Controls.Add(this.tctrlDBA);
@@ -827,5 +849,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_COMMON;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_TYPE;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_INHERITED;
+        private System.Windows.Forms.Button btnRevokePrivilege;
+        private System.Windows.Forms.Button btnGrantPrivilege;
     }
 }
