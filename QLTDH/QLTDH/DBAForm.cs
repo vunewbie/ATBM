@@ -33,6 +33,11 @@ namespace QLTDH
             // Gọi phương thức để tải dữ liệu roles
             LoadRoles();
         }
+        private void tpagePrivileges_Enter(object sender, EventArgs e)
+        {
+            // Gọi phương thức để tải dữ liệu privileges
+            LoadPrivileges();
+        }
 
         private void DBAForm_Load(object sender, EventArgs e)
         {
@@ -112,6 +117,61 @@ namespace QLTDH
             }
         }
 
+        // Tải dữ liệu privileges lên table và column priviledges datagirdview
+
+        private void LoadPrivileges()
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    //Load table privileges
+                    OracleCommand cmd = new OracleCommand("PH1_GET_PRIVILEGES_TABLE", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = null;
+                    OracleParameter cursorParam = new OracleParameter("table_privileges_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    // TẮT tính năng tự động tạo cột
+                    dgvTablePrivilege.AutoGenerateColumns = false;
+
+                    // Gán DataTable vào DataSource
+                    dgvTablePrivilege.DataSource = dt;
+
+
+                    //Load column privileges
+                    OracleCommand cmd2 = new OracleCommand("PH1_GET_PRIVILEGES_COLUMN", conn);
+                    cmd2.CommandType = CommandType.StoredProcedure;
+                    cmd2.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = null;
+                    OracleParameter cursorParam2 = new OracleParameter("column_privileges_cursor", OracleDbType.RefCursor);
+                    cursorParam2.Direction = ParameterDirection.Output;
+
+                    cmd2.Parameters.Add(cursorParam2);
+                    OracleDataReader reader2 = cmd2.ExecuteReader();
+
+                    DataTable dt2 = new DataTable();
+                    dt2.Load(reader2);
+                    // TẮT tính năng tự động tạo cột
+                    dgvColumnPrivilege.AutoGenerateColumns = false;
+                    // Gán DataTable vào DataSource
+                    dgvColumnPrivilege.DataSource = dt2;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải dữ liệu Privileges: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         // Sự kiện khi nhấn nút "Create User"
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
@@ -164,6 +224,10 @@ namespace QLTDH
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tìm kiếm người dùng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dgvTablePrivilege.Cursor = Cursors.Default; // Khôi phục con trỏ mặc định
             }
         }
 
