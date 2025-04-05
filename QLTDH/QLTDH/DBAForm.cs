@@ -41,10 +41,6 @@ namespace QLTDH
 
         private void DBAForm_Load(object sender, EventArgs e)
         {
-            // Gọi phương thức để tải dữ liệu người dùng
-            //LoadUsers();
-            // Gọi phương thức để tải dữ liệu roles
-            //LoadRoles();
         }
 
         // Tải dữ liệu users lên datagridview
@@ -58,7 +54,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Khai báo một OracleCommand để gọi stored procedure
-                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Tạo một cursor output parameter
@@ -95,7 +91,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Khai báo một OracleCommand để gọi stored procedure
-                    OracleCommand cmd = new OracleCommand("GET_ROLE_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Tạo một cursor output parameter
@@ -210,7 +206,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Khai báo OracleCommand để gọi stored procedure tìm kiếm người dùng
-                    OracleCommand cmd = new OracleCommand("SEARCH_USER", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_SEARCH_USER", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Thêm tham số tìm kiếm
@@ -285,7 +281,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Khai báo OracleCommand để gọi stored procedure tìm kiếm role
-                    OracleCommand cmd = new OracleCommand("SEARCH_ROLE", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_SEARCH_ROLE", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Thêm tham số tìm kiếm

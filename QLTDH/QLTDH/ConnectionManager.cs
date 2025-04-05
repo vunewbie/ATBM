@@ -26,10 +26,10 @@ namespace QLTDH
             {
                 connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/XE;DBA Privilege=SYSDBA;";
             }
-            //else
-            //{
-            //    connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/XE;";
-            //}
+            else
+            {
+                connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/XE;";
+            }
 
             OracleConnection connection = new OracleConnection(connectionString);
             return connection;

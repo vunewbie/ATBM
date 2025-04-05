@@ -31,7 +31,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Kiểm tra xem người dùng đã tồn tại
-                    OracleCommand checkCmd = new OracleCommand("CHECK_USER_EXISTS", conn);
+                    OracleCommand checkCmd = new OracleCommand("SYS.PH1_CHECK_USER_EXISTS", conn);
                     checkCmd.CommandType = CommandType.StoredProcedure;
                     checkCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
                     OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Varchar2, 10);
@@ -48,7 +48,7 @@ namespace QLTDH
                     }
 
                     // Cập nhật trạng thái người dùng
-                    OracleCommand updateCmd = new OracleCommand("UPDATE_USER_STATUS", conn);
+                    OracleCommand updateCmd = new OracleCommand("SYS.PH1_UPDATE_USER_STATUS", conn);
                     updateCmd.CommandType = CommandType.StoredProcedure;
                     updateCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
                     updateCmd.Parameters.Add("p_new_status", OracleDbType.Varchar2).Value = newStatus;
@@ -58,7 +58,7 @@ namespace QLTDH
                     MessageBox.Show($"Trạng thái người dùng đã được cập nhật thành {newStatus}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách người dùng trong DBAForm
-                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     OracleParameter cursorParam = new OracleParameter("users_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;
