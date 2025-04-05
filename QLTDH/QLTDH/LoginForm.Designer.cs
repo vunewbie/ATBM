@@ -34,6 +34,8 @@
             this.txbUsername = new System.Windows.Forms.TextBox();
             this.txbPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.pbPassword = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAppName
@@ -81,6 +83,7 @@
             this.txbPassword.Name = "txbPassword";
             this.txbPassword.Size = new System.Drawing.Size(266, 30);
             this.txbPassword.TabIndex = 4;
+            this.txbPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -94,11 +97,23 @@
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // pbPassword
+            // 
+            this.pbPassword.Image = global::QLTDH.Properties.Resources.eye_off;
+            this.pbPassword.Location = new System.Drawing.Point(545, 239);
+            this.pbPassword.Name = "pbPassword";
+            this.pbPassword.Size = new System.Drawing.Size(36, 30);
+            this.pbPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPassword.TabIndex = 6;
+            this.pbPassword.TabStop = false;
+            this.pbPassword.Click += new System.EventHandler(this.pbPassword_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 503);
+            this.Controls.Add(this.pbPassword);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txbPassword);
             this.Controls.Add(this.txbUsername);
@@ -108,6 +123,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
+            ((System.ComponentModel.ISupportInitialize)(this.pbPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +137,6 @@
         private System.Windows.Forms.TextBox txbUsername;
         private System.Windows.Forms.TextBox txbPassword;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.PictureBox pbPassword;
     }
 }

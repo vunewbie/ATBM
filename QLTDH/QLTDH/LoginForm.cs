@@ -76,5 +76,20 @@ namespace QLTDH
                 return;
             }
         }
+
+        private void pbPassword_Click(object sender, EventArgs e)
+        {
+            // Chuyển đổi giữa hiển thị và ẩn mật khẩu
+            if (txbPassword.UseSystemPasswordChar)
+            {
+                txbPassword.UseSystemPasswordChar = false;
+                pbPassword.Image = Properties.Resources.eye_on; // Hình ảnh mắt mở
+            }
+            else
+            {
+                txbPassword.UseSystemPasswordChar = true;
+                pbPassword.Image = Properties.Resources.eye_off; // Hình ảnh mắt đóng
+            }
+        }
     }
 }
