@@ -39,10 +39,6 @@ namespace QLTDH
             LoadPrivileges();
         }
 
-        private void DBAForm_Load(object sender, EventArgs e)
-        {
-        }
-
         // Tải dữ liệu users lên datagridview
         private void LoadUsers()
         {
@@ -121,6 +117,12 @@ namespace QLTDH
 
         private void LoadPrivileges()
         {
+            // Mặc định khi vào tab Privileges sẽ load table privileges
+            LoadTablePrivileges();
+        }
+
+        private void LoadTablePrivileges(string grantee = null)
+        {
             try
             {
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
@@ -128,10 +130,10 @@ namespace QLTDH
                     conn.Open();
 
                     //Load table privileges
-                    OracleCommand cmd = new OracleCommand("PH1_GET_PRIVILEGES_TABLE", conn);
+                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_PRIVILEGES_TABLE", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = null;
+                    cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
                     OracleParameter cursorParam = new OracleParameter("table_privileges_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(cursorParam);
@@ -146,18 +148,29 @@ namespace QLTDH
 
                     // Gán DataTable vào DataSource
                     dgvTablePrivilege.DataSource = dt;
+                }
+}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải dữ liệu Privileges: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-
+        private void LoadColumnPrivileges(string grantee = null)
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
                     //Load column privileges
-                    OracleCommand cmd2 = new OracleCommand("PH1_GET_PRIVILEGES_COLUMN", conn);
+                    OracleCommand cmd2 = new OracleCommand("SYS.PH1_GET_PRIVILEGES_COLUMN", conn);
                     cmd2.CommandType = CommandType.StoredProcedure;
-                    cmd2.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = null;
+                    cmd2.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
                     OracleParameter cursorParam2 = new OracleParameter("column_privileges_cursor", OracleDbType.RefCursor);
                     cursorParam2.Direction = ParameterDirection.Output;
-
                     cmd2.Parameters.Add(cursorParam2);
                     OracleDataReader reader2 = cmd2.ExecuteReader();
-
                     DataTable dt2 = new DataTable();
                     dt2.Load(reader2);
                     // TẮT tính năng tự động tạo cột
@@ -333,6 +346,54 @@ namespace QLTDH
             // Mở form RevokePrivilege
             RevokePrivilegeForm newRevokePrivilegeForm = new RevokePrivilegeForm();
             newRevokePrivilegeForm.ShowDialog();
+        }
+
+
+        private void txbSearchGrantee_TextChanged(object sender, EventArgs e)
+        {
+            //lấy ra hiện tại đang ở tab nào của tabcontrol tctrlPrivileges
+            TabPage currentTab = tctrlPrivileges.SelectedTab;
+
+            if (currentTab == tpageTable)
+            {
+                // Nếu đang ở tab Table, gọi hàm LoadTablePrivileges với tham số tìm kiếm
+                LoadTablePrivileges(txbSearchGrantee.Text.Trim());
+            }
+            else if (currentTab == tpageColumn)
+            {
+                // Nếu đang ở tab Column, gọi hàm LoadColumnPrivileges với tham số tìm kiếm
+                LoadColumnPrivileges(txbSearchGrantee.Text.Trim());
+            }
+        }
+
+        private void tpageTable_Enter(object sender, EventArgs e)
+        {
+            string searchQuery = txbSearchGrantee.Text.Trim();
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // Nếu ô tìm kiếm trống, tải lại tất cả table privileges
+                LoadTablePrivileges();
+            }
+            else
+            {
+                // Nếu ô tìm kiếm có dữ liệu, tìm kiếm table privileges
+                LoadTablePrivileges(searchQuery);
+            }
+        }
+
+        private void tpageColumn_Enter(object sender, EventArgs e)
+        {
+            string searchQuery = txbSearchGrantee.Text.Trim();
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // Nếu ô tìm kiếm trống, tải lại tất cả column privileges
+                LoadColumnPrivileges();
+            }
+            else
+            {
+                // Nếu ô tìm kiếm có dữ liệu, tìm kiếm column privileges
+                LoadColumnPrivileges(searchQuery);
+            }
         }
     }
 }
