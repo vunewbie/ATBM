@@ -319,4 +319,274 @@ BEGIN
     p_type := 'Không hợp lệ';
 END;
 /
+GRANT EXECUTE ON SYS.PH1_CHECK_USER_ROLE TO C##QLTDH;
+
+--Load table/view/proc/function for user/role in grantprivilegeform 
+CREATE OR REPLACE PROCEDURE PH1_GET_TABLE_BY_USER_OR_ROLE (
+    p_user_or_role IN VARCHAR2,
+    p_object IN VARCHAR2, -- Loại đối tượng: TABLE, VIEW, PROCEDURE, FUNCTION
+    p_cursor OUT SYS_REFCURSOR
+)
+AS
+    v_count NUMBER;
+    v_object_type VARCHAR2(30);
+BEGIN
+    -- Kiểm tra tham số đầu vào
+    IF p_user_or_role IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'User or Role parameter cannot be NULL');
+    END IF;
+
+    IF p_object IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Object type parameter cannot be NULL');
+    END IF;
+
+    -- Chuẩn hóa loại đối tượng
+    v_object_type := UPPER(p_object);
+
+    IF v_object_type NOT IN ('TABLE', 'VIEW', 'PROCEDURE', 'FUNCTION') THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Invalid object type. Must be TABLE, VIEW, PROCEDURE, or FUNCTION');
+    END IF;
+
+    -- Kiểm tra xem p_user_or_role là user hay role
+    SELECT COUNT(*) INTO v_count 
+    FROM all_users 
+    WHERE username = UPPER(p_user_or_role);
+
+    IF v_count > 0 THEN
+        -- Nếu là user, trả danh sách đối tượng thuộc schema của user
+        OPEN p_cursor FOR
+            SELECT object_name
+            FROM all_objects
+            WHERE owner = UPPER(p_user_or_role)
+            AND owner NOT IN ('SYS', 'SYSTEM')
+            AND object_type = v_object_type;
+    ELSE
+        -- Kiểm tra xem có phải là role
+        SELECT COUNT(*) INTO v_count 
+        FROM dba_roles 
+        WHERE role = UPPER(p_user_or_role);
+
+        IF v_count > 0 THEN
+            -- Nếu là role, trả danh sách đối tượng thuộc schema của các user được gán role
+            OPEN p_cursor FOR
+                SELECT DISTINCT o.object_name
+                FROM all_objects o
+                JOIN dba_role_privs rp ON o.owner = rp.grantee
+                WHERE rp.granted_role = UPPER(p_user_or_role)
+                AND o.owner NOT IN ('SYS', 'SYSTEM')
+                AND o.object_type = v_object_type;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20002, 'Invalid User or Role name');
+        END IF;
+    END IF;
+END PH1_GET_TABLE_BY_USER_OR_ROLE;
+/
+--tạo kiểu mảng
+CREATE OR REPLACE TYPE column_array AS VARRAY(100) OF VARCHAR2(128);
+/
+--Grant quyền select
+CREATE OR REPLACE PROCEDURE PH1_GRANT_SELECT_TO_USER_OR_ROLE (
+    p_username IN VARCHAR2,
+    p_object_type IN VARCHAR2,
+    p_object IN VARCHAR2,
+    p_attribute IN column_array, -- Mảng các cột
+    p_with_grant_option IN BOOLEAN,
+    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+)
+AS
+    v_sql VARCHAR2(4000);
+    v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
+BEGIN
+    -- Khởi tạo giá trị mặc định cho p_success
+    p_success := FALSE;
+
+    -- Xây dựng câu lệnh GRANT
+    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
+        -- Cấp quyền SELECT trên toàn bộ bảng/view
+        v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || p_username;
+    ELSE
+        -- Xây dựng danh sách cột từ mảng
+        v_columns := '';
+        FOR i IN 1..p_attribute.COUNT LOOP
+            IF i > 1 THEN
+                v_columns := v_columns || ',';
+            END IF;
+            v_columns := v_columns || p_attribute(i);
+        END LOOP;
+
+        -- Cấp quyền SELECT trên các cột cụ thể
+        v_sql := 'GRANT SELECT (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
+    END IF;
+
+    -- Thêm WITH GRANT OPTION nếu cần
+    IF p_with_grant_option THEN
+        v_sql := v_sql || ' WITH GRANT OPTION';
+    END IF;
+
+    -- Thực thi câu lệnh GRANT
+    EXECUTE IMMEDIATE v_sql;
+
+    -- Nếu không có lỗi, đặt p_success = TRUE
+    p_success := TRUE;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Nếu có lỗi, đặt p_success = FALSE
+        p_success := FALSE;
+END PH1_GRANT_SELECT_TO_USER_OR_ROLE;
+/
+--Grant quyền update
+CREATE OR REPLACE PROCEDURE PH1_GRANT_UPDATE_TO_USER_OR_ROLE (
+    p_username IN VARCHAR2,
+    p_object_type IN VARCHAR2,
+    p_object IN VARCHAR2,
+    p_attribute IN column_array, -- Mảng các cột
+    p_with_grant_option IN BOOLEAN,
+    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+)
+AS
+    v_sql VARCHAR2(4000);
+    v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
+BEGIN
+    -- Khởi tạo giá trị mặc định cho p_success
+    p_success := FALSE;
+
+    -- Xây dựng câu lệnh GRANT
+    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
+        -- Cấp quyền UPDATE trên toàn bộ bảng/view
+        v_sql := 'GRANT UPDATE ON ' || p_object || ' TO ' || p_username;
+    ELSE
+        -- Xây dựng danh sách cột từ mảng
+        v_columns := '';
+        FOR i IN 1..p_attribute.COUNT LOOP
+            IF i > 1 THEN
+                v_columns := v_columns || ',';
+            END IF;
+            v_columns := v_columns || p_attribute(i);
+        END LOOP;
+
+        -- Cấp quyền SELECT trên các cột cụ thể
+        v_sql := 'GRANT UPDATE (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
+    END IF;
+
+    -- Thêm WITH GRANT OPTION nếu cần
+    IF p_with_grant_option THEN
+        v_sql := v_sql || ' WITH GRANT OPTION';
+    END IF;
+
+    -- Thực thi câu lệnh GRANT
+    EXECUTE IMMEDIATE v_sql;
+
+    -- Nếu không có lỗi, đặt p_success = TRUE
+    p_success := TRUE;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Nếu có lỗi, đặt p_success = FALSE
+        p_success := FALSE;
+END PH1_GRANT_UPDATE_TO_USER_OR_ROLE;
+/
+
+--GRANT QUYỀN DELETE
+CREATE OR REPLACE PROCEDURE PH1_GRANT_DELETE_TO_USER_OR_ROLE (
+    p_username IN VARCHAR2,
+    p_object_type IN VARCHAR2,
+    p_object IN VARCHAR2,
+    p_with_grant_option IN BOOLEAN,
+    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+)
+AS
+    v_sql VARCHAR2(4000);
+BEGIN
+    -- Khởi tạo giá trị mặc định cho p_success
+    p_success := FALSE;
+
+    -- Xây dựng câu lệnh GRANT DELETE
+    v_sql := 'GRANT DELETE ON ' || p_object || ' TO ' || p_username;
+
+    -- Thêm WITH GRANT OPTION nếu cần
+    IF p_with_grant_option THEN
+        v_sql := v_sql || ' WITH GRANT OPTION';
+    END IF;
+
+    -- Thực thi câu lệnh GRANT
+    EXECUTE IMMEDIATE v_sql;
+
+    -- Nếu không có lỗi, đặt p_success = TRUE
+    p_success := TRUE;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Nếu có lỗi, đặt p_success = FALSE
+        p_success := FALSE;
+END PH1_GRANT_DELETE_TO_USER_OR_ROLE;
+/
+
+--grant quyền insert
+CREATE OR REPLACE PROCEDURE PH1_GRANT_INSERT_TO_USER_OR_ROLE (
+    p_username IN VARCHAR2,
+    p_object_type IN VARCHAR2,
+    p_object IN VARCHAR2,
+    p_with_grant_option IN BOOLEAN,
+    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+)
+AS
+    v_sql VARCHAR2(4000);
+BEGIN
+    -- Khởi tạo giá trị mặc định cho p_success
+    p_success := FALSE;
+
+    -- Xây dựng câu lệnh GRANT INSERT
+    v_sql := 'GRANT INSERT ON ' || p_object || ' TO ' || p_username;
+
+    -- Thêm WITH GRANT OPTION nếu cần
+    IF p_with_grant_option THEN
+        v_sql := v_sql || ' WITH GRANT OPTION';
+    END IF;
+
+    -- Thực thi câu lệnh GRANT
+    EXECUTE IMMEDIATE v_sql;
+
+    -- Nếu không có lỗi, đặt p_success = TRUE
+    p_success := TRUE;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Nếu có lỗi, đặt p_success = FALSE
+        p_success := FALSE;
+END PH1_GRANT_INSERT_TO_USER_OR_ROLE;
+/
+
+--grant quyền execute function/proc cho user/role
+CREATE OR REPLACE PROCEDURE PH1_GRANT_EXEC_TO_USER_OR_ROLE (
+    p_username IN VARCHAR2,
+    p_object IN VARCHAR2,       -- Tên function/procedure
+    p_with_grant_option IN BOOLEAN,
+    p_success OUT BOOLEAN
+)
+AS
+    v_sql VARCHAR2(4000);
+BEGIN
+    -- Mặc định là thất bại
+    p_success := FALSE;
+
+    -- Xây dựng câu lệnh GRANT EXECUTE
+    v_sql := 'GRANT EXECUTE ON ' || p_object || ' TO ' || p_username;
+
+    -- Thêm WITH GRANT OPTION nếu cần
+    IF p_with_grant_option THEN
+        v_sql := v_sql || ' WITH GRANT OPTION';
+    END IF;
+
+    -- Thực thi
+    EXECUTE IMMEDIATE v_sql;
+
+    -- Đánh dấu thành công nếu không lỗi
+    p_success := TRUE;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        p_success := FALSE;
+END PH1_GRANT_EXEC_TO_USER_OR_ROLE;
+/
 
