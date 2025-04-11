@@ -322,7 +322,7 @@ END;
 GRANT EXECUTE ON SYS.PH1_CHECK_USER_ROLE TO C##QLTDH;
 
 --Load table/view/proc/function for user/role in grantprivilegeform 
-CREATE OR REPLACE PROCEDURE PH1_GET_TABLE_BY_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE PH1_GET_OBJECT_TYPE_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
     p_object IN VARCHAR2, -- Loại đối tượng: TABLE, VIEW, PROCEDURE, FUNCTION
     p_cursor OUT SYS_REFCURSOR
@@ -379,8 +379,9 @@ BEGIN
             RAISE_APPLICATION_ERROR(-20002, 'Invalid User or Role name');
         END IF;
     END IF;
-END PH1_GET_TABLE_BY_USER_OR_ROLE;
+END;
 /
+
 --tạo kiểu mảng
 CREATE OR REPLACE TYPE column_array AS VARRAY(100) OF VARCHAR2(128);
 /

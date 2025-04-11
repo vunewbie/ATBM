@@ -69,12 +69,11 @@
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 74.95029F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.0497F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1043, 629);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(782, 503);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -95,8 +94,7 @@
             this.tableLayoutPanel1.Controls.Add(this.cbbObject, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.ckbWithGrantOption, 1, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(4, 4);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -106,7 +104,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(625, 463);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(469, 371);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // cbbObjectType
@@ -114,15 +112,9 @@
             this.cbbObjectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbObjectType.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbObjectType.FormattingEnabled = true;
-            this.cbbObjectType.Items.AddRange(new object[] {
-            "Table",
-            "View",
-            "Stored Procedure",
-            "Function"});
-            this.cbbObjectType.Location = new System.Drawing.Point(292, 275);
-            this.cbbObjectType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbObjectType.Location = new System.Drawing.Point(219, 216);
             this.cbbObjectType.Name = "cbbObjectType";
-            this.cbbObjectType.Size = new System.Drawing.Size(329, 44);
+            this.cbbObjectType.Size = new System.Drawing.Size(247, 35);
             this.cbbObjectType.TabIndex = 4;
             this.cbbObjectType.SelectedIndexChanged += new System.EventHandler(this.cbbObjectType_SelectedIndexChanged);
             // 
@@ -133,10 +125,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUsernameRole.AutoSize = true;
             this.lblUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsernameRole.Location = new System.Drawing.Point(4, 0);
-            this.lblUsernameRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsernameRole.Location = new System.Drawing.Point(3, 0);
             this.lblUsernameRole.Name = "lblUsernameRole";
-            this.lblUsernameRole.Size = new System.Drawing.Size(280, 66);
+            this.lblUsernameRole.Size = new System.Drawing.Size(210, 52);
             this.lblUsernameRole.TabIndex = 0;
             this.lblUsernameRole.Text = "Username/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,14 +138,14 @@
             this.cbbPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbPrivilege.FormattingEnabled = true;
             this.cbbPrivilege.Items.AddRange(new object[] {
-            "Select",
-            "Insert",
-            "Update",
-            "Delete"});
-            this.cbbPrivilege.Location = new System.Drawing.Point(292, 209);
-            this.cbbPrivilege.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            "SELECT",
+            "INSERT",
+            "UPDATE",
+            "DELETE",
+            "EXECUTE"});
+            this.cbbPrivilege.Location = new System.Drawing.Point(219, 164);
             this.cbbPrivilege.Name = "cbbPrivilege";
-            this.cbbPrivilege.Size = new System.Drawing.Size(329, 44);
+            this.cbbPrivilege.Size = new System.Drawing.Size(247, 35);
             this.cbbPrivilege.TabIndex = 3;
             this.cbbPrivilege.SelectedIndexChanged += new System.EventHandler(this.cbbPrivilege_SelectedIndexChanged);
             // 
@@ -165,10 +156,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblObjectType.AutoSize = true;
             this.lblObjectType.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObjectType.Location = new System.Drawing.Point(4, 264);
-            this.lblObjectType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblObjectType.Location = new System.Drawing.Point(3, 208);
             this.lblObjectType.Name = "lblObjectType";
-            this.lblObjectType.Size = new System.Drawing.Size(280, 66);
+            this.lblObjectType.Size = new System.Drawing.Size(210, 52);
             this.lblObjectType.TabIndex = 1;
             this.lblObjectType.Text = "Loại đối tượng";
             this.lblObjectType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,10 +170,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrivilege.AutoSize = true;
             this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivilege.Location = new System.Drawing.Point(4, 198);
-            this.lblPrivilege.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPrivilege.Location = new System.Drawing.Point(3, 156);
             this.lblPrivilege.Name = "lblPrivilege";
-            this.lblPrivilege.Size = new System.Drawing.Size(280, 66);
+            this.lblPrivilege.Size = new System.Drawing.Size(210, 52);
             this.lblPrivilege.TabIndex = 1;
             this.lblPrivilege.Text = "Quyền";
             this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,10 +185,9 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResult.ForeColor = System.Drawing.Color.Red;
-            this.lblResult.Location = new System.Drawing.Point(4, 132);
-            this.lblResult.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblResult.Location = new System.Drawing.Point(3, 104);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(280, 66);
+            this.lblResult.Size = new System.Drawing.Size(210, 52);
             this.lblResult.TabIndex = 1;
             this.lblResult.Text = "Kết quả";
             this.lblResult.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -212,13 +200,13 @@
             this.tableLayoutPanel3.Controls.Add(this.btnReset, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnCheck, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(288, 66);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(216, 52);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(337, 66);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(253, 52);
             this.tableLayoutPanel3.TabIndex = 3;
             // 
             // btnReset
@@ -226,10 +214,9 @@
             this.btnReset.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReset.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(183, 4);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReset.Location = new System.Drawing.Point(137, 3);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(150, 58);
+            this.btnReset.Size = new System.Drawing.Size(113, 46);
             this.btnReset.TabIndex = 2;
             this.btnReset.Text = "Đặt lại";
             this.btnReset.UseVisualStyleBackColor = false;
@@ -240,10 +227,9 @@
             this.btnCheck.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCheck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCheck.Font = new System.Drawing.Font("Times New Roman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheck.Location = new System.Drawing.Point(4, 4);
-            this.btnCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCheck.Location = new System.Drawing.Point(3, 3);
             this.btnCheck.Name = "btnCheck";
-            this.btnCheck.Size = new System.Drawing.Size(171, 58);
+            this.btnCheck.Size = new System.Drawing.Size(128, 46);
             this.btnCheck.TabIndex = 1;
             this.btnCheck.Text = "Kiểm tra";
             this.btnCheck.UseVisualStyleBackColor = false;
@@ -253,10 +239,9 @@
             // 
             this.txbUsernameRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbUsernameRole.Location = new System.Drawing.Point(292, 11);
-            this.txbUsernameRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbUsernameRole.Location = new System.Drawing.Point(219, 8);
             this.txbUsernameRole.Name = "txbUsernameRole";
-            this.txbUsernameRole.Size = new System.Drawing.Size(329, 44);
+            this.txbUsernameRole.Size = new System.Drawing.Size(247, 35);
             this.txbUsernameRole.TabIndex = 0;
             // 
             // lblResultCheck
@@ -265,10 +250,9 @@
             this.lblResultCheck.AutoSize = true;
             this.lblResultCheck.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblResultCheck.ForeColor = System.Drawing.Color.Red;
-            this.lblResultCheck.Location = new System.Drawing.Point(456, 149);
-            this.lblResultCheck.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblResultCheck.Location = new System.Drawing.Point(342, 119);
             this.lblResultCheck.Name = "lblResultCheck";
-            this.lblResultCheck.Size = new System.Drawing.Size(0, 31);
+            this.lblResultCheck.Size = new System.Drawing.Size(0, 22);
             this.lblResultCheck.TabIndex = 5;
             // 
             // lblObject
@@ -278,10 +262,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblObject.AutoSize = true;
             this.lblObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObject.Location = new System.Drawing.Point(4, 330);
-            this.lblObject.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblObject.Location = new System.Drawing.Point(3, 260);
             this.lblObject.Name = "lblObject";
-            this.lblObject.Size = new System.Drawing.Size(280, 66);
+            this.lblObject.Size = new System.Drawing.Size(210, 52);
             this.lblObject.TabIndex = 6;
             this.lblObject.Text = "Đối tượng";
             this.lblObject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -291,10 +274,9 @@
             this.cbbObject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cbbObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbObject.FormattingEnabled = true;
-            this.cbbObject.Location = new System.Drawing.Point(292, 341);
-            this.cbbObject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbObject.Location = new System.Drawing.Point(219, 268);
             this.cbbObject.Name = "cbbObject";
-            this.cbbObject.Size = new System.Drawing.Size(329, 44);
+            this.cbbObject.Size = new System.Drawing.Size(247, 35);
             this.cbbObject.TabIndex = 5;
             this.cbbObject.SelectedIndexChanged += new System.EventHandler(this.cbbObject_SelectedIndexChanged);
             // 
@@ -303,10 +285,9 @@
             this.ckbWithGrantOption.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.ckbWithGrantOption.AutoSize = true;
             this.ckbWithGrantOption.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbWithGrantOption.Location = new System.Drawing.Point(292, 412);
-            this.ckbWithGrantOption.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbWithGrantOption.Location = new System.Drawing.Point(219, 328);
             this.ckbWithGrantOption.Name = "ckbWithGrantOption";
-            this.ckbWithGrantOption.Size = new System.Drawing.Size(251, 35);
+            this.ckbWithGrantOption.Size = new System.Drawing.Size(181, 26);
             this.ckbWithGrantOption.TabIndex = 6;
             this.ckbWithGrantOption.Text = "With Grant Option";
             this.ckbWithGrantOption.UseVisualStyleBackColor = true;
@@ -319,13 +300,13 @@
             this.tableLayoutPanel4.Controls.Add(this.btnGrantPrivilege, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.lblWarning, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 471);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 377);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.95238F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.04762F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(633, 158);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(475, 126);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // btnGrantPrivilege
@@ -333,10 +314,9 @@
             this.btnGrantPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantPrivilege.Location = new System.Drawing.Point(171, 66);
-            this.btnGrantPrivilege.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(128, 52);
             this.btnGrantPrivilege.Name = "btnGrantPrivilege";
-            this.btnGrantPrivilege.Size = new System.Drawing.Size(291, 74);
+            this.btnGrantPrivilege.Size = new System.Drawing.Size(218, 59);
             this.btnGrantPrivilege.TabIndex = 1;
             this.btnGrantPrivilege.Text = "Cấp quyền";
             this.btnGrantPrivilege.UseVisualStyleBackColor = false;
@@ -350,10 +330,9 @@
             this.lblWarning.AutoSize = true;
             this.lblWarning.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarning.ForeColor = System.Drawing.Color.Red;
-            this.lblWarning.Location = new System.Drawing.Point(4, 0);
-            this.lblWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWarning.Location = new System.Drawing.Point(3, 0);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(625, 48);
+            this.lblWarning.Size = new System.Drawing.Size(469, 38);
             this.lblWarning.TabIndex = 0;
             this.lblWarning.Text = "Vui lòng nhấn nút \"Kiểm tra\"  để có thể cấp quyền";
             this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -363,10 +342,9 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.btnClose.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(900, 573);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(675, 458);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(139, 52);
+            this.btnClose.Size = new System.Drawing.Size(104, 42);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Đóng";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -380,13 +358,13 @@
             this.tableLayoutPanel5.Controls.Add(this.cklbAttribute, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.lblAttribute, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(673, 38);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(40, 38, 40, 38);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(505, 30);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.08683F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.91316F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(330, 395);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(247, 317);
             this.tableLayoutPanel5.TabIndex = 3;
             // 
             // cklbAttribute
@@ -394,11 +372,10 @@
             this.cklbAttribute.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cklbAttribute.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cklbAttribute.FormattingEnabled = true;
-            this.cklbAttribute.Location = new System.Drawing.Point(4, 71);
-            this.cklbAttribute.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cklbAttribute.Location = new System.Drawing.Point(3, 57);
             this.cklbAttribute.Name = "cklbAttribute";
             this.cklbAttribute.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cklbAttribute.Size = new System.Drawing.Size(322, 320);
+            this.cklbAttribute.Size = new System.Drawing.Size(241, 257);
             this.cklbAttribute.TabIndex = 0;
             // 
             // lblAttribute
@@ -408,22 +385,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttribute.AutoSize = true;
             this.lblAttribute.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAttribute.Location = new System.Drawing.Point(4, 0);
-            this.lblAttribute.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAttribute.Location = new System.Drawing.Point(3, 0);
             this.lblAttribute.Name = "lblAttribute";
-            this.lblAttribute.Size = new System.Drawing.Size(322, 67);
+            this.lblAttribute.Size = new System.Drawing.Size(241, 54);
             this.lblAttribute.TabIndex = 1;
             this.lblAttribute.Text = "Thuộc tính";
             this.lblAttribute.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // GrantPrivilegeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 629);
+            this.ClientSize = new System.Drawing.Size(782, 503);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GrantPrivilegeForm";
