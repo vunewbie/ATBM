@@ -37,7 +37,7 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
-                    using (OracleCommand cmd = new OracleCommand("CHECK_USER_ROLE", conn))
+                    using (OracleCommand cmd = new OracleCommand("PH1_CHECK_USER_ROLE", conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
