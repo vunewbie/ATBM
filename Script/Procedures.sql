@@ -240,7 +240,7 @@ BEGIN
         SELECT GRANTEE, OWNER, TABLE_NAME, GRANTOR, PRIVILEGE, GRANTABLE, HIERARCHY, COMMON, TYPE, INHERITED
         FROM DBA_TAB_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        AND OWNER = v_current_user
+        AND OWNER = v_current_user OR GRANTEE = v_current_user
         ORDER BY GRANTEE, OWNER, TABLE_NAME, PRIVILEGE;
     END IF;
 END;
@@ -278,7 +278,7 @@ BEGIN
         SELECT GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, GRANTOR, PRIVILEGE, GRANTABLE, COMMON, INHERITED
         FROM DBA_COL_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        AND OWNER = v_current_user
+        AND OWNER = v_current_user OR GRANTEE = v_current_user
         ORDER BY GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, PRIVILEGE;
     END IF;
 END;
