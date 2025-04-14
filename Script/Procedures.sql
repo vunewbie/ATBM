@@ -226,21 +226,27 @@ BEGIN
         SELECT GRANTEE, OWNER, TABLE_NAME, GRANTOR, PRIVILEGE, GRANTABLE, HIERARCHY, COMMON, TYPE, INHERITED
         FROM DBA_TAB_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        -- Exclude system schemas
-        AND OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
+        AND (
+            -- Các privileges của table có tên bắt đầu bằng PH1
+            TABLE_NAME LIKE 'PH1%'
+            OR
+            -- Các privileges thuộc schema của các user khác (không phải system schemas)
+            OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
                         'ANONYMOUS', 'XDB', 'CTXSYS', 'MDSYS', 'OLAPSYS', 
                         'ORDDATA', 'ORDPLUGINS', 'ORDSYS', 'LBACSYS', 'DVSYS',
                         'AUDSYS', 'REMOTE_SCHEDULER_AGENT', 'SYSBACKUP',
                         'SYSDG', 'SYSKM', 'GSMADMIN_INTERNAL', 'SYSRAC',
                         'OJVMSYS', 'DVF', 'WMSYS', 'APEX_050000', 'SI_INFORMTN_SCHEMA')
+        )
         ORDER BY GRANTEE, OWNER, TABLE_NAME, PRIVILEGE;
     ELSE
+        -- Nếu là user thông thường, chỉ lấy các privileges thuộc schema của họ hoặc được cấp cho họ
         OPEN table_privileges_cursor FOR
         SELECT GRANTEE, OWNER, TABLE_NAME, GRANTOR, PRIVILEGE, GRANTABLE, HIERARCHY, COMMON, TYPE, INHERITED
         FROM DBA_TAB_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        AND OWNER = v_current_user OR GRANTEE = v_current_user
+        AND (OWNER = v_current_user OR GRANTEE = v_current_user)
         ORDER BY GRANTEE, OWNER, TABLE_NAME, PRIVILEGE;
     END IF;
 END;
@@ -265,13 +271,19 @@ BEGIN
         FROM DBA_COL_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
         -- Exclude system schemas
-        AND OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM',
+        AND (
+            -- Các privileges của table có tên bắt đầu bằng PH1
+            TABLE_NAME LIKE 'PH1%'
+            OR
+            -- Các privileges thuộc schema của các user khác (không phải system schemas)
+            OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
                         'ANONYMOUS', 'XDB', 'CTXSYS', 'MDSYS', 'OLAPSYS', 
                         'ORDDATA', 'ORDPLUGINS', 'ORDSYS', 'LBACSYS', 'DVSYS',
                         'AUDSYS', 'REMOTE_SCHEDULER_AGENT', 'SYSBACKUP',
                         'SYSDG', 'SYSKM', 'GSMADMIN_INTERNAL', 'SYSRAC',
                         'OJVMSYS', 'DVF', 'WMSYS', 'APEX_050000', 'SI_INFORMTN_SCHEMA')
+        )
         ORDER BY GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, PRIVILEGE;
     ELSE
         OPEN column_privileges_cursor FOR
