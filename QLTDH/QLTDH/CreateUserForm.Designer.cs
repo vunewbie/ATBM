@@ -41,7 +41,7 @@
             this.btnCreateUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCreateUser.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCreateUser.Location = new System.Drawing.Point(280, 339);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(276, 45);
             this.btnCreateUser.TabIndex = 11;
@@ -53,18 +53,18 @@
             // 
             this.txbPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbPassword.Location = new System.Drawing.Point(280, 239);
-            this.txbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassword.Name = "txbPassword";
-            this.txbPassword.Size = new System.Drawing.Size(276, 30);
+            this.txbPassword.Size = new System.Drawing.Size(276, 26);
             this.txbPassword.TabIndex = 10;
             // 
             // txbUsername
             // 
             this.txbUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbUsername.Location = new System.Drawing.Point(280, 158);
-            this.txbUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txbUsername.Name = "txbUsername";
-            this.txbUsername.Size = new System.Drawing.Size(276, 30);
+            this.txbUsername.Size = new System.Drawing.Size(276, 26);
             this.txbUsername.TabIndex = 9;
             // 
             // lblPassword
@@ -74,7 +74,7 @@
             this.lblPassword.Location = new System.Drawing.Point(75, 241);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(91, 23);
+            this.lblPassword.Size = new System.Drawing.Size(75, 19);
             this.lblPassword.TabIndex = 8;
             this.lblPassword.Text = "Mật khẩu";
             // 
@@ -85,7 +85,7 @@
             this.lblUsername.Location = new System.Drawing.Point(75, 160);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(132, 23);
+            this.lblUsername.Size = new System.Drawing.Size(107, 19);
             this.lblUsername.TabIndex = 7;
             this.lblUsername.Text = "Tên đăng nhập";
             // 
@@ -97,14 +97,14 @@
             this.lblNewUser.Location = new System.Drawing.Point(297, 59);
             this.lblNewUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewUser.Name = "lblNewUser";
-            this.lblNewUser.Size = new System.Drawing.Size(282, 32);
+            this.lblNewUser.Size = new System.Drawing.Size(222, 25);
             this.lblNewUser.TabIndex = 6;
             this.lblNewUser.Text = "Thêm người dùng mới";
             this.lblNewUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CreateUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 503);
             this.Controls.Add(this.btnCreateUser);
@@ -114,10 +114,10 @@
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.lblNewUser);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CreateUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NewUser";
+            this.Text = "Thêm người dùng";
             this.ResumeLayout(false);
             this.PerformLayout();
 

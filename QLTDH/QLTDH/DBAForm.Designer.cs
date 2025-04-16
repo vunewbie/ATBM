@@ -80,6 +80,7 @@
             this.txbSearchGrantee = new System.Windows.Forms.TextBox();
             this.btnRevokePrivilege = new System.Windows.Forms.Button();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
             this.tlpUsers.SuspendLayout();
@@ -425,6 +426,7 @@
             // tpagePrivileges
             // 
             this.tpagePrivileges.BackColor = System.Drawing.SystemColors.Control;
+            this.tpagePrivileges.Controls.Add(this.btnRefresh);
             this.tpagePrivileges.Controls.Add(this.tctrlPrivileges);
             this.tpagePrivileges.Controls.Add(this.lbSearchGrantee);
             this.tpagePrivileges.Controls.Add(this.txbSearchGrantee);
@@ -769,6 +771,17 @@
             this.btnGrantPrivilege.UseVisualStyleBackColor = false;
             this.btnGrantPrivilege.Click += new System.EventHandler(this.btnGrantPrivilege_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRefresh.Location = new System.Drawing.Point(1134, 80);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 28);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // DBAForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -779,7 +792,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "DBAForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DBAForm";
+            this.Text = "Trang quản trị";
             this.tctrlDBA.ResumeLayout(false);
             this.tpageUsers.ResumeLayout(false);
             this.tlpUsers.ResumeLayout(false);
@@ -856,5 +869,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_GRANTABLE;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_COMMON;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_INHERITED;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

@@ -395,5 +395,21 @@ namespace QLTDH
                 LoadColumnPrivileges(searchQuery);
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            TabPage currentTab = tctrlPrivileges.SelectedTab;
+
+            if (currentTab == tpageTable)
+            {
+                // Nếu đang ở tab Table, tải lại dữ liệu table privileges
+                LoadTablePrivileges(txbSearchGrantee.Text.Trim());
+            }
+            else if (currentTab == tpageColumn)
+            {
+                // Nếu đang ở tab Column, tải lại dữ liệu column privileges
+                LoadColumnPrivileges(txbSearchGrantee.Text.Trim());
+            }
+        }
     }
 }

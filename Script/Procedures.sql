@@ -228,10 +228,10 @@ BEGIN
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
         AND (
             -- Các privileges của table có tên bắt đầu bằng PH1
-            TABLE_NAME LIKE 'PH1%'
-            OR
+            --TABLE_NAME LIKE 'PH1%'
+            --OR
             -- Các privileges thuộc schema của các user khác (không phải system schemas)
-            OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
+            OWNER NOT IN ('SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
                         'ANONYMOUS', 'XDB', 'CTXSYS', 'MDSYS', 'OLAPSYS', 
                         'ORDDATA', 'ORDPLUGINS', 'ORDSYS', 'LBACSYS', 'DVSYS',
@@ -273,10 +273,10 @@ BEGIN
         -- Exclude system schemas
         AND (
             -- Các privileges của table có tên bắt đầu bằng PH1
-            TABLE_NAME LIKE 'PH1%'
-            OR
+            --TABLE_NAME LIKE 'PH1%'
+            --OR
             -- Các privileges thuộc schema của các user khác (không phải system schemas)
-            OWNER NOT IN ('SYS', 'SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
+            OWNER NOT IN ('SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
                         'ANONYMOUS', 'XDB', 'CTXSYS', 'MDSYS', 'OLAPSYS', 
                         'ORDDATA', 'ORDPLUGINS', 'ORDSYS', 'LBACSYS', 'DVSYS',
@@ -296,6 +296,28 @@ BEGIN
 END;
 /
 GRANT EXECUTE ON SYS.PH1_GET_PRIVILEGES_COLUMN TO C##QLTDH;
+
+
+--Lấy ra danh sách tất cả các đối tượng của user/role
+CREATE OR REPLACE PROCEDURE PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE (
+    p_user_or_role IN VARCHAR2,
+    all_objects_cursor OUT SYS_REFCURSOR
+)
+AS
+BEGIN
+    OPEN all_objects_cursor FOR
+    SELECT TABLE_NAME
+    FROM DBA_TAB_PRIVS
+    WHERE GRANTEE = p_user_or_role;
+
+    UNION DISTINCT
+
+    SELECT VIEW_NAME
+    FROM DBA_TAB_PRIVS
+    WHERE GRANTEE = p_user_or_role;
+END
+/
+
 
 -- Kiểm tra username/role
 CREATE OR REPLACE PROCEDURE PH1_CHECK_USER_ROLE(
