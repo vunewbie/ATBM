@@ -45,7 +45,7 @@ namespace QLTDH
                     string checkRoleQuery = @"SELECT GRANTED_ROLE 
                                               FROM DBA_ROLE_PRIVS 
                                               WHERE GRANTEE = :username 
-                                              AND (GRANTED_ROLE = 'SYSDBA' OR GRANTED_ROLE = 'DBA')";
+                                              AND GRANTED_ROLE = 'DBA'";
                     OracleCommand cmd = new OracleCommand(checkRoleQuery, conn);
                     cmd.Parameters.Add(new OracleParameter("username", username));
 
