@@ -40,12 +40,12 @@
             this.ckbInsert = new System.Windows.Forms.CheckBox();
             this.ckbSelect = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.ckbExecute = new System.Windows.Forms.CheckBox();
             this.ckbWithGrantOption = new System.Windows.Forms.CheckBox();
             this.ckbDelete = new System.Windows.Forms.CheckBox();
             this.cbbUserRole = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnRevoke = new System.Windows.Forms.Button();
-            this.ckbExecute = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -95,48 +95,42 @@
             // 
             // lblUsernameRole
             // 
-            this.lblUsernameRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUsernameRole.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsernameRole.AutoSize = true;
             this.lblUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsernameRole.Location = new System.Drawing.Point(2, 0);
-            this.lblUsernameRole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsernameRole.Location = new System.Drawing.Point(15, 30);
+            this.lblUsernameRole.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblUsernameRole.Name = "lblUsernameRole";
-            this.lblUsernameRole.Size = new System.Drawing.Size(109, 80);
+            this.lblUsernameRole.Size = new System.Drawing.Size(77, 19);
             this.lblUsernameRole.TabIndex = 0;
             this.lblUsernameRole.Text = "User/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblObject
             // 
-            this.lblObject.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblObject.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblObject.AutoSize = true;
             this.lblObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObject.Location = new System.Drawing.Point(2, 80);
-            this.lblObject.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblObject.Location = new System.Drawing.Point(15, 107);
+            this.lblObject.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblObject.Name = "lblObject";
-            this.lblObject.Size = new System.Drawing.Size(109, 74);
+            this.lblObject.Size = new System.Drawing.Size(77, 19);
             this.lblObject.TabIndex = 1;
             this.lblObject.Text = "Đối tượng";
             this.lblObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPrivilege
             // 
-            this.lblPrivilege.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrivilege.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPrivilege.AutoSize = true;
             this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivilege.Location = new System.Drawing.Point(2, 154);
-            this.lblPrivilege.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrivilege.Location = new System.Drawing.Point(15, 184);
+            this.lblPrivilege.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblPrivilege.Name = "lblPrivilege";
-            this.lblPrivilege.Size = new System.Drawing.Size(109, 79);
+            this.lblPrivilege.Size = new System.Drawing.Size(53, 19);
             this.lblPrivilege.TabIndex = 2;
             this.lblPrivilege.Text = "Quyền";
-            this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbbObject
             // 
@@ -243,6 +237,19 @@
             this.tableLayoutPanel6.Size = new System.Drawing.Size(400, 34);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
+            // ckbExecute
+            // 
+            this.ckbExecute.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ckbExecute.AutoSize = true;
+            this.ckbExecute.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbExecute.Location = new System.Drawing.Point(304, 7);
+            this.ckbExecute.Margin = new System.Windows.Forms.Padding(2);
+            this.ckbExecute.Name = "ckbExecute";
+            this.ckbExecute.Size = new System.Drawing.Size(71, 20);
+            this.ckbExecute.TabIndex = 3;
+            this.ckbExecute.Text = "Execute";
+            this.ckbExecute.UseVisualStyleBackColor = true;
+            // 
             // ckbWithGrantOption
             // 
             this.ckbWithGrantOption.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -311,19 +318,6 @@
             this.btnRevoke.Text = "Thu hồi quyền";
             this.btnRevoke.UseVisualStyleBackColor = false;
             this.btnRevoke.Click += new System.EventHandler(this.btnRevoke_Click);
-            // 
-            // ckbExecute
-            // 
-            this.ckbExecute.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ckbExecute.AutoSize = true;
-            this.ckbExecute.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbExecute.Location = new System.Drawing.Point(304, 7);
-            this.ckbExecute.Margin = new System.Windows.Forms.Padding(2);
-            this.ckbExecute.Name = "ckbExecute";
-            this.ckbExecute.Size = new System.Drawing.Size(71, 20);
-            this.ckbExecute.TabIndex = 3;
-            this.ckbExecute.Text = "Execute";
-            this.ckbExecute.UseVisualStyleBackColor = true;
             // 
             // RevokePrivilegeForm
             // 
