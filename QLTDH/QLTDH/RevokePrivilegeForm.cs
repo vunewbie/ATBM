@@ -36,7 +36,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Create command to call the stored procedure that gets users
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("PH1_GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Create cursor parameter for the output
@@ -58,7 +58,7 @@ namespace QLTDH
                     reader.Close();
 
                     // Now add roles
-                    cmd = new OracleCommand("SYS.PH1_GET_ROLE_LIST", conn);
+                    cmd = new OracleCommand("PH1_GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
@@ -97,7 +97,7 @@ namespace QLTDH
                     conn.Open();
 
                     //Load table privileges
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE", conn);
+                    OracleCommand cmd = new OracleCommand("PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;

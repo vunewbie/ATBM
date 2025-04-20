@@ -18,15 +18,79 @@ namespace QLTDH
         public GrantPrivilegeForm()
         {
             InitializeComponent();
+            LoadUserRole();
             cbbPrivilege.Enabled = false;
             cbbObjectType.Enabled = false;
             cbbObject.Enabled = false;
             ckbWithGrantOption.Enabled = false;
         }
 
+        private void LoadUserRole()
+        {
+            try
+            {
+                // Clear existing items
+                cbbUserRole.Items.Clear();
+
+                // Create connection using ConnectionManager
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    // Create command to call the stored procedure that gets users
+                    OracleCommand cmd = new OracleCommand("PH1_GET_USER_LIST", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Create cursor parameter for the output
+                    OracleParameter cursorParam = new OracleParameter("users_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    // Execute the command and get the reader
+                    OracleDataReader reader = cmd.ExecuteReader();
+
+                    // Add users to the combo box and the master list
+                    while (reader.Read())
+                    {
+                        string username = reader["USERNAME"].ToString();
+                        cbbUserRole.Items.Add(username);
+                    }
+
+                    // Close the reader
+                    reader.Close();
+
+                    // Now add roles
+                    cmd = new OracleCommand("PH1_GET_ROLE_LIST", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    reader = cmd.ExecuteReader();
+
+
+                    // Add roles to the combo box and the master list
+                    while (reader.Read())
+                    {
+                        string rolename = reader["ROLE"].ToString();
+                        cbbUserRole.Items.Add(rolename);
+                    }
+                }
+
+                // Select the first item if available
+                if (cbbUserRole.Items.Count > 0)
+                    cbbUserRole.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách user/role: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
         private void btnCheck_Click(object sender, EventArgs e)
         {
-            string usernamerole = txbUsernameRole.Text.Trim();
+            string usernamerole = cbbUserRole.Text.Trim();
             if (string.IsNullOrEmpty(usernamerole))
             {
                 MessageBox.Show("Vui lòng nhập username/role.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -55,7 +119,7 @@ namespace QLTDH
                         lblResultCheck.Text = outputParam.Value.ToString();
                         if (lblResultCheck.Text!="Không hợp lệ")
                         {
-                            txbUsernameRole.Enabled = false;
+                            cbbUserRole.Enabled = false;
                             cbbPrivilege.Enabled = true;
                             cbbObjectType.Enabled = true;
                             ckbWithGrantOption.Enabled = true;
@@ -71,9 +135,9 @@ namespace QLTDH
         }
         private void btnReset_Click(object sender, EventArgs e)
         {
-            txbUsernameRole.Text = "";
+            cbbUserRole.SelectedIndex = -1;
             lblResultCheck.Text = "";
-            txbUsernameRole.Enabled=true;
+            cbbUserRole.Enabled=true;
             cbbPrivilege.SelectedIndex = -1;
             cbbPrivilege.Enabled = false;
             cbbObjectType.SelectedIndex = -1;
@@ -89,7 +153,7 @@ namespace QLTDH
         {
             cbbObjectType.Enabled = true;
 
-            if (cbbPrivilege.Text == "Select" || cbbPrivilege.Text == "Update")
+            if (cbbPrivilege.Text == "SELECT" || cbbPrivilege.Text == "UPDATE")
             {
                 cklbAttribute.Enabled = true;
             }
@@ -123,7 +187,7 @@ namespace QLTDH
             cklbAttribute.Items.Clear();
             cbbObject.Enabled = true;
 
-            string usernamerole = txbUsernameRole.Text.Trim();
+            string usernamerole = cbbUserRole.Text.Trim();
             if (string.IsNullOrEmpty(usernamerole)) return;
 
             if (cbbObjectType.SelectedItem != null)
@@ -190,7 +254,7 @@ namespace QLTDH
 
         private void btnGrantPrivilege_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txbUsernameRole.Text) ||
+            if (string.IsNullOrWhiteSpace(cbbUserRole.Text) ||
                 cbbPrivilege.SelectedItem == null ||
                 cbbObjectType.SelectedItem == null ||
                 cbbObject.SelectedItem == null)
@@ -199,7 +263,7 @@ namespace QLTDH
                 return;
             }
 
-            string usernamerole = txbUsernameRole.Text.Trim();
+            string usernamerole = cbbUserRole.Text.Trim();
             string privilege = cbbPrivilege.SelectedItem.ToString();
             string objtype = cbbObjectType.SelectedItem.ToString();
             string obj = cbbObject.SelectedItem.ToString();
@@ -284,10 +348,6 @@ namespace QLTDH
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
