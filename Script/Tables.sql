@@ -1,139 +1,171 @@
--- Bảng tạo để test phân quyền trên bảng muốn test thì mở comment để test
--- CONNECT C##QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC; -- Muốn tạo bằng C##QLTDH thì chạy nguyên cụm từ đây xuống còn sysdba thì bỏ dòng này
---BEGIN
---   -- Xóa bảng NHANVIEN nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE NHANVIEN CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN  -- Lỗi khác ngoài ORA-00942 (bảng không tồn tại)
---            RAISE;
---         END IF;
---   END;
---
---   -- Xóa bảng SINHVIEN nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE SINHVIEN CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN
---            RAISE;
---         END IF;
---   END;
---
---   -- Xóa bảng DONVI nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE DONVI CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN
---            RAISE;
---         END IF;
---   END;
---
---   -- Xóa bảng HOCPHAN nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE HOCPHAN CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN
---            RAISE;
---         END IF;
---   END;
---
---   -- Xóa bảng MOMON nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE MOMON CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN
---            RAISE;
---         END IF;
---   END;
---
---   -- Xóa bảng DANGKY nếu tồn tại
---   BEGIN
---      EXECUTE IMMEDIATE 'DROP TABLE DANGKY CASCADE CONSTRAINTS';
---   EXCEPTION
---      WHEN OTHERS THEN
---         IF SQLCODE != -942 THEN
---            RAISE;
---         END IF;
---   END;
---
---END;
---/
---CREATE TABLE QLDT_GIAOVIEN
---(
---    MAGV CHAR(5), 
---    HOTEN NVARCHAR2(50),
---    NGAYSINH DATE,
---    MAPHONG INT,
---    MATKHAU VARCHAR2(20),
---    LUONG NUMBER,
---    
---    PRIMARY KEY(MAGV)
---);
---CREATE TABLE QLDT_PHONGBAN
---(
---    MAPHONG INT, 
---    TENPHONG NVARCHAR2(100),
---    TRUONGPHONG CHAR(5),
---    CHINHANH VARCHAR(20),
---    
---    PRIMARY KEY (MAPHONG)
---);
---CREATE TABLE QLDT_DETAI
---(
---    MADT CHAR(4),
---    TENDT NVARCHAR2(100),
---    CAPQL NVARCHAR2(50),
---    NGAYDB DATE,
---    NGAYKT DATE,
---    GVCNDT CHAR(5),
---    PHONGQL INT,
---    PRIMARY KEY(MADT)
---);
---CREATE TABLE QLDT_THAMGIA
---(
---    MADT CHAR(4),
---    MAGV CHAR(5),
---    VAITRO NVARCHAR2(50),
---    THOIGIAN INT,
---    PHUCAP DECIMAL(3,1),
---    TINHTRANG NVARCHAR2(50),
---    PRIMARY KEY(MADT, MAGV)
---);
------RELATIONSHIPS
---ALTER TABLE QLDT_GIAOVIEN
---ADD
---    CONSTRAINT FK_GV_PB
---    FOREIGN KEY (MAPHONG)
---    REFERENCES QLDT_PHONGBAN;
---ALTER TABLE QLDT_PHONGBAN
---ADD
---    CONSTRAINT FK_PB_GV
---    FOREIGN KEY (TRUONGPHONG)
---    REFERENCES QLDT_GIAOVIEN;
---ALTER TABLE QLDT_DETAI
---ADD
---    CONSTRAINT FK_DT_GV
---    FOREIGN KEY (GVCNDT)
---    REFERENCES QLDT_GIAOVIEN;
---ALTER TABLE QLDT_DETAI
---ADD
---    CONSTRAINT FK_DT_PB
---    FOREIGN KEY (PHONGQL)
---    REFERENCES QLDT_PHONGBAN;
---ALTER TABLE QLDT_THAMGIA
---ADD
---    CONSTRAINT FK_TG_DT
---    FOREIGN KEY (MADT)
---    REFERENCES QLDT_DETAI;
---ALTER TABLE QLDT_THAMGIA
---ADD
---    CONSTRAINT FK_TG_GV
---    FOREIGN KEY (MAGV)
---    REFERENCES QLDT_GIAOVIEN;
+-- Nếu dùng câu lệnh kết nối ở dưới thì phải chạy toàn file, còn nếu không muốn chạy toàn file thì tạo một kết nối bằng tay
+CONNECT QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC;
 
+-- Kiểm tra kết nối
+SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
+
+-- Xóa bảng nếu tồn tại
+BEGIN
+   -- Xóa bảng NHANVIEN nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE NHANVIEN CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN  -- Lỗi khác ngoài ORA-00942 (bảng không tồn tại)
+            RAISE;
+         END IF;
+   END;
+
+   -- Xóa bảng SINHVIEN nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE SINHVIEN CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN
+            RAISE;
+         END IF;
+   END;
+
+   -- Xóa bảng DONVI nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE DONVI CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN
+            RAISE;
+         END IF;
+   END;
+
+   -- Xóa bảng HOCPHAN nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE HOCPHAN CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN
+            RAISE;
+         END IF;
+   END;
+
+   -- Xóa bảng MOMON nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE MOMON CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN
+            RAISE;
+         END IF;
+   END;
+
+   -- Xóa bảng DANGKY nếu tồn tại
+   BEGIN
+      EXECUTE IMMEDIATE 'DROP TABLE DANGKY CASCADE CONSTRAINTS';
+   EXCEPTION
+      WHEN OTHERS THEN
+         IF SQLCODE != -942 THEN
+            RAISE;
+         END IF;
+   END;
+
+END;
+/
+
+-- Bảng Nhân Viên
+CREATE TABLE NHANVIEN (
+    MANV VARCHAR2(10) PRIMARY KEY, -- Mã nhân viên
+    HOTEN VARCHAR2(100), -- Họ tên
+    PHAI VARCHAR2(3) CHECK (PHAI IN ('Nam', 'Nữ')), -- Giới tính
+    NGSINH DATE, -- Ngày sinh
+    LUONG INTEGER, -- Lương
+    PHUCAP INTEGER, -- Phụ cấp
+    DT VARCHAR2(10), -- Số điện thoại
+    VAITRO VARCHAR2(7) CHECK (VAITRO IN ('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV')), -- Vai trò
+    MADV VARCHAR2(10) -- Mã đơn vị
+);
+
+-- Bảng Sinh Viên
+CREATE TABLE SINHVIEN (
+    MASV VARCHAR2(10) PRIMARY KEY, -- Mã sinh viên
+    HOTEN VARCHAR2(100), -- Họ tên
+    PHAI VARCHAR2(10) CHECK (PHAI IN ('Nam', 'Nữ')), -- Giới tính
+    NGSINH DATE, -- Ngày sinh
+    DCHI VARCHAR2(200), -- Địa chỉ
+    DT VARCHAR2(20), -- Số điện thoại
+    KHOA VARCHAR2(10), -- Khoa
+    TINHTRANG VARCHAR2(20) CHECK (TINHTRANG IN ('Đang học', 'Nghỉ học', 'Bảo lưu')) -- Tình trạng
+);
+
+-- Bảng Đơn Vị
+CREATE TABLE DONVI (
+    MADV VARCHAR2(10) PRIMARY KEY, -- Mã đơn vị
+    TENDV VARCHAR2(100), -- Tên đơn vị
+    LOAIDV VARCHAR2(10) CHECK (LOAIDV IN ('Khoa', 'Phòng')), -- Loại đơn vị
+    TRGDV VARCHAR2(10) -- Trưởng đơn vị
+);
+
+-- Bảng Học Phần
+CREATE TABLE HOCPHAN (
+    MAHP VARCHAR2(10) PRIMARY KEY, -- Mã học phần
+    TENHP VARCHAR2(100), -- Tên học phần
+    SOTC INTEGER, -- Số tín chỉ
+    STLT INTEGER, -- Số tiết lý thuyết
+    STTH INTEGER, -- Số tiết thực hành
+    MADV VARCHAR2(10) -- Đơn vị phụ trách
+);
+
+-- Bảng Mở Môn
+CREATE TABLE MOMON (
+    MAMM VARCHAR2(10) PRIMARY KEY, -- Mã mở môn
+    MAHP VARCHAR2(10), -- Mã học phần
+    MAGV VARCHAR2(10), -- Giảng viên
+    HK VARCHAR2(1) CHECK (HK IN ('1', '2', '3')), -- Học kỳ
+    NAM INTEGER -- Năm học
+);
+
+-- Bảng Đăng Ký
+CREATE TABLE DANGKY (
+    MASV VARCHAR2(10), -- Mã sinh viên
+    MAMM VARCHAR2(10), -- Mã môn
+    DIEMTH NUMBER(5,2), -- Điểm thực hành
+    DIEMQT NUMBER(5,2), -- Điểm quá trình
+    DIEMCK NUMBER(5,2), -- Điểm cuối kỳ
+    DIEMTK NUMBER(5,2), -- Điểm tổng kết
+    PRIMARY KEY (MASV, MAMM)
+);
+
+-- NHANVIEN REF DONVI
+ALTER TABLE NHANVIEN
+ADD CONSTRAINT FK_NHANVIEN_MADV FOREIGN KEY (MADV) REFERENCES DONVI (MADV);
+
+-- SINHVIEN REF DONVI
+ALTER TABLE SINHVIEN
+ADD CONSTRAINT FK_SINHVIEN_KHOA FOREIGN KEY (KHOA) REFERENCES DONVI (MADV);
+
+-- DONVI REF NHANVIEN
+ALTER TABLE DONVI
+ADD CONSTRAINT FK_DONVI_NHANVIEN FOREIGN KEY (TRGDV) REFERENCES NHANVIEN (MANV);
+
+-- HOCPHAN REF DONVI
+ALTER TABLE HOCPHAN
+ADD CONSTRAINT FK_HOCPHAN_MADV FOREIGN KEY (MADV) REFERENCES DONVI (MADV);
+
+-- MOMON REF HOCPHAN
+ALTER TABLE MOMON
+ADD CONSTRAINT FK_MOMON_MAHP FOREIGN KEY (MAHP) REFERENCES HOCPHAN (MAHP);
+
+-- MOMON REF NHANVIEN
+ALTER TABLE MOMON
+ADD CONSTRAINT FK_MOMON_MAGV FOREIGN KEY (MAGV) REFERENCES NHANVIEN (MANV);
+
+-- DANGKY REF SINHVIEN
+ALTER TABLE DANGKY
+ADD CONSTRAINT FK_DANGKY_MASV FOREIGN KEY (MASV) REFERENCES SINHVIEN (MASV);
+
+-- DANGKY REF MOMON
+ALTER TABLE DANGKY
+ADD CONSTRAINT FK_DANGKY_MAMM FOREIGN KEY (MAMM) REFERENCES MOMON (MAMM);
+
+-- Kiểm tra bảng đã tạo thành công chưa
+SELECT TABLE_NAME, OWNER
+FROM ALL_TABLES
+WHERE OWNER = 'QLTDH';
 

@@ -36,7 +36,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Kiểm tra xem role đã tồn tại
-                    OracleCommand checkCmd = new OracleCommand("SYS.PH1_CHECK_ROLE_EXISTS", conn);
+                    OracleCommand checkCmd = new OracleCommand("CHECK_ROLE_EXISTS", conn);
                     checkCmd.CommandType = CommandType.StoredProcedure;
                     checkCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
                     OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Varchar2, 10);
@@ -53,7 +53,7 @@ namespace QLTDH
                     }
 
                     // Tạo người dùng mới
-                    OracleCommand createCmd = new OracleCommand("SYS.PH1_UPDATE_ROLE_PASSWORD", conn);
+                    OracleCommand createCmd = new OracleCommand("UPDATE_ROLE_PASSWORD", conn);
                     createCmd.CommandType = CommandType.StoredProcedure;
                     createCmd.Parameters.Add("p_role", OracleDbType.Varchar2).Value = role;
                     createCmd.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
@@ -63,7 +63,7 @@ namespace QLTDH
                     MessageBox.Show("Cập nhật vai trò thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách vai trò trong DBAForm
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_ROLE_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     OracleParameter cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;
@@ -81,6 +81,21 @@ namespace QLTDH
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pbPassword_Click(object sender, EventArgs e)
+        {
+            // Chuyển đổi giữa hiển thị và ẩn mật khẩu
+            if (txbPassword.UseSystemPasswordChar)
+            {
+                txbPassword.UseSystemPasswordChar = false;
+                pbPassword.Image = Properties.Resources.eye_on; // Hình ảnh mắt mở
+            }
+            else
+            {
+                txbPassword.UseSystemPasswordChar = true;
+                pbPassword.Image = Properties.Resources.eye_off; // Hình ảnh mắt đóng
             }
         }
     }

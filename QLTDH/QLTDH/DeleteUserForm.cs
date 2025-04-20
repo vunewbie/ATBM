@@ -35,7 +35,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Kiểm tra xem người dùng đã tồn tại
-                    OracleCommand checkCmd = new OracleCommand("SYS.PH1_CHECK_USER_EXISTS", conn);
+                    OracleCommand checkCmd = new OracleCommand("CHECK_USER_EXISTS", conn);
                     checkCmd.CommandType = CommandType.StoredProcedure;
                     checkCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
                     OracleParameter existsParam = new OracleParameter("p_exists", OracleDbType.Varchar2, 10);
@@ -52,7 +52,7 @@ namespace QLTDH
                     }
 
                     // Xóa người dùng
-                    OracleCommand deleteCmd = new OracleCommand("SYS.PH1_DELETE_USER", conn);
+                    OracleCommand deleteCmd = new OracleCommand("DELETE_USER", conn);
                     deleteCmd.CommandType = CommandType.StoredProcedure;
                     deleteCmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
 
@@ -61,7 +61,7 @@ namespace QLTDH
                     MessageBox.Show("Người dùng đã được xóa thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách người dùng trong DBAForm
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     OracleParameter cursorParam = new OracleParameter("users_cursor", OracleDbType.RefCursor);
                     cursorParam.Direction = ParameterDirection.Output;
