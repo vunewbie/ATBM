@@ -27,7 +27,7 @@ namespace QLTDH
                 return;
             }
 
-            string username = txbUsername.Text;
+            string username = txbUsername.Text.ToUpper();
             string password = txbPassword.Text;
 
             // Lưu thông tin đăng nhập vào ConnectionManager

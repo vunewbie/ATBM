@@ -36,7 +36,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Create command to call the stored procedure that gets users
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Create cursor parameter for the output
@@ -58,7 +58,7 @@ namespace QLTDH
                     reader.Close();
 
                     // Now add roles
-                    cmd = new OracleCommand("SYS.PH1_GET_ROLE_LIST", conn);
+                    cmd = new OracleCommand("GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
@@ -97,7 +97,7 @@ namespace QLTDH
                     conn.Open();
 
                     //Load table privileges
-                    OracleCommand cmd = new OracleCommand("SYS.PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE", conn);
+                    OracleCommand cmd = new OracleCommand("GET_ALL_OBJECTS_BY_USER_OR_ROLE", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
@@ -160,7 +160,6 @@ namespace QLTDH
             string update_priv = ckbUpdate.Checked ? "UPDATE" : "";
             string delete_priv = ckbDelete.Checked ? "DELETE" : "";
             string execute_priv = ckbExecute.Checked ? "EXECUTE" : "";
-            string with_grant_option = ckbWithGrantOption.Checked ? "WITH GRANT OPTION" : "";
 
             // Check if at least one privilege is selected
             if (string.IsNullOrEmpty(select_priv) && string.IsNullOrEmpty(insert_priv) && string.IsNullOrEmpty(update_priv) && string.IsNullOrEmpty(delete_priv) && string.IsNullOrEmpty(execute_priv))
@@ -208,11 +207,6 @@ namespace QLTDH
             revokeStatement += " ON " + objectName;
             revokeStatement += " FROM " + grantee;
 
-            if (with_grant_option != "")
-            {
-                revokeStatement += " " + with_grant_option;
-            }
-
             // Show the revoke statement in a message box
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thực hiện lệnh sau không?\n\n" + revokeStatement, "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -240,8 +234,21 @@ namespace QLTDH
                 ckbUpdate.Checked = false;
                 ckbDelete.Checked = false;
                 ckbExecute.Checked = false;
-                ckbWithGrantOption.Checked = false;
             }
+        }
+
+        private void RevokePrivilegeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Gọi hàm btnRefresh_Click ở form DBAForm
+            if (Owner is DBAForm dbaForm)
+            {
+                dbaForm.btnRefresh_Click(sender, e);
+            }
+        }
+
+        private void RevokePrivilegeForm_Shown(object sender, EventArgs e)
+        {
+            cbbUserRole.Focus();
         }
     }
 }

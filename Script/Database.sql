@@ -73,7 +73,7 @@ END;
 -- Tạo database
 CREATE PLUGGABLE DATABASE QUANLYTRUONGDAIHOC
 ADMIN USER QLTDH IDENTIFIED BY admin123
-FILE_NAME_CONVERT = ('C:\app\vuloc\product\21c\oradata\XE\pdbseed', 'C:\app\vuloc\product\21c\oradata\XE\pdbseed\QLTDH'); -- Thay đường dẫn
+FILE_NAME_CONVERT = ('D:\APP\21CORACLE\ORADATA\XE\PDBSEED\', 'D:\UniversityDocument\Nam 3\HK2\ATBM\Project\QUANLYTRUONGDAIHOC'); -- Thay đường dẫn
 
 -- Mở kết nối database
 ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC OPEN;  

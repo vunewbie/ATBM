@@ -199,7 +199,7 @@ END SEARCH_ROLE;
 
 -- Lấy danh sách các quyền đã cấp cho user/role trên bảng
 -- DROP PROCEDURE PH1_GET_PRIVILEGES_TABLE;
-CREATE OR REPLACE PROCEDURE PH1_GET_PRIVILEGES_TABLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GET_PRIVILEGES_TABLE (
     p_grantee IN VARCHAR2 DEFAULT NULL,
     table_privileges_cursor OUT SYS_REFCURSOR
 )
@@ -215,9 +215,6 @@ BEGIN
         FROM DBA_TAB_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
         AND (
-            -- Các privileges của table có tên bắt đầu bằng PH1
-            --TABLE_NAME LIKE 'PH1%'
-            --OR
             -- Các privileges thuộc schema của các user khác (không phải system schemas)
             OWNER NOT IN ('SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
@@ -234,16 +231,15 @@ BEGIN
         SELECT GRANTEE, OWNER, TABLE_NAME, GRANTOR, PRIVILEGE, GRANTABLE, HIERARCHY, COMMON, TYPE, INHERITED
         FROM DBA_TAB_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        AND (OWNER = v_current_user OR GRANTEE = v_current_user)
+        AND OWNER = v_current_user --OR GRANTEE = v_current_user
         ORDER BY GRANTEE, OWNER, TABLE_NAME, PRIVILEGE;
     END IF;
 END;
 /
-GRANT EXECUTE ON SYS.PH1_GET_PRIVILEGES_TABLE TO C##QLTDH;
 
 -- Lấy danh sách các quyền đã cấp cho user/role trên cột
 -- DROP PROCEDURE PH1_GET_PRIVILEGES_COLUMN;
-CREATE OR REPLACE PROCEDURE PH1_GET_PRIVILEGES_COLUMN (
+CREATE OR REPLACE PROCEDURE QLTDH.GET_PRIVILEGES_COLUMN (
     p_grantee IN VARCHAR2 DEFAULT NULL,
     column_privileges_cursor OUT SYS_REFCURSOR
 )
@@ -260,9 +256,6 @@ BEGIN
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
         -- Exclude system schemas
         AND (
-            -- Các privileges của table có tên bắt đầu bằng PH1
-            --TABLE_NAME LIKE 'PH1%'
-            --OR
             -- Các privileges thuộc schema của các user khác (không phải system schemas)
             OWNER NOT IN ('SYSTEM', 'OUTLN', 'DIP', 'ORACLE_OCM', 
                         'DBSNMP', 'APPQOSSYS', 'DBSFWUSER', 'GGSYS', 
@@ -278,16 +271,15 @@ BEGIN
         SELECT GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, GRANTOR, PRIVILEGE, GRANTABLE, COMMON, INHERITED
         FROM DBA_COL_PRIVS
         WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
-        AND OWNER = v_current_user OR GRANTEE = v_current_user
+        AND OWNER = v_current_user --OR GRANTEE = v_current_user
         ORDER BY GRANTEE, OWNER, TABLE_NAME, COLUMN_NAME, PRIVILEGE;
     END IF;
 END;
 /
-GRANT EXECUTE ON SYS.PH1_GET_PRIVILEGES_COLUMN TO C##QLTDH;
 
 
 --Lấy ra danh sách tất cả các đối tượng của user/role
-CREATE OR REPLACE PROCEDURE PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GET_ALL_OBJECTS_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
     all_objects_cursor OUT SYS_REFCURSOR
 )
@@ -306,7 +298,6 @@ BEGIN
     
 END;
 /
-GRANT EXECUTE ON SYS.PH1_GET_ALL_OBJECTS_BY_USER_OR_ROLE TO C##QLTDH;
 
 -- Kiểm tra username/role
 CREATE OR REPLACE PROCEDURE PH1_CHECK_USER_ROLE(
