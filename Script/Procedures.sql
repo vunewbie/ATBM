@@ -345,6 +345,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.GET_OBJECT_TYPE_BY_USER_OR_ROLE (
 AS
     v_count NUMBER;
     v_object_type VARCHAR2(30);
+    v_admin_con_id NUMBER;
 BEGIN
     -- Kiểm tra tham số đầu vào
     IF p_user_or_role IS NULL THEN
@@ -362,83 +363,113 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20004, 'Invalid object type. Must be TABLE, VIEW, PROCEDURE, or FUNCTION');
     END IF;
 
-    -- Kiểm tra xem p_user_or_role là user hay role
+    -- Lấy container ID của admin hiện tại
+    SELECT SYS_CONTEXT('USERENV', 'CON_ID') INTO v_admin_con_id FROM dual;
+
+    -- Kiểm tra xem p_user_or_role là user hay role và nằm trong cùng container
     SELECT COUNT(*) INTO v_count 
-    FROM all_users 
-    WHERE username = UPPER(p_user_or_role);
+    FROM cdb_users 
+    WHERE username = UPPER(p_user_or_role)
+    AND con_id = v_admin_con_id;
 
-    IF v_count > 0 THEN
-        -- Nếu là user, trả danh sách đối tượng thuộc schema của user
-        OPEN p_cursor FOR
-            SELECT object_name
-            FROM all_objects
-            WHERE owner = UPPER(p_user_or_role)
-            AND owner NOT IN ('SYS', 'SYSTEM')
-            AND object_type = v_object_type;
-    ELSE
-        -- Kiểm tra xem có phải là role
+    IF v_count = 0 THEN
+        -- Nếu không phải user, kiểm tra role
         SELECT COUNT(*) INTO v_count 
-        FROM dba_roles 
-        WHERE role = UPPER(p_user_or_role);
+        FROM cdb_roles 
+        WHERE role = UPPER(p_user_or_role)
+        AND con_id = v_admin_con_id;
 
-        IF v_count > 0 THEN
-            -- Nếu là role, trả danh sách đối tượng thuộc schema của các user được gán role
-            OPEN p_cursor FOR
-                SELECT DISTINCT o.object_name
-                FROM all_objects o
-                JOIN dba_role_privs rp ON o.owner = rp.grantee
-                WHERE rp.granted_role = UPPER(p_user_or_role)
-                AND o.owner NOT IN ('SYS', 'SYSTEM')
-                AND o.object_type = v_object_type;
-        ELSE
-            RAISE_APPLICATION_ERROR(-20002, 'Invalid User or Role name');
+        IF v_count = 0 THEN
+            -- Không cùng container hoặc không hợp lệ, thoát procedure
+            RAISE_APPLICATION_ERROR(-20002, 'User or Role not in the same container or invalid');
         END IF;
     END IF;
+
+    -- Nếu cùng container, load tất cả đối tượng mà admin có quyền truy cập
+    OPEN p_cursor FOR
+        SELECT object_name
+        FROM cdb_objects o
+        WHERE o.con_id = v_admin_con_id
+        AND o.object_type = v_object_type
+        AND o.owner NOT IN ('SYS', 'SYSTEM')
+        AND EXISTS (
+            SELECT 1
+            FROM cdb_tab_privs tp
+            WHERE tp.owner = o.owner
+            AND tp.table_name = o.object_name
+            AND tp.grantee = SYS_CONTEXT('USERENV', 'SESSION_USER')
+            AND tp.grantable = 'YES'
+            UNION
+            SELECT 1
+            FROM cdb_objects
+            WHERE owner = SYS_CONTEXT('USERENV', 'SESSION_USER')
+            AND object_name = o.object_name
+            AND object_type = o.object_type
+            AND con_id = o.con_id
+        );
 END;
 /
 
 --tạo kiểu mảng
-CREATE OR REPLACE TYPE column_array IS TABLE OF VARCHAR2(128) INDEX BY BINARY_INTEGER;
+CREATE OR REPLACE TYPE column_array AS TABLE OF VARCHAR2(128);
 /
 --Grant quyền select
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
-    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A, 
+    p_attribute IN QLTDH.COLUMN_ARRAY,
     p_with_grant_option IN BOOLEAN,
     p_success OUT BOOLEAN
 )
 AS
     v_sql VARCHAR2(4000);
-    v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
+    v_columns VARCHAR2(4000);
 BEGIN
     p_success := FALSE;
 
-    IF p_attribute.COUNT = 0 THEN
-        v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || p_username;
+    -- Kiểm tra tham số đầu vào
+    IF p_username IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Username or Role cannot be NULL');
+    END IF;
+
+    IF p_object_type IS NULL OR p_object IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Object type or object name cannot be NULL');
+    END IF;
+
+    -- Chuẩn hóa loại đối tượng
+    IF UPPER(p_object_type) NOT IN ('TABLE', 'VIEW') THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Invalid object type. Must be TABLE or VIEW');
+    END IF;
+
+    -- Xây dựng câu lệnh GRANT
+    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
+        v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || DBMS_ASSERT.SCHEMA_NAME(UPPER(p_username));
     ELSE
         v_columns := '';
         FOR i IN 1 .. p_attribute.COUNT LOOP
             IF i > 1 THEN
-                v_columns := v_columns || ',';
+                v_columns := v_columns || ', ';
             END IF;
-            v_columns := v_columns || p_attribute(i);
+            v_columns := v_columns || DBMS_ASSERT.SQL_OBJECT_NAME(p_attribute(i));
         END LOOP;
 
-        v_sql := 'GRANT SELECT (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
+        v_sql := 'GRANT SELECT (' || v_columns || ') ON ' || p_object || ' TO ' || DBMS_ASSERT.SCHEMA_NAME(UPPER(p_username));
     END IF;
 
     IF p_with_grant_option THEN
         v_sql := v_sql || ' WITH GRANT OPTION';
     END IF;
 
+    -- Thực thi GRANT
     EXECUTE IMMEDIATE v_sql;
     p_success := TRUE;
 
 EXCEPTION
     WHEN OTHERS THEN
         p_success := FALSE;
+        -- Lưu lỗi vào log nếu cần
+        -- DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
 /
 
@@ -447,40 +478,58 @@ CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
-    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A, 
+    p_attribute IN QLTDH.COLUMN_ARRAY, 
     p_with_grant_option IN BOOLEAN,
     p_success OUT BOOLEAN
 )
 AS
     v_sql VARCHAR2(4000);
-    v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
+    v_columns VARCHAR2(4000);
 BEGIN
     p_success := FALSE;
 
-    IF p_attribute.COUNT = 0 THEN
-        v_sql := 'GRANT UPDATE ON ' || p_object || ' TO ' || p_username;
+    -- Kiểm tra tham số đầu vào
+    IF p_username IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Username or Role cannot be NULL');
+    END IF;
+
+    IF p_object_type IS NULL OR p_object IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Object type or object name cannot be NULL');
+    END IF;
+
+    -- Chuẩn hóa loại đối tượng
+    IF UPPER(p_object_type) NOT IN ('TABLE', 'VIEW') THEN
+        RAISE_APPLICATION_ERROR(-20004, 'Invalid object type. Must be TABLE or VIEW');
+    END IF;
+
+    -- Xây dựng câu lệnh GRANT
+    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
+        v_sql := 'GRANT UPDATE ON ' || p_object || ' TO ' || DBMS_ASSERT.SCHEMA_NAME(UPPER(p_username));
     ELSE
         v_columns := '';
         FOR i IN 1 .. p_attribute.COUNT LOOP
             IF i > 1 THEN
-                v_columns := v_columns || ',';
+                v_columns := v_columns || ', ';
             END IF;
-            v_columns := v_columns || p_attribute(i);
+            v_columns := v_columns || DBMS_ASSERT.SQL_OBJECT_NAME(p_attribute(i));
         END LOOP;
 
-        v_sql := 'GRANT UPDATE (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
+        v_sql := 'GRANT UPDATE (' || v_columns || ') ON ' || p_object || ' TO ' || DBMS_ASSERT.SCHEMA_NAME(UPPER(p_username));
     END IF;
 
     IF p_with_grant_option THEN
         v_sql := v_sql || ' WITH GRANT OPTION';
     END IF;
 
+    -- Thực thi GRANT
     EXECUTE IMMEDIATE v_sql;
     p_success := TRUE;
 
 EXCEPTION
     WHEN OTHERS THEN
         p_success := FALSE;
+        -- Lưu lỗi vào log nếu cần
+        -- DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
 /
 
@@ -586,3 +635,8 @@ EXCEPTION
         p_success := FALSE;
 END;
 /
+
+
+
+
+
