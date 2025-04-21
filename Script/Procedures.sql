@@ -1,4 +1,5 @@
 -- Nếu dùng câu lệnh kết nối ở dưới thì phải chạy toàn file, còn nếu không muốn chạy toàn file thì tạo một kết nối bằng tay
+--ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC OPEN;
 CONNECT QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC;
 
 -- Kiểm tra kết nối
@@ -300,7 +301,7 @@ END;
 /
 
 -- Kiểm tra username/role
-CREATE OR REPLACE PROCEDURE PH1_CHECK_USER_ROLE(
+CREATE OR REPLACE PROCEDURE QLTDH.CHECK_USER_ROLE(
      p_username_or_role IN VARCHAR2,
      p_type OUT VARCHAR2
 )   
@@ -333,10 +334,10 @@ BEGIN
     p_type := 'Không hợp lệ';
 END;
 /
-GRANT EXECUTE ON PH1_CHECK_USER_ROLE TO QLTDH;
+GRANT EXECUTE ON QLTDH.CHECK_USER_ROLE TO QLTDH;
 
 --Load table/view/proc/function for user/role in grantprivilegeform 
-CREATE OR REPLACE PROCEDURE PH1_GET_OBJECT_TYPE_BY_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GET_OBJECT_TYPE_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
     p_object IN VARCHAR2, -- Loại đối tượng: TABLE, VIEW, PROCEDURE, FUNCTION
     p_cursor OUT SYS_REFCURSOR
@@ -400,7 +401,7 @@ END;
 CREATE OR REPLACE TYPE column_array AS VARRAY(100) OF VARCHAR2(128);
 /
 --Grant quyền select
-CREATE OR REPLACE PROCEDURE PH1_GRANT_SELECT_TO_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -448,10 +449,10 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
-END PH1_GRANT_SELECT_TO_USER_OR_ROLE;
+END;
 /
 --Grant quyền update
-CREATE OR REPLACE PROCEDURE PH1_GRANT_UPDATE_TO_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -499,11 +500,11 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
-END PH1_GRANT_UPDATE_TO_USER_OR_ROLE;
+END;
 /
 
 --GRANT QUYỀN DELETE
-CREATE OR REPLACE PROCEDURE PH1_GRANT_DELETE_TO_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_DELETE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -534,11 +535,11 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
-END PH1_GRANT_DELETE_TO_USER_OR_ROLE;
+END;
 /
 
 --grant quyền insert
-CREATE OR REPLACE PROCEDURE PH1_GRANT_INSERT_TO_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_INSERT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -569,11 +570,11 @@ EXCEPTION
     WHEN OTHERS THEN
         -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
-END PH1_GRANT_INSERT_TO_USER_OR_ROLE;
+END;
 /
 
 --grant quyền execute function/proc cho user/role
-CREATE OR REPLACE PROCEDURE PH1_GRANT_EXEC_TO_USER_OR_ROLE (
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_EXEC_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object IN VARCHAR2,       -- Tên function/procedure
     p_with_grant_option IN BOOLEAN,
@@ -602,5 +603,5 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         p_success := FALSE;
-END PH1_GRANT_EXEC_TO_USER_OR_ROLE;
+END;
 /

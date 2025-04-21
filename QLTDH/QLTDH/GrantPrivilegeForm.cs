@@ -19,10 +19,6 @@ namespace QLTDH
         {
             InitializeComponent();
             LoadUserRole();
-            cbbPrivilege.Enabled = false;
-            cbbObjectType.Enabled = false;
-            cbbObject.Enabled = false;
-            ckbWithGrantOption.Enabled = false;
         }
 
         private void LoadUserRole()
@@ -38,7 +34,7 @@ namespace QLTDH
                     conn.Open();
 
                     // Create command to call the stored procedure that gets users
-                    OracleCommand cmd = new OracleCommand("PH1_GET_USER_LIST", conn);
+                    OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     // Create cursor parameter for the output
@@ -60,7 +56,7 @@ namespace QLTDH
                     reader.Close();
 
                     // Now add roles
-                    cmd = new OracleCommand("PH1_GET_ROLE_LIST", conn);
+                    cmd = new OracleCommand("GET_ROLE_LIST", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cursorParam = new OracleParameter("roles_cursor", OracleDbType.RefCursor);
@@ -88,70 +84,18 @@ namespace QLTDH
             }
 
         }
-        private void btnCheck_Click(object sender, EventArgs e)
+        private void cbbUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string usernamerole = cbbUserRole.Text.Trim();
-            if (string.IsNullOrEmpty(usernamerole))
-            {
-                MessageBox.Show("Vui lòng nhập username/role.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            try
-            {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
-                {
-                    conn.Open();
-                    using (OracleCommand cmd = new OracleCommand("PH1_CHECK_USER_ROLE", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Tham số đầu vào
-                        cmd.Parameters.Add("p_username_or_role", OracleDbType.Varchar2).Value = usernamerole;
-
-                        // Tham số OUT
-                        OracleParameter outputParam = cmd.Parameters.Add("p_type", OracleDbType.Varchar2, 100);
-                        outputParam.Direction = ParameterDirection.Output;
-
-                        // Gọi procedure
-                        cmd.ExecuteNonQuery();
-
-                        // Lấy kết quả từ tham số OUT
-                        lblResultCheck.Text = outputParam.Value.ToString();
-                        if (lblResultCheck.Text!="Không hợp lệ")
-                        {
-                            cbbUserRole.Enabled = false;
-                            cbbPrivilege.Enabled = true;
-                            cbbObjectType.Enabled = true;
-                            ckbWithGrantOption.Enabled = true;
-                        }
-                    }
-                    conn.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            cbbUserRole.SelectedIndex = -1;
-            lblResultCheck.Text = "";
-            cbbUserRole.Enabled=true;
             cbbPrivilege.SelectedIndex = -1;
-            cbbPrivilege.Enabled = false;
-            cbbObjectType.SelectedIndex = -1;
-            cbbObjectType.Enabled = false;
+            cbbPrivilege.Items.Clear();
             cbbObject.SelectedIndex = -1;
-            cbbObject.Enabled = false;
+            cbbObject.Items.Clear();
+            cbbObjectType.SelectedIndex = -1;
+            cbbObjectType.Items.Clear();
             cklbAttribute.Items.Clear();
-            cklbAttribute.Enabled = false;
-            ckbWithGrantOption.Checked = false;
-            ckbWithGrantOption.Enabled = false;
         }
         private void cbbPrivilege_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbbObjectType.Enabled = true;
 
             if (cbbPrivilege.Text == "SELECT" || cbbPrivilege.Text == "UPDATE")
             {
@@ -185,7 +129,6 @@ namespace QLTDH
             cbbObject.SelectedIndex = -1;
             cbbObject.Items.Clear();
             cklbAttribute.Items.Clear();
-            cbbObject.Enabled = true;
 
             string usernamerole = cbbUserRole.Text.Trim();
             if (string.IsNullOrEmpty(usernamerole)) return;
@@ -200,7 +143,7 @@ namespace QLTDH
                     {
                         conn.Open();
 
-                        using (OracleCommand cmd = new OracleCommand("PH1_GET_OBJECT_TYPE_BY_USER_OR_ROLE", conn))
+                        using (OracleCommand cmd = new OracleCommand("GET_OBJECT_TYPE_BY_USER_OR_ROLE", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -282,7 +225,7 @@ namespace QLTDH
 
                     if (privilege == "SELECT")
                     {
-                        cmd.CommandText = "PH1_GRANT_SELECT_TO_USER_OR_ROLE";
+                        cmd.CommandText = "GRANT_SELECT_TO_USER_OR_ROLE";
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
@@ -294,7 +237,7 @@ namespace QLTDH
                     }
                     else if (privilege == "UPDATE")
                     {
-                        cmd.CommandText = "PH1_GRANT_UPDATE_TO_USER_OR_ROLE";
+                        cmd.CommandText = "GRANT_UPDATE_TO_USER_OR_ROLE";
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
@@ -306,7 +249,7 @@ namespace QLTDH
                     }
                     else if (privilege == "INSERT")
                     {
-                        cmd.CommandText = "PH1_GRANT_INSERT_TO_USER_OR_ROLE";
+                        cmd.CommandText = "GRANT_INSERT_TO_USER_OR_ROLE";
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
@@ -315,7 +258,7 @@ namespace QLTDH
                     }
                     else if (privilege == "DELETE")
                     {
-                        cmd.CommandText = "PH1_GRANT_DELETE_TO_USER_OR_ROLE";
+                        cmd.CommandText = "GRANT_DELETE_TO_USER_OR_ROLE";
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
@@ -324,7 +267,7 @@ namespace QLTDH
                     }
                     else if (privilege == "EXECUTE")
                     {
-                        cmd.CommandText = "PH1_GRANT_EXEC_TO_USER_OR_ROLE";
+                        cmd.CommandText = "GRANT_EXEC_TO_USER_OR_ROLE";
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
                         cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
