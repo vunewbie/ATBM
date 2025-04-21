@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,7 +88,6 @@ namespace QLTDH
         private void cbbUserRole_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbbPrivilege.SelectedIndex = -1;
-            cbbPrivilege.Items.Clear();
             cbbObject.SelectedIndex = -1;
             cbbObject.Items.Clear();
             cbbObjectType.SelectedIndex = -1;
@@ -229,7 +229,8 @@ namespace QLTDH
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2).CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+                        cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2);
+                        cmd.Parameters["p_attribute"].CollectionType = OracleCollectionType.PLSQLAssociativeArray;
                         cmd.Parameters["p_attribute"].Value = selectedAttributes;
                         cmd.Parameters["p_attribute"].Size = selectedAttributes.Length;
                         cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
@@ -241,7 +242,8 @@ namespace QLTDH
                         cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
                         cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
                         cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2).CollectionType = OracleCollectionType.PLSQLAssociativeArray;
+                        cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2);
+                        cmd.Parameters["p_attribute"].CollectionType = OracleCollectionType.PLSQLAssociativeArray;
                         cmd.Parameters["p_attribute"].Value = selectedAttributes;
                         cmd.Parameters["p_attribute"].Size = selectedAttributes.Length;
                         cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
@@ -274,7 +276,7 @@ namespace QLTDH
                         cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
                     }
                     cmd.ExecuteNonQuery();
-                    bool result = Convert.ToBoolean(cmd.Parameters["p_success"].Value);
+                    bool result = ((OracleBoolean)cmd.Parameters["p_success"].Value).IsTrue;
                     if (result)
                     {
                         MessageBox.Show("Cấp quyền thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

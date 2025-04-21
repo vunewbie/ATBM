@@ -398,107 +398,88 @@ END;
 /
 
 --tạo kiểu mảng
-CREATE OR REPLACE TYPE column_array AS VARRAY(100) OF VARCHAR2(128);
+CREATE OR REPLACE TYPE column_array IS TABLE OF VARCHAR2(128) INDEX BY BINARY_INTEGER;
 /
 --Grant quyền select
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
-    p_attribute IN column_array, -- Mảng các cột
+    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A, 
     p_with_grant_option IN BOOLEAN,
-    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+    p_success OUT BOOLEAN
 )
 AS
     v_sql VARCHAR2(4000);
     v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
 BEGIN
-    -- Khởi tạo giá trị mặc định cho p_success
     p_success := FALSE;
 
-    -- Xây dựng câu lệnh GRANT
-    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
-        -- Cấp quyền SELECT trên toàn bộ bảng/view
+    IF p_attribute.COUNT = 0 THEN
         v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || p_username;
     ELSE
-        -- Xây dựng danh sách cột từ mảng
         v_columns := '';
-        FOR i IN 1..p_attribute.COUNT LOOP
+        FOR i IN 1 .. p_attribute.COUNT LOOP
             IF i > 1 THEN
                 v_columns := v_columns || ',';
             END IF;
             v_columns := v_columns || p_attribute(i);
         END LOOP;
 
-        -- Cấp quyền SELECT trên các cột cụ thể
         v_sql := 'GRANT SELECT (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
     END IF;
 
-    -- Thêm WITH GRANT OPTION nếu cần
     IF p_with_grant_option THEN
         v_sql := v_sql || ' WITH GRANT OPTION';
     END IF;
 
-    -- Thực thi câu lệnh GRANT
     EXECUTE IMMEDIATE v_sql;
-
-    -- Nếu không có lỗi, đặt p_success = TRUE
     p_success := TRUE;
 
 EXCEPTION
     WHEN OTHERS THEN
-        -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
 END;
 /
+
 --Grant quyền update
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
-    p_attribute IN column_array, -- Mảng các cột
+    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A, 
     p_with_grant_option IN BOOLEAN,
-    p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
+    p_success OUT BOOLEAN
 )
 AS
     v_sql VARCHAR2(4000);
     v_columns VARCHAR2(4000); -- Chuỗi các cột để dùng trong GRANT
 BEGIN
-    -- Khởi tạo giá trị mặc định cho p_success
     p_success := FALSE;
 
-    -- Xây dựng câu lệnh GRANT
-    IF p_attribute IS NULL OR p_attribute.COUNT = 0 THEN
-        -- Cấp quyền UPDATE trên toàn bộ bảng/view
+    IF p_attribute.COUNT = 0 THEN
         v_sql := 'GRANT UPDATE ON ' || p_object || ' TO ' || p_username;
     ELSE
-        -- Xây dựng danh sách cột từ mảng
         v_columns := '';
-        FOR i IN 1..p_attribute.COUNT LOOP
+        FOR i IN 1 .. p_attribute.COUNT LOOP
             IF i > 1 THEN
                 v_columns := v_columns || ',';
             END IF;
             v_columns := v_columns || p_attribute(i);
         END LOOP;
 
-        -- Cấp quyền SELECT trên các cột cụ thể
         v_sql := 'GRANT UPDATE (' || v_columns || ') ON ' || p_object || ' TO ' || p_username;
     END IF;
 
-    -- Thêm WITH GRANT OPTION nếu cần
     IF p_with_grant_option THEN
         v_sql := v_sql || ' WITH GRANT OPTION';
     END IF;
 
-    -- Thực thi câu lệnh GRANT
     EXECUTE IMMEDIATE v_sql;
-
-    -- Nếu không có lỗi, đặt p_success = TRUE
     p_success := TRUE;
 
 EXCEPTION
     WHEN OTHERS THEN
-        -- Nếu có lỗi, đặt p_success = FALSE
         p_success := FALSE;
 END;
 /
