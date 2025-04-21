@@ -333,7 +333,7 @@ BEGIN
     p_type := 'Không hợp lệ';
 END;
 /
-GRANT EXECUTE ON SYS.PH1_CHECK_USER_ROLE TO C##QLTDH;
+GRANT EXECUTE ON PH1_CHECK_USER_ROLE TO QLTDH;
 
 --Load table/view/proc/function for user/role in grantprivilegeform 
 CREATE OR REPLACE PROCEDURE PH1_GET_OBJECT_TYPE_BY_USER_OR_ROLE (
@@ -598,7 +598,7 @@ BEGIN
 
     -- Đánh dấu thành công nếu không lỗi
     p_success := TRUE;
-
+ 
 EXCEPTION
     WHEN OTHERS THEN
         p_success := FALSE;

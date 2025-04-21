@@ -39,7 +39,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnCheck = new System.Windows.Forms.Button();
-            this.txbUsernameRole = new System.Windows.Forms.TextBox();
             this.lblResultCheck = new System.Windows.Forms.Label();
             this.lblObject = new System.Windows.Forms.Label();
             this.cbbObject = new System.Windows.Forms.ComboBox();
@@ -47,10 +46,10 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
             this.lblWarning = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.cklbAttribute = new System.Windows.Forms.CheckedListBox();
             this.lblAttribute = new System.Windows.Forms.Label();
+            this.cbbUserRole = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -65,7 +64,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.28057F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnClose, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -89,11 +87,11 @@
             this.tableLayoutPanel1.Controls.Add(this.lblPrivilege, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.lblResult, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txbUsernameRole, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblResultCheck, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblObject, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.cbbObject, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.ckbWithGrantOption, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.cbbUserRole, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 2);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -241,16 +239,6 @@
             this.btnCheck.UseVisualStyleBackColor = false;
             this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
-            // txbUsernameRole
-            // 
-            this.txbUsernameRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbUsernameRole.Location = new System.Drawing.Point(153, 6);
-            this.txbUsernameRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txbUsernameRole.Name = "txbUsernameRole";
-            this.txbUsernameRole.Size = new System.Drawing.Size(260, 30);
-            this.txbUsernameRole.TabIndex = 0;
-            // 
             // lblResultCheck
             // 
             this.lblResultCheck.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -320,11 +308,10 @@
             // 
             // btnGrantPrivilege
             // 
-            this.btnGrantPrivilege.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGrantPrivilege.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantPrivilege.Location = new System.Drawing.Point(114, 42);
-            this.btnGrantPrivilege.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(254, 52);
             this.btnGrantPrivilege.Name = "btnGrantPrivilege";
             this.btnGrantPrivilege.Size = new System.Drawing.Size(194, 47);
             this.btnGrantPrivilege.TabIndex = 1;
@@ -347,20 +334,6 @@
             this.lblWarning.Text = "Vui lòng nhấn nút \"Kiểm tra\"  để có thể cấp quyền";
             this.lblWarning.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.btnClose.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(600, 366);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(92, 34);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "Đóng";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -369,8 +342,8 @@
             this.tableLayoutPanel5.Controls.Add(this.cklbAttribute, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.lblAttribute, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(449, 24);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(27, 24, 27, 24);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(505, 30);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(30);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.08683F));
@@ -404,12 +377,22 @@
             this.lblAttribute.Text = "Thuộc tính";
             this.lblAttribute.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
+            // cbbUserRole
+            // 
+            this.cbbUserRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbUserRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbUserRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbUserRole.FormattingEnabled = true;
+            this.cbbUserRole.Location = new System.Drawing.Point(219, 12);
+            this.cbbUserRole.Name = "cbbUserRole";
+            this.cbbUserRole.Size = new System.Drawing.Size(247, 28);
+            this.cbbUserRole.TabIndex = 0;
+            // 
             // GrantPrivilegeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 402);
-            this.ControlBox = false;
+            this.ClientSize = new System.Drawing.Size(782, 503);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -442,11 +425,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.TextBox txbUsernameRole;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.Button btnGrantPrivilege;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.CheckedListBox cklbAttribute;
         private System.Windows.Forms.Label lblAttribute;
@@ -454,5 +435,6 @@
         private System.Windows.Forms.Label lblObject;
         private System.Windows.Forms.ComboBox cbbObject;
         private System.Windows.Forms.CheckBox ckbWithGrantOption;
+        private System.Windows.Forms.ComboBox cbbUserRole;
     }
 }
