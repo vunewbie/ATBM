@@ -16,6 +16,7 @@ namespace QLTDH
         public LoginForm()
         {
             InitializeComponent();
+            this.AcceptButton = btnLogin; // Đặt nút đăng nhập là nút mặc định khi nhấn Enter
         }
 
         private void btnLogin_Click(object sender, EventArgs e)

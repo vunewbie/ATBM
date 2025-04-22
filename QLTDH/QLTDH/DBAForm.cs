@@ -338,6 +338,8 @@ namespace QLTDH
         {
             // Mở form GrantPrivilege
             GrantPrivilegeForm newGrantPrivilegeForm = new GrantPrivilegeForm();
+            newGrantPrivilegeForm.Owner = this;
+
             newGrantPrivilegeForm.ShowDialog();
         }
 

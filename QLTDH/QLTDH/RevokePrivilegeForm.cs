@@ -150,6 +150,34 @@ namespace QLTDH
         private void btnRevoke_Click(object sender, EventArgs e)
         {
             //get all value from all checkbox
+            if (cbbUserRole.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một User/Role hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Reset cbbUserRole to the first item
+                if (cbbUserRole.Items.Count > 0)
+                {
+                    cbbUserRole.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbbUserRole.Text = string.Empty;
+                }
+                return;
+            }
+
+            if (cbbObject.SelectedItem == null) {
+                MessageBox.Show("Vui lòng chọn một đối tượng hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Reset cbbObject to the first item
+                if (cbbObject.Items.Count > 0)
+                {
+                    cbbObject.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbbObject.Text = string.Empty;
+                }
+                return;
+            }
 
             string grantee = cbbUserRole.SelectedItem.ToString();
             string objectName = cbbObject.SelectedItem.ToString();

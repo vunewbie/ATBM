@@ -56,12 +56,6 @@
             this.tctrlPrivileges = new System.Windows.Forms.TabControl();
             this.tpageTable = new System.Windows.Forms.TabPage();
             this.dgvTablePrivilege = new System.Windows.Forms.DataGridView();
-            this.tpageColumn = new System.Windows.Forms.TabPage();
-            this.dgvColumnPrivilege = new System.Windows.Forms.DataGridView();
-            this.lbSearchGrantee = new System.Windows.Forms.Label();
-            this.txbSearchGrantee = new System.Windows.Forms.TextBox();
-            this.btnRevokePrivilege = new System.Windows.Forms.Button();
-            this.btnGrantPrivilege = new System.Windows.Forms.Button();
             this.tbl_GRANTEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_TABLE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +66,8 @@
             this.tbl_COMMON = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbl_INHERITED = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpageColumn = new System.Windows.Forms.TabPage();
+            this.dgvColumnPrivilege = new System.Windows.Forms.DataGridView();
             this.col_GRANTEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_OWNER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_TABLE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +77,10 @@
             this.col_GRANTABLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_COMMON = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_INHERITED = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbSearchGrantee = new System.Windows.Forms.Label();
+            this.txbSearchGrantee = new System.Windows.Forms.TextBox();
+            this.btnRevokePrivilege = new System.Windows.Forms.Button();
+            this.btnGrantPrivilege = new System.Windows.Forms.Button();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
             this.tlpUsers.SuspendLayout();
@@ -249,10 +249,10 @@
             // 
             this.txbSearchUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSearchUser.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchUser.Location = new System.Drawing.Point(8, 26);
+            this.txbSearchUser.Location = new System.Drawing.Point(8, 29);
             this.txbSearchUser.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txbSearchUser.Name = "txbSearchUser";
-            this.txbSearchUser.Size = new System.Drawing.Size(278, 39);
+            this.txbSearchUser.Size = new System.Drawing.Size(278, 32);
             this.txbSearchUser.TabIndex = 0;
             // 
             // btnSearchUser
@@ -418,10 +418,10 @@
             // 
             this.txbSearchRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchRole.Location = new System.Drawing.Point(8, 26);
+            this.txbSearchRole.Location = new System.Drawing.Point(8, 29);
             this.txbSearchRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txbSearchRole.Name = "txbSearchRole";
-            this.txbSearchRole.Size = new System.Drawing.Size(278, 39);
+            this.txbSearchRole.Size = new System.Drawing.Size(278, 32);
             this.txbSearchRole.TabIndex = 0;
             // 
             // tpagePrivileges
@@ -466,10 +466,10 @@
             // tpageTable
             // 
             this.tpageTable.Controls.Add(this.dgvTablePrivilege);
-            this.tpageTable.Location = new System.Drawing.Point(4, 34);
+            this.tpageTable.Location = new System.Drawing.Point(4, 28);
             this.tpageTable.Name = "tpageTable";
             this.tpageTable.Padding = new System.Windows.Forms.Padding(3);
-            this.tpageTable.Size = new System.Drawing.Size(1171, 573);
+            this.tpageTable.Size = new System.Drawing.Size(1171, 579);
             this.tpageTable.TabIndex = 0;
             this.tpageTable.Text = "Table";
             this.tpageTable.UseVisualStyleBackColor = true;
@@ -505,97 +505,8 @@
             this.dgvTablePrivilege.Name = "dgvTablePrivilege";
             this.dgvTablePrivilege.RowHeadersWidth = 51;
             this.dgvTablePrivilege.RowTemplate.Height = 30;
-            this.dgvTablePrivilege.Size = new System.Drawing.Size(1165, 567);
+            this.dgvTablePrivilege.Size = new System.Drawing.Size(1165, 573);
             this.dgvTablePrivilege.TabIndex = 1;
-            // 
-            // tpageColumn
-            // 
-            this.tpageColumn.Controls.Add(this.dgvColumnPrivilege);
-            this.tpageColumn.Location = new System.Drawing.Point(4, 34);
-            this.tpageColumn.Name = "tpageColumn";
-            this.tpageColumn.Padding = new System.Windows.Forms.Padding(3);
-            this.tpageColumn.Size = new System.Drawing.Size(1171, 573);
-            this.tpageColumn.TabIndex = 1;
-            this.tpageColumn.Text = "Column";
-            this.tpageColumn.UseVisualStyleBackColor = true;
-            this.tpageColumn.Enter += new System.EventHandler(this.tpageColumn_Enter);
-            // 
-            // dgvColumnPrivilege
-            // 
-            this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.col_GRANTEE,
-            this.col_OWNER,
-            this.col_TABLE_NAME,
-            this.col_COLUMN_NAME,
-            this.col_GRANTOR,
-            this.col_PRIVILEGE,
-            this.col_GRANTABLE,
-            this.col_COMMON,
-            this.col_INHERITED});
-            this.dgvColumnPrivilege.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dgvColumnPrivilege.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvColumnPrivilege.Location = new System.Drawing.Point(3, 3);
-            this.dgvColumnPrivilege.Name = "dgvColumnPrivilege";
-            this.dgvColumnPrivilege.RowHeadersWidth = 51;
-            this.dgvColumnPrivilege.RowTemplate.Height = 30;
-            this.dgvColumnPrivilege.Size = new System.Drawing.Size(1165, 567);
-            this.dgvColumnPrivilege.TabIndex = 5;
-            // 
-            // lbSearchGrantee
-            // 
-            this.lbSearchGrantee.AutoSize = true;
-            this.lbSearchGrantee.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSearchGrantee.Location = new System.Drawing.Point(1031, 6);
-            this.lbSearchGrantee.Name = "lbSearchGrantee";
-            this.lbSearchGrantee.Size = new System.Drawing.Size(215, 25);
-            this.lbSearchGrantee.TabIndex = 9;
-            this.lbSearchGrantee.Text = "Tìm kiếm theo Grantee";
-            // 
-            // txbSearchGrantee
-            // 
-            this.txbSearchGrantee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSearchGrantee.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchGrantee.Location = new System.Drawing.Point(1035, 32);
-            this.txbSearchGrantee.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.txbSearchGrantee.Name = "txbSearchGrantee";
-            this.txbSearchGrantee.Size = new System.Drawing.Size(174, 32);
-            this.txbSearchGrantee.TabIndex = 8;
-            this.txbSearchGrantee.TextChanged += new System.EventHandler(this.txbSearchGrantee_TextChanged);
-            // 
-            // btnRevokePrivilege
-            // 
-            this.btnRevokePrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevokePrivilege.Location = new System.Drawing.Point(359, 0);
-            this.btnRevokePrivilege.Name = "btnRevokePrivilege";
-            this.btnRevokePrivilege.Size = new System.Drawing.Size(254, 76);
-            this.btnRevokePrivilege.TabIndex = 6;
-            this.btnRevokePrivilege.Text = "Thu hồi quyền của user/role";
-            this.btnRevokePrivilege.UseVisualStyleBackColor = false;
-            this.btnRevokePrivilege.Click += new System.EventHandler(this.btnRevokePrivilege_Click);
-            // 
-            // btnGrantPrivilege
-            // 
-            this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantPrivilege.Location = new System.Drawing.Point(41, 0);
-            this.btnGrantPrivilege.Name = "btnGrantPrivilege";
-            this.btnGrantPrivilege.Size = new System.Drawing.Size(276, 76);
-            this.btnGrantPrivilege.TabIndex = 5;
-            this.btnGrantPrivilege.Text = "Cấp quyền cho user/role";
-            this.btnGrantPrivilege.UseVisualStyleBackColor = false;
-            this.btnGrantPrivilege.Click += new System.EventHandler(this.btnGrantPrivilege_Click);
             // 
             // tbl_GRANTEE
             // 
@@ -605,7 +516,7 @@
             this.tbl_GRANTEE.MinimumWidth = 6;
             this.tbl_GRANTEE.Name = "tbl_GRANTEE";
             this.tbl_GRANTEE.ReadOnly = true;
-            this.tbl_GRANTEE.Width = 143;
+            this.tbl_GRANTEE.Width = 118;
             // 
             // tbl_OWNER
             // 
@@ -697,6 +608,50 @@
             this.tbl_INHERITED.ReadOnly = true;
             this.tbl_INHERITED.Width = 154;
             // 
+            // tpageColumn
+            // 
+            this.tpageColumn.Controls.Add(this.dgvColumnPrivilege);
+            this.tpageColumn.Location = new System.Drawing.Point(4, 28);
+            this.tpageColumn.Name = "tpageColumn";
+            this.tpageColumn.Padding = new System.Windows.Forms.Padding(3);
+            this.tpageColumn.Size = new System.Drawing.Size(1171, 579);
+            this.tpageColumn.TabIndex = 1;
+            this.tpageColumn.Text = "Column";
+            this.tpageColumn.UseVisualStyleBackColor = true;
+            this.tpageColumn.Enter += new System.EventHandler(this.tpageColumn_Enter);
+            // 
+            // dgvColumnPrivilege
+            // 
+            this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_GRANTEE,
+            this.col_OWNER,
+            this.col_TABLE_NAME,
+            this.col_COLUMN_NAME,
+            this.col_GRANTOR,
+            this.col_PRIVILEGE,
+            this.col_GRANTABLE,
+            this.col_COMMON,
+            this.col_INHERITED});
+            this.dgvColumnPrivilege.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dgvColumnPrivilege.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvColumnPrivilege.Location = new System.Drawing.Point(3, 3);
+            this.dgvColumnPrivilege.Name = "dgvColumnPrivilege";
+            this.dgvColumnPrivilege.RowHeadersWidth = 51;
+            this.dgvColumnPrivilege.RowTemplate.Height = 30;
+            this.dgvColumnPrivilege.Size = new System.Drawing.Size(1165, 573);
+            this.dgvColumnPrivilege.TabIndex = 5;
+            // 
             // col_GRANTEE
             // 
             this.col_GRANTEE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -705,7 +660,7 @@
             this.col_GRANTEE.MinimumWidth = 6;
             this.col_GRANTEE.Name = "col_GRANTEE";
             this.col_GRANTEE.ReadOnly = true;
-            this.col_GRANTEE.Width = 143;
+            this.col_GRANTEE.Width = 118;
             // 
             // col_OWNER
             // 
@@ -787,9 +742,54 @@
             this.col_INHERITED.ReadOnly = true;
             this.col_INHERITED.Width = 154;
             // 
+            // lbSearchGrantee
+            // 
+            this.lbSearchGrantee.AutoSize = true;
+            this.lbSearchGrantee.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSearchGrantee.Location = new System.Drawing.Point(1031, 6);
+            this.lbSearchGrantee.Name = "lbSearchGrantee";
+            this.lbSearchGrantee.Size = new System.Drawing.Size(178, 20);
+            this.lbSearchGrantee.TabIndex = 9;
+            this.lbSearchGrantee.Text = "Tìm kiếm theo Grantee";
+            // 
+            // txbSearchGrantee
+            // 
+            this.txbSearchGrantee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchGrantee.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txbSearchGrantee.Location = new System.Drawing.Point(1035, 32);
+            this.txbSearchGrantee.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txbSearchGrantee.Name = "txbSearchGrantee";
+            this.txbSearchGrantee.Size = new System.Drawing.Size(174, 27);
+            this.txbSearchGrantee.TabIndex = 8;
+            this.txbSearchGrantee.TextChanged += new System.EventHandler(this.txbSearchGrantee_TextChanged);
+            // 
+            // btnRevokePrivilege
+            // 
+            this.btnRevokePrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRevokePrivilege.Location = new System.Drawing.Point(359, 9);
+            this.btnRevokePrivilege.Name = "btnRevokePrivilege";
+            this.btnRevokePrivilege.Size = new System.Drawing.Size(261, 67);
+            this.btnRevokePrivilege.TabIndex = 6;
+            this.btnRevokePrivilege.Text = "Thu hồi quyền của user/role";
+            this.btnRevokePrivilege.UseVisualStyleBackColor = false;
+            this.btnRevokePrivilege.Click += new System.EventHandler(this.btnRevokePrivilege_Click);
+            // 
+            // btnGrantPrivilege
+            // 
+            this.btnGrantPrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGrantPrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantPrivilege.Location = new System.Drawing.Point(41, 9);
+            this.btnGrantPrivilege.Name = "btnGrantPrivilege";
+            this.btnGrantPrivilege.Size = new System.Drawing.Size(261, 67);
+            this.btnGrantPrivilege.TabIndex = 5;
+            this.btnGrantPrivilege.Text = "Cấp quyền cho user/role";
+            this.btnGrantPrivilege.UseVisualStyleBackColor = false;
+            this.btnGrantPrivilege.Click += new System.EventHandler(this.btnGrantPrivilege_Click);
+            // 
             // DBAForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 753);
             this.Controls.Add(this.tctrlDBA);

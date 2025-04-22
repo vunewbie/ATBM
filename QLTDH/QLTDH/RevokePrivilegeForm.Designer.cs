@@ -67,7 +67,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.37177F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.62823F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(695, 402);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(521, 327);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -89,7 +89,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.69626F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.89252F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.41121F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(695, 286);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(521, 233);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblUsernameRole
@@ -97,10 +97,10 @@
             this.lblUsernameRole.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUsernameRole.AutoSize = true;
             this.lblUsernameRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsernameRole.Location = new System.Drawing.Point(20, 38);
-            this.lblUsernameRole.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblUsernameRole.Location = new System.Drawing.Point(15, 30);
+            this.lblUsernameRole.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblUsernameRole.Name = "lblUsernameRole";
-            this.lblUsernameRole.Size = new System.Drawing.Size(95, 23);
+            this.lblUsernameRole.Size = new System.Drawing.Size(77, 19);
             this.lblUsernameRole.TabIndex = 0;
             this.lblUsernameRole.Text = "User/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,10 +110,10 @@
             this.lblObject.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblObject.AutoSize = true;
             this.lblObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblObject.Location = new System.Drawing.Point(20, 133);
-            this.lblObject.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblObject.Location = new System.Drawing.Point(15, 107);
+            this.lblObject.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblObject.Name = "lblObject";
-            this.lblObject.Size = new System.Drawing.Size(94, 23);
+            this.lblObject.Size = new System.Drawing.Size(77, 19);
             this.lblObject.TabIndex = 1;
             this.lblObject.Text = "Đối tượng";
             this.lblObject.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,10 +123,10 @@
             this.lblPrivilege.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblPrivilege.AutoSize = true;
             this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivilege.Location = new System.Drawing.Point(20, 226);
-            this.lblPrivilege.Margin = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblPrivilege.Location = new System.Drawing.Point(15, 184);
+            this.lblPrivilege.Margin = new System.Windows.Forms.Padding(15, 0, 0, 0);
             this.lblPrivilege.Name = "lblPrivilege";
-            this.lblPrivilege.Size = new System.Drawing.Size(66, 23);
+            this.lblPrivilege.Size = new System.Drawing.Size(53, 19);
             this.lblPrivilege.TabIndex = 2;
             this.lblPrivilege.Text = "Quyền";
             this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,10 +138,10 @@
             this.cbbObject.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbObject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbObject.FormattingEnabled = true;
-            this.cbbObject.Location = new System.Drawing.Point(176, 129);
-            this.cbbObject.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbObject.Location = new System.Drawing.Point(131, 103);
+            this.cbbObject.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbbObject.Name = "cbbObject";
-            this.cbbObject.Size = new System.Drawing.Size(493, 30);
+            this.cbbObject.Size = new System.Drawing.Size(371, 27);
             this.cbbObject.TabIndex = 4;
             // 
             // tableLayoutPanel3
@@ -152,13 +152,13 @@
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel6, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(154, 192);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(115, 156);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(538, 92);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(404, 75);
             this.tableLayoutPanel3.TabIndex = 5;
             // 
             // tableLayoutPanel5
@@ -171,12 +171,12 @@
             this.tableLayoutPanel5.Controls.Add(this.ckbInsert, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.ckbSelect, 0, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 2);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(532, 42);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(400, 33);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // ckbUpdate
@@ -184,10 +184,10 @@
             this.ckbUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ckbUpdate.AutoSize = true;
             this.ckbUpdate.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbUpdate.Location = new System.Drawing.Point(403, 9);
-            this.ckbUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckbUpdate.Location = new System.Drawing.Point(300, 6);
+            this.ckbUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckbUpdate.Name = "ckbUpdate";
-            this.ckbUpdate.Size = new System.Drawing.Size(79, 23);
+            this.ckbUpdate.Size = new System.Drawing.Size(65, 20);
             this.ckbUpdate.TabIndex = 2;
             this.ckbUpdate.Text = "Update";
             this.ckbUpdate.UseVisualStyleBackColor = true;
@@ -197,10 +197,10 @@
             this.ckbInsert.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ckbInsert.AutoSize = true;
             this.ckbInsert.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbInsert.Location = new System.Drawing.Point(230, 9);
-            this.ckbInsert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckbInsert.Location = new System.Drawing.Point(170, 6);
+            this.ckbInsert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckbInsert.Name = "ckbInsert";
-            this.ckbInsert.Size = new System.Drawing.Size(70, 23);
+            this.ckbInsert.Size = new System.Drawing.Size(59, 20);
             this.ckbInsert.TabIndex = 1;
             this.ckbInsert.Text = "Insert";
             this.ckbInsert.UseVisualStyleBackColor = true;
@@ -210,10 +210,10 @@
             this.ckbSelect.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ckbSelect.AutoSize = true;
             this.ckbSelect.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbSelect.Location = new System.Drawing.Point(51, 9);
-            this.ckbSelect.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckbSelect.Location = new System.Drawing.Point(36, 6);
+            this.ckbSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckbSelect.Name = "ckbSelect";
-            this.ckbSelect.Size = new System.Drawing.Size(74, 23);
+            this.ckbSelect.Size = new System.Drawing.Size(60, 20);
             this.ckbSelect.TabIndex = 0;
             this.ckbSelect.Text = "Select";
             this.ckbSelect.UseVisualStyleBackColor = true;
@@ -223,16 +223,16 @@
             this.tableLayoutPanel6.ColumnCount = 2;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
             this.tableLayoutPanel6.Controls.Add(this.ckbExecute, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.ckbDelete, 0, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 48);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(2, 39);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(532, 42);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(400, 34);
             this.tableLayoutPanel6.TabIndex = 1;
             // 
             // ckbExecute
@@ -240,10 +240,10 @@
             this.ckbExecute.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ckbExecute.AutoSize = true;
             this.ckbExecute.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbExecute.Location = new System.Drawing.Point(356, 9);
-            this.ckbExecute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckbExecute.Location = new System.Drawing.Point(264, 7);
+            this.ckbExecute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckbExecute.Name = "ckbExecute";
-            this.ckbExecute.Size = new System.Drawing.Size(86, 23);
+            this.ckbExecute.Size = new System.Drawing.Size(71, 20);
             this.ckbExecute.TabIndex = 3;
             this.ckbExecute.Text = "Execute";
             this.ckbExecute.UseVisualStyleBackColor = true;
@@ -253,10 +253,10 @@
             this.ckbDelete.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ckbDelete.AutoSize = true;
             this.ckbDelete.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckbDelete.Location = new System.Drawing.Point(94, 9);
-            this.ckbDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ckbDelete.Location = new System.Drawing.Point(69, 7);
+            this.ckbDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ckbDelete.Name = "ckbDelete";
-            this.ckbDelete.Size = new System.Drawing.Size(77, 23);
+            this.ckbDelete.Size = new System.Drawing.Size(61, 20);
             this.ckbDelete.TabIndex = 1;
             this.ckbDelete.Text = "Delete";
             this.ckbDelete.UseVisualStyleBackColor = true;
@@ -268,11 +268,10 @@
             this.cbbUserRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbUserRole.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbUserRole.FormattingEnabled = true;
-            this.cbbUserRole.ItemHeight = 25;
-            this.cbbUserRole.Location = new System.Drawing.Point(178, 33);
-            this.cbbUserRole.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbUserRole.ItemHeight = 19;
+            this.cbbUserRole.Location = new System.Drawing.Point(133, 26);
             this.cbbUserRole.Name = "cbbUserRole";
-            this.cbbUserRole.Size = new System.Drawing.Size(489, 33);
+            this.cbbUserRole.Size = new System.Drawing.Size(368, 27);
             this.cbbUserRole.TabIndex = 6;
             this.cbbUserRole.SelectedValueChanged += new System.EventHandler(this.cbbUserRole_SelectedValueChanged);
             // 
@@ -280,15 +279,15 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Controls.Add(this.btnRevoke, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 288);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(2, 235);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(689, 112);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(517, 90);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // btnRevoke
@@ -296,10 +295,10 @@
             this.btnRevoke.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRevoke.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnRevoke.Font = new System.Drawing.Font("Times New Roman", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevoke.Location = new System.Drawing.Point(213, 19);
-            this.btnRevoke.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRevoke.Location = new System.Drawing.Point(160, 15);
+            this.btnRevoke.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRevoke.Name = "btnRevoke";
-            this.btnRevoke.Size = new System.Drawing.Size(263, 74);
+            this.btnRevoke.Size = new System.Drawing.Size(197, 60);
             this.btnRevoke.TabIndex = 0;
             this.btnRevoke.Text = "Thu hồi quyền";
             this.btnRevoke.UseVisualStyleBackColor = false;
@@ -307,11 +306,11 @@
             // 
             // RevokePrivilegeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 402);
+            this.ClientSize = new System.Drawing.Size(521, 327);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RevokePrivilegeForm";

@@ -130,6 +130,21 @@ namespace QLTDH
             cbbObject.Items.Clear();
             cklbAttribute.Items.Clear();
 
+            if (cbbUserRole.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một User/Role hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Reset cbbUserRole to the first item
+                if (cbbUserRole.Items.Count > 0)
+                {
+                    cbbUserRole.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbbUserRole.Text = string.Empty;
+                }
+                return;
+            }
+
             string usernamerole = cbbUserRole.Text.Trim();
             if (string.IsNullOrEmpty(usernamerole)) return;
 
@@ -203,6 +218,21 @@ namespace QLTDH
                 cbbObject.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cbbUserRole.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn một User/Role hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Reset cbbUserRole to the first item
+                if (cbbUserRole.Items.Count > 0)
+                {
+                    cbbUserRole.SelectedIndex = 0;
+                }
+                else
+                {
+                    cbbUserRole.Text = string.Empty;
+                }
                 return;
             }
 
