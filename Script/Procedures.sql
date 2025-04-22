@@ -300,42 +300,6 @@ BEGIN
 END;
 /
 
--- Kiểm tra username/role
-CREATE OR REPLACE PROCEDURE QLTDH.CHECK_USER_ROLE(
-     p_username_or_role IN VARCHAR2,
-     p_type OUT VARCHAR2
-)   
-AS
-    v_count NUMBER;
-BEGIN
-    -- Kiểm tra nếu là USER
-    SELECT COUNT(*)
-    INTO v_count
-    FROM ALL_USERS
-    WHERE USERNAME = p_username_or_role;
-
-    IF v_count > 0 THEN
-        p_type := 'Đây là user';
-        RETURN;
-    END IF;
-
-    -- Kiểm tra nếu là ROLE
-    SELECT COUNT(*)
-    INTO v_count
-    FROM DBA_ROLES
-    WHERE ROLE = UPPER(p_username_or_role);
-
-    IF v_count > 0 THEN
-        p_type := 'Đây là role';
-        RETURN;
-    END IF;
-
-    -- Không phải user hoặc role
-    p_type := 'Không hợp lệ';
-END;
-/
-GRANT EXECUTE ON QLTDH.CHECK_USER_ROLE TO QLTDH;
-
 --Load table/view/proc/function for user/role in grantprivilegeform 
 CREATE OR REPLACE PROCEDURE QLTDH.GET_OBJECT_TYPE_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
@@ -413,11 +377,10 @@ END;
 --Grant quyền select
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
     p_username         IN VARCHAR2,
-    p_object_type      IN VARCHAR2,
     p_object           IN VARCHAR2,
-    p_attribute        IN OUT SYS.DBMS_SQL.VARCHAR2A, 
     p_with_grant_option IN BOOLEAN,
-    p_success          OUT BOOLEAN
+    p_success          OUT BOOLEAN,
+    p_attribute        IN OUT SYS.DBMS_SQL.VARCHAR2A
 )
 AS
     v_sql              VARCHAR2(4000);
@@ -427,8 +390,8 @@ BEGIN
     p_success := FALSE;
 
     -- Kiểm tra đầu vào
-    IF p_username IS NULL OR p_object_type IS NULL OR p_object IS NULL OR p_attribute IS NULL THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Username, Object Type, Object, or Attributes cannot be NULL');
+    IF p_username IS NULL OR p_object IS NULL OR p_attribute IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Username, Object, or Attributes cannot be NULL');
     END IF;
 
     -- Tạo tên view động theo quy tắc: p_attribute_p_object_p_username
@@ -486,11 +449,10 @@ END;
 --Grant quyền update
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
-    p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
-    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A, 
     p_with_grant_option IN BOOLEAN,
-    p_success OUT BOOLEAN
+    p_success OUT BOOLEAN,
+    p_attribute IN OUT SYS.DBMS_SQL.VARCHAR2A
 )
 AS
     v_sql VARCHAR2(4000);
@@ -502,12 +464,8 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20001, 'Username or Role cannot be NULL');
     END IF;
 
-    IF p_object_type IS NULL OR p_object IS NULL THEN
-        RAISE_APPLICATION_ERROR(-20003, 'Object type or object name cannot be NULL');
-    END IF;
-
-    IF UPPER(p_object_type) NOT IN ('TABLE', 'VIEW') THEN
-        RAISE_APPLICATION_ERROR(-20004, 'Invalid object type. Must be TABLE or VIEW');
+    IF p_object IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Object name cannot be NULL');
     END IF;
 
     IF p_attribute.COUNT = 0 THEN
@@ -543,7 +501,6 @@ END;
 --GRANT QUYỀN DELETE
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_DELETE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
-    p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
     p_with_grant_option IN BOOLEAN,
     p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại
@@ -578,7 +535,6 @@ END;
 --grant quyền insert
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_INSERT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
-    p_object_type IN VARCHAR2,
     p_object IN VARCHAR2,
     p_with_grant_option IN BOOLEAN,
     p_success OUT BOOLEAN -- Tham số đầu ra: TRUE nếu thành công, FALSE nếu thất bại

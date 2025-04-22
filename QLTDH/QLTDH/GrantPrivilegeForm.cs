@@ -224,58 +224,24 @@ namespace QLTDH
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.BindByName = true;
 
-                    if (privilege == "SELECT")
+                    cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
+                    cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
+                    cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
+                    cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
+
+                    if (privilege == "SELECT"|| privilege == "UPDATE")
                     {
-                        cmd.CommandText = "GRANT_SELECT_TO_USER_OR_ROLE";
-                        cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
-                        cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
-                        cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
                         cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2);
                         cmd.Parameters["p_attribute"].CollectionType = OracleCollectionType.PLSQLAssociativeArray;
                         cmd.Parameters["p_attribute"].Value = selectedAttributes;
                         cmd.Parameters["p_attribute"].Size = selectedAttributes.Length;
-                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
-                        cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
+                        if (privilege =="SELECT") cmd.CommandText = "GRANT_SELECT_TO_USER_OR_ROLE";
+                        else cmd.CommandText = "GRANT_UPDATE_TO_USER_OR_ROLE";
                     }
-                    else if (privilege == "UPDATE")
-                    {
-                        cmd.CommandText = "GRANT_UPDATE_TO_USER_OR_ROLE";
-                        cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
-                        cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
-                        cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2);
-                        cmd.Parameters["p_attribute"].CollectionType = OracleCollectionType.PLSQLAssociativeArray;
-                        cmd.Parameters["p_attribute"].Value = selectedAttributes;
-                        cmd.Parameters["p_attribute"].Size = selectedAttributes.Length;
-                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
-                        cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
-                    }
-                    else if (privilege == "INSERT")
-                    {
-                        cmd.CommandText = "GRANT_INSERT_TO_USER_OR_ROLE";
-                        cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
-                        cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
-                        cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
-                        cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
-                    }
-                    else if (privilege == "DELETE")
-                    {
-                        cmd.CommandText = "GRANT_DELETE_TO_USER_OR_ROLE";
-                        cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
-                        cmd.Parameters.Add("p_object_type", OracleDbType.Varchar2).Value = objtype;
-                        cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
-                        cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
-                    }
-                    else if (privilege == "EXECUTE")
-                    {
-                        cmd.CommandText = "GRANT_EXEC_TO_USER_OR_ROLE";
-                        cmd.Parameters.Add("p_username", OracleDbType.Varchar2).Value = usernamerole;
-                        cmd.Parameters.Add("p_object", OracleDbType.Varchar2).Value = obj;
-                        cmd.Parameters.Add("p_with_grant_option", OracleDbType.Boolean).Value = isChecked;
-                        cmd.Parameters.Add("p_success", OracleDbType.Boolean).Direction = ParameterDirection.Output;
-                    }
+                    else if (privilege == "INSERT") cmd.CommandText = "GRANT_INSERT_TO_USER_OR_ROLE";
+                    else if (privilege == "DELETE") cmd.CommandText = "GRANT_DELETE_TO_USER_OR_ROLE";
+                    else if (privilege == "EXECUTE") cmd.CommandText = "GRANT_EXEC_TO_USER_OR_ROLE";
+
                     cmd.ExecuteNonQuery();
                     bool result = ((OracleBoolean)cmd.Parameters["p_success"].Value).IsTrue;
                     if (result)
@@ -293,6 +259,13 @@ namespace QLTDH
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void GrantPrivilegeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Owner is DBAForm dbaForm)
+            {
+                dbaForm.btnRefresh_Click(sender, e);
             }
         }
     }

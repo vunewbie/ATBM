@@ -30,15 +30,15 @@
         {
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cbbObjectType = new System.Windows.Forms.ComboBox();
             this.lblUsernameRole = new System.Windows.Forms.Label();
+            this.cbbUserRole = new System.Windows.Forms.ComboBox();
+            this.lblPrivilege = new System.Windows.Forms.Label();
             this.cbbPrivilege = new System.Windows.Forms.ComboBox();
             this.lblObjectType = new System.Windows.Forms.Label();
-            this.lblPrivilege = new System.Windows.Forms.Label();
+            this.cbbObjectType = new System.Windows.Forms.ComboBox();
             this.lblObject = new System.Windows.Forms.Label();
             this.cbbObject = new System.Windows.Forms.ComboBox();
             this.ckbWithGrantOption = new System.Windows.Forms.CheckBox();
-            this.cbbUserRole = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.cklbAttribute = new System.Windows.Forms.CheckedListBox();
             this.lblAttribute = new System.Windows.Forms.Label();
@@ -93,19 +93,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(528, 467);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // cbbObjectType
-            // 
-            this.cbbObjectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbObjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbObjectType.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbObjectType.FormattingEnabled = true;
-            this.cbbObjectType.Location = new System.Drawing.Point(193, 215);
-            this.cbbObjectType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbbObjectType.Name = "cbbObjectType";
-            this.cbbObjectType.Size = new System.Drawing.Size(332, 35);
-            this.cbbObjectType.TabIndex = 4;
-            this.cbbObjectType.SelectedIndexChanged += new System.EventHandler(this.cbbObjectType_SelectedIndexChanged);
-            // 
             // lblUsernameRole
             // 
             this.lblUsernameRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -119,6 +106,35 @@
             this.lblUsernameRole.TabIndex = 0;
             this.lblUsernameRole.Text = "Username/Role";
             this.lblUsernameRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cbbUserRole
+            // 
+            this.cbbUserRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbUserRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbUserRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbUserRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbUserRole.FormattingEnabled = true;
+            this.cbbUserRole.Location = new System.Drawing.Point(193, 29);
+            this.cbbUserRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbbUserRole.Name = "cbbUserRole";
+            this.cbbUserRole.Size = new System.Drawing.Size(332, 35);
+            this.cbbUserRole.TabIndex = 0;
+            this.cbbUserRole.SelectedIndexChanged += new System.EventHandler(this.cbbUserRole_SelectedIndexChanged);
+            // 
+            // lblPrivilege
+            // 
+            this.lblPrivilege.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrivilege.AutoSize = true;
+            this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrivilege.Location = new System.Drawing.Point(3, 93);
+            this.lblPrivilege.Name = "lblPrivilege";
+            this.lblPrivilege.Size = new System.Drawing.Size(184, 93);
+            this.lblPrivilege.TabIndex = 1;
+            this.lblPrivilege.Text = "Quyền";
+            this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbbPrivilege
             // 
@@ -153,19 +169,18 @@
             this.lblObjectType.Text = "Loại đối tượng";
             this.lblObjectType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblPrivilege
+            // cbbObjectType
             // 
-            this.lblPrivilege.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPrivilege.AutoSize = true;
-            this.lblPrivilege.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivilege.Location = new System.Drawing.Point(3, 93);
-            this.lblPrivilege.Name = "lblPrivilege";
-            this.lblPrivilege.Size = new System.Drawing.Size(184, 93);
-            this.lblPrivilege.TabIndex = 1;
-            this.lblPrivilege.Text = "Quyền";
-            this.lblPrivilege.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cbbObjectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbObjectType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbObjectType.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbObjectType.FormattingEnabled = true;
+            this.cbbObjectType.Location = new System.Drawing.Point(193, 215);
+            this.cbbObjectType.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbbObjectType.Name = "cbbObjectType";
+            this.cbbObjectType.Size = new System.Drawing.Size(332, 35);
+            this.cbbObjectType.TabIndex = 4;
+            this.cbbObjectType.SelectedIndexChanged += new System.EventHandler(this.cbbObjectType_SelectedIndexChanged);
             // 
             // lblObject
             // 
@@ -206,21 +221,6 @@
             this.ckbWithGrantOption.TabIndex = 6;
             this.ckbWithGrantOption.Text = "With Grant Option";
             this.ckbWithGrantOption.UseVisualStyleBackColor = true;
-            // 
-            // cbbUserRole
-            // 
-            this.cbbUserRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbbUserRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbbUserRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbUserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbUserRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbUserRole.FormattingEnabled = true;
-            this.cbbUserRole.Location = new System.Drawing.Point(193, 32);
-            this.cbbUserRole.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbbUserRole.Name = "cbbUserRole";
-            this.cbbUserRole.Size = new System.Drawing.Size(332, 35);
-            this.cbbUserRole.TabIndex = 0;
-            this.cbbUserRole.SelectedIndexChanged += new System.EventHandler(this.cbbUserRole_SelectedIndexChanged);
             // 
             // tableLayoutPanel5
             // 
@@ -291,6 +291,7 @@
             this.Name = "GrantPrivilegeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cấp quyền cho user/role";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GrantPrivilegeForm_FormClosed);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
