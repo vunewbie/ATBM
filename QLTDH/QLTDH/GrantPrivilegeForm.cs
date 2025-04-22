@@ -222,6 +222,7 @@ namespace QLTDH
                     OracleCommand cmd = new OracleCommand();
                     cmd.Connection = conn;
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.BindByName = true;
 
                     if (privilege == "SELECT")
                     {
