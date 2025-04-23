@@ -212,8 +212,7 @@ namespace QLTDH
 
         private void btnGrantPrivilege_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cbbUserRole.Text) ||
-                cbbPrivilege.SelectedItem == null ||
+            if (cbbPrivilege.SelectedItem == null ||
                 cbbObjectType.SelectedItem == null ||
                 cbbObject.SelectedItem == null)
             {
@@ -241,7 +240,6 @@ namespace QLTDH
             string objtype = cbbObjectType.SelectedItem.ToString();
             string obj = cbbObject.SelectedItem.ToString();
             bool isChecked = ckbWithGrantOption.Checked;
-            string[] selectedAttributes = cklbAttribute.CheckedItems.Cast<object>().Select(item => item.ToString()).ToArray();
 
             try
             {
@@ -261,10 +259,27 @@ namespace QLTDH
 
                     if (privilege == "SELECT"|| privilege == "UPDATE")
                     {
+                        List<string> selectedAttrs = new List<string>();
+                        for (int i = 0; i < cklbAttribute.Items.Count; i++)
+                        {
+                            if (cklbAttribute.GetItemChecked(i) == true)
+                            {
+                                selectedAttrs.Add(cklbAttribute.Items[i].ToString());
+                            }
+                        }
+
+                        if (selectedAttrs.Count == 0)
+                        {
+                            selectedAttrs.Add("*");
+                        }
+
+                        string[] attributeArray = selectedAttrs.ToArray();
                         cmd.Parameters.Add("p_attribute", OracleDbType.Varchar2);
                         cmd.Parameters["p_attribute"].CollectionType = OracleCollectionType.PLSQLAssociativeArray;
-                        cmd.Parameters["p_attribute"].Value = selectedAttributes;
-                        cmd.Parameters["p_attribute"].Size = selectedAttributes.Length;
+                        cmd.Parameters["p_attribute"].Value = attributeArray;
+                        cmd.Parameters["p_attribute"].Size = attributeArray.Length;
+
+
                         if (privilege =="SELECT") cmd.CommandText = "GRANT_SELECT_TO_USER_OR_ROLE";
                         else cmd.CommandText = "GRANT_UPDATE_TO_USER_OR_ROLE";
                     }
