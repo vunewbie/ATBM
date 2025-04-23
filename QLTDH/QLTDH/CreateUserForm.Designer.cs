@@ -41,7 +41,7 @@
             // 
             this.btnCreateUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCreateUser.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCreateUser.Location = new System.Drawing.Point(162, 238);
+            this.btnCreateUser.Location = new System.Drawing.Point(228, 234);
             this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(144, 39);
