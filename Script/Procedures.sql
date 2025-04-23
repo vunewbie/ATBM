@@ -376,64 +376,59 @@ END;
 
 --Grant quyền select
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
-    p_username         IN VARCHAR2,
-    p_object           IN VARCHAR2,
+    p_username          IN VARCHAR2,
+    p_object            IN VARCHAR2,
     p_with_grant_option IN BOOLEAN,
-    p_success          OUT BOOLEAN,
-    p_attribute        IN OUT SYS.DBMS_SQL.VARCHAR2A
+    p_success           OUT BOOLEAN,
+    p_attribute         IN OUT SYS.DBMS_SQL.VARCHAR2A
 )
 AS
-    v_sql              VARCHAR2(4000);
-    v_view_name        VARCHAR2(100);
-    v_exists           BOOLEAN;
+    v_sql        VARCHAR2(4000);
+    v_view_name  VARCHAR2(100);
+    v_count      INTEGER;
 BEGIN
     p_success := FALSE;
 
-    -- Kiểm tra đầu vào
-    IF p_username IS NULL OR p_object IS NULL OR p_attribute IS NULL THEN
-        RAISE_APPLICATION_ERROR(-20001, 'Username, Object, or Attributes cannot be NULL');
+    -- Validate inputs
+    IF p_username IS NULL OR p_object IS NULL THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Username and Object cannot be NULL');
     END IF;
 
-    -- Tạo tên view động theo quy tắc: p_attribute_p_object_p_username
-    v_view_name := 'v_' || p_attribute(1) || '_' || p_object || '_' || p_username;
+    -- If p_attribute is NULL, grant SELECT on the entire object
+    IF p_attribute.COUNT = 0 THEN
+        v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || p_username;
+        IF p_with_grant_option THEN
+            v_sql := v_sql || ' WITH GRANT OPTION';
+        END IF;
+        EXECUTE IMMEDIATE v_sql;
+        p_success := TRUE;
+        RETURN;
+    END IF;
 
-    -- Kiểm tra xem view đã tồn tại chưa
-    BEGIN
-        EXECUTE IMMEDIATE 'SELECT 1 FROM user_views WHERE view_name = :1' INTO v_exists USING UPPER(v_view_name);
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            v_exists := FALSE;
-        WHEN OTHERS THEN
-            v_exists := TRUE;
-    END;
+    -- Construct view name
+    v_view_name := 'v_' || p_attribute(1) || '_' || p_object;
 
-    -- Nếu view chưa tồn tại, tạo mới
-    IF NOT v_exists THEN
-        -- Tạo câu lệnh SELECT cho các thuộc tính
+    -- Check if the view already exists
+    SELECT COUNT(*) INTO v_count FROM user_views WHERE view_name = UPPER(v_view_name);
+
+    -- If the view doesn't exist, create it
+    IF v_count = 0 THEN
         v_sql := 'CREATE OR REPLACE VIEW ' || v_view_name || ' AS SELECT ';
-
         FOR i IN 1 .. p_attribute.COUNT LOOP
             IF i > 1 THEN
                 v_sql := v_sql || ', ';
             END IF;
             v_sql := v_sql || p_attribute(i);
         END LOOP;
-
         v_sql := v_sql || ' FROM ' || p_object;
-
-        -- Thực thi câu lệnh tạo view
         EXECUTE IMMEDIATE v_sql;
     END IF;
 
-    -- Cấp quyền SELECT trên view cho người dùng, thêm điều kiện với GRANT OPTION
+    -- Grant SELECT on the view to the user
     v_sql := 'GRANT SELECT ON ' || v_view_name || ' TO ' || p_username;
-
-    -- Kiểm tra tham số p_with_grant_option để quyết định thêm WITH GRANT OPTION
     IF p_with_grant_option THEN
         v_sql := v_sql || ' WITH GRANT OPTION';
     END IF;
-
-    -- Thực thi câu lệnh GRANT
     EXECUTE IMMEDIATE v_sql;
 
     p_success := TRUE;
@@ -444,8 +439,6 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
 END;
 /
-
-
 --Grant quyền update
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
