@@ -102,7 +102,7 @@
             // 
             this.pbPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbPassword.Image = global::QLTDH.Properties.Resources.eye_off;
-            this.pbPassword.Location = new System.Drawing.Point(347, 115);
+            this.pbPassword.Location = new System.Drawing.Point(347, 114);
             this.pbPassword.Margin = new System.Windows.Forms.Padding(0);
             this.pbPassword.Name = "pbPassword";
             this.pbPassword.Size = new System.Drawing.Size(26, 23);

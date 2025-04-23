@@ -317,6 +317,8 @@
             this.dgvRoles.RowTemplate.Height = 30;
             this.dgvRoles.Size = new System.Drawing.Size(1228, 473);
             this.dgvRoles.TabIndex = 0;
+            this.dgvRoles.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRoles.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // tlpRolesButton
             // 

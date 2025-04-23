@@ -36,11 +36,11 @@
             // btnDeleteRole
             // 
             this.btnDeleteRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnDeleteRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDeleteRole.Location = new System.Drawing.Point(182, 202);
+            this.btnDeleteRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnDeleteRole.Location = new System.Drawing.Point(198, 189);
             this.btnDeleteRole.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteRole.Name = "btnDeleteRole";
-            this.btnDeleteRole.Size = new System.Drawing.Size(168, 47);
+            this.btnDeleteRole.Size = new System.Drawing.Size(138, 39);
             this.btnDeleteRole.TabIndex = 9;
             this.btnDeleteRole.Text = "Xóa vai trò";
             this.btnDeleteRole.UseVisualStyleBackColor = false;
@@ -49,10 +49,10 @@
             // txbRole
             // 
             this.txbRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbRole.Location = new System.Drawing.Point(144, 91);
+            this.txbRole.Location = new System.Drawing.Point(163, 91);
             this.txbRole.Margin = new System.Windows.Forms.Padding(4);
             this.txbRole.Name = "txbRole";
-            this.txbRole.Size = new System.Drawing.Size(267, 30);
+            this.txbRole.Size = new System.Drawing.Size(258, 30);
             this.txbRole.TabIndex = 8;
             // 
             // lblRole
