@@ -395,7 +395,7 @@ BEGIN
     END IF;
 
     -- If p_attribute is NULL, grant SELECT on the entire object
-    IF p_attribute.COUNT = 0 THEN
+    IF p_attribute.COUNT = 1 AND p_attribute(1) = '*' THEN
         v_sql := 'GRANT SELECT ON ' || p_object || ' TO ' || p_username;
         IF p_with_grant_option THEN
             v_sql := v_sql || ' WITH GRANT OPTION';
@@ -461,7 +461,7 @@ BEGIN
         RAISE_APPLICATION_ERROR(-20003, 'Object name cannot be NULL');
     END IF;
 
-    IF p_attribute.COUNT = 0 THEN
+    IF p_attribute.COUNT = 1 AND p_attribute(1) = '*' THEN
         v_sql := 'GRANT UPDATE ON ' || p_object || ' TO ' || p_username;
     ELSE
         v_columns := '';
