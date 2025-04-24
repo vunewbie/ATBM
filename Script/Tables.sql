@@ -73,11 +73,11 @@ END;
 CREATE TABLE NHANVIEN (
     MANV VARCHAR2(10) PRIMARY KEY, -- Mã nhân viên
     HOTEN VARCHAR2(100), -- Họ tên
-    PHAI VARCHAR2(3) CHECK (PHAI IN ('Nam', 'Nữ')), -- Giới tính
+    PHAI VARCHAR2(10) CHECK (PHAI IN ('Nam', 'Nữ')), -- Giới tính
     NGSINH DATE, -- Ngày sinh
     LUONG INTEGER, -- Lương
     PHUCAP INTEGER, -- Phụ cấp
-    DT VARCHAR2(10), -- Số điện thoại
+    DT VARCHAR2(10) UNIQUE, -- Số điện thoại
     VAITRO VARCHAR2(7) CHECK (VAITRO IN ('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV')), -- Vai trò
     MADV VARCHAR2(10) -- Mã đơn vị
 );
@@ -89,7 +89,7 @@ CREATE TABLE SINHVIEN (
     PHAI VARCHAR2(10) CHECK (PHAI IN ('Nam', 'Nữ')), -- Giới tính
     NGSINH DATE, -- Ngày sinh
     DCHI VARCHAR2(200), -- Địa chỉ
-    DT VARCHAR2(20), -- Số điện thoại
+    DT VARCHAR2(20) UNIQUE, -- Số điện thoại
     KHOA VARCHAR2(10), -- Khoa
     TINHTRANG VARCHAR2(20) CHECK (TINHTRANG IN ('Đang học', 'Nghỉ học', 'Bảo lưu')) -- Tình trạng
 );
@@ -97,7 +97,7 @@ CREATE TABLE SINHVIEN (
 -- Bảng Đơn Vị
 CREATE TABLE DONVI (
     MADV VARCHAR2(10) PRIMARY KEY, -- Mã đơn vị
-    TENDV VARCHAR2(100), -- Tên đơn vị
+    TENDV VARCHAR2(100) UNIQUE, -- Tên đơn vị
     LOAIDV VARCHAR2(10) CHECK (LOAIDV IN ('Khoa', 'Phòng')), -- Loại đơn vị
     TRGDV VARCHAR2(10) -- Trưởng đơn vị
 );
@@ -105,7 +105,7 @@ CREATE TABLE DONVI (
 -- Bảng Học Phần
 CREATE TABLE HOCPHAN (
     MAHP VARCHAR2(10) PRIMARY KEY, -- Mã học phần
-    TENHP VARCHAR2(100), -- Tên học phần
+    TENHP VARCHAR2(100) UNIQUE, -- Tên học phần
     SOTC INTEGER, -- Số tín chỉ
     STLT INTEGER, -- Số tiết lý thuyết
     STTH INTEGER, -- Số tiết thực hành
@@ -118,7 +118,8 @@ CREATE TABLE MOMON (
     MAHP VARCHAR2(10), -- Mã học phần
     MAGV VARCHAR2(10), -- Giảng viên
     HK VARCHAR2(1) CHECK (HK IN ('1', '2', '3')), -- Học kỳ
-    NAM INTEGER -- Năm học
+    NAM INTEGER, -- Năm học
+    UNIQUE (MAHP, MAGV, HK, NAM) -- Ràng buộc UNIQUE
 );
 
 -- Bảng Đăng Ký
