@@ -66,7 +66,7 @@ The database consists of the following primary tables:
    docker-compose up -d
    ```
 
-   > **Note**: Oracle Database initialization may take 5-10 minutes. You can monitor the progress with `docker-compose logs -f oracledb`.
+   > **Note**: Oracle Database initialization may take 1-2 minutes. You can monitor the progress with `docker-compose logs -f oracledb`.
 
 3. **Verify container status**:
    ```
