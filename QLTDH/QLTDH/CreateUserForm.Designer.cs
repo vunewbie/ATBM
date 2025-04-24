@@ -93,10 +93,10 @@
             // pbPassword
             // 
             this.pbPassword.Image = global::QLTDH.Properties.Resources.eye_off;
-            this.pbPassword.Location = new System.Drawing.Point(380, 167);
+            this.pbPassword.Location = new System.Drawing.Point(380, 168);
             this.pbPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbPassword.Name = "pbPassword";
-            this.pbPassword.Size = new System.Drawing.Size(26, 23);
+            this.pbPassword.Size = new System.Drawing.Size(25, 21);
             this.pbPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPassword.TabIndex = 20;
             this.pbPassword.TabStop = false;
