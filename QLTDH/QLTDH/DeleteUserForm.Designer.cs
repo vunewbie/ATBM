@@ -39,7 +39,7 @@
             this.txbUsername.Location = new System.Drawing.Point(194, 91);
             this.txbUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txbUsername.Name = "txbUsername";
-            this.txbUsername.Size = new System.Drawing.Size(250, 30);
+            this.txbUsername.Size = new System.Drawing.Size(250, 35);
             this.txbUsername.TabIndex = 5;
             // 
             // lblUsername
@@ -49,7 +49,7 @@
             this.lblUsername.Location = new System.Drawing.Point(27, 93);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(132, 23);
+            this.lblUsername.Size = new System.Drawing.Size(164, 26);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Tên đăng nhập";
             // 
@@ -68,7 +68,7 @@
             // 
             // DeleteUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.btnDeleteUser);
@@ -76,6 +76,8 @@
             this.Controls.Add(this.lblUsername);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DeleteUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xoá người dùng";

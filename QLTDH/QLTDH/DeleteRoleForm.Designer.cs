@@ -52,7 +52,7 @@
             this.txbRole.Location = new System.Drawing.Point(163, 91);
             this.txbRole.Margin = new System.Windows.Forms.Padding(4);
             this.txbRole.Name = "txbRole";
-            this.txbRole.Size = new System.Drawing.Size(258, 30);
+            this.txbRole.Size = new System.Drawing.Size(258, 35);
             this.txbRole.TabIndex = 8;
             // 
             // lblRole
@@ -62,13 +62,13 @@
             this.lblRole.Location = new System.Drawing.Point(23, 93);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(102, 23);
+            this.lblRole.Size = new System.Drawing.Size(124, 26);
             this.lblRole.TabIndex = 7;
             this.lblRole.Text = "Tên vai trò";
             // 
             // DeleteRoleForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.btnDeleteRole);
@@ -76,6 +76,8 @@
             this.Controls.Add(this.lblRole);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DeleteRoleForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xoá vai trò";

@@ -415,5 +415,15 @@ namespace QLTDH
                 LoadColumnPrivileges(txbSearchGrantee.Text.Trim());
             }
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close(); 
+                Application.Restart(); 
+            }
+        }
     }
 }
