@@ -41,7 +41,7 @@
             this.txbUsername.Location = new System.Drawing.Point(178, 59);
             this.txbUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txbUsername.Name = "txbUsername";
-            this.txbUsername.Size = new System.Drawing.Size(277, 30);
+            this.txbUsername.Size = new System.Drawing.Size(277, 35);
             this.txbUsername.TabIndex = 5;
             // 
             // lblUsername
@@ -51,7 +51,7 @@
             this.lblUsername.Location = new System.Drawing.Point(13, 61);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(132, 23);
+            this.lblUsername.Size = new System.Drawing.Size(164, 26);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Tên đăng nhập";
             // 
@@ -62,7 +62,7 @@
             this.lblStatus.Location = new System.Drawing.Point(13, 144);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(103, 23);
+            this.lblStatus.Size = new System.Drawing.Size(126, 26);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "Trạng Thái";
             // 
@@ -78,7 +78,7 @@
             this.cbbStatus.Location = new System.Drawing.Point(178, 142);
             this.cbbStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cbbStatus.Name = "cbbStatus";
-            this.cbbStatus.Size = new System.Drawing.Size(277, 30);
+            this.cbbStatus.Size = new System.Drawing.Size(277, 35);
             this.cbbStatus.TabIndex = 7;
             this.cbbStatus.SelectedIndexChanged += new System.EventHandler(this.cbbStatus_SelectedIndexChanged);
             // 
@@ -97,7 +97,7 @@
             // 
             // UpdateUserStatusForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.btnUpdateStatus);
@@ -107,6 +107,8 @@
             this.Controls.Add(this.lblUsername);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UpdateUserStatusForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cập nhật người dùng";

@@ -268,9 +268,10 @@ namespace QLTDH
                             }
                         }
 
-                        if (selectedAttrs.Count == 0)
+                        if (selectedAttrs.Count == 0 || selectedAttrs.Count == cklbAttribute.Items.Count)
                         {
-                            selectedAttrs.Add("*");
+                            selectedAttrs.Clear();          
+                            selectedAttrs.Add("*");         
                         }
 
                         string[] attributeArray = selectedAttrs.ToArray();

@@ -46,7 +46,7 @@
             this.lblRolePaswordRequired.Location = new System.Drawing.Point(127, 183);
             this.lblRolePaswordRequired.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRolePaswordRequired.Name = "lblRolePaswordRequired";
-            this.lblRolePaswordRequired.Size = new System.Drawing.Size(295, 23);
+            this.lblRolePaswordRequired.Size = new System.Drawing.Size(351, 28);
             this.lblRolePaswordRequired.TabIndex = 25;
             this.lblRolePaswordRequired.Text = "Bỏ trống mật khẩu nếu không cần";
             // 
@@ -69,7 +69,7 @@
             this.txbPassword.Location = new System.Drawing.Point(151, 125);
             this.txbPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassword.Name = "txbPassword";
-            this.txbPassword.Size = new System.Drawing.Size(271, 30);
+            this.txbPassword.Size = new System.Drawing.Size(271, 35);
             this.txbPassword.TabIndex = 23;
             // 
             // txbRole
@@ -78,7 +78,7 @@
             this.txbRole.Location = new System.Drawing.Point(151, 42);
             this.txbRole.Margin = new System.Windows.Forms.Padding(4);
             this.txbRole.Name = "txbRole";
-            this.txbRole.Size = new System.Drawing.Size(271, 30);
+            this.txbRole.Size = new System.Drawing.Size(271, 35);
             this.txbRole.TabIndex = 22;
             // 
             // lblPassword
@@ -88,7 +88,7 @@
             this.lblPassword.Location = new System.Drawing.Point(22, 127);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(91, 23);
+            this.lblPassword.Size = new System.Drawing.Size(112, 26);
             this.lblPassword.TabIndex = 21;
             this.lblPassword.Text = "Mật khẩu";
             // 
@@ -99,7 +99,7 @@
             this.lblRole.Location = new System.Drawing.Point(22, 44);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(67, 23);
+            this.lblRole.Size = new System.Drawing.Size(83, 26);
             this.lblRole.TabIndex = 20;
             this.lblRole.Text = "Vai trò";
             // 
@@ -117,7 +117,7 @@
             // 
             // UpdateRolePasswordForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.pbPassword);
@@ -129,6 +129,8 @@
             this.Controls.Add(this.lblRole);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "UpdateRolePasswordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cập nhật vai trò";
