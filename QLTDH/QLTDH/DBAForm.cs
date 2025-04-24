@@ -425,5 +425,13 @@ namespace QLTDH
                 Application.Restart(); 
             }
         }
+
+        private void btnGrantRoleToUser_Click(object sender, EventArgs e)
+        {
+            GrantRoleToUser newGrantRoleToUser = new GrantRoleToUser();
+            newGrantRoleToUser.Owner = this;
+
+            newGrantRoleToUser.ShowDialog();
+        }
     }
 }

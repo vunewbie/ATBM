@@ -599,7 +599,60 @@ EXCEPTION
 END;
 /
 
-
-
+--Cấp role cho user
+CREATE OR REPLACE PROCEDURE QLTDH.GRANT_ROLE_TO_USER (
+    p_user IN VARCHAR2,
+    p_role IN VARCHAR2,
+    p_with_admin_option IN BOOLEAN
+)
+AS
+    v_sql VARCHAR2(4000);
+    v_container_id_user NUMBER;
+    v_container_id_role NUMBER;
+BEGIN
+    -- Kiểm tra xem user và role có cùng container không
+    BEGIN
+        SELECT con_id INTO v_container_id_user
+        FROM cdb_users
+        WHERE username = UPPER(p_user);
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20001, 'Không tìm thấy người dùng ' || p_user);
+    END;
+    
+    BEGIN
+        SELECT con_id INTO v_container_id_role
+        FROM cdb_roles
+        WHERE role = UPPER(p_role);
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RAISE_APPLICATION_ERROR(-20002, 'Không tìm thấy role ' || p_role);
+    END;
+    
+    -- Kiểm tra nếu user và role không cùng container
+    IF v_container_id_user != v_container_id_role THEN
+        RAISE_APPLICATION_ERROR(-20003, 'Không thể cấp role từ PDB này cho người dùng ở PDB khác.');
+    END IF;
+    
+    -- Xây dựng câu lệnh GRANT ROLE TO USER
+    v_sql := 'GRANT ' || p_role || ' TO ' || p_user;
+    
+    -- Thêm WITH ADMIN OPTION nếu cần
+    IF p_with_admin_option THEN
+        v_sql := v_sql || ' WITH ADMIN OPTION';
+    END IF;
+    
+    -- Thực thi
+    EXECUTE IMMEDIATE v_sql;
+    
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE NOT IN (-20001, -20002, -20003) THEN
+            RAISE_APPLICATION_ERROR(-20000, 'Lỗi khi cấp quyền: ' || SQLERRM);
+        ELSE
+            RAISE;
+        END IF;
+END;
+/
 
 

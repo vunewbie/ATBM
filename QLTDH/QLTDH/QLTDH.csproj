@@ -127,6 +127,12 @@
     <Compile Include="GrantPrivilegeForm.Designer.cs">
       <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrantRoleToUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GrantRoleToUser.Designer.cs">
+      <DependentUpon>GrantRoleToUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GrantPrivilegeForm.resx">
       <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GrantRoleToUser.resx">
+      <DependentUpon>GrantRoleToUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
