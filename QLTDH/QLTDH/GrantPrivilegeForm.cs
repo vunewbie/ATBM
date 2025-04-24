@@ -223,15 +223,9 @@ namespace QLTDH
             if (cbbUserRole.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn một User/Role hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // Reset cbbUserRole to the first item
-                if (cbbUserRole.Items.Count > 0)
-                {
-                    cbbUserRole.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbbUserRole.Text = string.Empty;
-                }
+                // Reset cbbUserRole
+                cbbUserRole.SelectedItem = -1;
+                cbbUserRole.Text = string.Empty;
                 return;
             }
 

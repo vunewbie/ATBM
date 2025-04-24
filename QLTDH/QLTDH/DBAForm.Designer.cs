@@ -539,6 +539,8 @@ namespace QLTDH
             this.dgvTablePrivilege.RowTemplate.Height = 30;
             this.dgvTablePrivilege.Size = new System.Drawing.Size(1165, 563);
             this.dgvTablePrivilege.TabIndex = 1;
+            this.dgvTablePrivilege.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // tbl_GRANTEE
             // 
@@ -683,6 +685,8 @@ namespace QLTDH
             this.dgvColumnPrivilege.RowTemplate.Height = 30;
             this.dgvColumnPrivilege.Size = new System.Drawing.Size(1165, 563);
             this.dgvColumnPrivilege.TabIndex = 5;
+            this.dgvColumnPrivilege.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // col_GRANTEE
             // 
@@ -863,6 +867,8 @@ namespace QLTDH
             this.dtgvRole.RowTemplate.Height = 28;
             this.dtgvRole.Size = new System.Drawing.Size(1165, 563);
             this.dtgvRole.TabIndex = 0;
+            this.dtgvRole.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtgvRole.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // GRANTEE
             // 

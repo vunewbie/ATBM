@@ -76,9 +76,8 @@ namespace QLTDH
                     }
                 }
 
-                // Select the first item if available
-                if (cbbUserRole.Items.Count > 0)
-                    cbbUserRole.SelectedIndex = 0;
+                cbbUserRole.SelectedItem = -1;
+                cbbUserRole.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -124,11 +123,10 @@ namespace QLTDH
                     }
                     else
                     {
-                        cbbUserRole.Text = string.Empty;
                         MessageBox.Show("Không có quyền nào được cấp cho người dùng/nhóm này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cbbObject.Text = string.Empty;
+                        cbbUserRole.Text = string.Empty;
                     }
-
-
                 }
             }
             catch (Exception ex)
@@ -153,29 +151,21 @@ namespace QLTDH
             if (cbbUserRole.SelectedItem == null)
             {
                 MessageBox.Show("Vui lòng chọn một User/Role hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // Reset cbbUserRole to the first item
-                if (cbbUserRole.Items.Count > 0)
-                {
-                    cbbUserRole.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbbUserRole.Text = string.Empty;
-                }
+                // Reset
+                cbbUserRole.SelectedIndex = -1; // Reset to no selection
+                cbbUserRole.Text = string.Empty; // Clear the text
+                cbbObject.Text = string.Empty; // Clear the text
+                cbbObject.SelectedItem = -1; // Reset to no selection
                 return;
             }
 
             if (cbbObject.SelectedItem == null) {
                 MessageBox.Show("Vui lòng chọn một đối tượng hợp lệ từ danh sách.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                // Reset cbbObject to the first item
-                if (cbbObject.Items.Count > 0)
-                {
-                    cbbObject.SelectedIndex = 0;
-                }
-                else
-                {
-                    cbbObject.Text = string.Empty;
-                }
+                // Reset
+                cbbUserRole.SelectedIndex = -1; // Reset to no selection
+                cbbUserRole.Text = string.Empty; // Clear the text
+                cbbObject.SelectedIndex = -1; // Reset to no selection
+                cbbObject.Text = string.Empty; // Clear the text
                 return;
             }
 

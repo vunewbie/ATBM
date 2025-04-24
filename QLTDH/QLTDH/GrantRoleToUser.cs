@@ -180,7 +180,7 @@ namespace QLTDH
                     conn.Open();
                     OracleCommand cmd = new OracleCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "QLTDH.GRANT_ROLE_TO_USER";
+                    cmd.CommandText = "GRANT_ROLE_TO_USER";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.BindByName = true;
 
