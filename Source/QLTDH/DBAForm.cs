@@ -482,10 +482,18 @@ namespace QLTDH
 
         private void btnGrantRoleToUser_Click(object sender, EventArgs e)
         {
-            GrantRoleToUser newGrantRoleToUser = new GrantRoleToUser();
+            GrantRoleToUserForm newGrantRoleToUser = new GrantRoleToUserForm();
             newGrantRoleToUser.Owner = this;
 
             newGrantRoleToUser.ShowDialog();
+        }
+
+        private void btnRevokeRole_Click(object sender, EventArgs e)
+        {
+            RevokeRoleForm newRevokeRole = new RevokeRoleForm();
+            newRevokeRole.Owner = this;
+
+            newRevokeRole.ShowDialog();
         }
     }
 }

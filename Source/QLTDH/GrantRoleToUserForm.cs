@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace QLTDH
 {
-    public partial class GrantRoleToUser : Form
+    public partial class GrantRoleToUserForm : Form
     {
-        public GrantRoleToUser()
+        public GrantRoleToUserForm()
         {
             InitializeComponent();
             LoadUser();

@@ -1,6 +1,6 @@
 ﻿namespace QLTDH
 {
-    partial class GrantRoleToUser
+    partial class GrantRoleToUserForm
     {
         /// <summary>
         /// Required designer variable.

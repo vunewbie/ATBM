@@ -37,7 +37,7 @@
             // 
             this.btnDeleteRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnDeleteRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDeleteRole.Location = new System.Drawing.Point(198, 189);
+            this.btnDeleteRole.Location = new System.Drawing.Point(178, 192);
             this.btnDeleteRole.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteRole.Name = "btnDeleteRole";
             this.btnDeleteRole.Size = new System.Drawing.Size(138, 39);

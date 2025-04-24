@@ -31,7 +31,7 @@
             // 
             this.btnCreateRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCreateRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCreateRole.Location = new System.Drawing.Point(195, 223);
+            this.btnCreateRole.Location = new System.Drawing.Point(184, 223);
             this.btnCreateRole.Margin = new System.Windows.Forms.Padding(0);
             this.btnCreateRole.Name = "btnCreateRole";
             this.btnCreateRole.Size = new System.Drawing.Size(126, 39);

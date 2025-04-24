@@ -673,3 +673,23 @@ BEGIN
     END IF;
 END;
 /
+
+--Thu hồi role của user
+CREATE OR REPLACE PROCEDURE QLTDH.REVOKE_ROLE_FROM_USER (
+    p_grantee    IN VARCHAR2,
+    p_role       IN VARCHAR2
+)
+AS
+    v_sql        VARCHAR2(4000);
+    v_count      NUMBER := 0;
+BEGIN
+    BEGIN
+        v_sql := 'REVOKE ' || p_role || ' FROM ' || p_grantee;
+        EXECUTE IMMEDIATE v_sql;
+    EXCEPTION
+        WHEN OTHERS THEN
+            -- Gửi thông báo lỗi cho người dùng
+            RAISE_APPLICATION_ERROR(-20003, 'Lỗi khi thu hồi role từ "' || p_grantee || '" cho role "' || p_role || '": ' || SQLERRM);
+    END;
+END;
+/

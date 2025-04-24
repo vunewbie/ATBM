@@ -127,11 +127,11 @@
     <Compile Include="GrantPrivilegeForm.Designer.cs">
       <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GrantRoleToUser.cs">
+    <Compile Include="GrantRoleToUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GrantRoleToUser.Designer.cs">
-      <DependentUpon>GrantRoleToUser.cs</DependentUpon>
+    <Compile Include="GrantRoleToUserForm.Designer.cs">
+      <DependentUpon>GrantRoleToUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -152,6 +152,12 @@
     </Compile>
     <Compile Include="RevokePrivilegeForm.Designer.cs">
       <DependentUpon>RevokePrivilegeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RevokeRoleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RevokeRoleForm.Designer.cs">
+      <DependentUpon>RevokeRoleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UpdateRolePasswordForm.cs">
       <SubType>Form</SubType>
@@ -180,8 +186,8 @@
     <EmbeddedResource Include="GrantPrivilegeForm.resx">
       <DependentUpon>GrantPrivilegeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GrantRoleToUser.resx">
-      <DependentUpon>GrantRoleToUser.cs</DependentUpon>
+    <EmbeddedResource Include="GrantRoleToUserForm.resx">
+      <DependentUpon>GrantRoleToUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -201,6 +207,9 @@
     </Compile>
     <EmbeddedResource Include="RevokePrivilegeForm.resx">
       <DependentUpon>RevokePrivilegeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RevokeRoleForm.resx">
+      <DependentUpon>RevokeRoleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateRolePasswordForm.resx">
       <DependentUpon>UpdateRolePasswordForm.cs</DependentUpon>

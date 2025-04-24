@@ -41,7 +41,7 @@
             // 
             this.btnCreateUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnCreateUser.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnCreateUser.Location = new System.Drawing.Point(228, 234);
+            this.btnCreateUser.Location = new System.Drawing.Point(194, 235);
             this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(144, 39);
@@ -56,7 +56,7 @@
             this.txbPassword.Location = new System.Drawing.Point(194, 166);
             this.txbPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txbPassword.Name = "txbPassword";
-            this.txbPassword.Size = new System.Drawing.Size(214, 30);
+            this.txbPassword.Size = new System.Drawing.Size(214, 35);
             this.txbPassword.TabIndex = 10;
             this.txbPassword.UseSystemPasswordChar = true;
             // 
@@ -66,7 +66,7 @@
             this.txbUsername.Location = new System.Drawing.Point(194, 76);
             this.txbUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txbUsername.Name = "txbUsername";
-            this.txbUsername.Size = new System.Drawing.Size(214, 30);
+            this.txbUsername.Size = new System.Drawing.Size(214, 35);
             this.txbUsername.TabIndex = 9;
             // 
             // lblPassword
@@ -76,7 +76,7 @@
             this.lblPassword.Location = new System.Drawing.Point(22, 170);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(91, 23);
+            this.lblPassword.Size = new System.Drawing.Size(112, 26);
             this.lblPassword.TabIndex = 8;
             this.lblPassword.Text = "Mật khẩu";
             // 
@@ -87,7 +87,7 @@
             this.lblUsername.Location = new System.Drawing.Point(22, 78);
             this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(132, 23);
+            this.lblUsername.Size = new System.Drawing.Size(164, 26);
             this.lblUsername.TabIndex = 7;
             this.lblUsername.Text = "Tên đăng nhập";
             // 
@@ -105,7 +105,7 @@
             // 
             // CreateUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 311);
             this.Controls.Add(this.pbPassword);
