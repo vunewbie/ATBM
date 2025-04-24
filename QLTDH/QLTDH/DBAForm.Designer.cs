@@ -30,8 +30,8 @@ namespace QLTDH
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
             this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
@@ -54,6 +54,7 @@ namespace QLTDH
             this.btnSearchRole = new System.Windows.Forms.Button();
             this.txbSearchRole = new System.Windows.Forms.TextBox();
             this.tpagePrivileges = new System.Windows.Forms.TabPage();
+            this.btnGrantRoleToUser = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.tctrlPrivileges = new System.Windows.Forms.TabControl();
             this.tpageTable = new System.Windows.Forms.TabPage();
@@ -84,7 +85,12 @@ namespace QLTDH
             this.btnRevokePrivilege = new System.Windows.Forms.Button();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.btnGrantRoleToUser = new System.Windows.Forms.Button();
+            this.tpageRole = new System.Windows.Forms.TabPage();
+            this.dtgvRole = new System.Windows.Forms.DataGridView();
+            this.GRANTEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GRANTED_ROLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADMIN_OPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DEFAULT_ROLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
             this.tlpUsers.SuspendLayout();
@@ -102,6 +108,8 @@ namespace QLTDH
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablePrivilege)).BeginInit();
             this.tpageColumn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumnPrivilege)).BeginInit();
+            this.tpageRole.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvRole)).BeginInit();
             this.SuspendLayout();
             // 
             // tctrlDBA
@@ -342,7 +350,7 @@ namespace QLTDH
             this.tlpRolesButton.Name = "tlpRolesButton";
             this.tlpRolesButton.RowCount = 1;
             this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 189F));
             this.tlpRolesButton.Size = new System.Drawing.Size(1226, 192);
             this.tlpRolesButton.TabIndex = 1;
             // 
@@ -449,6 +457,18 @@ namespace QLTDH
             this.tpagePrivileges.Text = "Privileges";
             this.tpagePrivileges.Enter += new System.EventHandler(this.tpagePrivileges_Enter);
             // 
+            // btnGrantRoleToUser
+            // 
+            this.btnGrantRoleToUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGrantRoleToUser.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantRoleToUser.Location = new System.Drawing.Point(335, 9);
+            this.btnGrantRoleToUser.Name = "btnGrantRoleToUser";
+            this.btnGrantRoleToUser.Size = new System.Drawing.Size(261, 67);
+            this.btnGrantRoleToUser.TabIndex = 13;
+            this.btnGrantRoleToUser.Text = "Cấp role cho user";
+            this.btnGrantRoleToUser.UseVisualStyleBackColor = false;
+            this.btnGrantRoleToUser.Click += new System.EventHandler(this.btnGrantRoleToUser_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -464,6 +484,7 @@ namespace QLTDH
             // 
             this.tctrlPrivileges.Controls.Add(this.tpageTable);
             this.tctrlPrivileges.Controls.Add(this.tpageColumn);
+            this.tctrlPrivileges.Controls.Add(this.tpageRole);
             this.tctrlPrivileges.Location = new System.Drawing.Point(37, 95);
             this.tctrlPrivileges.Name = "tctrlPrivileges";
             this.tctrlPrivileges.SelectedIndex = 0;
@@ -486,14 +507,14 @@ namespace QLTDH
             // 
             this.dgvTablePrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvTablePrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablePrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbl_GRANTEE,
@@ -631,14 +652,14 @@ namespace QLTDH
             // 
             this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_GRANTEE,
@@ -807,17 +828,69 @@ namespace QLTDH
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // btnGrantRoleToUser
+            // tpageRole
             // 
-            this.btnGrantRoleToUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnGrantRoleToUser.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGrantRoleToUser.Location = new System.Drawing.Point(335, 9);
-            this.btnGrantRoleToUser.Name = "btnGrantRoleToUser";
-            this.btnGrantRoleToUser.Size = new System.Drawing.Size(261, 67);
-            this.btnGrantRoleToUser.TabIndex = 13;
-            this.btnGrantRoleToUser.Text = "Cấp role cho user";
-            this.btnGrantRoleToUser.UseVisualStyleBackColor = false;
-            this.btnGrantRoleToUser.Click += new System.EventHandler(this.btnGrantRoleToUser_Click);
+            this.tpageRole.Controls.Add(this.dtgvRole);
+            this.tpageRole.Location = new System.Drawing.Point(4, 38);
+            this.tpageRole.Name = "tpageRole";
+            this.tpageRole.Padding = new System.Windows.Forms.Padding(3);
+            this.tpageRole.Size = new System.Drawing.Size(1171, 569);
+            this.tpageRole.TabIndex = 2;
+            this.tpageRole.Text = "Role";
+            this.tpageRole.UseVisualStyleBackColor = true;
+            this.tpageColumn.Enter += new System.EventHandler(this.tpageColumn_Enter);
+            // 
+            // dtgvRole
+            // 
+            this.dtgvRole.AllowUserToAddRows = false;
+            this.dtgvRole.AllowUserToDeleteRows = false;
+            this.dtgvRole.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvRole.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvRole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GRANTEE,
+            this.GRANTED_ROLE,
+            this.ADMIN_OPTION,
+            this.DEFAULT_ROLE});
+            this.dtgvRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgvRole.Location = new System.Drawing.Point(3, 3);
+            this.dtgvRole.Name = "dtgvRole";
+            this.dtgvRole.ReadOnly = true;
+            this.dtgvRole.RowHeadersWidth = 62;
+            this.dtgvRole.RowTemplate.Height = 28;
+            this.dtgvRole.Size = new System.Drawing.Size(1165, 563);
+            this.dtgvRole.TabIndex = 0;
+            // 
+            // GRANTEE
+            // 
+            this.GRANTEE.DataPropertyName = "GRANTEE";
+            this.GRANTEE.HeaderText = "GRANTEE";
+            this.GRANTEE.MinimumWidth = 8;
+            this.GRANTEE.Name = "GRANTEE";
+            this.GRANTEE.ReadOnly = true;
+            // 
+            // GRANTED_ROLE
+            // 
+            this.GRANTED_ROLE.DataPropertyName = "GRANTED_ROLE";
+            this.GRANTED_ROLE.HeaderText = "GRANTED_ROLE";
+            this.GRANTED_ROLE.MinimumWidth = 8;
+            this.GRANTED_ROLE.Name = "GRANTED_ROLE";
+            this.GRANTED_ROLE.ReadOnly = true;
+            // 
+            // ADMIN_OPTION
+            // 
+            this.ADMIN_OPTION.DataPropertyName = "ADMIN_OPTION";
+            this.ADMIN_OPTION.HeaderText = "ADMIN_OPTION";
+            this.ADMIN_OPTION.MinimumWidth = 8;
+            this.ADMIN_OPTION.Name = "ADMIN_OPTION";
+            this.ADMIN_OPTION.ReadOnly = true;
+            // 
+            // DEFAULT_ROLE
+            // 
+            this.DEFAULT_ROLE.DataPropertyName = "DEFAULT_ROLE";
+            this.DEFAULT_ROLE.HeaderText = "DEFAULT_ROLE";
+            this.DEFAULT_ROLE.MinimumWidth = 8;
+            this.DEFAULT_ROLE.Name = "DEFAULT_ROLE";
+            this.DEFAULT_ROLE.ReadOnly = true;
             // 
             // DBAForm
             // 
@@ -853,6 +926,8 @@ namespace QLTDH
             ((System.ComponentModel.ISupportInitialize)(this.dgvTablePrivilege)).EndInit();
             this.tpageColumn.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumnPrivilege)).EndInit();
+            this.tpageRole.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvRole)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -912,5 +987,11 @@ namespace QLTDH
         private System.Windows.Forms.DataGridViewTextBoxColumn col_INHERITED;
         private Button btnLogOut;
         private Button btnGrantRoleToUser;
+        private TabPage tpageRole;
+        private DataGridView dtgvRole;
+        private DataGridViewTextBoxColumn GRANTEE;
+        private DataGridViewTextBoxColumn GRANTED_ROLE;
+        private DataGridViewTextBoxColumn ADMIN_OPTION;
+        private DataGridViewTextBoxColumn DEFAULT_ROLE;
     }
 }

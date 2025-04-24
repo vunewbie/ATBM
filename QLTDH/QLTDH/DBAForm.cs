@@ -119,6 +119,8 @@ namespace QLTDH
         {
             // Mặc định khi vào tab Privileges sẽ load table privileges
             LoadTablePrivileges();
+            LoadColumnPrivileges();
+            LoadRoleOfUser();
         }
 
         private void LoadTablePrivileges(string grantee = null)
@@ -182,6 +184,35 @@ namespace QLTDH
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tải dữ liệu Privileges: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadRoleOfUser(string grantee = null)
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+                    
+                    OracleCommand cmd = new OracleCommand("GET_GRANTED_ROLES", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;
+                    OracleParameter cursorParam = new OracleParameter("granted_roles_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    // TẮT tính năng tự động tạo cột
+                    dtgvRole.AutoGenerateColumns = false;
+                    // Gán DataTable vào DataSource
+                    dtgvRole.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách role của user: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -368,6 +399,10 @@ namespace QLTDH
                 // Nếu đang ở tab Column, gọi hàm LoadColumnPrivileges với tham số tìm kiếm
                 LoadColumnPrivileges(txbSearchGrantee.Text.Trim());
             }
+            else if (currentTab == tpageRole)
+            {
+                LoadRoleOfUser(txbSearchGrantee.Text.Trim());
+            }
         }
 
         private void tpageTable_Enter(object sender, EventArgs e)
@@ -400,6 +435,21 @@ namespace QLTDH
             }
         }
 
+        private void tpageRole_Enter(object sender, EventArgs e)
+        {
+            string searchQuery = txbSearchGrantee.Text.Trim();
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                // Nếu ô tìm kiếm trống, tải lại tất cả column privileges
+                LoadRoleOfUser();
+            }
+            else
+            {
+                // Nếu ô tìm kiếm có dữ liệu, tìm kiếm column privileges
+                LoadColumnPrivileges(searchQuery);
+            }
+        }
+
         public void btnRefresh_Click(object sender, EventArgs e)
         {
             TabPage currentTab = tctrlPrivileges.SelectedTab;
@@ -413,6 +463,10 @@ namespace QLTDH
             {
                 // Nếu đang ở tab Column, tải lại dữ liệu column privileges
                 LoadColumnPrivileges(txbSearchGrantee.Text.Trim());
+            }
+            else if (currentTab == tpageRole)
+            {
+                LoadRoleOfUser(txbSearchGrantee.Text.Trim());
             }
         }
 
