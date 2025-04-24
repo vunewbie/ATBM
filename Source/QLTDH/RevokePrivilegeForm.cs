@@ -76,7 +76,7 @@ namespace QLTDH
                     }
                 }
 
-                cbbUserRole.SelectedItem = -1;
+                cbbUserRole.SelectedIndex = -1;
                 cbbUserRole.Text = string.Empty;
             }
             catch (Exception ex)
@@ -124,6 +124,8 @@ namespace QLTDH
                     else
                     {
                         MessageBox.Show("Không có quyền nào được cấp cho người dùng/nhóm này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cbbUserRole.SelectedIndex = -1; // Reset to no selection
+                        cbbObject.SelectedIndex = -1; // Reset to no 
                         cbbObject.Text = string.Empty;
                         cbbUserRole.Text = string.Empty;
                     }
@@ -142,6 +144,12 @@ namespace QLTDH
             // Clear the text on the combo box
             cbbObject.Text = string.Empty;
             // Load the objects based on the selected user/role
+
+            //Only load object when user/role is selected
+            if (cbbUserRole.SelectedItem == null)
+            {
+                return;
+            }
             LoadObject();
         }
 
@@ -155,7 +163,7 @@ namespace QLTDH
                 cbbUserRole.SelectedIndex = -1; // Reset to no selection
                 cbbUserRole.Text = string.Empty; // Clear the text
                 cbbObject.Text = string.Empty; // Clear the text
-                cbbObject.SelectedItem = -1; // Reset to no selection
+                cbbObject.SelectedIndex = -1; // Reset to no selection
                 return;
             }
 
