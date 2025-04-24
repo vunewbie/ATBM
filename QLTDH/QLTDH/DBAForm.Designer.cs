@@ -30,10 +30,8 @@ namespace QLTDH
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
             this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
@@ -86,6 +84,7 @@ namespace QLTDH
             this.btnRevokePrivilege = new System.Windows.Forms.Button();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.btnGrantRoleToUser = new System.Windows.Forms.Button();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
             this.tlpUsers.SuspendLayout();
@@ -187,7 +186,7 @@ namespace QLTDH
             this.tlpUsersButton.Name = "tlpUsersButton";
             this.tlpUsersButton.RowCount = 1;
             this.tlpUsersButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpUsersButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 194F));
+            this.tlpUsersButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 189F));
             this.tlpUsersButton.Size = new System.Drawing.Size(1226, 192);
             this.tlpUsersButton.TabIndex = 1;
             // 
@@ -285,7 +284,7 @@ namespace QLTDH
             this.tpageRoles.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tpageRoles.Name = "tpageRoles";
             this.tpageRoles.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tpageRoles.Size = new System.Drawing.Size(1254, 715);
+            this.tpageRoles.Size = new System.Drawing.Size(1252, 700);
             this.tpageRoles.TabIndex = 1;
             this.tpageRoles.Text = "Roles";
             this.tpageRoles.Enter += new System.EventHandler(this.tpageRoles_Enter);
@@ -306,31 +305,15 @@ namespace QLTDH
             this.tlpRoles.RowCount = 2;
             this.tlpRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tlpRoles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tlpRoles.Size = new System.Drawing.Size(1244, 703);
+            this.tlpRoles.Size = new System.Drawing.Size(1242, 688);
             this.tlpRoles.TabIndex = 0;
             // 
             // dgvRoles
             // 
             this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRoles.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRoles.Location = new System.Drawing.Point(8, 9);
             this.dgvRoles.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -338,7 +321,7 @@ namespace QLTDH
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.RowHeadersWidth = 51;
             this.dgvRoles.RowTemplate.Height = 30;
-            this.dgvRoles.Size = new System.Drawing.Size(1228, 473);
+            this.dgvRoles.Size = new System.Drawing.Size(1226, 463);
             this.dgvRoles.TabIndex = 0;
             // 
             // tlpRolesButton
@@ -354,13 +337,13 @@ namespace QLTDH
             this.tlpRolesButton.Controls.Add(this.btnCreateRole, 0, 0);
             this.tlpRolesButton.Controls.Add(this.tlpSearchRole, 3, 0);
             this.tlpRolesButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpRolesButton.Location = new System.Drawing.Point(8, 497);
+            this.tlpRolesButton.Location = new System.Drawing.Point(8, 487);
             this.tlpRolesButton.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tlpRolesButton.Name = "tlpRolesButton";
             this.tlpRolesButton.RowCount = 1;
             this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpRolesButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 194F));
-            this.tlpRolesButton.Size = new System.Drawing.Size(1228, 197);
+            this.tlpRolesButton.Size = new System.Drawing.Size(1226, 192);
             this.tlpRolesButton.TabIndex = 1;
             // 
             // btnDeleteRole
@@ -368,10 +351,10 @@ namespace QLTDH
             this.btnDeleteRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnDeleteRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDeleteRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnDeleteRole.Location = new System.Drawing.Point(620, 9);
+            this.btnDeleteRole.Location = new System.Drawing.Point(618, 9);
             this.btnDeleteRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnDeleteRole.Name = "btnDeleteRole";
-            this.btnDeleteRole.Size = new System.Drawing.Size(293, 179);
+            this.btnDeleteRole.Size = new System.Drawing.Size(292, 174);
             this.btnDeleteRole.TabIndex = 2;
             this.btnDeleteRole.Text = "Xóa vai trò";
             this.btnDeleteRole.UseVisualStyleBackColor = false;
@@ -382,10 +365,10 @@ namespace QLTDH
             this.btnUpdateRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnUpdateRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnUpdateRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnUpdateRole.Location = new System.Drawing.Point(314, 9);
+            this.btnUpdateRole.Location = new System.Drawing.Point(313, 9);
             this.btnUpdateRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnUpdateRole.Name = "btnUpdateRole";
-            this.btnUpdateRole.Size = new System.Drawing.Size(293, 179);
+            this.btnUpdateRole.Size = new System.Drawing.Size(292, 174);
             this.btnUpdateRole.TabIndex = 1;
             this.btnUpdateRole.Text = "Cập nhật vai trò";
             this.btnUpdateRole.UseVisualStyleBackColor = false;
@@ -399,7 +382,7 @@ namespace QLTDH
             this.btnCreateRole.Location = new System.Drawing.Point(8, 9);
             this.btnCreateRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnCreateRole.Name = "btnCreateRole";
-            this.btnCreateRole.Size = new System.Drawing.Size(293, 179);
+            this.btnCreateRole.Size = new System.Drawing.Size(292, 174);
             this.btnCreateRole.TabIndex = 0;
             this.btnCreateRole.Text = "Tạo vai trò";
             this.btnCreateRole.UseVisualStyleBackColor = false;
@@ -414,13 +397,13 @@ namespace QLTDH
             this.tlpSearchRole.Controls.Add(this.btnSearchRole, 0, 1);
             this.tlpSearchRole.Controls.Add(this.txbSearchRole, 0, 0);
             this.tlpSearchRole.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpSearchRole.Location = new System.Drawing.Point(926, 9);
+            this.tlpSearchRole.Location = new System.Drawing.Point(923, 9);
             this.tlpSearchRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tlpSearchRole.Name = "tlpSearchRole";
             this.tlpSearchRole.RowCount = 2;
             this.tlpSearchRole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpSearchRole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpSearchRole.Size = new System.Drawing.Size(294, 179);
+            this.tlpSearchRole.Size = new System.Drawing.Size(295, 174);
             this.tlpSearchRole.TabIndex = 3;
             // 
             // btnSearchRole
@@ -428,10 +411,10 @@ namespace QLTDH
             this.btnSearchRole.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnSearchRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnSearchRole.Location = new System.Drawing.Point(8, 97);
+            this.btnSearchRole.Location = new System.Drawing.Point(8, 94);
             this.btnSearchRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnSearchRole.Name = "btnSearchRole";
-            this.btnSearchRole.Size = new System.Drawing.Size(278, 73);
+            this.btnSearchRole.Size = new System.Drawing.Size(279, 71);
             this.btnSearchRole.TabIndex = 3;
             this.btnSearchRole.Text = "Tìm kiếm";
             this.btnSearchRole.UseVisualStyleBackColor = false;
@@ -441,15 +424,16 @@ namespace QLTDH
             // 
             this.txbSearchRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txbSearchRole.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txbSearchRole.Location = new System.Drawing.Point(8, 23);
+            this.txbSearchRole.Location = new System.Drawing.Point(8, 21);
             this.txbSearchRole.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txbSearchRole.Name = "txbSearchRole";
-            this.txbSearchRole.Size = new System.Drawing.Size(278, 45);
+            this.txbSearchRole.Size = new System.Drawing.Size(279, 45);
             this.txbSearchRole.TabIndex = 0;
             // 
             // tpagePrivileges
             // 
             this.tpagePrivileges.BackColor = System.Drawing.SystemColors.Control;
+            this.tpagePrivileges.Controls.Add(this.btnGrantRoleToUser);
             this.tpagePrivileges.Controls.Add(this.btnRefresh);
             this.tpagePrivileges.Controls.Add(this.tctrlPrivileges);
             this.tpagePrivileges.Controls.Add(this.lbSearchGrantee);
@@ -460,7 +444,7 @@ namespace QLTDH
             this.tpagePrivileges.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tpagePrivileges.Name = "tpagePrivileges";
             this.tpagePrivileges.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tpagePrivileges.Size = new System.Drawing.Size(1254, 715);
+            this.tpagePrivileges.Size = new System.Drawing.Size(1252, 700);
             this.tpagePrivileges.TabIndex = 2;
             this.tpagePrivileges.Text = "Privileges";
             this.tpagePrivileges.Enter += new System.EventHandler(this.tpagePrivileges_Enter);
@@ -502,14 +486,14 @@ namespace QLTDH
             // 
             this.dgvTablePrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvTablePrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablePrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbl_GRANTEE,
@@ -647,14 +631,14 @@ namespace QLTDH
             // 
             this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_GRANTEE,
@@ -790,7 +774,7 @@ namespace QLTDH
             // 
             this.btnRevokePrivilege.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnRevokePrivilege.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRevokePrivilege.Location = new System.Drawing.Point(359, 9);
+            this.btnRevokePrivilege.Location = new System.Drawing.Point(622, 9);
             this.btnRevokePrivilege.Name = "btnRevokePrivilege";
             this.btnRevokePrivilege.Size = new System.Drawing.Size(261, 67);
             this.btnRevokePrivilege.TabIndex = 6;
@@ -822,6 +806,18 @@ namespace QLTDH
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
+            // btnGrantRoleToUser
+            // 
+            this.btnGrantRoleToUser.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnGrantRoleToUser.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrantRoleToUser.Location = new System.Drawing.Point(335, 9);
+            this.btnGrantRoleToUser.Name = "btnGrantRoleToUser";
+            this.btnGrantRoleToUser.Size = new System.Drawing.Size(261, 67);
+            this.btnGrantRoleToUser.TabIndex = 13;
+            this.btnGrantRoleToUser.Text = "Cấp role cho user";
+            this.btnGrantRoleToUser.UseVisualStyleBackColor = false;
+            this.btnGrantRoleToUser.Click += new System.EventHandler(this.btnGrantRoleToUser_Click);
             // 
             // DBAForm
             // 
@@ -915,5 +911,6 @@ namespace QLTDH
         private System.Windows.Forms.DataGridViewTextBoxColumn col_COMMON;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_INHERITED;
         private Button btnLogOut;
+        private Button btnGrantRoleToUser;
     }
 }
