@@ -223,5 +223,14 @@ namespace QLTDH
                 MessageBox.Show($"Lỗi không xác định: {ex.Message}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void GrantRoleToUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Gọi hàm btnRefresh_Click ở form DBAForm
+            if (Owner is DBAForm dbaForm)
+            {
+                dbaForm.btnRefresh_Click(sender, e);
+            }
+        }
     }
 }
