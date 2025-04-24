@@ -406,7 +406,14 @@ BEGIN
     END IF;
 
     -- Construct view name
-    v_view_name := 'v_' || p_attribute(1) || '_' || p_object;
+    v_view_name := 'v_';
+    FOR i IN 1 .. p_attribute.COUNT LOOP
+        v_view_name := v_view_name || p_attribute(i);
+        IF i < p_attribute.COUNT THEN
+            v_view_name := v_view_name || '_';
+        END IF;
+    END LOOP;
+    v_view_name := v_view_name || '_' || p_object;
 
     -- Check if the view already exists
     SELECT COUNT(*) INTO v_count FROM user_views WHERE view_name = UPPER(v_view_name);
