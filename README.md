@@ -6,7 +6,7 @@
 
 The University Management System is an application built for database administrators to manage university databases in an intuitive way, allowing operations such as creating users, roles, granting permissions, revoking permissions, auditing...
 
-This project was developed as required for the course project **Data Security in Information Systems - CSC12001 - CQ2022/1 - HCMUS**
+This project was developed as part of the course project requirement for **Data Security in Information Systems (CSC12001 - CQ2022/1) at HCMUS**.
 
 ## Project Structure
 
