@@ -175,6 +175,8 @@ namespace QLTDH
             this.dgvUsers.RowTemplate.Height = 30;
             this.dgvUsers.Size = new System.Drawing.Size(1226, 463);
             this.dgvUsers.TabIndex = 0;
+            this.dgvUsers.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvUsers.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // tlpUsersButton
             // 
@@ -331,6 +333,8 @@ namespace QLTDH
             this.dgvRoles.RowTemplate.Height = 30;
             this.dgvRoles.Size = new System.Drawing.Size(1226, 463);
             this.dgvRoles.TabIndex = 0;
+            this.dgvRoles.DefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvRoles.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // tlpRolesButton
             // 
