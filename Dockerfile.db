@@ -1,0 +1,8 @@
+FROM gvenzl/oracle-xe:latest
+
+ENV ORACLE_PASSWORD=oracle
+ENV ORACLE_DATABASE=QUANLYTRUONGDAIHOC
+
+EXPOSE 1521
+
+COPY ./Init_Scripts/*.sql /container-entrypoint-initdb.d/
