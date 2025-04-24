@@ -674,13 +674,14 @@ BEGIN
         OPEN granted_roles_cursor FOR
         SELECT GRANTEE, GRANTED_ROLE, ADMIN_OPTION, DEFAULT_ROLE
         FROM DBA_ROLE_PRIVS
+        WHERE COMMON = 'NO'
         ORDER BY GRANTEE, GRANTED_ROLE;
     ELSE
         -- Nếu có truyền user, lọc theo user đó
         OPEN granted_roles_cursor FOR
         SELECT GRANTEE, GRANTED_ROLE, ADMIN_OPTION, DEFAULT_ROLE
         FROM DBA_ROLE_PRIVS
-        WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%'))
+        WHERE (p_grantee IS NULL OR UPPER(GRANTEE) LIKE UPPER('%' || p_grantee || '%')) AND COMMON = 'NO'
         ORDER BY GRANTED_ROLE;
     END IF;
 END;
