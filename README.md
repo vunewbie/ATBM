@@ -58,8 +58,9 @@ The database consists of the following primary tables:
    git clone <repository-url>
    cd <repository-folder>
    ```
-
-2. **Build and start the Oracle container**:
+2. **Make sure Docker is running**:
+Before continuing, ensure that Docker is running on your machine (e.g., Docker Desktop must be started and running in the background).
+4. **Build and start the Oracle container**:
 
    ```
    docker-compose build
@@ -68,7 +69,7 @@ The database consists of the following primary tables:
 
    > **Note**: Oracle Database initialization may take 1-2 minutes. You can monitor the progress with `docker-compose logs -f oracledb`.
 
-3. **Verify container status**:
+5. **Verify container status**:
    ```
    docker-compose ps
    ```
