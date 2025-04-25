@@ -56,8 +56,12 @@ namespace QLTDH
                 }
 
                 // Select the first item if available
-                if (cbbUser.Items.Count > 0)
-                    cbbUser.SelectedIndex = 0;
+                if (cbbUser.Items.Count > 0) cbbUser.SelectedIndex = 0;
+                else
+                {
+                    MessageBox.Show("Chưa có user, vui lòng tạo user trước!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbbUser.SelectedIndex = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -96,8 +100,12 @@ namespace QLTDH
                 }
 
                 // Select the first item if available
-                if (cbbRole.Items.Count > 0)
-                    cbbRole.SelectedIndex = 0;
+                if (cbbRole.Items.Count > 0) cbbRole.SelectedIndex = 0;
+                else
+                {
+                    MessageBox.Show("Chưa có role, vui lòng tạo role trước!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbbRole.SelectedIndex = -1;
+                }
             }
             catch (Exception ex)
             {
