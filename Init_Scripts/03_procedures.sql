@@ -576,11 +576,6 @@ BEGIN
     -- Xây dựng câu lệnh GRANT EXECUTE
     v_sql := 'GRANT EXECUTE ON ' || p_object || ' TO ' || p_username;
 
-    -- Thêm WITH GRANT OPTION nếu cần
-    IF p_with_grant_option THEN
-        v_sql := v_sql || ' WITH GRANT OPTION';
-    END IF;
-
     -- Thực thi
     EXECUTE IMMEDIATE v_sql;
 

@@ -114,6 +114,8 @@ namespace QLTDH
             cbbObjectType.Items.Clear();
             if (cbbPrivilege.Text == "EXECUTE")
             {
+                ckbWithGrantOption.Checked = false;
+                ckbWithGrantOption.Enabled = false;
                 string[] items = { "PROCEDURE", "FUNCTION" };
                 cbbObjectType.Items.AddRange(items);
             }
