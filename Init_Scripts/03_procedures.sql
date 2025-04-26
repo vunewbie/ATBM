@@ -166,12 +166,16 @@ END DELETE_ROLE;
 -- DROP PROCEDURE QLTDH.UPDATE_ROLE_PASSWORD;
 CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_ROLE_PASSWORD (
     p_role IN VARCHAR2,
-    p_password IN VARCHAR2
+    p_password IN VARCHAR2 DEFAULT NULL
 ) 
 AS  
 BEGIN
-    -- Cập nhật password cho Role
-    EXECUTE IMMEDIATE 'ALTER ROLE ' || p_role || ' IDENTIFIED BY ' || p_password;
+    IF p_password IS NULL THEN
+        EXECUTE IMMEDIATE 'ALTER ROLE ' || p_role || ' NOT IDENTIFIED'; -- PASSWORD NULL
+    ELSE
+        -- Cập nhật password cho Role
+        EXECUTE IMMEDIATE 'ALTER ROLE ' || p_role || ' IDENTIFIED BY ' || p_password;
+    END IF;
 END UPDATE_ROLE_PASSWORD;
 /
 
