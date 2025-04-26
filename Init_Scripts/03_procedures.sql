@@ -681,7 +681,17 @@ CREATE OR REPLACE PROCEDURE QLTDH.REVOKE_ROLE_FROM_USER (
 AS
     v_sql        VARCHAR2(4000);
     v_count      NUMBER := 0;
+    v_is_dba     NUMBER := 0;
 BEGIN
+    SELECT COUNT(*) INTO v_is_dba
+    FROM DBA_ROLE_PRIVS
+    WHERE GRANTEE = UPPER(p_grantee)
+      AND GRANTED_ROLE = 'DBA';
+
+    IF v_is_dba > 0 THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Không được phép thu hồi role từ người dùng thuộc DBA.');
+    END IF;
+
     BEGIN
         v_sql := 'REVOKE ' || p_role || ' FROM ' || p_grantee;
         EXECUTE IMMEDIATE v_sql;

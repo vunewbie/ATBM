@@ -45,8 +45,12 @@ namespace QLTDH
                                 cbbUser.Items.Add(user);
                             }
                         }
-                        if (cbbUser.Items.Count > 0)
-                            cbbUser.SelectedIndex = 0;
+                        if (cbbUser.Items.Count > 0) cbbUser.SelectedIndex = 0;
+                        else
+                        {
+                            MessageBox.Show("Không có role nào được cấp cho user.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            cbbUser.SelectedIndex = -1;
+                        }
                     }
 
                 }
@@ -170,6 +174,10 @@ namespace QLTDH
                 if (ex.ErrorCode == -20003)
                 {
                     MessageBox.Show($"Lỗi khi thu hồi role: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if(ex.ErrorCode == -20002)
+                {
+                    MessageBox.Show($"Không thể thu hồi role từ user này: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {

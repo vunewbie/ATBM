@@ -76,8 +76,12 @@ namespace QLTDH
                 }
 
                 // Select the first item if available
-                if (cbbUserRole.Items.Count > 0)
-                    cbbUserRole.SelectedIndex = 0;
+                if (cbbUserRole.Items.Count > 0) cbbUserRole.SelectedIndex = 0;
+                else
+                {
+                    MessageBox.Show("Chưa có user/role, vui lòng tạo user/role trước!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cbbUserRole.SelectedIndex = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -185,7 +189,6 @@ namespace QLTDH
                 }
             }
         }
-
 
         private void cbbObject_SelectedIndexChanged(object sender, EventArgs e)
         {
