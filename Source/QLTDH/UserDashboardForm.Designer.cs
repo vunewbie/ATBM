@@ -61,6 +61,8 @@
             this.tpgStudent = new System.Windows.Forms.TabPage();
             this.tpgRegister = new System.Windows.Forms.TabPage();
             this.oracleCommand1 = new Oracle.ManagedDataAccess.Client.OracleCommand();
+            this.lblEmployeePhone = new System.Windows.Forms.Label();
+            this.txbEmployeePhone = new System.Windows.Forms.TextBox();
             this.tctrlUserDashboard.SuspendLayout();
             this.tpgEmployee.SuspendLayout();
             this.tlpEmployee.SuspendLayout();
@@ -92,7 +94,7 @@
             this.tpgEmployee.Controls.Add(this.tlpEmployee);
             this.tpgEmployee.Location = new System.Drawing.Point(4, 34);
             this.tpgEmployee.Name = "tpgEmployee";
-            this.tpgEmployee.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpgEmployee.Padding = new System.Windows.Forms.Padding(3);
             this.tpgEmployee.Size = new System.Drawing.Size(1252, 663);
             this.tpgEmployee.TabIndex = 0;
             this.tpgEmployee.Text = "Nhân viên";
@@ -133,10 +135,12 @@
             // 
             // dtgvEmployee
             // 
+            this.dtgvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvEmployee.Location = new System.Drawing.Point(3, 45);
             this.dtgvEmployee.Name = "dtgvEmployee";
+            this.dtgvEmployee.RowHeadersVisible = false;
             this.dtgvEmployee.RowHeadersWidth = 62;
             this.dtgvEmployee.RowTemplate.Height = 28;
             this.dtgvEmployee.Size = new System.Drawing.Size(1005, 458);
@@ -168,6 +172,7 @@
             this.btnDeleteEmployee.TabIndex = 5;
             this.btnDeleteEmployee.Text = "Xóa dữ liệu";
             this.btnDeleteEmployee.UseVisualStyleBackColor = false;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
             // 
             // btnUpdateEmployee
             // 
@@ -180,6 +185,7 @@
             this.btnUpdateEmployee.TabIndex = 4;
             this.btnUpdateEmployee.Text = "Cập nhật";
             this.btnUpdateEmployee.UseVisualStyleBackColor = false;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // btnInsertEmployee
             // 
@@ -192,6 +198,7 @@
             this.btnInsertEmployee.TabIndex = 3;
             this.btnInsertEmployee.Text = "Thêm dữ liệu";
             this.btnInsertEmployee.UseVisualStyleBackColor = false;
+            this.btnInsertEmployee.Click += new System.EventHandler(this.btnInsertEmployee_Click);
             // 
             // btnSelectEmployee
             // 
@@ -228,6 +235,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txbEmployeePhone);
+            this.panel2.Controls.Add(this.lblEmployeePhone);
             this.panel2.Controls.Add(this.cbbUnitID);
             this.panel2.Controls.Add(this.lblUnitID);
             this.panel2.Controls.Add(this.cbbEmployeeRole);
@@ -254,16 +263,16 @@
             // 
             this.cbbUnitID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbUnitID.FormattingEnabled = true;
-            this.cbbUnitID.Location = new System.Drawing.Point(766, 52);
+            this.cbbUnitID.Location = new System.Drawing.Point(766, 98);
             this.cbbUnitID.Name = "cbbUnitID";
             this.cbbUnitID.Size = new System.Drawing.Size(223, 35);
-            this.cbbUnitID.TabIndex = 15;
+            this.cbbUnitID.TabIndex = 17;
             // 
             // lblUnitID
             // 
             this.lblUnitID.AutoSize = true;
             this.lblUnitID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnitID.Location = new System.Drawing.Point(682, 56);
+            this.lblUnitID.Location = new System.Drawing.Point(679, 102);
             this.lblUnitID.Name = "lblUnitID";
             this.lblUnitID.Size = new System.Drawing.Size(83, 27);
             this.lblUnitID.TabIndex = 14;
@@ -273,16 +282,16 @@
             // 
             this.cbbEmployeeRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbEmployeeRole.FormattingEnabled = true;
-            this.cbbEmployeeRole.Location = new System.Drawing.Point(766, 7);
+            this.cbbEmployeeRole.Location = new System.Drawing.Point(766, 53);
             this.cbbEmployeeRole.Name = "cbbEmployeeRole";
             this.cbbEmployeeRole.Size = new System.Drawing.Size(223, 35);
-            this.cbbEmployeeRole.TabIndex = 13;
+            this.cbbEmployeeRole.TabIndex = 15;
             // 
             // lblEmployeeRole
             // 
             this.lblEmployeeRole.AutoSize = true;
             this.lblEmployeeRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeRole.Location = new System.Drawing.Point(683, 11);
+            this.lblEmployeeRole.Location = new System.Drawing.Point(679, 56);
             this.lblEmployeeRole.Name = "lblEmployeeRole";
             this.lblEmployeeRole.Size = new System.Drawing.Size(75, 27);
             this.lblEmployeeRole.TabIndex = 12;
@@ -293,7 +302,6 @@
             this.txbEmployeeAllowance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeAllowance.Location = new System.Drawing.Point(450, 97);
             this.txbEmployeeAllowance.Name = "txbEmployeeAllowance";
-            this.txbEmployeeAllowance.ReadOnly = true;
             this.txbEmployeeAllowance.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeAllowance.TabIndex = 11;
             // 
@@ -353,7 +361,6 @@
             this.txbEmployeeSalary.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeSalary.Location = new System.Drawing.Point(450, 53);
             this.txbEmployeeSalary.Name = "txbEmployeeSalary";
-            this.txbEmployeeSalary.ReadOnly = true;
             this.txbEmployeeSalary.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeSalary.TabIndex = 5;
             // 
@@ -372,7 +379,6 @@
             this.txbEmployeeFullname.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeFullname.Location = new System.Drawing.Point(97, 53);
             this.txbEmployeeFullname.Name = "txbEmployeeFullname";
-            this.txbEmployeeFullname.ReadOnly = true;
             this.txbEmployeeFullname.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeFullname.TabIndex = 3;
             // 
@@ -388,10 +394,10 @@
             // 
             // txbEmployeeID
             // 
+            this.txbEmployeeID.Enabled = false;
             this.txbEmployeeID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeID.Location = new System.Drawing.Point(97, 7);
             this.txbEmployeeID.Name = "txbEmployeeID";
-            this.txbEmployeeID.ReadOnly = true;
             this.txbEmployeeID.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeID.TabIndex = 1;
             // 
@@ -409,7 +415,7 @@
             // 
             this.tpgSubject.Location = new System.Drawing.Point(4, 34);
             this.tpgSubject.Name = "tpgSubject";
-            this.tpgSubject.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpgSubject.Padding = new System.Windows.Forms.Padding(3);
             this.tpgSubject.Size = new System.Drawing.Size(1252, 663);
             this.tpgSubject.TabIndex = 1;
             this.tpgSubject.Text = "Mở môn";
@@ -437,6 +443,24 @@
             // 
             this.oracleCommand1.RowsToFetchPerRoundTrip = ((long)(0));
             this.oracleCommand1.Transaction = null;
+            // 
+            // lblEmployeePhone
+            // 
+            this.lblEmployeePhone.AutoSize = true;
+            this.lblEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeePhone.Location = new System.Drawing.Point(679, 13);
+            this.lblEmployeePhone.Name = "lblEmployeePhone";
+            this.lblEmployeePhone.Size = new System.Drawing.Size(55, 27);
+            this.lblEmployeePhone.TabIndex = 16;
+            this.lblEmployeePhone.Text = "SDT";
+            // 
+            // txbEmployeePhone
+            // 
+            this.txbEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEmployeePhone.Location = new System.Drawing.Point(767, 7);
+            this.txbEmployeePhone.Name = "txbEmployeePhone";
+            this.txbEmployeePhone.Size = new System.Drawing.Size(223, 35);
+            this.txbEmployeePhone.TabIndex = 13;
             // 
             // UserDashboardForm
             // 
@@ -498,5 +522,7 @@
         private System.Windows.Forms.Label lblEmployeeRole;
         private System.Windows.Forms.ComboBox cbbUnitID;
         private System.Windows.Forms.Label lblUnitID;
+        private System.Windows.Forms.Label lblEmployeePhone;
+        private System.Windows.Forms.TextBox txbEmployeePhone;
     }
 }

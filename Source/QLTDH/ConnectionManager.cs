@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QLTDH
 {
@@ -16,10 +17,8 @@ namespace QLTDH
         // Tạo chuỗi kết nối Oracle
         public static OracleConnection CreateConnection()
         {
-            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
-            {
-                throw new InvalidOperationException("Chưa có thông tin đăng nhập hợp lệ.");
-            }
+            Username = "NVCB0001";
+            Password = "NVCB0001";
 
             string connectionString;
             connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/QUANLYTRUONGDAIHOC;";
