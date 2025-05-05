@@ -702,3 +702,19 @@ BEGIN
     END;
 END;
 /
+
+--Xem danh sách nhân viên
+CREATE OR REPLACE PROCEDURE QLTDH.GET_EMPLOYEE_LIST(
+    name IN VARCHAR2,
+    employees_cursor OUT SYS_REFCURSOR)
+AS
+BEGIN
+    IF name IS NULL THEN
+        OPEN employees_cursor FOR SELECT * FROM QLTDH.NHANVIEN;
+    ELSE 
+        OPEN employees_cursor FOR 
+            SELECT * FROM QLTDH.NHANVIEN 
+            WHERE UPPER(HOTEN) LIKE '%' || UPPER(name) || '%';
+    END IF;
+END;
+/
