@@ -6,7 +6,7 @@ SET SERVEROUTPUT ON;
 DECLARE
     v_role_exists NUMBER;
     TYPE role_array IS TABLE OF VARCHAR2(20);
-    roles role_array := role_array('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV');
+    roles role_array := role_array('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV', 'SV');
 BEGIN
     FOR i IN 1..roles.COUNT LOOP
         -- Kiểm tra xem role có tồn tại không
@@ -27,7 +27,7 @@ END;
 
 -- Tạo các role
 BEGIN
-  FOR r IN (SELECT column_value AS role_name FROM TABLE(sys.dbms_debug_vc2coll('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV'))) LOOP
+  FOR r IN (SELECT column_value AS role_name FROM TABLE(sys.dbms_debug_vc2coll('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV', 'SV'))) LOOP
     EXECUTE IMMEDIATE 'CREATE ROLE "' || r.role_name || '"';
   END LOOP;
 END;
@@ -42,7 +42,7 @@ DECLARE
     TYPE user_array IS TABLE OF VARCHAR2(30);
     users user_array := user_array(
         'NVCB0001', 'GV0001', 'NVPDT0001', 'NVPKT0001',
-        'NVTCHC0001', 'NVCTSV0001', 'TRGDV0001'
+        'NVTCHC0001', 'NVCTSV0001', 'TRGDV0001', 'SV0030'
     );
 BEGIN
     FOR i IN 1..users.COUNT LOOP
@@ -71,6 +71,7 @@ BEGIN
     QLTDH.CREATE_USER('NVTCHC0001', 'NVTCHC0001');
     QLTDH.CREATE_USER('NVCTSV0001', 'NVCTSV0001');
     QLTDH.CREATE_USER('TRGDV0001', 'TRGDV0001');
+    QLTDH.CREATE_USER('SV0030', 'SV0030');
 END;
 /
 
@@ -86,13 +87,14 @@ BEGIN
     QLTDH.GRANT_ROLE_TO_USER('NVTCHC0001', 'NV TCHC', FALSE);
     QLTDH.GRANT_ROLE_TO_USER('NVCTSV0001', 'NV CTSV', FALSE);
     QLTDH.GRANT_ROLE_TO_USER('TRGDV0001', 'TRGĐV', FALSE);
+    QLTDH.GRANT_ROLE_TO_USER('SV0030', 'SV', FALSE);
 END;
 /
 
 -- Kiểm tra các role đã cấp
 SELECT * 
 FROM DBA_ROLE_PRIVS 
-WHERE GRANTEE IN ('NVCB0001', 'GV0001', 'NVPDT0001', 'NVPKT0001', 'NVTCHC0001', 'NVCTSV0001', 'TRGDV0001')
+WHERE GRANTEE IN ('NVCB0001', 'GV0001', 'NVPDT0001', 'NVPKT0001', 'NVTCHC0001', 'NVCTSV0001', 'TRGDV0001', 'SV0030')
 ORDER BY GRANTEE;
 
 -- Nhân viên có quyền xem thông tin cá nhân
@@ -170,12 +172,12 @@ END;
 
 -- Tạo procedure để nhân viên cập nhật số điện thoại của mình
 CREATE OR REPLACE PROCEDURE QLTDH.EMPLOYEE_UPDATE_PHONE_NUMBER (
-    p_new_dt IN VARCHAR2
+    p_new_phone_number IN VARCHAR2
 )
 AS
 BEGIN
     UPDATE QLTDH.NHANVIEN
-    SET DT = p_new_dt
+    SET DT = p_new_phone_number
     WHERE MANV = SYS_CONTEXT('USERENV', 'SESSION_USER');
     
     COMMIT;
@@ -292,20 +294,12 @@ END;
 -- Tạo view để trưởng đơn vị xem thông tin nhân viên trong đơn vị
 CREATE OR REPLACE VIEW QLTDH.EMPLOYEE_UNIT_INFO 
 AS
-    SELECT 
-        N.MANV,
-        N.HOTEN,
-        N.PHAI,
-        N.NGSINH,
-        N.DT,
-        N.VAITRO,
-        N.MADV
-    FROM QLTDH.NHANVIEN N
-    WHERE N.MADV = (
+    SELECT NV.MANV, NV.HOTEN, NV.PHAI, NV.NGSINH, NV.DT, NV.VAITRO, NV.MADV
+    FROM QLTDH.NHANVIEN NV
+    WHERE NV.MADV = (
         SELECT MADV 
         FROM QLTDH.NHANVIEN 
-        WHERE MANV = SYS_CONTEXT('USERENV', 'SESSION_USER')
-    );
+        WHERE MANV = SYS_CONTEXT('USERENV', 'SESSION_USER'));
 
 -- Cấp quyền cho role TRGĐV
 GRANT SELECT ON QLTDH.EMPLOYEE_UNIT_INFO TO "TRGĐV";
