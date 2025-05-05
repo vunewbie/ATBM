@@ -32,7 +32,8 @@ namespace QLTDH
 
             try
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection()) { 
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                { 
                     conn.Open();
 
                     // Kiểm tra xem role đã tồn tại

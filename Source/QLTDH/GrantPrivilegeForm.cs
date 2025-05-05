@@ -198,6 +198,7 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
+
                     string query = "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = \'" + cbbObject.Text.ToString() + '\'';
                     OracleDataAdapter adapter = new OracleDataAdapter(query, conn);
                     DataTable dataTable = new DataTable();

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
@@ -28,8 +23,8 @@ namespace QLTDH
                 return;
             }
 
-            string username = txbUsername.Text.ToUpper();
-            string password = txbPassword.Text;
+            string username = txbUsername.Text.ToUpper().Trim();
+            string password = txbPassword.Text.Trim();
 
             // Lưu thông tin đăng nhập vào ConnectionManager
             ConnectionManager.Username = username;
@@ -42,39 +37,41 @@ namespace QLTDH
                 {
                     conn.Open();
 
-                    // Kiểm tra quyền của người dùng
-                    string checkRoleQuery = @"SELECT GRANTED_ROLE 
-                                              FROM DBA_ROLE_PRIVS 
-                                              WHERE GRANTEE = :username 
-                                              AND GRANTED_ROLE = 'DBA'";
-                    OracleCommand cmd = new OracleCommand(checkRoleQuery, conn);
-                    cmd.Parameters.Add(new OracleParameter("username", username));
-
-                    OracleDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    try
                     {
-                        // Nếu người dùng có quyền SYSDBA hoặc DBA, chuyển sang giao diện DBAForm
-                        if (reader.GetString(0) == "SYSDBA" || reader.GetString(0) == "DBA")
+                        if (RoleManager.HasRole(conn, "DBA"))
                         {
-                            MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Hide(); // Ẩn LoginForm thay vì đóng
+                            this.Hide();
                             DBAForm dbaForm = new DBAForm();
                             dbaForm.ShowDialog();
                             this.Close();
                         }
+                        else
+                        {
+                            //TODO: Chuyển đến form UserDashboard
+                        }
                     }
-                    else
+                    catch (ArgumentException argEx)
                     {
-                        MessageBox.Show("Bạn không phải DBA", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        MessageBox.Show("Lỗi khi kiểm tra role: " + argEx.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+            catch (OracleException oraEx)
+            {
+                if (oraEx.Number == 1017)
+                {
+                    // Lỗi đăng nhập không thành công
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng kiểm tra lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi Oracle: " + oraEx.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi kết nối
-                MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                MessageBox.Show("Lỗi không xác định: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
