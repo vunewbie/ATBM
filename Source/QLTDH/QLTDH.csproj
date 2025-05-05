@@ -165,6 +165,7 @@
     <Compile Include="RevokeRoleForm.Designer.cs">
       <DependentUpon>RevokeRoleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoleManager.cs" />
     <Compile Include="UpdateRolePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>

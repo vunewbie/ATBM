@@ -33,7 +33,6 @@ namespace QLTDH
                 // Create connection using ConnectionManager
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
-                    conn.Open();
 
                     // Create command to call the stored procedure that gets users
                     OracleCommand cmd = new OracleCommand("GET_USER_LIST", conn);
@@ -243,6 +242,7 @@ namespace QLTDH
                     using (OracleConnection conn = ConnectionManager.CreateConnection())
                     {
                         conn.Open();
+
                         // Create command to execute the revoke statement
                         OracleCommand cmd = new OracleCommand(revokeStatement, conn);
                         cmd.ExecuteNonQuery();
