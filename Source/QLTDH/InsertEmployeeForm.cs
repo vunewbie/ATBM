@@ -13,45 +13,66 @@ namespace QLTDH
 {
     public partial class InsertEmployeeForm : Form
     {
-        private string role;
-        public InsertEmployeeForm(string role)
+        public InsertEmployeeForm()
         {
             InitializeComponent();
-            this.role = role;
+            LoadUnit();
         }
-        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        private void LoadUnit()
         {
-            if (string.IsNullOrEmpty(txbEmployeeFullname.Text) ||
-                string.IsNullOrEmpty(cbbEmployeeGender.Text) ||
-                string.IsNullOrEmpty(txbEmployeeSalary.Text) ||
-                string.IsNullOrEmpty(txbEmployeeAllowance.Text) ||
-                string.IsNullOrEmpty(txbEmployeePhone.Text) ||
-                string.IsNullOrEmpty(cbbEmployeeRole.Text) ||
-                string.IsNullOrEmpty(cbbUnitName.Text))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             try
             {
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
+                    string query = "SELECT TENDV FROM QLTDH.DONVI";
+                    OracleCommand cmd = new OracleCommand(query,conn);
+                    cmd.CommandType = CommandType.Text;
 
-                    OracleCommand cmd = new OracleCommand("INSERT_EMPLOYEE", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    cbbUnitName.Items.Clear();
+                    while (reader.Read())
+                    {
+                        cbbUnitName.Items.Add(reader.GetString(0));
+                    }
 
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải đơn vị: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void InsertEmployeeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Owner is UserDashboardForm userForm)
+            {
+                userForm.LoadEmployeeList();
+            }
+        }
+
+        private void btnInsertEmployee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+                    OracleCommand cmd;
+                    cmd = new OracleCommand("QLTDH.INSERT_EMPLOYEE", conn);
                     cmd.Parameters.Add(new OracleParameter("fullname", txbEmployeeFullname.Text));
                     cmd.Parameters.Add(new OracleParameter("gender", cbbEmployeeGender.Text));
-                    cmd.Parameters.Add(new OracleParameter("DOB", dtpkDOB.Value)); 
+                    cmd.Parameters.Add(new OracleParameter("DOB", dtpkDOB.Value));
                     cmd.Parameters.Add(new OracleParameter("salary", Convert.ToInt32(txbEmployeeSalary.Text)));
                     cmd.Parameters.Add(new OracleParameter("allowance", Convert.ToInt32(txbEmployeeAllowance.Text)));
                     cmd.Parameters.Add(new OracleParameter("phone", txbEmployeePhone.Text));
                     cmd.Parameters.Add(new OracleParameter("role", cbbEmployeeRole.Text));
                     cmd.Parameters.Add(new OracleParameter("unit", cbbUnitName.Text));
 
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
+
                     MessageBox.Show("Thêm nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

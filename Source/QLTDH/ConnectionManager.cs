@@ -17,8 +17,10 @@ namespace QLTDH
         // Tạo chuỗi kết nối Oracle
         public static OracleConnection CreateConnection()
         {
-            Username = "NVCB0001";
-            Password = "NVCB0001";
+            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+            {
+                throw new InvalidOperationException("Chưa có thông tin đăng nhập hợp lệ.");
+            }
 
             string connectionString;
             connectionString = $"User Id={Username};Password={Password};Data Source=localhost:1521/QUANLYTRUONGDAIHOC;";

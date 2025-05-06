@@ -48,7 +48,10 @@ namespace QLTDH
                         }
                         else
                         {
-                            //TODO: Chuyển đến form UserDashboard
+                            this.Hide();
+                            UserDashboardForm userForm = new UserDashboardForm("NV PĐT");
+                            userForm.ShowDialog();
+                            this.Close();
                         }
                     }
                     catch (ArgumentException argEx)

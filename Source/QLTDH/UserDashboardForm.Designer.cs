@@ -38,9 +38,11 @@
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnInsertEmployee = new System.Windows.Forms.Button();
             this.btnSelectEmployee = new System.Windows.Forms.Button();
-            this.tbxSearch = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.txbEmployeeSearch = new System.Windows.Forms.TextBox();
+            this.lblEmployeeSearch = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txbEmployeePhone = new System.Windows.Forms.TextBox();
+            this.lblEmployeePhone = new System.Windows.Forms.Label();
             this.cbbUnitID = new System.Windows.Forms.ComboBox();
             this.lblUnitID = new System.Windows.Forms.Label();
             this.cbbEmployeeRole = new System.Windows.Forms.ComboBox();
@@ -58,17 +60,41 @@
             this.txbEmployeeID = new System.Windows.Forms.TextBox();
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.tpgSubject = new System.Windows.Forms.TabPage();
+            this.tlpOpenSubject = new System.Windows.Forms.TableLayoutPanel();
+            this.lblOpenSubject = new System.Windows.Forms.Label();
+            this.dtgvOpenSubject = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDeleteOpenSubject = new System.Windows.Forms.Button();
+            this.btnUpdateOpenSubject = new System.Windows.Forms.Button();
+            this.btnInsertOpenSubject = new System.Windows.Forms.Button();
+            this.btnSelectOpenSubject = new System.Windows.Forms.Button();
+            this.txbOpenSubjectSearch = new System.Windows.Forms.TextBox();
+            this.lblSubjectSearch = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txbYear = new System.Windows.Forms.TextBox();
+            this.lblYear = new System.Windows.Forms.Label();
+            this.cbbSemester = new System.Windows.Forms.ComboBox();
+            this.lblSemester = new System.Windows.Forms.Label();
+            this.cbbTeacherID = new System.Windows.Forms.ComboBox();
+            this.lblTeacherID = new System.Windows.Forms.Label();
+            this.cbbSubjectID = new System.Windows.Forms.ComboBox();
+            this.lblSubjectID = new System.Windows.Forms.Label();
+            this.txbOpenSubjectID = new System.Windows.Forms.TextBox();
+            this.lblOpenSubjectID = new System.Windows.Forms.Label();
             this.tpgStudent = new System.Windows.Forms.TabPage();
             this.tpgRegister = new System.Windows.Forms.TabPage();
             this.oracleCommand1 = new Oracle.ManagedDataAccess.Client.OracleCommand();
-            this.lblEmployeePhone = new System.Windows.Forms.Label();
-            this.txbEmployeePhone = new System.Windows.Forms.TextBox();
             this.tctrlUserDashboard.SuspendLayout();
             this.tpgEmployee.SuspendLayout();
             this.tlpEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvEmployee)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.tpgSubject.SuspendLayout();
+            this.tlpOpenSubject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvOpenSubject)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tctrlUserDashboard
@@ -153,8 +179,8 @@
             this.panel1.Controls.Add(this.btnUpdateEmployee);
             this.panel1.Controls.Add(this.btnInsertEmployee);
             this.panel1.Controls.Add(this.btnSelectEmployee);
-            this.panel1.Controls.Add(this.tbxSearch);
-            this.panel1.Controls.Add(this.lblSearch);
+            this.panel1.Controls.Add(this.txbEmployeeSearch);
+            this.panel1.Controls.Add(this.lblEmployeeSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1014, 45);
             this.panel1.Name = "panel1";
@@ -213,25 +239,25 @@
             this.btnSelectEmployee.UseVisualStyleBackColor = false;
             this.btnSelectEmployee.Click += new System.EventHandler(this.btnSelectEmployee_Click);
             // 
-            // tbxSearch
+            // txbEmployeeSearch
             // 
-            this.tbxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxSearch.Location = new System.Drawing.Point(3, 48);
-            this.tbxSearch.Name = "tbxSearch";
-            this.tbxSearch.Size = new System.Drawing.Size(223, 37);
-            this.tbxSearch.TabIndex = 1;
-            this.tbxSearch.TextChanged += new System.EventHandler(this.tbxSearch_TextChanged);
+            this.txbEmployeeSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbEmployeeSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEmployeeSearch.Location = new System.Drawing.Point(3, 48);
+            this.txbEmployeeSearch.Name = "txbEmployeeSearch";
+            this.txbEmployeeSearch.Size = new System.Drawing.Size(223, 37);
+            this.txbEmployeeSearch.TabIndex = 1;
+            this.txbEmployeeSearch.TextChanged += new System.EventHandler(this.txbEmployeeSearch_TextChanged);
             // 
-            // lblSearch
+            // lblEmployeeSearch
             // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(2, 10);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(205, 29);
-            this.lblSearch.TabIndex = 0;
-            this.lblSearch.Text = "Tìm kiếm theo tên";
+            this.lblEmployeeSearch.AutoSize = true;
+            this.lblEmployeeSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeeSearch.Location = new System.Drawing.Point(2, 10);
+            this.lblEmployeeSearch.Name = "lblEmployeeSearch";
+            this.lblEmployeeSearch.Size = new System.Drawing.Size(205, 29);
+            this.lblEmployeeSearch.TabIndex = 0;
+            this.lblEmployeeSearch.Text = "Tìm kiếm theo tên";
             // 
             // panel2
             // 
@@ -259,8 +285,28 @@
             this.panel2.Size = new System.Drawing.Size(1005, 145);
             this.panel2.TabIndex = 3;
             // 
+            // txbEmployeePhone
+            // 
+            this.txbEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbEmployeePhone.Location = new System.Drawing.Point(767, 7);
+            this.txbEmployeePhone.Name = "txbEmployeePhone";
+            this.txbEmployeePhone.Size = new System.Drawing.Size(223, 35);
+            this.txbEmployeePhone.TabIndex = 13;
+            // 
+            // lblEmployeePhone
+            // 
+            this.lblEmployeePhone.AutoSize = true;
+            this.lblEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployeePhone.Location = new System.Drawing.Point(679, 13);
+            this.lblEmployeePhone.Name = "lblEmployeePhone";
+            this.lblEmployeePhone.Size = new System.Drawing.Size(55, 27);
+            this.lblEmployeePhone.TabIndex = 16;
+            this.lblEmployeePhone.Text = "SDT";
+            // 
             // cbbUnitID
             // 
+            this.cbbUnitID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbUnitID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbUnitID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbUnitID.FormattingEnabled = true;
             this.cbbUnitID.Location = new System.Drawing.Point(766, 98);
@@ -280,8 +326,18 @@
             // 
             // cbbEmployeeRole
             // 
+            this.cbbEmployeeRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbEmployeeRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbEmployeeRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbEmployeeRole.FormattingEnabled = true;
+            this.cbbEmployeeRole.Items.AddRange(new object[] {
+            "NVCB",
+            "GV",
+            "NV PĐT",
+            "NV PKT",
+            "NV TCHC",
+            "NV CTSV",
+            "TRGĐV"});
             this.cbbEmployeeRole.Location = new System.Drawing.Point(766, 53);
             this.cbbEmployeeRole.Name = "cbbEmployeeRole";
             this.cbbEmployeeRole.Size = new System.Drawing.Size(223, 35);
@@ -413,6 +469,7 @@
             // 
             // tpgSubject
             // 
+            this.tpgSubject.Controls.Add(this.tlpOpenSubject);
             this.tpgSubject.Location = new System.Drawing.Point(4, 34);
             this.tpgSubject.Name = "tpgSubject";
             this.tpgSubject.Padding = new System.Windows.Forms.Padding(3);
@@ -420,6 +477,253 @@
             this.tpgSubject.TabIndex = 1;
             this.tpgSubject.Text = "Mở môn";
             this.tpgSubject.UseVisualStyleBackColor = true;
+            // 
+            // tlpOpenSubject
+            // 
+            this.tlpOpenSubject.ColumnCount = 2;
+            this.tlpOpenSubject.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.14F));
+            this.tlpOpenSubject.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.86F));
+            this.tlpOpenSubject.Controls.Add(this.lblOpenSubject, 0, 0);
+            this.tlpOpenSubject.Controls.Add(this.dtgvOpenSubject, 0, 1);
+            this.tlpOpenSubject.Controls.Add(this.panel3, 1, 1);
+            this.tlpOpenSubject.Controls.Add(this.panel4, 0, 2);
+            this.tlpOpenSubject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpOpenSubject.Location = new System.Drawing.Point(3, 3);
+            this.tlpOpenSubject.Name = "tlpOpenSubject";
+            this.tlpOpenSubject.RowCount = 3;
+            this.tlpOpenSubject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.42F));
+            this.tlpOpenSubject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 91.58F));
+            this.tlpOpenSubject.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tlpOpenSubject.Size = new System.Drawing.Size(1246, 657);
+            this.tlpOpenSubject.TabIndex = 0;
+            // 
+            // lblOpenSubject
+            // 
+            this.lblOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblOpenSubject.AutoSize = true;
+            this.lblOpenSubject.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpenSubject.Location = new System.Drawing.Point(392, 5);
+            this.lblOpenSubject.Name = "lblOpenSubject";
+            this.lblOpenSubject.Size = new System.Drawing.Size(226, 32);
+            this.lblOpenSubject.TabIndex = 0;
+            this.lblOpenSubject.Text = "BẢNG MỞ MÔN";
+            // 
+            // dtgvOpenSubject
+            // 
+            this.dtgvOpenSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvOpenSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvOpenSubject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgvOpenSubject.Location = new System.Drawing.Point(3, 45);
+            this.dtgvOpenSubject.Name = "dtgvOpenSubject";
+            this.dtgvOpenSubject.RowHeadersVisible = false;
+            this.dtgvOpenSubject.RowHeadersWidth = 62;
+            this.dtgvOpenSubject.RowTemplate.Height = 28;
+            this.dtgvOpenSubject.Size = new System.Drawing.Size(1005, 458);
+            this.dtgvOpenSubject.TabIndex = 1;
+            this.dtgvOpenSubject.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvOpenSubject_CellClick);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnDeleteOpenSubject);
+            this.panel3.Controls.Add(this.btnUpdateOpenSubject);
+            this.panel3.Controls.Add(this.btnInsertOpenSubject);
+            this.panel3.Controls.Add(this.btnSelectOpenSubject);
+            this.panel3.Controls.Add(this.txbOpenSubjectSearch);
+            this.panel3.Controls.Add(this.lblSubjectSearch);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(1014, 45);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(229, 458);
+            this.panel3.TabIndex = 2;
+            // 
+            // btnDeleteOpenSubject
+            // 
+            this.btnDeleteOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnDeleteOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnDeleteOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteOpenSubject.Location = new System.Drawing.Point(36, 316);
+            this.btnDeleteOpenSubject.Name = "btnDeleteOpenSubject";
+            this.btnDeleteOpenSubject.Size = new System.Drawing.Size(157, 45);
+            this.btnDeleteOpenSubject.TabIndex = 10;
+            this.btnDeleteOpenSubject.Text = "Xóa dữ liệu";
+            this.btnDeleteOpenSubject.UseVisualStyleBackColor = false;
+            this.btnDeleteOpenSubject.Click += new System.EventHandler(this.btnDeleteOpenSubject_Click);
+            // 
+            // btnUpdateOpenSubject
+            // 
+            this.btnUpdateOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnUpdateOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnUpdateOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateOpenSubject.Location = new System.Drawing.Point(37, 240);
+            this.btnUpdateOpenSubject.Name = "btnUpdateOpenSubject";
+            this.btnUpdateOpenSubject.Size = new System.Drawing.Size(157, 49);
+            this.btnUpdateOpenSubject.TabIndex = 9;
+            this.btnUpdateOpenSubject.Text = "Cập nhật";
+            this.btnUpdateOpenSubject.UseVisualStyleBackColor = false;
+            this.btnUpdateOpenSubject.Click += new System.EventHandler(this.btnUpdateOpenSubject_Click);
+            // 
+            // btnInsertOpenSubject
+            // 
+            this.btnInsertOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnInsertOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnInsertOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsertOpenSubject.Location = new System.Drawing.Point(37, 169);
+            this.btnInsertOpenSubject.Name = "btnInsertOpenSubject";
+            this.btnInsertOpenSubject.Size = new System.Drawing.Size(157, 49);
+            this.btnInsertOpenSubject.TabIndex = 8;
+            this.btnInsertOpenSubject.Text = "Thêm dữ liệu";
+            this.btnInsertOpenSubject.UseVisualStyleBackColor = false;
+            this.btnInsertOpenSubject.Click += new System.EventHandler(this.btnInsertOpenSubject_Click);
+            // 
+            // btnSelectOpenSubject
+            // 
+            this.btnSelectOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSelectOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSelectOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectOpenSubject.Location = new System.Drawing.Point(37, 101);
+            this.btnSelectOpenSubject.Name = "btnSelectOpenSubject";
+            this.btnSelectOpenSubject.Size = new System.Drawing.Size(157, 46);
+            this.btnSelectOpenSubject.TabIndex = 7;
+            this.btnSelectOpenSubject.Text = "Lấy dữ liệu";
+            this.btnSelectOpenSubject.UseVisualStyleBackColor = false;
+            this.btnSelectOpenSubject.Click += new System.EventHandler(this.btnSelectOpenSubject_Click);
+            // 
+            // txbOpenSubjectSearch
+            // 
+            this.txbOpenSubjectSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbOpenSubjectSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbOpenSubjectSearch.Location = new System.Drawing.Point(3, 48);
+            this.txbOpenSubjectSearch.Name = "txbOpenSubjectSearch";
+            this.txbOpenSubjectSearch.Size = new System.Drawing.Size(223, 37);
+            this.txbOpenSubjectSearch.TabIndex = 6;
+            this.txbOpenSubjectSearch.TextChanged += new System.EventHandler(this.txbOpenSubjectSearch_TextChanged);
+            // 
+            // lblSubjectSearch
+            // 
+            this.lblSubjectSearch.AutoSize = true;
+            this.lblSubjectSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubjectSearch.Location = new System.Drawing.Point(2, 10);
+            this.lblSubjectSearch.Name = "lblSubjectSearch";
+            this.lblSubjectSearch.Size = new System.Drawing.Size(205, 29);
+            this.lblSubjectSearch.TabIndex = 1;
+            this.lblSubjectSearch.Text = "Tìm kiếm theo tên";
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.txbYear);
+            this.panel4.Controls.Add(this.lblYear);
+            this.panel4.Controls.Add(this.cbbSemester);
+            this.panel4.Controls.Add(this.lblSemester);
+            this.panel4.Controls.Add(this.cbbTeacherID);
+            this.panel4.Controls.Add(this.lblTeacherID);
+            this.panel4.Controls.Add(this.cbbSubjectID);
+            this.panel4.Controls.Add(this.lblSubjectID);
+            this.panel4.Controls.Add(this.txbOpenSubjectID);
+            this.panel4.Controls.Add(this.lblOpenSubjectID);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 509);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1005, 145);
+            this.panel4.TabIndex = 3;
+            // 
+            // txbYear
+            // 
+            this.txbYear.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbYear.Location = new System.Drawing.Point(669, 57);
+            this.txbYear.Name = "txbYear";
+            this.txbYear.Size = new System.Drawing.Size(220, 35);
+            this.txbYear.TabIndex = 10;
+            // 
+            // lblYear
+            // 
+            this.lblYear.AutoSize = true;
+            this.lblYear.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYear.Location = new System.Drawing.Point(581, 63);
+            this.lblYear.Name = "lblYear";
+            this.lblYear.Size = new System.Drawing.Size(58, 27);
+            this.lblYear.TabIndex = 9;
+            this.lblYear.Text = "Năm";
+            // 
+            // cbbSemester
+            // 
+            this.cbbSemester.FormattingEnabled = true;
+            this.cbbSemester.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cbbSemester.Location = new System.Drawing.Point(669, 5);
+            this.cbbSemester.Name = "cbbSemester";
+            this.cbbSemester.Size = new System.Drawing.Size(220, 41);
+            this.cbbSemester.TabIndex = 8;
+            // 
+            // lblSemester
+            // 
+            this.lblSemester.AutoSize = true;
+            this.lblSemester.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemester.Location = new System.Drawing.Point(581, 9);
+            this.lblSemester.Name = "lblSemester";
+            this.lblSemester.Size = new System.Drawing.Size(82, 27);
+            this.lblSemester.TabIndex = 7;
+            this.lblSemester.Text = "Học kỳ";
+            // 
+            // cbbTeacherID
+            // 
+            this.cbbTeacherID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbTeacherID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbTeacherID.FormattingEnabled = true;
+            this.cbbTeacherID.Location = new System.Drawing.Point(149, 98);
+            this.cbbTeacherID.Name = "cbbTeacherID";
+            this.cbbTeacherID.Size = new System.Drawing.Size(220, 41);
+            this.cbbTeacherID.TabIndex = 6;
+            // 
+            // lblTeacherID
+            // 
+            this.lblTeacherID.AutoSize = true;
+            this.lblTeacherID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTeacherID.Location = new System.Drawing.Point(51, 105);
+            this.lblTeacherID.Name = "lblTeacherID";
+            this.lblTeacherID.Size = new System.Drawing.Size(83, 27);
+            this.lblTeacherID.TabIndex = 5;
+            this.lblTeacherID.Text = "Mã GV";
+            // 
+            // cbbSubjectID
+            // 
+            this.cbbSubjectID.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbSubjectID.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbSubjectID.FormattingEnabled = true;
+            this.cbbSubjectID.Location = new System.Drawing.Point(149, 49);
+            this.cbbSubjectID.Name = "cbbSubjectID";
+            this.cbbSubjectID.Size = new System.Drawing.Size(220, 41);
+            this.cbbSubjectID.TabIndex = 4;
+            // 
+            // lblSubjectID
+            // 
+            this.lblSubjectID.AutoSize = true;
+            this.lblSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubjectID.Location = new System.Drawing.Point(51, 57);
+            this.lblSubjectID.Name = "lblSubjectID";
+            this.lblSubjectID.Size = new System.Drawing.Size(81, 27);
+            this.lblSubjectID.TabIndex = 3;
+            this.lblSubjectID.Text = "Mã HP";
+            // 
+            // txbOpenSubjectID
+            // 
+            this.txbOpenSubjectID.Enabled = false;
+            this.txbOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbOpenSubjectID.Location = new System.Drawing.Point(151, 5);
+            this.txbOpenSubjectID.Name = "txbOpenSubjectID";
+            this.txbOpenSubjectID.Size = new System.Drawing.Size(218, 35);
+            this.txbOpenSubjectID.TabIndex = 2;
+            // 
+            // lblOpenSubjectID
+            // 
+            this.lblOpenSubjectID.AutoSize = true;
+            this.lblOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpenSubjectID.Location = new System.Drawing.Point(51, 9);
+            this.lblOpenSubjectID.Name = "lblOpenSubjectID";
+            this.lblOpenSubjectID.Size = new System.Drawing.Size(92, 27);
+            this.lblOpenSubjectID.TabIndex = 1;
+            this.lblOpenSubjectID.Text = "Mã MM";
             // 
             // tpgStudent
             // 
@@ -444,24 +748,6 @@
             this.oracleCommand1.RowsToFetchPerRoundTrip = ((long)(0));
             this.oracleCommand1.Transaction = null;
             // 
-            // lblEmployeePhone
-            // 
-            this.lblEmployeePhone.AutoSize = true;
-            this.lblEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeePhone.Location = new System.Drawing.Point(679, 13);
-            this.lblEmployeePhone.Name = "lblEmployeePhone";
-            this.lblEmployeePhone.Size = new System.Drawing.Size(55, 27);
-            this.lblEmployeePhone.TabIndex = 16;
-            this.lblEmployeePhone.Text = "SDT";
-            // 
-            // txbEmployeePhone
-            // 
-            this.txbEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbEmployeePhone.Location = new System.Drawing.Point(767, 7);
-            this.txbEmployeePhone.Name = "txbEmployeePhone";
-            this.txbEmployeePhone.Size = new System.Drawing.Size(223, 35);
-            this.txbEmployeePhone.TabIndex = 13;
-            // 
             // UserDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -473,7 +759,7 @@
             this.MinimizeBox = false;
             this.Name = "UserDashboardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "UserDashboardForm";
+            this.Text = "Trang người dùng";
             this.tctrlUserDashboard.ResumeLayout(false);
             this.tpgEmployee.ResumeLayout(false);
             this.tlpEmployee.ResumeLayout(false);
@@ -483,6 +769,14 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tpgSubject.ResumeLayout(false);
+            this.tlpOpenSubject.ResumeLayout(false);
+            this.tlpOpenSubject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvOpenSubject)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -502,8 +796,8 @@
         private System.Windows.Forms.Button btnUpdateEmployee;
         private System.Windows.Forms.Button btnInsertEmployee;
         private System.Windows.Forms.Button btnSelectEmployee;
-        private System.Windows.Forms.TextBox tbxSearch;
-        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txbEmployeeSearch;
+        private System.Windows.Forms.Label lblEmployeeSearch;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txbEmployeeID;
         private System.Windows.Forms.Label lblEmployeeID;
@@ -524,5 +818,26 @@
         private System.Windows.Forms.Label lblUnitID;
         private System.Windows.Forms.Label lblEmployeePhone;
         private System.Windows.Forms.TextBox txbEmployeePhone;
+        private System.Windows.Forms.TableLayoutPanel tlpOpenSubject;
+        private System.Windows.Forms.Label lblOpenSubject;
+        private System.Windows.Forms.DataGridView dtgvOpenSubject;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnDeleteOpenSubject;
+        private System.Windows.Forms.Button btnUpdateOpenSubject;
+        private System.Windows.Forms.Button btnInsertOpenSubject;
+        private System.Windows.Forms.Button btnSelectOpenSubject;
+        private System.Windows.Forms.TextBox txbOpenSubjectSearch;
+        private System.Windows.Forms.Label lblSubjectSearch;
+        private System.Windows.Forms.TextBox txbOpenSubjectID;
+        private System.Windows.Forms.Label lblOpenSubjectID;
+        private System.Windows.Forms.ComboBox cbbSubjectID;
+        private System.Windows.Forms.Label lblSubjectID;
+        private System.Windows.Forms.ComboBox cbbSemester;
+        private System.Windows.Forms.Label lblSemester;
+        private System.Windows.Forms.ComboBox cbbTeacherID;
+        private System.Windows.Forms.Label lblTeacherID;
+        private System.Windows.Forms.TextBox txbYear;
+        private System.Windows.Forms.Label lblYear;
     }
 }

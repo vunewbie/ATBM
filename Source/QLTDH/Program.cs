@@ -16,8 +16,8 @@ namespace QLTDH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new LoginForm());
-            Application.Run(new UserDashboardForm("NVCB"));
+            Application.Run(new LoginForm());
+            //Application.Run(new UserDashboardForm("NVCB"));
             //Application.Run(new DBAForm());
         }
     }

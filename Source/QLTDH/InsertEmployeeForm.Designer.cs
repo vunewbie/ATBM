@@ -31,22 +31,22 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblInsertEmployee = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbbUnitName = new System.Windows.Forms.ComboBox();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.cbbEmployeeRole = new System.Windows.Forms.ComboBox();
+            this.lblEmployeeRole = new System.Windows.Forms.Label();
+            this.txbEmployeePhone = new System.Windows.Forms.TextBox();
+            this.lblEmployeePhone = new System.Windows.Forms.Label();
+            this.txbEmployeeAllowance = new System.Windows.Forms.TextBox();
+            this.lblEmployeeAllowance = new System.Windows.Forms.Label();
+            this.txbEmployeeSalary = new System.Windows.Forms.TextBox();
+            this.lblEmployeeSalary = new System.Windows.Forms.Label();
             this.lblEmployeeDOB = new System.Windows.Forms.Label();
             this.lblEmployeeGender = new System.Windows.Forms.Label();
             this.lblEmployeeFullname = new System.Windows.Forms.Label();
             this.txbEmployeeFullname = new System.Windows.Forms.TextBox();
             this.cbbEmployeeGender = new System.Windows.Forms.ComboBox();
             this.dtpkDOB = new System.Windows.Forms.DateTimePicker();
-            this.lblEmployeeSalary = new System.Windows.Forms.Label();
-            this.txbEmployeeSalary = new System.Windows.Forms.TextBox();
-            this.lblEmployeeAllowance = new System.Windows.Forms.Label();
-            this.txbEmployeeAllowance = new System.Windows.Forms.TextBox();
-            this.lblEmployeePhone = new System.Windows.Forms.Label();
-            this.txbEmployeePhone = new System.Windows.Forms.TextBox();
-            this.lblEmployeeRole = new System.Windows.Forms.Label();
-            this.cbbEmployeeRole = new System.Windows.Forms.ComboBox();
-            this.lblUnit = new System.Windows.Forms.Label();
-            this.cbbUnitName = new System.Windows.Forms.ComboBox();
             this.btnInsertEmployee = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -115,6 +115,110 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(776, 340);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
+            // cbbUnitName
+            // 
+            this.cbbUnitName.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbbUnitName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbUnitName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbUnitName.FormattingEnabled = true;
+            this.cbbUnitName.Location = new System.Drawing.Point(490, 280);
+            this.cbbUnitName.Name = "cbbUnitName";
+            this.cbbUnitName.Size = new System.Drawing.Size(246, 35);
+            this.cbbUnitName.TabIndex = 15;
+            // 
+            // lblUnit
+            // 
+            this.lblUnit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(389, 284);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(78, 27);
+            this.lblUnit.TabIndex = 14;
+            this.lblUnit.Text = "Đơn vị";
+            // 
+            // cbbEmployeeRole
+            // 
+            this.cbbEmployeeRole.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbbEmployeeRole.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbEmployeeRole.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbEmployeeRole.FormattingEnabled = true;
+            this.cbbEmployeeRole.Items.AddRange(new object[] {
+            "NVCB",
+            "GV",
+            "NV PĐT",
+            "NV PKT",
+            "NV TCHC",
+            "NV CTSV",
+            "TRGĐV"});
+            this.cbbEmployeeRole.Location = new System.Drawing.Point(490, 195);
+            this.cbbEmployeeRole.Name = "cbbEmployeeRole";
+            this.cbbEmployeeRole.Size = new System.Drawing.Size(246, 35);
+            this.cbbEmployeeRole.TabIndex = 13;
+            // 
+            // lblEmployeeRole
+            // 
+            this.lblEmployeeRole.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEmployeeRole.AutoSize = true;
+            this.lblEmployeeRole.Location = new System.Drawing.Point(390, 199);
+            this.lblEmployeeRole.Name = "lblEmployeeRole";
+            this.lblEmployeeRole.Size = new System.Drawing.Size(75, 27);
+            this.lblEmployeeRole.TabIndex = 12;
+            this.lblEmployeeRole.Text = "Vai trò";
+            // 
+            // txbEmployeePhone
+            // 
+            this.txbEmployeePhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txbEmployeePhone.Location = new System.Drawing.Point(490, 110);
+            this.txbEmployeePhone.Name = "txbEmployeePhone";
+            this.txbEmployeePhone.Size = new System.Drawing.Size(246, 35);
+            this.txbEmployeePhone.TabIndex = 11;
+            // 
+            // lblEmployeePhone
+            // 
+            this.lblEmployeePhone.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEmployeePhone.AutoSize = true;
+            this.lblEmployeePhone.Location = new System.Drawing.Point(372, 114);
+            this.lblEmployeePhone.Name = "lblEmployeePhone";
+            this.lblEmployeePhone.Size = new System.Drawing.Size(112, 27);
+            this.lblEmployeePhone.TabIndex = 10;
+            this.lblEmployeePhone.Text = "Điện thoại";
+            // 
+            // txbEmployeeAllowance
+            // 
+            this.txbEmployeeAllowance.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txbEmployeeAllowance.Location = new System.Drawing.Point(490, 25);
+            this.txbEmployeeAllowance.Name = "txbEmployeeAllowance";
+            this.txbEmployeeAllowance.Size = new System.Drawing.Size(246, 35);
+            this.txbEmployeeAllowance.TabIndex = 9;
+            // 
+            // lblEmployeeAllowance
+            // 
+            this.lblEmployeeAllowance.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEmployeeAllowance.AutoSize = true;
+            this.lblEmployeeAllowance.Location = new System.Drawing.Point(383, 29);
+            this.lblEmployeeAllowance.Name = "lblEmployeeAllowance";
+            this.lblEmployeeAllowance.Size = new System.Drawing.Size(90, 27);
+            this.lblEmployeeAllowance.TabIndex = 8;
+            this.lblEmployeeAllowance.Text = "Phụ cấp";
+            // 
+            // txbEmployeeSalary
+            // 
+            this.txbEmployeeSalary.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txbEmployeeSalary.Location = new System.Drawing.Point(117, 280);
+            this.txbEmployeeSalary.Name = "txbEmployeeSalary";
+            this.txbEmployeeSalary.Size = new System.Drawing.Size(246, 35);
+            this.txbEmployeeSalary.TabIndex = 7;
+            // 
+            // lblEmployeeSalary
+            // 
+            this.lblEmployeeSalary.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblEmployeeSalary.AutoSize = true;
+            this.lblEmployeeSalary.Location = new System.Drawing.Point(19, 284);
+            this.lblEmployeeSalary.Name = "lblEmployeeSalary";
+            this.lblEmployeeSalary.Size = new System.Drawing.Size(76, 27);
+            this.lblEmployeeSalary.TabIndex = 6;
+            this.lblEmployeeSalary.Text = "Lương";
+            // 
             // lblEmployeeDOB
             // 
             this.lblEmployeeDOB.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -174,98 +278,6 @@
             this.dtpkDOB.Size = new System.Drawing.Size(246, 35);
             this.dtpkDOB.TabIndex = 5;
             // 
-            // lblEmployeeSalary
-            // 
-            this.lblEmployeeSalary.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblEmployeeSalary.AutoSize = true;
-            this.lblEmployeeSalary.Location = new System.Drawing.Point(19, 284);
-            this.lblEmployeeSalary.Name = "lblEmployeeSalary";
-            this.lblEmployeeSalary.Size = new System.Drawing.Size(76, 27);
-            this.lblEmployeeSalary.TabIndex = 6;
-            this.lblEmployeeSalary.Text = "Lương";
-            // 
-            // txbEmployeeSalary
-            // 
-            this.txbEmployeeSalary.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txbEmployeeSalary.Location = new System.Drawing.Point(117, 280);
-            this.txbEmployeeSalary.Name = "txbEmployeeSalary";
-            this.txbEmployeeSalary.Size = new System.Drawing.Size(246, 35);
-            this.txbEmployeeSalary.TabIndex = 7;
-            // 
-            // lblEmployeeAllowance
-            // 
-            this.lblEmployeeAllowance.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblEmployeeAllowance.AutoSize = true;
-            this.lblEmployeeAllowance.Location = new System.Drawing.Point(383, 29);
-            this.lblEmployeeAllowance.Name = "lblEmployeeAllowance";
-            this.lblEmployeeAllowance.Size = new System.Drawing.Size(90, 27);
-            this.lblEmployeeAllowance.TabIndex = 8;
-            this.lblEmployeeAllowance.Text = "Phụ cấp";
-            // 
-            // txbEmployeeAllowance
-            // 
-            this.txbEmployeeAllowance.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txbEmployeeAllowance.Location = new System.Drawing.Point(490, 25);
-            this.txbEmployeeAllowance.Name = "txbEmployeeAllowance";
-            this.txbEmployeeAllowance.Size = new System.Drawing.Size(246, 35);
-            this.txbEmployeeAllowance.TabIndex = 9;
-            // 
-            // lblEmployeePhone
-            // 
-            this.lblEmployeePhone.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblEmployeePhone.AutoSize = true;
-            this.lblEmployeePhone.Location = new System.Drawing.Point(372, 114);
-            this.lblEmployeePhone.Name = "lblEmployeePhone";
-            this.lblEmployeePhone.Size = new System.Drawing.Size(112, 27);
-            this.lblEmployeePhone.TabIndex = 10;
-            this.lblEmployeePhone.Text = "Điện thoại";
-            // 
-            // txbEmployeePhone
-            // 
-            this.txbEmployeePhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txbEmployeePhone.Location = new System.Drawing.Point(490, 110);
-            this.txbEmployeePhone.Name = "txbEmployeePhone";
-            this.txbEmployeePhone.Size = new System.Drawing.Size(246, 35);
-            this.txbEmployeePhone.TabIndex = 11;
-            // 
-            // lblEmployeeRole
-            // 
-            this.lblEmployeeRole.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblEmployeeRole.AutoSize = true;
-            this.lblEmployeeRole.Location = new System.Drawing.Point(390, 199);
-            this.lblEmployeeRole.Name = "lblEmployeeRole";
-            this.lblEmployeeRole.Size = new System.Drawing.Size(75, 27);
-            this.lblEmployeeRole.TabIndex = 12;
-            this.lblEmployeeRole.Text = "Vai trò";
-            // 
-            // cbbEmployeeRole
-            // 
-            this.cbbEmployeeRole.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbbEmployeeRole.FormattingEnabled = true;
-            this.cbbEmployeeRole.Location = new System.Drawing.Point(490, 195);
-            this.cbbEmployeeRole.Name = "cbbEmployeeRole";
-            this.cbbEmployeeRole.Size = new System.Drawing.Size(246, 35);
-            this.cbbEmployeeRole.TabIndex = 13;
-            // 
-            // lblUnit
-            // 
-            this.lblUnit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(389, 284);
-            this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(78, 27);
-            this.lblUnit.TabIndex = 14;
-            this.lblUnit.Text = "Đơn vị";
-            // 
-            // cbbUnitName
-            // 
-            this.cbbUnitName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.cbbUnitName.FormattingEnabled = true;
-            this.cbbUnitName.Location = new System.Drawing.Point(490, 280);
-            this.cbbUnitName.Name = "cbbUnitName";
-            this.cbbUnitName.Size = new System.Drawing.Size(246, 35);
-            this.cbbUnitName.TabIndex = 15;
-            // 
             // btnInsertEmployee
             // 
             this.btnInsertEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -277,6 +289,7 @@
             this.btnInsertEmployee.TabIndex = 16;
             this.btnInsertEmployee.Text = "Thêm";
             this.btnInsertEmployee.UseVisualStyleBackColor = false;
+            this.btnInsertEmployee.Click += new System.EventHandler(this.btnInsertEmployee_Click);
             // 
             // InsertEmployeeForm
             // 
@@ -291,6 +304,7 @@
             this.Name = "InsertEmployeeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thêm nhân viên";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.InsertEmployeeForm_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
