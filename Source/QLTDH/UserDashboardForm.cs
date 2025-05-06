@@ -23,67 +23,77 @@ namespace QLTDH
         }
         public void LoadEmployeeList(string name = null)
         {
-            try
+            if (this.role == "NVCB"|| this.role == "GV"|| this.role == "NV PĐT"|| this.role == "NV PKT"||
+                this.role == "NV TCHC"|| this.role == "NV CTSV"|| this.role == "TRGĐV")
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                try
                 {
-                    conn.Open();
-
-                    OracleCommand cmd = new OracleCommand("QLTDH.GET_EMPLOYEE_LIST", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = name;
-                    cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
-                    OracleParameter cursorParam = new OracleParameter("employees_cursor", OracleDbType.RefCursor);
-                    cursorParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(cursorParam);
-
-                    OracleDataReader reader = cmd.ExecuteReader();
-
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dtgvEmployee.DataSource = dt;
-
-                    if (this.role != "NV TCHC")
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
                     {
-                        txbEmployeeFullname.Enabled = false;
-                        cbbEmployeeGender.Enabled = false;
-                        dtpkDOB.Enabled = false;
-                        txbEmployeeSalary.Enabled= false;
-                        txbEmployeeAllowance.Enabled = false;
-                        cbbEmployeeRole.Enabled = false;
-                        cbbUnitID.Enabled = false;
+                        conn.Open();
+
+                        OracleCommand cmd = new OracleCommand("QLTDH.GET_EMPLOYEE_LIST", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = name;
+                        cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
+                        OracleParameter cursorParam = new OracleParameter("employees_cursor", OracleDbType.RefCursor);
+                        cursorParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(cursorParam);
+
+                        OracleDataReader reader = cmd.ExecuteReader();
+
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        dtgvEmployee.DataSource = dt;
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải thông tin nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            if (this.role != "NV TCHC")
             {
-                MessageBox.Show("Lỗi khi tải thông tin nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txbEmployeeFullname.Enabled = false;
+                cbbEmployeeGender.Enabled = false;
+                dtpkDOB.Enabled = false;
+                txbEmployeeSalary.Enabled = false;
+                txbEmployeeAllowance.Enabled = false;
+                cbbEmployeeRole.Enabled = false;
+                cbbUnitID.Enabled = false;
+            }
+            if (this.role == "SV")
+            {
+                txbEmployeePhone.Enabled = false;
             }
         }
         private void LoadUnit()
         {
-            try
+            if (this.role == "NV TCHC")
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                try
                 {
-                    conn.Open();
-                    string query = "SELECT MADV FROM QLTDH.DONVI";
-                    OracleCommand cmd = new OracleCommand(query, conn);
-                    cmd.CommandType = CommandType.Text;
-
-                    OracleDataReader reader = cmd.ExecuteReader();
-                    cbbUnitID.Items.Clear();
-                    while (reader.Read())
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
                     {
-                        cbbUnitID.Items.Add(reader.GetString(0));
+                        conn.Open();
+                        string query = "SELECT MADV FROM QLTDH.DONVI";
+                        OracleCommand cmd = new OracleCommand(query, conn);
+                        cmd.CommandType = CommandType.Text;
+
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        cbbUnitID.Items.Clear();
+                        while (reader.Read())
+                        {
+                            cbbUnitID.Items.Add(reader.GetString(0));
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải đơn vị: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải đơn vị: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void txbEmployeeSearch_TextChanged(object sender, EventArgs e)
@@ -116,7 +126,7 @@ namespace QLTDH
 
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
-            if (role != "NV TCHC")
+            if (this.role != "NV TCHC")
             {
                 MessageBox.Show("Bạn không có quyền xoá nhân viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -162,7 +172,7 @@ namespace QLTDH
         }
         private void btnInsertEmployee_Click(object sender, EventArgs e)
         {
-            if (role != "NV TCHC")
+            if (this.role != "NV TCHC")
             {
                 MessageBox.Show("Bạn không có quyền thêm nhân viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -192,15 +202,15 @@ namespace QLTDH
                     conn.Open();
                     OracleCommand cmd;
 
-                    if (role == "NVCB" || role == "GV" || role == "NV PĐT" || role == "NV PKT" ||
-                        role == "NV CTSV" || role == "TRGĐV")
+                    if (this.role == "NVCB" || this.role == "GV" || this.role == "NV PĐT" || this.role == "NV PKT" ||
+                        this.role == "NV CTSV" || this.role == "TRGĐV")
                     {
                         cmd = new OracleCommand("QLTDH.EMPLOYEE_UPDATE_PHONE_NUMBER", conn);
                         cmd.Parameters.Add(new OracleParameter("p_new_dt", txbEmployeePhone.Text));
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.ExecuteNonQuery();
                     }
-                    else if (role=="NV TCHC")
+                    else if (this.role == "NV TCHC")
                     {
                         cmd = new OracleCommand("QLTDH.UPDATE_EMPLOYEE", conn);
                         cmd.Parameters.Add(new OracleParameter("employeeID", txbEmployeeID.Text));
@@ -235,31 +245,41 @@ namespace QLTDH
         }
         public void LoadOpenSubjectList(string name = null)
         {
-            try
+            if (this.role == "GV"|| this.role == "NV PĐT"|| this.role == "TRGĐV"|| this.role == "SV")
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                try
                 {
-                    conn.Open();
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
 
-                    OracleCommand cmd = new OracleCommand("QLTDH.GET_OPEN_SUBJECT_LIST", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                        OracleCommand cmd = new OracleCommand("QLTDH.GET_OPEN_SUBJECT_LIST", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = name;
-                    cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
-                    OracleParameter cursorParam = new OracleParameter("subject_cursor", OracleDbType.RefCursor);
-                    cursorParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(cursorParam);
+                        cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = name;
+                        cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
+                        OracleParameter cursorParam = new OracleParameter("subject_cursor", OracleDbType.RefCursor);
+                        cursorParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(cursorParam);
 
-                    OracleDataReader reader = cmd.ExecuteReader();
+                        OracleDataReader reader = cmd.ExecuteReader();
 
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-                    dtgvOpenSubject.DataSource = dt;
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+                        dtgvOpenSubject.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải thông tin mở môn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception ex)
+            if (this.role != "NV PĐT")
             {
-                MessageBox.Show("Lỗi khi tải thông tin mở môn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbbSubjectID.Enabled = false;
+                cbbTeacherID.Enabled = false;
+                cbbSemester.Enabled = false;
+                txbYear.Enabled = false;
             }
         }
         private void txbOpenSubjectSearch_TextChanged(object sender, EventArgs e)
@@ -275,11 +295,69 @@ namespace QLTDH
                 LoadOpenSubjectList(name);
             }
         }
+        private void LoadSubject()
+        {
+            if (this.role == "NV PĐT")
+            {
+                try
+                {
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+                        string query = "SELECT MAHP FROM QLTDH.HOCPHAN";
+                        OracleCommand cmd = new OracleCommand(query, conn);
+                        cmd.CommandType = CommandType.Text;
 
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        cbbSubjectID.Items.Clear();
+                        while (reader.Read())
+                        {
+                            cbbSubjectID.Items.Add(reader.GetString(0));
+                        }
+
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải đơn vị: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void LoadTeacherID()
+        {
+            if (this.role == "NV PĐT")
+            {
+                try
+                {
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+                        string query = "SELECT MANV FROM QLTDH.v_TeacherID";
+                        OracleCommand cmd = new OracleCommand(query, conn);
+                        cmd.CommandType = CommandType.Text;
+
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        cbbTeacherID.Items.Clear();
+                        while (reader.Read())
+                        {
+                            cbbTeacherID.Items.Add(reader.GetString(0));
+                        }
+
+                        reader.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải mã giảng viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
         private void dtgvOpenSubject_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
+            LoadSubject();
+            LoadTeacherID();
             txbOpenSubjectID.Text = dtgvOpenSubject.Rows[e.RowIndex].Cells["MAMM"].Value.ToString();
             cbbSubjectID.Text = dtgvOpenSubject.Rows[e.RowIndex].Cells["MAHP"].Value.ToString();
             cbbTeacherID.Text = dtgvOpenSubject.Rows[e.RowIndex].Cells["MAGV"].Value.ToString();
@@ -289,17 +367,17 @@ namespace QLTDH
 
         private void btnDeleteOpenSubject_Click(object sender, EventArgs e)
         {
-            if (role != "NV PĐT")
+            if (this.role != "NV PĐT")
             {
                 MessageBox.Show("Bạn không có quyền xóa mở môn!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(txbOpenSubjectID.Text))
             {
-                MessageBox.Show("Vui lòng lựa chọn nhân viên cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng lựa chọn mở môn cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này hay không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa mở môn này hay không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string MAMM = txbOpenSubjectID.Text;
                 try
@@ -333,7 +411,7 @@ namespace QLTDH
         }
         private void btnInsertOpenSubject_Click(object sender, EventArgs e)
         {
-            if (role != "NV PĐT")
+            if (this.role != "NV PĐT")
             {
                 MessageBox.Show("Bạn không có quyền thêm mở môn!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -344,7 +422,7 @@ namespace QLTDH
         }
         private void btnUpdateOpenSubject_Click(object sender, EventArgs e)
         {
-            if (role != "NV PĐT")
+            if (this.role != "NV PĐT")
             {
                 MessageBox.Show("Bạn không có quyền cập nhật mở môn!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -374,7 +452,7 @@ namespace QLTDH
                     cmd.Parameters.Add("p_nam", txbYear.Text);
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Chỉnh sửa mmở môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Chỉnh sửa mở môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     string name = txbOpenSubjectSearch.Text.Trim();
                     if (string.IsNullOrEmpty(name))
                     {
@@ -397,11 +475,11 @@ namespace QLTDH
             string name = txbEmployeeSearch.Text.Trim();
             if (string.IsNullOrEmpty(name))
             {
-                LoadOpenSubjectList();
+                LoadEmployeeList();
             }
             else
             {
-                LoadOpenSubjectList(name);
+                LoadEmployeeList(name);
             }
         }
 
