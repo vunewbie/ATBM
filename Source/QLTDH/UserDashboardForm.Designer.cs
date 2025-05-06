@@ -37,7 +37,6 @@
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnInsertEmployee = new System.Windows.Forms.Button();
-            this.btnSelectEmployee = new System.Windows.Forms.Button();
             this.txbEmployeeSearch = new System.Windows.Forms.TextBox();
             this.lblEmployeeSearch = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -67,7 +66,6 @@
             this.btnDeleteOpenSubject = new System.Windows.Forms.Button();
             this.btnUpdateOpenSubject = new System.Windows.Forms.Button();
             this.btnInsertOpenSubject = new System.Windows.Forms.Button();
-            this.btnSelectOpenSubject = new System.Windows.Forms.Button();
             this.txbOpenSubjectSearch = new System.Windows.Forms.TextBox();
             this.lblSubjectSearch = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -197,6 +195,7 @@
             this.tpgEmployee.TabIndex = 0;
             this.tpgEmployee.Text = "Nhân viên";
             this.tpgEmployee.UseVisualStyleBackColor = true;
+            this.tpgEmployee.Enter += new System.EventHandler(this.tpgEmployee_Enter);
             // 
             // tlpEmployee
             // 
@@ -250,7 +249,6 @@
             this.panel1.Controls.Add(this.btnDeleteEmployee);
             this.panel1.Controls.Add(this.btnUpdateEmployee);
             this.panel1.Controls.Add(this.btnInsertEmployee);
-            this.panel1.Controls.Add(this.btnSelectEmployee);
             this.panel1.Controls.Add(this.txbEmployeeSearch);
             this.panel1.Controls.Add(this.lblEmployeeSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -297,19 +295,6 @@
             this.btnInsertEmployee.Text = "Thêm dữ liệu";
             this.btnInsertEmployee.UseVisualStyleBackColor = false;
             this.btnInsertEmployee.Click += new System.EventHandler(this.btnInsertEmployee_Click);
-            // 
-            // btnSelectEmployee
-            // 
-            this.btnSelectEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSelectEmployee.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnSelectEmployee.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectEmployee.Location = new System.Drawing.Point(37, 101);
-            this.btnSelectEmployee.Name = "btnSelectEmployee";
-            this.btnSelectEmployee.Size = new System.Drawing.Size(157, 46);
-            this.btnSelectEmployee.TabIndex = 2;
-            this.btnSelectEmployee.Text = "Lấy dữ liệu";
-            this.btnSelectEmployee.UseVisualStyleBackColor = false;
-            this.btnSelectEmployee.Click += new System.EventHandler(this.btnSelectEmployee_Click);
             // 
             // txbEmployeeSearch
             // 
@@ -549,6 +534,7 @@
             this.tpgSubject.TabIndex = 1;
             this.tpgSubject.Text = "Mở môn";
             this.tpgSubject.UseVisualStyleBackColor = true;
+            this.tpgSubject.Enter += new System.EventHandler(this.tpgOpenSubject_Enter);
             // 
             // tlpOpenSubject
             // 
@@ -602,7 +588,6 @@
             this.panel3.Controls.Add(this.btnDeleteOpenSubject);
             this.panel3.Controls.Add(this.btnUpdateOpenSubject);
             this.panel3.Controls.Add(this.btnInsertOpenSubject);
-            this.panel3.Controls.Add(this.btnSelectOpenSubject);
             this.panel3.Controls.Add(this.txbOpenSubjectSearch);
             this.panel3.Controls.Add(this.lblSubjectSearch);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -649,19 +634,6 @@
             this.btnInsertOpenSubject.Text = "Thêm dữ liệu";
             this.btnInsertOpenSubject.UseVisualStyleBackColor = false;
             this.btnInsertOpenSubject.Click += new System.EventHandler(this.btnInsertOpenSubject_Click);
-            // 
-            // btnSelectOpenSubject
-            // 
-            this.btnSelectOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSelectOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnSelectOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectOpenSubject.Location = new System.Drawing.Point(37, 101);
-            this.btnSelectOpenSubject.Name = "btnSelectOpenSubject";
-            this.btnSelectOpenSubject.Size = new System.Drawing.Size(157, 46);
-            this.btnSelectOpenSubject.TabIndex = 7;
-            this.btnSelectOpenSubject.Text = "Lấy dữ liệu";
-            this.btnSelectOpenSubject.UseVisualStyleBackColor = false;
-            this.btnSelectOpenSubject.Click += new System.EventHandler(this.btnSelectOpenSubject_Click);
             // 
             // txbOpenSubjectSearch
             // 
@@ -1588,7 +1560,6 @@
         private System.Windows.Forms.Button btnDeleteEmployee;
         private System.Windows.Forms.Button btnUpdateEmployee;
         private System.Windows.Forms.Button btnInsertEmployee;
-        private System.Windows.Forms.Button btnSelectEmployee;
         private System.Windows.Forms.TextBox txbEmployeeSearch;
         private System.Windows.Forms.Label lblEmployeeSearch;
         private System.Windows.Forms.Panel panel2;
@@ -1618,7 +1589,6 @@
         private System.Windows.Forms.Button btnDeleteOpenSubject;
         private System.Windows.Forms.Button btnUpdateOpenSubject;
         private System.Windows.Forms.Button btnInsertOpenSubject;
-        private System.Windows.Forms.Button btnSelectOpenSubject;
         private System.Windows.Forms.TextBox txbOpenSubjectSearch;
         private System.Windows.Forms.Label lblSubjectSearch;
         private System.Windows.Forms.TextBox txbOpenSubjectID;

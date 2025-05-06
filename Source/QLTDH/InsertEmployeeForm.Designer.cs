@@ -121,7 +121,7 @@
             this.cbbUnitName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbbUnitName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbbUnitName.FormattingEnabled = true;
-            this.cbbUnitName.Location = new System.Drawing.Point(490, 280);
+            this.cbbUnitName.Location = new System.Drawing.Point(490, 283);
             this.cbbUnitName.Name = "cbbUnitName";
             this.cbbUnitName.Size = new System.Drawing.Size(246, 35);
             this.cbbUnitName.TabIndex = 15;
@@ -150,7 +150,7 @@
             "NV TCHC",
             "NV CTSV",
             "TRGĐV"});
-            this.cbbEmployeeRole.Location = new System.Drawing.Point(490, 195);
+            this.cbbEmployeeRole.Location = new System.Drawing.Point(490, 198);
             this.cbbEmployeeRole.Name = "cbbEmployeeRole";
             this.cbbEmployeeRole.Size = new System.Drawing.Size(246, 35);
             this.cbbEmployeeRole.TabIndex = 13;
@@ -264,7 +264,7 @@
             this.cbbEmployeeGender.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cbbEmployeeGender.Location = new System.Drawing.Point(117, 110);
+            this.cbbEmployeeGender.Location = new System.Drawing.Point(117, 113);
             this.cbbEmployeeGender.Name = "cbbEmployeeGender";
             this.cbbEmployeeGender.Size = new System.Drawing.Size(246, 35);
             this.cbbEmployeeGender.TabIndex = 3;
