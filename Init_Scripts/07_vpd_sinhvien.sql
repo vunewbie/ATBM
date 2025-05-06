@@ -2,19 +2,16 @@ ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
 SET SERVEROUTPUT ON;
 
-
---tạo chính sách: 
---+sinh viên xem được thông tin của mình, có thể sửa đchi, đt của mình
---+role NV PSTSV có thể thêm, xóa, sửa thông tin trên bảng Sinh Viên. Nếu role NV PDT chưa cập nhật giá trị mới thì TINHTRANG mang giá trị NULL
---+role GV được xem danh sách sinh viên thuộc đơn vị mà giảng viên trực thuộc
-
-
+--Sinh viên có thể xem dòng dữ liệu liên quan đến chính mình, có thể sửa các trường địachỉ (ĐCHI), số điện thoại (ĐT) liên quan đến chính mình.
+--Người dùng có vai trò “NV PCTSV” có thể thêm, xóa, sửa thông tin trên quan hệ SINHVIEN. Tuy nhiên, trường TINHTRANG mang giá trị NULL cho đến khi người 
+--dùng với vai trò “NV PĐT” cập nhật thành giá trị mới, cho biết tình trạng học vụ của sinh viên.
+--Người dùng có vai trò “GV” được xem danh sách sinh viên thuộc đơn vị (khoa) mà giảng viên trực thuộc.
 -- Tạo hàm policy cho bảng SINHVIEN
 CREATE OR REPLACE FUNCTION QLTDH.SINHVIEN_VPD_POLICY (
     p_schema IN VARCHAR2,
     p_object IN VARCHAR2
 ) RETURN VARCHAR2 AS
-    v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
+    v_user VARCHAR2(10) := SYS_CONTEXT('USERENV', 'SESSION_USER');
     v_vaitro VARCHAR2(7);
     v_madv VARCHAR2(10);
     v_count NUMBER;
@@ -22,35 +19,31 @@ BEGIN
     IF v_user = 'QLTDH' THEN
         RETURN '1=1';
     END IF;
-    
+
     -- Kiểm tra nếu là sinh viên
-    SELECT COUNT(*) INTO v_count
-    FROM QLTDH.SINHVIEN
-    WHERE MASV = v_user;
-    
-    IF v_count > 0 THEN
+    SELECT GRANTED_ROLE INTO v_vaitro FROM DBA_ROLE_PRIVS WHERE GRANTEE = ''||UPPER(v_user)||'' AND GRANTED_ROLE NOT IN ('CONNECT', 'RESOURCE');
+    -- Kiểm tra nếu user có role SINHVIEN
+    IF v_vaitro = 'SV' THEN
+    DBMS_OUTPUT.PUT_LINE('User: ' || v_user || ', Vai trò: ' || v_vaitro || ', MADV: ' || v_madv);
         RETURN 'MASV = ''' || v_user || '''';
     END IF;
 
-    -- Lấy vai trò và mã đơn vị của nhân viên
-    BEGIN
-        SELECT VAITRO, MADV INTO v_vaitro, v_madv
-        FROM QLTDH.NHANVIEN
-        WHERE MANV = v_user;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            RETURN '1=0';
-    END;
-
-    -- NV CTSV và NV PĐT: Truy cập toàn bộ
+    -- Kiểm tra nếu có role NV CTSV hoặc NV PĐT
     IF v_vaitro IN ('NV CTSV', 'NV PĐT') THEN
         RETURN '1=1';
-    -- GV: Chỉ thấy sinh viên thuộc khoa của mình
-    ELSIF v_vaitro = 'GV' THEN
-        RETURN 'KHOA = ''' || v_madv || '''';
     END IF;
 
-    -- Mặc định: Không cho phép
+    -- Nếu có role GV → lấy khoa (mã đơn vị) từ bảng nhân viên
+    IF v_vaitro = 'GV' THEN
+        BEGIN
+            SELECT MADV INTO v_madv FROM QLTDH.NHANVIEN WHERE MANV = v_user;
+            RETURN 'KHOA = ''' || v_madv || '''';
+        EXCEPTION
+            WHEN NO_DATA_FOUND THEN
+                RETURN '1=0';
+        END;
+    END IF;
+    -- Mặc định không truy cập
     RETURN '1=0';
 END;
 /
@@ -119,25 +112,22 @@ END;
 GRANT SELECT, UPDATE(DCHI, DT) ON QLTDH.SINHVIEN TO SV;
 GRANT SELECT, INSERT, UPDATE, DELETE ON QLTDH.SINHVIEN TO "NV CTSV";
 GRANT SELECT ON QLTDH.SINHVIEN TO GV;
+GRANT SELECT ON QLTDH.SINHVIEN TO "NV PĐT";
 -- Bổ sung quyền cho NV PĐT để cập nhật TINHTRANG
 GRANT UPDATE(TINHTRANG) ON QLTDH.SINHVIEN TO "NV PĐT";
-
 -- Kiểm tra chính sách VPD
 -- Kiểm tra quyền của sinh viên
 CONNECT SV0030/SV0030@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
 SELECT * FROM QLTDH.SINHVIEN; -- Chỉ thấy dòng của mình
 UPDATE QLTDH.SINHVIEN SET DCHI = '456 Hanoi' WHERE MASV = 'SV0030'; -- Được phép
 UPDATE QLTDH.SINHVIEN SET HOTEN = 'Test' WHERE MASV = 'SV0030'; -- Không được phép
 SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV0030';
 -- Kiểm tra quyền của NV CTSV
 CONNECT NVCTSV0001/NVCTSV0001@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
 SELECT * FROM QLTDH.SINHVIEN; -- Thấy tất cả
 INSERT INTO QLTDH.SINHVIEN (MASV, HOTEN, PHAI, NGSINH, DCHI, DT, KHOA, TINHTRANG)
-VALUES ('SV9999', 'Test SV', 'Nam', TO_DATE('2000-01-01', 'YYYY-MM-DD'), 'Hanoi', '0999999999', 'CNTT', 'Đang học'); -- TINHTRANG sẽ thành NULL
+VALUES ('SV9999', 'Test SV', 'Nam', TO_DATE('2000-01-01', 'YYYY-MM-DD'), 'Hanoi', '0999999999', 'CNT', 'Đang học'); -- TINHTRANG sẽ thành NULL
 SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV9999';
-
 -- Kiểm tra quyền của GV
 CONNECT GV0001/GV0001@localhost:1521/QUANLYTRUONGDAIHOC;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
@@ -148,3 +138,5 @@ CONNECT NVPDT0001/NVPDT0001@localhost:1521/QUANLYTRUONGDAIHOC;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
 UPDATE QLTDH.SINHVIEN SET TINHTRANG = 'Đang học' WHERE MASV = 'SV9999'; -- Được phép
 SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV9999';
+
+
