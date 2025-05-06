@@ -138,7 +138,7 @@ BEGIN
         object_name   => 'DANGKY',
         policy_name   => 'DANGKY_SELECT_POLICY',
         function_schema => 'QLTDH',
-        function_name => 'DANGKY_SELECT_VPD_POLICY',
+        policy_function => 'DANGKY_SELECT_VPD_POLICY',
         statement_types => 'SELECT',
         update_check   => TRUE
     );
@@ -150,7 +150,7 @@ BEGIN
         object_name   => 'DANGKY',
         policy_name   => 'DANGKY_MODIFY_POLICY',
         function_schema => 'QLTDH',
-        function_name => 'DANGKY_MODIFY_VPD_POLICY',
+        policy_function => 'DANGKY_MODIFY_VPD_POLICY',
         statement_types => 'INSERT, UPDATE, DELETE',
         update_check   => TRUE
     );
