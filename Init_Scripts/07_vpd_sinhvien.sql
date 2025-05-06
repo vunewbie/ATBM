@@ -20,7 +20,7 @@ BEGIN
         RETURN '1=1';
     END IF;
 
-    -- Kiểm tra nếu là sinh viên
+    -- Lấy vai trò của người dùng
     SELECT GRANTED_ROLE INTO v_vaitro FROM DBA_ROLE_PRIVS WHERE GRANTEE = ''||UPPER(v_user)||'' AND GRANTED_ROLE NOT IN ('CONNECT', 'RESOURCE');
     -- Kiểm tra nếu user có role SINHVIEN
     IF v_vaitro = 'SV' THEN
@@ -91,14 +91,7 @@ DECLARE
     v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
 BEGIN
     -- Lấy vai trò của người dùng
-    BEGIN
-        SELECT VAITRO INTO v_vaitro
-        FROM QLTDH.NHANVIEN
-        WHERE MANV = v_user;
-    EXCEPTION
-        WHEN NO_DATA_FOUND THEN
-            v_vaitro := 'SINHVIEN'; -- Giả định là sinh viên nếu không tìm thấy trong NHANVIEN
-    END;
+    SELECT GRANTED_ROLE INTO v_vaitro FROM DBA_ROLE_PRIVS WHERE GRANTEE = ''||UPPER(v_user)||'' AND GRANTED_ROLE NOT IN ('CONNECT', 'RESOURCE');
 
     -- Nếu là NV CTSV, đảm bảo TINHTRANG = NULL
     IF v_vaitro = 'NV CTSV' THEN
