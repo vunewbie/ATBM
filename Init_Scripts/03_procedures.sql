@@ -628,7 +628,8 @@ BEGIN
     END IF;
     
     -- Xây dựng câu lệnh GRANT ROLE TO USER
-    v_sql := 'GRANT ' || p_role || ' TO ' || p_user;
+    v_sql := 'GRANT "' || p_role || '" TO "' || p_user || '"';
+
     
     -- Thêm WITH ADMIN OPTION nếu cần
     IF p_with_admin_option THEN
@@ -706,15 +707,114 @@ END;
 --Xem danh sách nhân viên
 CREATE OR REPLACE PROCEDURE QLTDH.GET_EMPLOYEE_LIST(
     name IN VARCHAR2,
+    role IN VARCHAR2,
     employees_cursor OUT SYS_REFCURSOR)
 AS
 BEGIN
-    IF name IS NULL THEN
-        OPEN employees_cursor FOR SELECT * FROM QLTDH.NHANVIEN;
-    ELSE 
+    IF role IN ('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV CTSV') THEN
         OPEN employees_cursor FOR 
-            SELECT * FROM QLTDH.NHANVIEN 
-            WHERE UPPER(HOTEN) LIKE '%' || UPPER(name) || '%';
+        SELECT * FROM EMPLOYEE_GET_PERSONAL_INFO
+        WHERE name IS NULL OR LOWER(HOTEN) LIKE '%' || LOWER(name) || '%';
+    ELSIF role = 'TRGĐV' THEN
+        OPEN employees_cursor FOR 
+        SELECT * FROM EMPLOYEE_UNIT_INFO
+        WHERE name IS NULL OR LOWER(HOTEN) LIKE '%' || LOWER(name) || '%';
+    ELSIF role='NV TCHC' THEN OPEN employees_cursor FOR 
+        SELECT * FROM QLTDH.NHANVIEN
+        WHERE name IS NULL OR LOWER(HOTEN) LIKE '%' || LOWER(name) || '%';
+    ELSE
+        OPEN employees_cursor FOR SELECT * FROM DUAL WHERE 1 = 0; 
     END IF;
 END;
 /
+GRANT EXECUTE ON QLTDH.GET_EMPLOYEE_LIST TO NVCB, GV, "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", TRGĐV, SV;
+
+--Thêm nhân viên
+CREATE OR REPLACE PROCEDURE QLTDH.INSERT_EMPLOYEE(
+    fullname IN VARCHAR2,
+    gender IN VARCHAR2,
+    DOB IN DATE,
+    salary IN NUMBER,
+    allowance IN NUMBER,
+    phone IN VARCHAR2,
+    role IN VARCHAR2,
+    unit IN VARCHAR2
+)
+AS
+    v_prefix VARCHAR2(20);
+    v_count NUMBER;
+    v_manv VARCHAR2(20);
+    v_unitID VARCHAR2(20);
+BEGIN
+    v_prefix := REPLACE(role, ' ', '');
+
+    SELECT COUNT(*) + 1 INTO v_count
+    FROM QLTDH.NHANVIEN
+    WHERE MANV LIKE v_prefix || '%';
+
+    v_manv := v_prefix || LPAD(v_count, 4, '0');
+    
+    SELECT MADV INTO v_unitID FROM QLTDH.DONVI WHERE TENDV=unit;
+
+    INSERT INTO QLTDH.NHANVIEN(MANV, HOTEN, PHAI, NGSINH, LUONG, PHUCAP, DT, VAITRO, MADV)
+    VALUES(v_manv, fullname, gender, DOB, salary, allowance, phone, role, v_unitID);
+END;
+/
+GRANT EXECUTE ON QLTDH.INSERT_EMPLOYEE TO "NV TCHC";
+
+--Chỉnh sửa nhân viên
+CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_EMPLOYEE(
+    employeeID IN VARCHAR2,
+    fullname IN VARCHAR2,
+    gender IN VARCHAR2,
+    DOB IN DATE,
+    salary IN NUMBER,
+    allowance IN NUMBER,
+    phone IN VARCHAR2,
+    role IN VARCHAR2,
+    unitID IN VARCHAR2
+)
+AS
+BEGIN
+    UPDATE QLTDH.NHANVIEN
+    SET HOTEN=fullname, PHAI=gender, NGSINH=DOB, LUONG=salary, 
+        PHUCAP= allowance, DT=phone, VAITRO=role, MADV=unitID
+    WHERE MANV=employeeID;
+END;
+/
+GRANT EXECUTE ON QLTDH.UPDATE_EMPLOYEE TO "NV TCHC";
+
+--Xem thông tin danh sách mở môn
+CREATE OR REPLACE PROCEDURE QLTDH.GET_OPEN_SUBJECT_LIST(
+    name IN VARCHAR2,
+    role IN VARCHAR2,
+    subject_cursor OUT SYS_REFCURSOR)
+AS
+BEGIN
+    IF role='GV' THEN OPEN subject_cursor FOR 
+        SELECT * FROM QLTDH.TEACHER_GET_COURSE_OFFERING
+        WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
+    ELSIF role='NV PĐT' THEN OPEN subject_cursor FOR 
+        SELECT * FROM QLTDH.EDUCATION_DEPARTMENT_GET_COURSE_OFFERING
+        WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
+    ELSIF role='TRGDV' THEN OPEN subject_cursor FOR 
+        SELECT * FROM QLTDH.UNIT_HEAD_GET_FACULTY_TEACHING
+        WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
+    ELSIF role='SV' THEN OPEN subject_cursor FOR 
+        SELECT * FROM QLTDH.STUDENT_GET_DEPARTMENT_COURSES
+        WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
+    ELSE 
+        OPEN subject_cursor FOR SELECT * FROM DUAL WHERE 1 = 0; 
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.GET_OPEN_SUBJECT_LIST TO NVCB, GV, "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", TRGĐV, SV;
+GRANT SELECT ON DONVI TO NVCB, GV, "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", TRGĐV;
+GRANT SELECT ON HOCPHAN TO "NV PĐT";
+
+--Xem danh sách mã giảng viên để thêm mới mở môn
+CREATE OR REPLACE VIEW v_TeacherID 
+AS
+    SELECT MANV FROM QLTDH.NHANVIEN WHERE VAITRO='GV';
+    
+GRANT SELECT ON QLTDH.v_TeacherID TO "NV PĐT";
