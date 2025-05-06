@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 
@@ -12,8 +13,16 @@ namespace QLTDH
         {
             InitializeComponent();
             this.AcceptButton = btnLogin; // Đặt nút đăng nhập là nút mặc định khi nhấn Enter
+            LoadRoles();
         }
 
+        private void LoadRoles()
+        {
+            if (cbbRole.Items.Count > 0)
+            {
+                cbbRole.SelectedIndex = 0;
+            }
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             // Kiểm tra nếu người dùng không nhập đầy đủ thông tin
@@ -25,6 +34,7 @@ namespace QLTDH
 
             string username = txbUsername.Text.ToUpper().Trim();
             string password = txbPassword.Text.Trim();
+            string role = cbbRole.SelectedItem.ToString();
 
             // Lưu thông tin đăng nhập vào ConnectionManager
             ConnectionManager.Username = username;
@@ -39,17 +49,27 @@ namespace QLTDH
 
                     try
                     {
-                        if (RoleManager.HasRole(conn, "DBA"))
+                        if (!RoleManager.HasRole(conn, role))
                         {
-                            this.Hide();
-                            DBAForm dbaForm = new DBAForm();
-                            dbaForm.ShowDialog();
-                            this.Close();
+                            MessageBox.Show("Bạn không có quyền truy cập vào role này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        this.Hide();
+
+                        if (role == "DBA")
+                        {
+                            DBAForm DBAForm = new DBAForm();
+                            DBAForm.ShowDialog();
                         }
                         else
                         {
-                            //TODO: Chuyển đến form UserDashboard
+                            UserDashboardForm userDashboardForm = new UserDashboardForm(role);
+                            userDashboardForm.ShowDialog();
                         }
+
+                        this.Close();
+
                     }
                     catch (ArgumentException argEx)
                     {

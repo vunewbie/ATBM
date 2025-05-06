@@ -24,5 +24,6 @@ namespace QLTDH
             object result = cmd.ExecuteScalar();
             return result != null;
         }
+
     }
 }
