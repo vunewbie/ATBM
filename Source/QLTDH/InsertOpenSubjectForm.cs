@@ -89,7 +89,14 @@ namespace QLTDH
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("Thêm mở môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (MessageBox.Show("Thêm mở môn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    {
+                        if (Owner is UserDashboardForm userForm)
+                        {
+                            userForm.LoadOpenSubjectList();
+                        }
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)

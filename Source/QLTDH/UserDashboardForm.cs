@@ -19,7 +19,7 @@ namespace QLTDH
         {
             InitializeComponent();
             this.role = role;
-            LoadUnit();
+            LoadEmployeeList();
         }
         public void LoadEmployeeList(string name = null)
         {
@@ -60,10 +60,6 @@ namespace QLTDH
             {
                 MessageBox.Show("Lỗi khi tải thông tin nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private void btnSelectEmployee_Click(object sender, EventArgs e)
-        {
-            LoadEmployeeList();
         }
         private void LoadUnit()
         {
@@ -106,7 +102,7 @@ namespace QLTDH
         private void dtgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-
+            LoadUnit();
             txbEmployeeID.Text = dtgvEmployee.Rows[e.RowIndex].Cells["MANV"].Value.ToString();
             txbEmployeeFullname.Text = dtgvEmployee.Rows[e.RowIndex].Cells["HOTEN"].Value.ToString();
             cbbEmployeeGender.Text = dtgvEmployee.Rows[e.RowIndex].Cells["PHAI"].Value.ToString();
@@ -266,14 +262,10 @@ namespace QLTDH
                 MessageBox.Show("Lỗi khi tải thông tin mở môn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void btnSelectOpenSubject_Click(object sender, EventArgs e)
-        {
-            LoadOpenSubjectList();
-        }
-
         private void txbOpenSubjectSearch_TextChanged(object sender, EventArgs e)
         {
             string name = txbOpenSubjectSearch.Text.Trim();
+            
             if (string.IsNullOrEmpty(name))
             {
                 LoadOpenSubjectList();
@@ -397,6 +389,31 @@ namespace QLTDH
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi chỉnh sửa mở môn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void tpgEmployee_Enter(object sender, EventArgs e)
+        {
+            string name = txbEmployeeSearch.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                LoadOpenSubjectList();
+            }
+            else
+            {
+                LoadOpenSubjectList(name);
+            }
+        }
+
+        private void tpgOpenSubject_Enter(object sender, EventArgs e)
+        {
+            string name = txbOpenSubjectSearch.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                LoadOpenSubjectList();
+            }
+            else
+            {
+                LoadOpenSubjectList(name);
             }
         }
     }
