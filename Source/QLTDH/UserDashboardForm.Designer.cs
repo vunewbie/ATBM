@@ -58,7 +58,7 @@
             this.lblEmployeeFullname = new System.Windows.Forms.Label();
             this.txbEmployeeID = new System.Windows.Forms.TextBox();
             this.lblEmployeeID = new System.Windows.Forms.Label();
-            this.tpgSubject = new System.Windows.Forms.TabPage();
+            this.tpgOpenSubject = new System.Windows.Forms.TabPage();
             this.tlpOpenSubject = new System.Windows.Forms.TableLayoutPanel();
             this.lblOpenSubject = new System.Windows.Forms.Label();
             this.dtgvOpenSubject = new System.Windows.Forms.DataGridView();
@@ -83,6 +83,14 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbStudentTable = new System.Windows.Forms.Label();
             this.dgvStudent = new System.Windows.Forms.DataGridView();
+            this.stdMASV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdHOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdPHAI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdNGSINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdDCHI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdKHOA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stdTINHTRANG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnDeleteStudent = new System.Windows.Forms.Button();
             this.btnUpdateStudent = new System.Windows.Forms.Button();
@@ -90,6 +98,7 @@
             this.txbSearchStudent = new System.Windows.Forms.TextBox();
             this.lbSearchStudent = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.cbbStudentDepartment = new System.Windows.Forms.ComboBox();
             this.lbStudentDepartment = new System.Windows.Forms.Label();
             this.cbbStudentStatus = new System.Windows.Forms.ComboBox();
             this.lbStudentStatus = new System.Windows.Forms.Label();
@@ -109,6 +118,12 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lbRegister = new System.Windows.Forms.Label();
             this.dgvRegister = new System.Windows.Forms.DataGridView();
+            this.rgtMASV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rgtMAMM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rgtDIEMTH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rgtDIEMQT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rgtDIEMCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rgtDIEMTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnDeleteRegister = new System.Windows.Forms.Button();
             this.btnUpdateRegister = new System.Windows.Forms.Button();
@@ -116,6 +131,8 @@
             this.txbSearchRegister = new System.Windows.Forms.TextBox();
             this.lbSearchRegister = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.txbDiemTK = new System.Windows.Forms.TextBox();
+            this.txbDiemTH = new System.Windows.Forms.TextBox();
             this.txbDiemCK = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -127,30 +144,13 @@
             this.txbRgtStudentID = new System.Windows.Forms.TextBox();
             this.lbRgtStudentID = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.cbbStudentDepartment = new System.Windows.Forms.ComboBox();
-            this.stdMASV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdHOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdPHAI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdNGSINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdDCHI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdKHOA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stdTINHTRANG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtMASV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtMAMM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtDIEMTH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtDIEMQT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtDIEMCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rgtDIEMTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txbDiemTH = new System.Windows.Forms.TextBox();
-            this.txbDiemTK = new System.Windows.Forms.TextBox();
             this.tctrlUserDashboard.SuspendLayout();
             this.tpgEmployee.SuspendLayout();
             this.tlpEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvEmployee)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tpgSubject.SuspendLayout();
+            this.tpgOpenSubject.SuspendLayout();
             this.tlpOpenSubject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOpenSubject)).BeginInit();
             this.panel3.SuspendLayout();
@@ -173,7 +173,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tctrlUserDashboard.Controls.Add(this.tpgEmployee);
-            this.tctrlUserDashboard.Controls.Add(this.tpgSubject);
+            this.tctrlUserDashboard.Controls.Add(this.tpgOpenSubject);
             this.tctrlUserDashboard.Controls.Add(this.tpgStudent);
             this.tctrlUserDashboard.Controls.Add(this.tpgRegister);
             this.tctrlUserDashboard.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -524,17 +524,17 @@
             this.lblEmployeeID.TabIndex = 0;
             this.lblEmployeeID.Text = "Mã NV";
             // 
-            // tpgSubject
+            // tpgOpenSubject
             // 
-            this.tpgSubject.Controls.Add(this.tlpOpenSubject);
-            this.tpgSubject.Location = new System.Drawing.Point(4, 34);
-            this.tpgSubject.Name = "tpgSubject";
-            this.tpgSubject.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgSubject.Size = new System.Drawing.Size(1252, 663);
-            this.tpgSubject.TabIndex = 1;
-            this.tpgSubject.Text = "Mở môn";
-            this.tpgSubject.UseVisualStyleBackColor = true;
-            this.tpgSubject.Enter += new System.EventHandler(this.tpgOpenSubject_Enter);
+            this.tpgOpenSubject.Controls.Add(this.tlpOpenSubject);
+            this.tpgOpenSubject.Location = new System.Drawing.Point(4, 34);
+            this.tpgOpenSubject.Name = "tpgOpenSubject";
+            this.tpgOpenSubject.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgOpenSubject.Size = new System.Drawing.Size(1252, 663);
+            this.tpgOpenSubject.TabIndex = 1;
+            this.tpgOpenSubject.Text = "Mở môn";
+            this.tpgOpenSubject.UseVisualStyleBackColor = true;
+            this.tpgOpenSubject.Enter += new System.EventHandler(this.tpgOpenSubject_Enter);
             // 
             // tlpOpenSubject
             // 
@@ -840,6 +840,77 @@
             this.dgvStudent.TabIndex = 1;
             this.dgvStudent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStudent_CellClick);
             // 
+            // stdMASV
+            // 
+            this.stdMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.stdMASV.DataPropertyName = "MASV";
+            this.stdMASV.HeaderText = "MASV";
+            this.stdMASV.Name = "stdMASV";
+            this.stdMASV.ReadOnly = true;
+            this.stdMASV.Width = 88;
+            // 
+            // stdHOTEN
+            // 
+            this.stdHOTEN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.stdHOTEN.DataPropertyName = "HOTEN";
+            this.stdHOTEN.HeaderText = "HOTEN";
+            this.stdHOTEN.Name = "stdHOTEN";
+            this.stdHOTEN.ReadOnly = true;
+            this.stdHOTEN.Width = 98;
+            // 
+            // stdPHAI
+            // 
+            this.stdPHAI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.stdPHAI.DataPropertyName = "PHAI";
+            this.stdPHAI.HeaderText = "PHAI";
+            this.stdPHAI.Name = "stdPHAI";
+            this.stdPHAI.ReadOnly = true;
+            this.stdPHAI.Width = 78;
+            // 
+            // stdNGSINH
+            // 
+            this.stdNGSINH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.stdNGSINH.DataPropertyName = "NGSINH";
+            this.stdNGSINH.HeaderText = "NGSINH";
+            this.stdNGSINH.Name = "stdNGSINH";
+            this.stdNGSINH.ReadOnly = true;
+            this.stdNGSINH.Width = 105;
+            // 
+            // stdDCHI
+            // 
+            this.stdDCHI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.stdDCHI.DataPropertyName = "DCHI";
+            this.stdDCHI.HeaderText = "DCHI";
+            this.stdDCHI.Name = "stdDCHI";
+            this.stdDCHI.ReadOnly = true;
+            // 
+            // stdDT
+            // 
+            this.stdDT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.stdDT.DataPropertyName = "DT";
+            this.stdDT.HeaderText = "DT";
+            this.stdDT.Name = "stdDT";
+            this.stdDT.ReadOnly = true;
+            this.stdDT.Width = 60;
+            // 
+            // stdKHOA
+            // 
+            this.stdKHOA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.stdKHOA.DataPropertyName = "KHOA";
+            this.stdKHOA.HeaderText = "KHOA";
+            this.stdKHOA.Name = "stdKHOA";
+            this.stdKHOA.ReadOnly = true;
+            this.stdKHOA.Width = 88;
+            // 
+            // stdTINHTRANG
+            // 
+            this.stdTINHTRANG.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.stdTINHTRANG.DataPropertyName = "TINHTRANG";
+            this.stdTINHTRANG.HeaderText = "TINHTRANG";
+            this.stdTINHTRANG.Name = "stdTINHTRANG";
+            this.stdTINHTRANG.ReadOnly = true;
+            this.stdTINHTRANG.Width = 144;
+            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.btnDeleteStudent);
@@ -934,6 +1005,21 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(1005, 145);
             this.panel6.TabIndex = 3;
+            // 
+            // cbbStudentDepartment
+            // 
+            this.cbbStudentDepartment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbbStudentDepartment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbbStudentDepartment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbStudentDepartment.FormattingEnabled = true;
+            this.cbbStudentDepartment.Items.AddRange(new object[] {
+            "Đang học",
+            "Nghỉ học",
+            "Bảo lưu"});
+            this.cbbStudentDepartment.Location = new System.Drawing.Point(766, 7);
+            this.cbbStudentDepartment.Name = "cbbStudentDepartment";
+            this.cbbStudentDepartment.Size = new System.Drawing.Size(223, 27);
+            this.cbbStudentDepartment.TabIndex = 17;
             // 
             // lbStudentDepartment
             // 
@@ -1150,6 +1236,54 @@
             this.dgvRegister.TabIndex = 1;
             this.dgvRegister.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegister_CellClick);
             // 
+            // rgtMASV
+            // 
+            this.rgtMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtMASV.DataPropertyName = "MASV";
+            this.rgtMASV.HeaderText = "MASV";
+            this.rgtMASV.Name = "rgtMASV";
+            this.rgtMASV.ReadOnly = true;
+            // 
+            // rgtMAMM
+            // 
+            this.rgtMAMM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtMAMM.DataPropertyName = "MAMM";
+            this.rgtMAMM.HeaderText = "MAMM";
+            this.rgtMAMM.Name = "rgtMAMM";
+            this.rgtMAMM.ReadOnly = true;
+            // 
+            // rgtDIEMTH
+            // 
+            this.rgtDIEMTH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtDIEMTH.DataPropertyName = "DIEMTH";
+            this.rgtDIEMTH.HeaderText = "DIEMTH";
+            this.rgtDIEMTH.Name = "rgtDIEMTH";
+            this.rgtDIEMTH.ReadOnly = true;
+            // 
+            // rgtDIEMQT
+            // 
+            this.rgtDIEMQT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtDIEMQT.DataPropertyName = "DIEMQT";
+            this.rgtDIEMQT.HeaderText = "DIEMQT";
+            this.rgtDIEMQT.Name = "rgtDIEMQT";
+            this.rgtDIEMQT.ReadOnly = true;
+            // 
+            // rgtDIEMCK
+            // 
+            this.rgtDIEMCK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtDIEMCK.DataPropertyName = "DIEMCK";
+            this.rgtDIEMCK.HeaderText = "DIEMCK";
+            this.rgtDIEMCK.Name = "rgtDIEMCK";
+            this.rgtDIEMCK.ReadOnly = true;
+            // 
+            // rgtDIEMTK
+            // 
+            this.rgtDIEMTK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.rgtDIEMTK.DataPropertyName = "DIEMTK";
+            this.rgtDIEMTK.HeaderText = "DIEMTK";
+            this.rgtDIEMTK.Name = "rgtDIEMTK";
+            this.rgtDIEMTK.ReadOnly = true;
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.btnDeleteRegister);
@@ -1239,6 +1373,22 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1005, 145);
             this.panel8.TabIndex = 3;
+            // 
+            // txbDiemTK
+            // 
+            this.txbDiemTK.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbDiemTK.Location = new System.Drawing.Point(767, 81);
+            this.txbDiemTK.Name = "txbDiemTK";
+            this.txbDiemTK.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemTK.TabIndex = 18;
+            // 
+            // txbDiemTH
+            // 
+            this.txbDiemTH.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbDiemTH.Location = new System.Drawing.Point(435, 36);
+            this.txbDiemTH.Name = "txbDiemTH";
+            this.txbDiemTH.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemTH.TabIndex = 17;
             // 
             // txbDiemCK
             // 
@@ -1346,156 +1496,6 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // cbbStudentDepartment
-            // 
-            this.cbbStudentDepartment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cbbStudentDepartment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbbStudentDepartment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbStudentDepartment.FormattingEnabled = true;
-            this.cbbStudentDepartment.Items.AddRange(new object[] {
-            "Đang học",
-            "Nghỉ học",
-            "Bảo lưu"});
-            this.cbbStudentDepartment.Location = new System.Drawing.Point(766, 7);
-            this.cbbStudentDepartment.Name = "cbbStudentDepartment";
-            this.cbbStudentDepartment.Size = new System.Drawing.Size(223, 27);
-            this.cbbStudentDepartment.TabIndex = 17;
-            // 
-            // stdMASV
-            // 
-            this.stdMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.stdMASV.DataPropertyName = "MASV";
-            this.stdMASV.HeaderText = "MASV";
-            this.stdMASV.Name = "stdMASV";
-            this.stdMASV.ReadOnly = true;
-            this.stdMASV.Width = 88;
-            // 
-            // stdHOTEN
-            // 
-            this.stdHOTEN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.stdHOTEN.DataPropertyName = "HOTEN";
-            this.stdHOTEN.HeaderText = "HOTEN";
-            this.stdHOTEN.Name = "stdHOTEN";
-            this.stdHOTEN.ReadOnly = true;
-            this.stdHOTEN.Width = 98;
-            // 
-            // stdPHAI
-            // 
-            this.stdPHAI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.stdPHAI.DataPropertyName = "PHAI";
-            this.stdPHAI.HeaderText = "PHAI";
-            this.stdPHAI.Name = "stdPHAI";
-            this.stdPHAI.ReadOnly = true;
-            this.stdPHAI.Width = 78;
-            // 
-            // stdNGSINH
-            // 
-            this.stdNGSINH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.stdNGSINH.DataPropertyName = "NGSINH";
-            this.stdNGSINH.HeaderText = "NGSINH";
-            this.stdNGSINH.Name = "stdNGSINH";
-            this.stdNGSINH.ReadOnly = true;
-            this.stdNGSINH.Width = 105;
-            // 
-            // stdDCHI
-            // 
-            this.stdDCHI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.stdDCHI.DataPropertyName = "DCHI";
-            this.stdDCHI.HeaderText = "DCHI";
-            this.stdDCHI.Name = "stdDCHI";
-            this.stdDCHI.ReadOnly = true;
-            // 
-            // stdDT
-            // 
-            this.stdDT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.stdDT.DataPropertyName = "DT";
-            this.stdDT.HeaderText = "DT";
-            this.stdDT.Name = "stdDT";
-            this.stdDT.ReadOnly = true;
-            this.stdDT.Width = 60;
-            // 
-            // stdKHOA
-            // 
-            this.stdKHOA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.stdKHOA.DataPropertyName = "KHOA";
-            this.stdKHOA.HeaderText = "KHOA";
-            this.stdKHOA.Name = "stdKHOA";
-            this.stdKHOA.ReadOnly = true;
-            this.stdKHOA.Width = 88;
-            // 
-            // stdTINHTRANG
-            // 
-            this.stdTINHTRANG.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.stdTINHTRANG.DataPropertyName = "TINHTRANG";
-            this.stdTINHTRANG.HeaderText = "TINHTRANG";
-            this.stdTINHTRANG.Name = "stdTINHTRANG";
-            this.stdTINHTRANG.ReadOnly = true;
-            this.stdTINHTRANG.Width = 144;
-            // 
-            // rgtMASV
-            // 
-            this.rgtMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtMASV.DataPropertyName = "MASV";
-            this.rgtMASV.HeaderText = "MASV";
-            this.rgtMASV.Name = "rgtMASV";
-            this.rgtMASV.ReadOnly = true;
-            // 
-            // rgtMAMM
-            // 
-            this.rgtMAMM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtMAMM.DataPropertyName = "MAMM";
-            this.rgtMAMM.HeaderText = "MAMM";
-            this.rgtMAMM.Name = "rgtMAMM";
-            this.rgtMAMM.ReadOnly = true;
-            // 
-            // rgtDIEMTH
-            // 
-            this.rgtDIEMTH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtDIEMTH.DataPropertyName = "DIEMTH";
-            this.rgtDIEMTH.HeaderText = "DIEMTH";
-            this.rgtDIEMTH.Name = "rgtDIEMTH";
-            this.rgtDIEMTH.ReadOnly = true;
-            // 
-            // rgtDIEMQT
-            // 
-            this.rgtDIEMQT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtDIEMQT.DataPropertyName = "DIEMQT";
-            this.rgtDIEMQT.HeaderText = "DIEMQT";
-            this.rgtDIEMQT.Name = "rgtDIEMQT";
-            this.rgtDIEMQT.ReadOnly = true;
-            // 
-            // rgtDIEMCK
-            // 
-            this.rgtDIEMCK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtDIEMCK.DataPropertyName = "DIEMCK";
-            this.rgtDIEMCK.HeaderText = "DIEMCK";
-            this.rgtDIEMCK.Name = "rgtDIEMCK";
-            this.rgtDIEMCK.ReadOnly = true;
-            // 
-            // rgtDIEMTK
-            // 
-            this.rgtDIEMTK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.rgtDIEMTK.DataPropertyName = "DIEMTK";
-            this.rgtDIEMTK.HeaderText = "DIEMTK";
-            this.rgtDIEMTK.Name = "rgtDIEMTK";
-            this.rgtDIEMTK.ReadOnly = true;
-            // 
-            // txbDiemTH
-            // 
-            this.txbDiemTH.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDiemTH.Location = new System.Drawing.Point(435, 36);
-            this.txbDiemTH.Name = "txbDiemTH";
-            this.txbDiemTH.Size = new System.Drawing.Size(223, 26);
-            this.txbDiemTH.TabIndex = 17;
-            // 
-            // txbDiemTK
-            // 
-            this.txbDiemTK.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbDiemTK.Location = new System.Drawing.Point(767, 81);
-            this.txbDiemTK.Name = "txbDiemTK";
-            this.txbDiemTK.Size = new System.Drawing.Size(223, 26);
-            this.txbDiemTK.TabIndex = 18;
-            // 
             // UserDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -1518,7 +1518,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.tpgSubject.ResumeLayout(false);
+            this.tpgOpenSubject.ResumeLayout(false);
             this.tlpOpenSubject.ResumeLayout(false);
             this.tlpOpenSubject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvOpenSubject)).EndInit();
@@ -1550,7 +1550,7 @@
 
         private System.Windows.Forms.TabControl tctrlUserDashboard;
         private System.Windows.Forms.TabPage tpgEmployee;
-        private System.Windows.Forms.TabPage tpgSubject;
+        private System.Windows.Forms.TabPage tpgOpenSubject;
         private System.Windows.Forms.TabPage tpgStudent;
         private System.Windows.Forms.TabPage tpgRegister;
         private System.Windows.Forms.TableLayoutPanel tlpEmployee;

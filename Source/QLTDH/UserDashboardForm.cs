@@ -392,6 +392,32 @@ namespace QLTDH
             }
         }
 
+        private void tpgEmployee_Enter(object sender, EventArgs e)
+        {
+            string name = txbEmployeeSearch.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                LoadOpenSubjectList();
+            }
+            else
+            {
+                LoadOpenSubjectList(name);
+            }
+        }
+
+        private void tpgOpenSubject_Enter(object sender, EventArgs e)
+        {
+            string name = txbOpenSubjectSearch.Text.Trim();
+            if (string.IsNullOrEmpty(name))
+            {
+                LoadOpenSubjectList();
+            }
+            else
+            {
+                LoadOpenSubjectList(name);
+            }
+        }
+
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
