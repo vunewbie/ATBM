@@ -813,8 +813,143 @@ GRANT SELECT ON DONVI TO NVCB, GV, "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", TR
 GRANT SELECT ON HOCPHAN TO "NV PĐT";
 
 --Xem danh sách mã giảng viên để thêm mới mở môn
-CREATE OR REPLACE VIEW v_TeacherID 
+CREATE OR REPLACE VIEW v_TeacherID
 AS
     SELECT MANV FROM QLTDH.NHANVIEN WHERE VAITRO='GV';
     
 GRANT SELECT ON QLTDH.v_TeacherID TO "NV PĐT";
+/
+
+--Xem danh sách sinh viên
+CREATE OR REPLACE PROCEDURE QLTDH.GET_STUDENT_LIST(
+    name IN VARCHAR2,
+    role IN VARCHAR2,
+    student_cursor OUT SYS_REFCURSOR)
+AS
+BEGIN
+    IF role in ('GV', 'SV', 'NV CTSV', 'NV PĐT') THEN
+        OPEN student_cursor FOR 
+        SELECT * FROM QLTDH.SINHVIEN
+        WHERE name IS NULL OR LOWER(HOTEN) LIKE '%' || LOWER(name) || '%';
+    ELSE
+        OPEN student_cursor FOR SELECT * FROM DUAL WHERE 1 = 0; 
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.GET_STUDENT_LIST TO GV, SV, "NV PĐT","NV CTSV";
+GRANT SELECT ON QLTDH.DONVI TO "NV CTSV"
+
+-- Cập nhật thông tin sinh viên
+CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_STUDENT(
+    studentID IN VARCHAR2,
+    fullname IN VARCHAR,
+    gender IN VARCHAR2,
+    DOB IN DATE,
+    address IN VARCHAR2,
+    phone IN VARCHAR2,
+    department IN VARCHAR2,
+    status IN VARCHAR2,
+    role IN VARCHAR2
+)
+AS
+BEGIN
+    IF role = 'SV' THEN
+        UPDATE QLTDH.SINHVIEN
+        SET DCHI = address, DT = phone
+        WHERE MASV=studentID;
+    ELSIF role = 'NV CTSV' THEN
+        UPDATE QLTDH.SINHVIEN
+        SET HOTEN = fullname, PHAI = gender, NGSINH = DOB, DCHI = address, DT = phone, KHOA = department
+        WHERE MASV=studentID;
+    ELSIF role = 'NV PĐT' THEN
+        UPDATE QLTDH.SINHVIEN
+        SET TINHTRANG = status
+        WHERE MASV=studentID;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có sinh viên và nhân viên phòng CTSV mới có quyền cập nhật thông tin sinh viên!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.UPDATE_STUDENT TO SV, "NV CTSV", "NV PĐT";
+
+-- Xoá thông tin sinh viên
+CREATE OR REPLACE PROCEDURE QLTDH.DELETE_STUDENT(
+    studentID IN VARCHAR2,
+    role IN VARCHAR2
+)
+AS
+BEGIN
+    IF role = 'NV CTSV' THEN
+        BEGIN
+            DELETE FROM QLTDH.SINHVIEN WHERE MASV=studentID;
+        EXCEPTION
+            WHEN OTHERS THEN
+                IF SQLCODE = -2292 THEN -- Foreign key constraint violation error code
+                    RAISE_APPLICATION_ERROR(-20002, 
+                        'Không thể xóa sinh viên vì còn tồn tại dữ liệu liên quan. ' ||
+                        'Vui lòng xóa dữ liệu liên quan trước khi xóa sinh viên.');
+                ELSE
+                    RAISE;
+                END IF;
+        END;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có nhân viên phòng CTSV mới có quyền xóa thông tin sinh viên!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.DELETE_STUDENT TO "NV CTSV";
+
+-- Xem danh sách đăng ký
+CREATE OR REPLACE PROCEDURE QLTDH.GET_REGISTER_LIST(
+    name IN VARCHAR2,
+    role IN VARCHAR2,
+    register_cursor OUT SYS_REFCURSOR)
+AS
+BEGIN
+    IF role IN ('GV', 'SV', 'NV PĐT', 'NV PKT') THEN
+        OPEN register_cursor FOR 
+        SELECT * FROM QLTDH.DANGKY
+        WHERE name IS NULL OR LOWER(MASV) LIKE '%' || LOWER(name) || '%';
+    ELSE 
+        OPEN register_cursor FOR SELECT * FROM DUAL WHERE 1 = 0; 
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.GET_REGISTER_LIST TO GV, SV, "NV PĐT", "NV PKT";
+
+-- Cập nhật thông tin đăng ký
+CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_REGISTER(
+    studentID IN VARCHAR2,
+    openSubjectID IN VARCHAR2,
+    diemTH IN NUMBER,
+    diemQT IN NUMBER,
+    diemCK IN NUMBER,
+    diemTK IN NUMBER,
+    role IN VARCHAR2
+)
+AS
+BEGIN
+    IF role = 'NV PKT' THEN
+        -- in ra các biến nhận vào
+        DBMS_OUTPUT.PUT_LINE('Mã sinh viên: ' || studentID);
+        DBMS_OUTPUT.PUT_LINE('Mã môn học mở: ' || openSubjectID);
+        DBMS_OUTPUT.PUT_LINE('Điểm thường xuyên: ' || diemTH);
+        DBMS_OUTPUT.PUT_LINE('Điểm quá trình: ' || diemQT);
+        DBMS_OUTPUT.PUT_LINE('Điểm thi giữa kỳ: ' || diemCK);
+        DBMS_OUTPUT.PUT_LINE('Điểm thi cuối kỳ: ' || diemTK);
+        UPDATE QLTDH.DANGKY
+        SET DIEMTH = diemTH, DIEMQT = diemQT, DIEMCK = diemCK, DIEMTK = diemTK
+        WHERE MASV=studentID AND MAMM=openSubjectID;
+        -- in ra thông báo thành công
+        IF SQL%ROWCOUNT = 0 THEN
+            DBMS_OUTPUT.PUT_LINE('Không tìm thấy thông tin đăng ký cho sinh viên ' || studentID || ' và môn học mở ' || openSubjectID);
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('Cập nhật thông tin đăng ký thành công cho sinh viên ' || studentID || ' và môn học mở ' || openSubjectID);
+        END IF;
+        COMMIT;
+    ELSE 
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có nhân viên phòng PKT mới có quyền cập nhật thông tin đăng ký!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.UPDATE_REGISTER TO "NV PKT";

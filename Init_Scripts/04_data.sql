@@ -267,7 +267,7 @@ BEGIN
             'SV' || LPAD(TO_CHAR(i), 4, '0'),
             'Sinh Viên ' || i, 
             CASE WHEN MOD(i, 2) = 0 THEN 'Nam' ELSE 'Nữ' END,
-            ADD_MONTHS(SYSDATE, -((20 + i) * 12)), -- Tạo ngày sinh ngẫu nhiên cho sinh viên
+            ADD_MONTHS(SYSDATE, -((20 + MOD(i, 26)) * 12)), -- Tạo ngày sinh ngẫu nhiên cho sinh viên
             'Địa Chỉ Sinh Viên ' || i, 
             '097' || LPAD(TO_CHAR(i), 7, '0'),
             CASE 
