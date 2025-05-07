@@ -144,15 +144,6 @@
             this.txbRgtStudentID = new System.Windows.Forms.TextBox();
             this.lbRgtStudentID = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
-            this.MANV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PHAI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NGSINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LUONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PHUCAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VAITRO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MADV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tctrlUserDashboard.SuspendLayout();
             this.tpgEmployee.SuspendLayout();
             this.tlpEmployee.SuspendLayout();
@@ -245,16 +236,6 @@
             this.dtgvEmployee.AllowUserToDeleteRows = false;
             this.dtgvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MANV,
-            this.HOTEN,
-            this.PHAI,
-            this.NGSINH,
-            this.LUONG,
-            this.PHUCAP,
-            this.DT,
-            this.VAITRO,
-            this.MADV});
             this.dtgvEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvEmployee.Location = new System.Drawing.Point(3, 45);
             this.dtgvEmployee.Name = "dtgvEmployee";
@@ -595,7 +576,7 @@
             // 
             this.dtgvOpenSubject.AllowUserToAddRows = false;
             this.dtgvOpenSubject.AllowUserToDeleteRows = false;
-            this.dtgvOpenSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dtgvOpenSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgvOpenSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvOpenSubject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvOpenSubject.Location = new System.Drawing.Point(3, 45);
@@ -1538,78 +1519,6 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // MANV
-            // 
-            this.MANV.DataPropertyName = "MANV";
-            this.MANV.FillWeight = 80F;
-            this.MANV.HeaderText = "Mã NV";
-            this.MANV.MinimumWidth = 8;
-            this.MANV.Name = "MANV";
-            // 
-            // HOTEN
-            // 
-            this.HOTEN.DataPropertyName = "HOTEN";
-            this.HOTEN.FillWeight = 150F;
-            this.HOTEN.HeaderText = "Họ tên";
-            this.HOTEN.MinimumWidth = 8;
-            this.HOTEN.Name = "HOTEN";
-            // 
-            // PHAI
-            // 
-            this.PHAI.DataPropertyName = "PHAI";
-            this.PHAI.FillWeight = 35F;
-            this.PHAI.HeaderText = "Phái";
-            this.PHAI.MinimumWidth = 8;
-            this.PHAI.Name = "PHAI";
-            // 
-            // NGSINH
-            // 
-            this.NGSINH.DataPropertyName = "NGSINH";
-            this.NGSINH.FillWeight = 70F;
-            this.NGSINH.HeaderText = "Ngày sinh";
-            this.NGSINH.MinimumWidth = 8;
-            this.NGSINH.Name = "NGSINH";
-            // 
-            // LUONG
-            // 
-            this.LUONG.DataPropertyName = "LUONG";
-            this.LUONG.FillWeight = 70F;
-            this.LUONG.HeaderText = "Lương";
-            this.LUONG.MinimumWidth = 8;
-            this.LUONG.Name = "LUONG";
-            // 
-            // PHUCAP
-            // 
-            this.PHUCAP.DataPropertyName = "PHUCAP";
-            this.PHUCAP.FillWeight = 70F;
-            this.PHUCAP.HeaderText = "Phụ cấp";
-            this.PHUCAP.MinimumWidth = 8;
-            this.PHUCAP.Name = "PHUCAP";
-            // 
-            // DT
-            // 
-            this.DT.DataPropertyName = "DT";
-            this.DT.FillWeight = 80F;
-            this.DT.HeaderText = "ĐT";
-            this.DT.MinimumWidth = 8;
-            this.DT.Name = "DT";
-            // 
-            // VAITRO
-            // 
-            this.VAITRO.DataPropertyName = "VAITRO";
-            this.VAITRO.FillWeight = 65F;
-            this.VAITRO.HeaderText = "Vai trò";
-            this.VAITRO.MinimumWidth = 8;
-            this.VAITRO.Name = "VAITRO";
-            // 
-            // MADV
-            // 
-            this.MADV.DataPropertyName = "MADV";
-            this.MADV.FillWeight = 65F;
-            this.MADV.HeaderText = "Mã ĐV";
-            this.MADV.MinimumWidth = 8;
-            this.MADV.Name = "MADV";
-            // 
             // UserDashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -1778,14 +1687,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rgtDIEMTK;
         private System.Windows.Forms.TextBox txbDiemTH;
         private System.Windows.Forms.TextBox txbDiemTK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MANV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HOTEN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PHAI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NGSINH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LUONG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PHUCAP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VAITRO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MADV;
     }
 }

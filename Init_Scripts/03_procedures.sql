@@ -808,7 +808,7 @@ BEGIN
     ELSIF role='NV PĐT' THEN OPEN subject_cursor FOR 
         SELECT * FROM QLTDH.EDUCATION_DEPARTMENT_GET_COURSE_OFFERING
         WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
-    ELSIF role='TRGDV' THEN OPEN subject_cursor FOR 
+    ELSIF role='TRGĐV' THEN OPEN subject_cursor FOR 
         SELECT * FROM QLTDH.UNIT_HEAD_GET_FACULTY_TEACHING
         WHERE name IS NULL OR LOWER(TENHP) LIKE '%' || LOWER(name) || '%';
     ELSIF role='SV' THEN OPEN subject_cursor FOR 
