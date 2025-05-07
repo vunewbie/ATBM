@@ -4,6 +4,17 @@ SET SERVEROUTPUT ON;
 
 ALTER TABLE QLTDH.MOMON
 ADD (NGAYBD DATE);
+UPDATE QLTDH.MOMON 
+SET NGAYBD = TO_DATE('01-09-2025', 'DD-MM-YYYY')  --cho nay sua thanh thang 5 nhe
+WHERE NAM = 2025 AND HK = 1;
+UPDATE QLTDH.MOMON 
+SET NGAYBD = TO_DATE('01-01-2026', 'DD-MM-YYYY') 
+WHERE NAM = 2025 AND HK = 2;
+UPDATE QLTDH.MOMON 
+SET NGAYBD = TO_DATE('01-05-2026', 'DD-MM-YYYY') 
+WHERE NAM = 2025 AND HK = 3;
+SELECT * FROM QLTDH.MOMON where nam=2025; 
+select * from qltdh.dangky where mamm='MM1501'
 
 --Cấp quyền trên bảng DANG KY cho các role
 GRANT SELECT,INSERT, UPDATE, DELETE ON QLTDH.DANGKY TO SV;
@@ -14,7 +25,7 @@ GRANT SELECT ON QLTDH.DANGKY TO GV;
 GRANT SELECT ON QLTDH.DANGKY TO "NV PĐT";
 
 -- Policy cho SELECT
-CREATE OR REPLACE FUNCTION QLTDH.DANGKY_SELECT_VPD_POLICY (
+CREATE OR REPLACE FUNCTION QLTDH.DANGKY_SELECT_POLICY (
     p_schema IN VARCHAR2,
     p_object IN VARCHAR2
 ) RETURN VARCHAR2 AS
@@ -41,14 +52,14 @@ BEGIN
     
     -- giảng viên có quyền xem danh sách lớp, bảng điểm các lớp học phần mà giảng viên đó phụ trách giảng dạy.
     IF v_vaitro = 'GV' THEN
-     RETURN 'MAMM IN (SELECT MM.MAMM FROM QLTDH.MOMON MM WHERE MAGV = ' || v_user || ')';
+        RETURN 'MAMM IN (SELECT MM.MAMM FROM QLTDH.MOMON MM WHERE MAGV = ''' || v_user || ''')';
     END IF;
     
 END;
 /
 
 -- Policy cho INSERT, UPDATE, DELETE
-CREATE OR REPLACE FUNCTION QLTDH.DANGKY_MODIFY_VPD_POLICY (
+CREATE OR REPLACE FUNCTION QLTDH.DANGKY_MODIFY_POLICY (
     p_schema IN VARCHAR2,
     p_object IN VARCHAR2
 ) RETURN VARCHAR2 AS
@@ -91,6 +102,10 @@ BEGIN
             AND SYSDATE <= NGAYBD + 14
         )';
     END IF;
+    
+    IF v_vaitro = 'NV PKT' THEN
+        RETURN '1=1';
+    END IF;
 
     RETURN '1=0'; -- Mặc định cho các trường hợp khác
 END;
@@ -99,7 +114,7 @@ END;
 BEGIN
     DBMS_RLS.DROP_POLICY (
         object_schema => 'QLTDH',
-        object_name   => 'SINHVIEN',
+        object_name   => 'DANGKY',
         policy_name   => 'DANGKY_SELECT_POLICY'
     );
         DBMS_OUTPUT.PUT_LINE('Chính sách VPD DANGKY_SELECT_POLICY đã được xóa.');
@@ -117,7 +132,7 @@ END;
 BEGIN
     DBMS_RLS.DROP_POLICY (
         object_schema => 'QLTDH',
-        object_name   => 'SINHVIEN',
+        object_name   => 'DANGKY',
         policy_name   => 'DANGKY_MODIFY_POLICY'
     );
         DBMS_OUTPUT.PUT_LINE('Chính sách VPD DANGKY_MODIFY_POLICY đã được xóa.');
@@ -138,7 +153,7 @@ BEGIN
         object_name   => 'DANGKY',
         policy_name   => 'DANGKY_SELECT_POLICY',
         function_schema => 'QLTDH',
-        policy_function => 'DANGKY_SELECT_VPD_POLICY',
+        policy_function => 'DANGKY_SELECT_POLICY',
         statement_types => 'SELECT',
         update_check   => TRUE
     );
@@ -150,12 +165,17 @@ BEGIN
         object_name   => 'DANGKY',
         policy_name   => 'DANGKY_MODIFY_POLICY',
         function_schema => 'QLTDH',
-        policy_function => 'DANGKY_MODIFY_VPD_POLICY',
+        policy_function => 'DANGKY_MODIFY_POLICY',
         statement_types => 'INSERT, UPDATE, DELETE',
         update_check   => TRUE
     );
 END;
 /
+--SELECT policy_name
+--FROM DBA_POLICIES 
+--WHERE OBJECT_NAME = 'DANGKY';
+
+
 --tẠO TRIGGER ĐỂ ĐẢM BẢO SV/NV pđt thêm dữ liệu trong bảng đăng ký thì điểm luôn NULL
 CREATE OR REPLACE TRIGGER TRG_DANGKY_SET_DIEM_NULL
 BEFORE INSERT OR UPDATE ON QLTDH.DANGKY
@@ -176,4 +196,80 @@ BEGIN
     END IF;
 END;
 /
+
+-- Kiểm tra quyền của sinh viên (SV)
+CONNECT SV0030/SV0030@localhost:1521/QUANLYTRUONGDAIHOC;
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') AS USERNAME FROM DUAL;
+
+-- SELECT: Chỉ thấy dữ liệu của SV0030
+SELECT * FROM QLTDH.DANGKY;
+-- INSERT: Thêm môn học có ngày bắt đầu trong vòng 14 ngày
+INSERT INTO QLTDH.DANGKY(MASV, MAMM, DIEMQT, DIEMTH, DIEMCK, DIEMTK)
+VALUES ('SV0030', 'MM1501',9,9,9,9); -- MM1501 phải có NGAYBD trong 14 ngày gần nhất
+--kiem tra lai
+SELECT * FROM QLTDH.DANGKY;
+-- UPDATE: Cập nhật điểm – sẽ bị set NULL do trigger
+UPDATE QLTDH.DANGKY SET DIEMTH = 9, DIEMQT = 8 WHERE MASV = 'SV0030' AND MAMM = 'MM1501';
+--kiem tra lai
+SELECT * FROM QLTDH.DANGKY;
+-- DELETE: Được phép nếu trong khoảng 14 ngày (duoc)
+DELETE FROM QLTDH.DANGKY WHERE MASV = 'SV0030' AND MAMM = 'MM1501';
+--kiem tra lai
+SELECT * FROM QLTDH.DANGKY;
+-- DELETE: khong duoc
+DELETE FROM QLTDH.DANGKY WHERE MASV = 'SV0030' AND MAMM = 'MM0001';
+--kiem tra lai
+SELECT * FROM QLTDH.DANGKY;
+-- Kiểm tra trigger: điểm phải là NULL
+SELECT MASV, MAMM, DIEMTH, DIEMQT FROM QLTDH.DANGKY WHERE MASV = 'SV0030';
+
+------------------------------------------------------------
+
+-- Kiểm tra quyền của nhân viên PĐT
+CONNECT NVPDT0001/NVPDT0001@localhost:1521/QUANLYTRUONGDAIHOC;
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM DUAL;
+
+-- SELECT: Thấy toàn bộ
+SELECT * FROM QLTDH.DANGKY;
+
+-- INSERT: Chỉ thành công nếu MAMM có NGAYBD trong vòng 14 ngày
+INSERT INTO QLTDH.DANGKY(MASV, MAMM)
+VALUES ('SV0031', 'MM124'); -- bi chan
+
+INSERT INTO QLTDH.DANGKY(MASV, MAMM)
+VALUES ('SV0031', 'MM1501'); -- duoc
+
+-- UPDATE: Cập nhật điểm -> trigger sẽ set NULL
+UPDATE QLTDH.DANGKY SET DIEMCK = 10 WHERE MASV = 'SV0031' AND MAMM = 'MM1501';
+
+select * from QLTDH.DANGKY where MASV='SV0031'
+-- DELETE: Được phép nếu MAMM phù hợp
+DELETE FROM QLTDH.DANGKY WHERE MASV = 'SV0031' AND MAMM = 'MM0002'; --khong duoc
+DELETE FROM QLTDH.DANGKY WHERE MASV = 'SV0031' AND MAMM = 'MM1501'; -- duoc
+
+------------------------------------------------------------
+
+-- Kiểm tra quyền của giảng viên (GV)
+CONNECT GV0001/GV0001@localhost:1521/QUANLYTRUONGDAIHOC;
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM DUAL;
+
+-- SELECT: Thấy danh sách lớp mình giảng dạy
+SELECT * FROM QLTDH.DANGKY ;
+------------------------------------------------------------
+
+--grant "NV PKT" to NVPKT0001
+-- Kiểm tra quyền của NV PKT
+CONNECT NVPKT0001/NVPKT0001@localhost:1521/QUANLYTRUONGDAIHOC;
+SELECT SYS_CONTEXT('USERENV', 'SESSION_USER') FROM DUAL;
+
+-- SELECT: Thấy toàn bộ
+SELECT * FROM QLTDH.DANGKY;
+
+SELECT * FROM QLTDH.DANGKY WHERE MASV='SV0030';
+-- UPDATE điểm được phép (theo GRANT cụ thể)
+UPDATE QLTDH.DANGKY SET DIEMTH = 6, DIEMCK = 7 WHERE MASV = 'SV0030' AND MAMM = 'MM0001';
+
+-- INSERT/DELETE: không được phép (do khoong co quyen)
+
+
 
