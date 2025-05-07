@@ -189,10 +189,14 @@ BEGIN
 
     -- Nếu là NV CTSV, đảm bảo TINHTRANG = NULL
     IF v_vaitro IN('SV', 'NV PĐT') THEN
-        :NEW.DIEMTH := NULL;
-        :NEW.DIEMQT :=NULL;
-        :NEW.DIEMCK :=NULL;
-        :NEW.DIEMTK :=NULL;
+        IF INSERTING OR 
+               UPDATING('DIEMTH') OR UPDATING('DIEMQT') OR 
+               UPDATING('DIEMCK') OR UPDATING('DIEMTK') THEN
+            :NEW.DIEMTH := NULL;
+            :NEW.DIEMQT :=NULL;
+            :NEW.DIEMCK :=NULL;
+            :NEW.DIEMTK :=NULL;
+        END IF;
     END IF;
 END;
 /

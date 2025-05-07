@@ -95,8 +95,16 @@ BEGIN
 
     -- Nếu là NV CTSV, đảm bảo TINHTRANG = NULL
     IF v_vaitro = 'NV CTSV' THEN
-        :NEW.TINHTRANG := NULL;
-        DBMS_OUTPUT.PUT_LINE('User ' || v_user || ' (NV CTSV) đặt TINHTRANG = NULL.');
+        IF INSERTING THEN
+            -- Khi thêm mới, luôn đặt TINHTRANG = NULL
+            :NEW.TINHTRANG := NULL;
+
+        ELSIF UPDATING THEN
+            -- Nếu trước đó là NULL, không cho sửa sang giá trị khác
+            IF :OLD.TINHTRANG IS NULL AND :NEW.TINHTRANG IS NOT NULL THEN
+                RAISE_APPLICATION_ERROR(-20001, 'NV CTSV không được sửa TINHTRANG từ NULL sang giá trị khác.');
+            END IF;
+        END IF;
     END IF;
 END;
 /
