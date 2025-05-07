@@ -144,6 +144,15 @@
             this.txbRgtStudentID = new System.Windows.Forms.TextBox();
             this.lbRgtStudentID = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.MANV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PHAI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NGSINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LUONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PHUCAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VAITRO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MADV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tctrlUserDashboard.SuspendLayout();
             this.tpgEmployee.SuspendLayout();
             this.tlpEmployee.SuspendLayout();
@@ -232,11 +241,24 @@
             // 
             // dtgvEmployee
             // 
+            this.dtgvEmployee.AllowUserToAddRows = false;
+            this.dtgvEmployee.AllowUserToDeleteRows = false;
             this.dtgvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MANV,
+            this.HOTEN,
+            this.PHAI,
+            this.NGSINH,
+            this.LUONG,
+            this.PHUCAP,
+            this.DT,
+            this.VAITRO,
+            this.MADV});
             this.dtgvEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvEmployee.Location = new System.Drawing.Point(3, 45);
             this.dtgvEmployee.Name = "dtgvEmployee";
+            this.dtgvEmployee.ReadOnly = true;
             this.dtgvEmployee.RowHeadersVisible = false;
             this.dtgvEmployee.RowHeadersWidth = 62;
             this.dtgvEmployee.RowTemplate.Height = 28;
@@ -302,7 +324,7 @@
             this.txbEmployeeSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeSearch.Location = new System.Drawing.Point(3, 48);
             this.txbEmployeeSearch.Name = "txbEmployeeSearch";
-            this.txbEmployeeSearch.Size = new System.Drawing.Size(223, 27);
+            this.txbEmployeeSearch.Size = new System.Drawing.Size(223, 37);
             this.txbEmployeeSearch.TabIndex = 1;
             this.txbEmployeeSearch.TextChanged += new System.EventHandler(this.txbEmployeeSearch_TextChanged);
             // 
@@ -312,7 +334,7 @@
             this.lblEmployeeSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeSearch.Location = new System.Drawing.Point(2, 10);
             this.lblEmployeeSearch.Name = "lblEmployeeSearch";
-            this.lblEmployeeSearch.Size = new System.Drawing.Size(143, 20);
+            this.lblEmployeeSearch.Size = new System.Drawing.Size(205, 29);
             this.lblEmployeeSearch.TabIndex = 0;
             this.lblEmployeeSearch.Text = "Tìm kiếm theo tên";
             // 
@@ -347,7 +369,7 @@
             this.txbEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeePhone.Location = new System.Drawing.Point(767, 7);
             this.txbEmployeePhone.Name = "txbEmployeePhone";
-            this.txbEmployeePhone.Size = new System.Drawing.Size(223, 26);
+            this.txbEmployeePhone.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeePhone.TabIndex = 13;
             // 
             // lblEmployeePhone
@@ -356,7 +378,7 @@
             this.lblEmployeePhone.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeePhone.Location = new System.Drawing.Point(679, 13);
             this.lblEmployeePhone.Name = "lblEmployeePhone";
-            this.lblEmployeePhone.Size = new System.Drawing.Size(38, 19);
+            this.lblEmployeePhone.Size = new System.Drawing.Size(55, 27);
             this.lblEmployeePhone.TabIndex = 16;
             this.lblEmployeePhone.Text = "SĐT";
             // 
@@ -368,7 +390,7 @@
             this.cbbUnitID.FormattingEnabled = true;
             this.cbbUnitID.Location = new System.Drawing.Point(766, 98);
             this.cbbUnitID.Name = "cbbUnitID";
-            this.cbbUnitID.Size = new System.Drawing.Size(223, 27);
+            this.cbbUnitID.Size = new System.Drawing.Size(223, 35);
             this.cbbUnitID.TabIndex = 17;
             // 
             // lblUnitID
@@ -377,7 +399,7 @@
             this.lblUnitID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUnitID.Location = new System.Drawing.Point(679, 102);
             this.lblUnitID.Name = "lblUnitID";
-            this.lblUnitID.Size = new System.Drawing.Size(56, 19);
+            this.lblUnitID.Size = new System.Drawing.Size(83, 27);
             this.lblUnitID.TabIndex = 14;
             this.lblUnitID.Text = "Mã ĐV";
             // 
@@ -397,7 +419,7 @@
             "TRGĐV"});
             this.cbbEmployeeRole.Location = new System.Drawing.Point(766, 53);
             this.cbbEmployeeRole.Name = "cbbEmployeeRole";
-            this.cbbEmployeeRole.Size = new System.Drawing.Size(223, 27);
+            this.cbbEmployeeRole.Size = new System.Drawing.Size(223, 35);
             this.cbbEmployeeRole.TabIndex = 15;
             // 
             // lblEmployeeRole
@@ -406,7 +428,7 @@
             this.lblEmployeeRole.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeRole.Location = new System.Drawing.Point(679, 56);
             this.lblEmployeeRole.Name = "lblEmployeeRole";
-            this.lblEmployeeRole.Size = new System.Drawing.Size(49, 19);
+            this.lblEmployeeRole.Size = new System.Drawing.Size(75, 27);
             this.lblEmployeeRole.TabIndex = 12;
             this.lblEmployeeRole.Text = "Vai trò";
             // 
@@ -415,7 +437,7 @@
             this.txbEmployeeAllowance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeAllowance.Location = new System.Drawing.Point(450, 97);
             this.txbEmployeeAllowance.Name = "txbEmployeeAllowance";
-            this.txbEmployeeAllowance.Size = new System.Drawing.Size(223, 26);
+            this.txbEmployeeAllowance.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeAllowance.TabIndex = 11;
             // 
             // lblEmployeeAllowance
@@ -424,7 +446,7 @@
             this.lblEmployeeAllowance.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeAllowance.Location = new System.Drawing.Point(334, 102);
             this.lblEmployeeAllowance.Name = "lblEmployeeAllowance";
-            this.lblEmployeeAllowance.Size = new System.Drawing.Size(58, 19);
+            this.lblEmployeeAllowance.Size = new System.Drawing.Size(90, 27);
             this.lblEmployeeAllowance.TabIndex = 10;
             this.lblEmployeeAllowance.Text = "Phụ cấp";
             // 
@@ -437,7 +459,7 @@
             "Nữ"});
             this.cbbEmployeeGender.Location = new System.Drawing.Point(97, 99);
             this.cbbEmployeeGender.Name = "cbbEmployeeGender";
-            this.cbbEmployeeGender.Size = new System.Drawing.Size(223, 27);
+            this.cbbEmployeeGender.Size = new System.Drawing.Size(223, 35);
             this.cbbEmployeeGender.TabIndex = 9;
             // 
             // lblEmployeeSalary
@@ -446,7 +468,7 @@
             this.lblEmployeeSalary.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeSalary.Location = new System.Drawing.Point(337, 56);
             this.lblEmployeeSalary.Name = "lblEmployeeSalary";
-            this.lblEmployeeSalary.Size = new System.Drawing.Size(49, 19);
+            this.lblEmployeeSalary.Size = new System.Drawing.Size(76, 27);
             this.lblEmployeeSalary.TabIndex = 8;
             this.lblEmployeeSalary.Text = "Lương";
             // 
@@ -456,7 +478,7 @@
             this.dtpkDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpkDOB.Location = new System.Drawing.Point(450, 7);
             this.dtpkDOB.Name = "dtpkDOB";
-            this.dtpkDOB.Size = new System.Drawing.Size(223, 26);
+            this.dtpkDOB.Size = new System.Drawing.Size(223, 35);
             this.dtpkDOB.TabIndex = 7;
             // 
             // lblEmployeeDOB
@@ -465,7 +487,7 @@
             this.lblEmployeeDOB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeDOB.Location = new System.Drawing.Point(335, 11);
             this.lblEmployeeDOB.Name = "lblEmployeeDOB";
-            this.lblEmployeeDOB.Size = new System.Drawing.Size(69, 19);
+            this.lblEmployeeDOB.Size = new System.Drawing.Size(108, 27);
             this.lblEmployeeDOB.TabIndex = 6;
             this.lblEmployeeDOB.Text = "Ngày sinh";
             // 
@@ -474,7 +496,7 @@
             this.txbEmployeeSalary.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeSalary.Location = new System.Drawing.Point(450, 53);
             this.txbEmployeeSalary.Name = "txbEmployeeSalary";
-            this.txbEmployeeSalary.Size = new System.Drawing.Size(223, 26);
+            this.txbEmployeeSalary.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeSalary.TabIndex = 5;
             // 
             // lblEmployeeGender
@@ -483,7 +505,7 @@
             this.lblEmployeeGender.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeGender.Location = new System.Drawing.Point(10, 104);
             this.lblEmployeeGender.Name = "lblEmployeeGender";
-            this.lblEmployeeGender.Size = new System.Drawing.Size(35, 19);
+            this.lblEmployeeGender.Size = new System.Drawing.Size(55, 27);
             this.lblEmployeeGender.TabIndex = 4;
             this.lblEmployeeGender.Text = "Phái";
             // 
@@ -492,7 +514,7 @@
             this.txbEmployeeFullname.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeFullname.Location = new System.Drawing.Point(97, 53);
             this.txbEmployeeFullname.Name = "txbEmployeeFullname";
-            this.txbEmployeeFullname.Size = new System.Drawing.Size(223, 26);
+            this.txbEmployeeFullname.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeFullname.TabIndex = 3;
             // 
             // lblEmployeeFullname
@@ -501,7 +523,7 @@
             this.lblEmployeeFullname.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeFullname.Location = new System.Drawing.Point(10, 59);
             this.lblEmployeeFullname.Name = "lblEmployeeFullname";
-            this.lblEmployeeFullname.Size = new System.Drawing.Size(50, 19);
+            this.lblEmployeeFullname.Size = new System.Drawing.Size(77, 27);
             this.lblEmployeeFullname.TabIndex = 2;
             this.lblEmployeeFullname.Text = "Họ tên";
             // 
@@ -511,7 +533,7 @@
             this.txbEmployeeID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbEmployeeID.Location = new System.Drawing.Point(97, 7);
             this.txbEmployeeID.Name = "txbEmployeeID";
-            this.txbEmployeeID.Size = new System.Drawing.Size(223, 26);
+            this.txbEmployeeID.Size = new System.Drawing.Size(223, 35);
             this.txbEmployeeID.TabIndex = 1;
             // 
             // lblEmployeeID
@@ -520,7 +542,7 @@
             this.lblEmployeeID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmployeeID.Location = new System.Drawing.Point(10, 11);
             this.lblEmployeeID.Name = "lblEmployeeID";
-            this.lblEmployeeID.Size = new System.Drawing.Size(57, 19);
+            this.lblEmployeeID.Size = new System.Drawing.Size(83, 27);
             this.lblEmployeeID.TabIndex = 0;
             this.lblEmployeeID.Text = "Mã NV";
             // 
@@ -571,11 +593,14 @@
             // 
             // dtgvOpenSubject
             // 
-            this.dtgvOpenSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgvOpenSubject.AllowUserToAddRows = false;
+            this.dtgvOpenSubject.AllowUserToDeleteRows = false;
+            this.dtgvOpenSubject.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dtgvOpenSubject.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvOpenSubject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvOpenSubject.Location = new System.Drawing.Point(3, 45);
             this.dtgvOpenSubject.Name = "dtgvOpenSubject";
+            this.dtgvOpenSubject.ReadOnly = true;
             this.dtgvOpenSubject.RowHeadersVisible = false;
             this.dtgvOpenSubject.RowHeadersWidth = 62;
             this.dtgvOpenSubject.RowTemplate.Height = 28;
@@ -641,7 +666,7 @@
             this.txbOpenSubjectSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbOpenSubjectSearch.Location = new System.Drawing.Point(3, 48);
             this.txbOpenSubjectSearch.Name = "txbOpenSubjectSearch";
-            this.txbOpenSubjectSearch.Size = new System.Drawing.Size(223, 27);
+            this.txbOpenSubjectSearch.Size = new System.Drawing.Size(223, 37);
             this.txbOpenSubjectSearch.TabIndex = 6;
             this.txbOpenSubjectSearch.TextChanged += new System.EventHandler(this.txbOpenSubjectSearch_TextChanged);
             // 
@@ -651,7 +676,7 @@
             this.lblSubjectSearch.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubjectSearch.Location = new System.Drawing.Point(2, 10);
             this.lblSubjectSearch.Name = "lblSubjectSearch";
-            this.lblSubjectSearch.Size = new System.Drawing.Size(143, 20);
+            this.lblSubjectSearch.Size = new System.Drawing.Size(205, 29);
             this.lblSubjectSearch.TabIndex = 1;
             this.lblSubjectSearch.Text = "Tìm kiếm theo tên";
             // 
@@ -678,7 +703,7 @@
             this.txbYear.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbYear.Location = new System.Drawing.Point(669, 57);
             this.txbYear.Name = "txbYear";
-            this.txbYear.Size = new System.Drawing.Size(220, 26);
+            this.txbYear.Size = new System.Drawing.Size(220, 35);
             this.txbYear.TabIndex = 10;
             // 
             // lblYear
@@ -687,7 +712,7 @@
             this.lblYear.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYear.Location = new System.Drawing.Point(581, 63);
             this.lblYear.Name = "lblYear";
-            this.lblYear.Size = new System.Drawing.Size(39, 19);
+            this.lblYear.Size = new System.Drawing.Size(58, 27);
             this.lblYear.TabIndex = 9;
             this.lblYear.Text = "Năm";
             // 
@@ -700,7 +725,7 @@
             "3"});
             this.cbbSemester.Location = new System.Drawing.Point(669, 5);
             this.cbbSemester.Name = "cbbSemester";
-            this.cbbSemester.Size = new System.Drawing.Size(220, 29);
+            this.cbbSemester.Size = new System.Drawing.Size(220, 41);
             this.cbbSemester.TabIndex = 8;
             // 
             // lblSemester
@@ -709,7 +734,7 @@
             this.lblSemester.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSemester.Location = new System.Drawing.Point(581, 9);
             this.lblSemester.Name = "lblSemester";
-            this.lblSemester.Size = new System.Drawing.Size(54, 19);
+            this.lblSemester.Size = new System.Drawing.Size(82, 27);
             this.lblSemester.TabIndex = 7;
             this.lblSemester.Text = "Học kỳ";
             // 
@@ -720,7 +745,7 @@
             this.cbbTeacherID.FormattingEnabled = true;
             this.cbbTeacherID.Location = new System.Drawing.Point(149, 98);
             this.cbbTeacherID.Name = "cbbTeacherID";
-            this.cbbTeacherID.Size = new System.Drawing.Size(220, 29);
+            this.cbbTeacherID.Size = new System.Drawing.Size(220, 41);
             this.cbbTeacherID.TabIndex = 6;
             // 
             // lblTeacherID
@@ -729,7 +754,7 @@
             this.lblTeacherID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeacherID.Location = new System.Drawing.Point(51, 105);
             this.lblTeacherID.Name = "lblTeacherID";
-            this.lblTeacherID.Size = new System.Drawing.Size(56, 19);
+            this.lblTeacherID.Size = new System.Drawing.Size(83, 27);
             this.lblTeacherID.TabIndex = 5;
             this.lblTeacherID.Text = "Mã GV";
             // 
@@ -740,7 +765,7 @@
             this.cbbSubjectID.FormattingEnabled = true;
             this.cbbSubjectID.Location = new System.Drawing.Point(149, 49);
             this.cbbSubjectID.Name = "cbbSubjectID";
-            this.cbbSubjectID.Size = new System.Drawing.Size(220, 29);
+            this.cbbSubjectID.Size = new System.Drawing.Size(220, 41);
             this.cbbSubjectID.TabIndex = 4;
             // 
             // lblSubjectID
@@ -749,7 +774,7 @@
             this.lblSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubjectID.Location = new System.Drawing.Point(51, 57);
             this.lblSubjectID.Name = "lblSubjectID";
-            this.lblSubjectID.Size = new System.Drawing.Size(54, 19);
+            this.lblSubjectID.Size = new System.Drawing.Size(81, 27);
             this.lblSubjectID.TabIndex = 3;
             this.lblSubjectID.Text = "Mã HP";
             // 
@@ -759,7 +784,7 @@
             this.txbOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbOpenSubjectID.Location = new System.Drawing.Point(151, 5);
             this.txbOpenSubjectID.Name = "txbOpenSubjectID";
-            this.txbOpenSubjectID.Size = new System.Drawing.Size(218, 26);
+            this.txbOpenSubjectID.Size = new System.Drawing.Size(218, 35);
             this.txbOpenSubjectID.TabIndex = 2;
             // 
             // lblOpenSubjectID
@@ -768,7 +793,7 @@
             this.lblOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOpenSubjectID.Location = new System.Drawing.Point(51, 9);
             this.lblOpenSubjectID.Name = "lblOpenSubjectID";
-            this.lblOpenSubjectID.Size = new System.Drawing.Size(62, 19);
+            this.lblOpenSubjectID.Size = new System.Drawing.Size(92, 27);
             this.lblOpenSubjectID.TabIndex = 1;
             this.lblOpenSubjectID.Text = "Mã MM";
             // 
@@ -845,42 +870,47 @@
             this.stdMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.stdMASV.DataPropertyName = "MASV";
             this.stdMASV.HeaderText = "MASV";
+            this.stdMASV.MinimumWidth = 8;
             this.stdMASV.Name = "stdMASV";
             this.stdMASV.ReadOnly = true;
-            this.stdMASV.Width = 88;
+            this.stdMASV.Width = 131;
             // 
             // stdHOTEN
             // 
             this.stdHOTEN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.stdHOTEN.DataPropertyName = "HOTEN";
             this.stdHOTEN.HeaderText = "HOTEN";
+            this.stdHOTEN.MinimumWidth = 8;
             this.stdHOTEN.Name = "stdHOTEN";
             this.stdHOTEN.ReadOnly = true;
-            this.stdHOTEN.Width = 98;
+            this.stdHOTEN.Width = 143;
             // 
             // stdPHAI
             // 
             this.stdPHAI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.stdPHAI.DataPropertyName = "PHAI";
             this.stdPHAI.HeaderText = "PHAI";
+            this.stdPHAI.MinimumWidth = 8;
             this.stdPHAI.Name = "stdPHAI";
             this.stdPHAI.ReadOnly = true;
-            this.stdPHAI.Width = 78;
+            this.stdPHAI.Width = 113;
             // 
             // stdNGSINH
             // 
             this.stdNGSINH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.stdNGSINH.DataPropertyName = "NGSINH";
             this.stdNGSINH.HeaderText = "NGSINH";
+            this.stdNGSINH.MinimumWidth = 8;
             this.stdNGSINH.Name = "stdNGSINH";
             this.stdNGSINH.ReadOnly = true;
-            this.stdNGSINH.Width = 105;
+            this.stdNGSINH.Width = 153;
             // 
             // stdDCHI
             // 
             this.stdDCHI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.stdDCHI.DataPropertyName = "DCHI";
             this.stdDCHI.HeaderText = "DCHI";
+            this.stdDCHI.MinimumWidth = 8;
             this.stdDCHI.Name = "stdDCHI";
             this.stdDCHI.ReadOnly = true;
             // 
@@ -889,27 +919,30 @@
             this.stdDT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.stdDT.DataPropertyName = "DT";
             this.stdDT.HeaderText = "DT";
+            this.stdDT.MinimumWidth = 8;
             this.stdDT.Name = "stdDT";
             this.stdDT.ReadOnly = true;
-            this.stdDT.Width = 60;
+            this.stdDT.Width = 87;
             // 
             // stdKHOA
             // 
             this.stdKHOA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.stdKHOA.DataPropertyName = "KHOA";
             this.stdKHOA.HeaderText = "KHOA";
+            this.stdKHOA.MinimumWidth = 8;
             this.stdKHOA.Name = "stdKHOA";
             this.stdKHOA.ReadOnly = true;
-            this.stdKHOA.Width = 88;
+            this.stdKHOA.Width = 128;
             // 
             // stdTINHTRANG
             // 
             this.stdTINHTRANG.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.stdTINHTRANG.DataPropertyName = "TINHTRANG";
             this.stdTINHTRANG.HeaderText = "TINHTRANG";
+            this.stdTINHTRANG.MinimumWidth = 8;
             this.stdTINHTRANG.Name = "stdTINHTRANG";
             this.stdTINHTRANG.ReadOnly = true;
-            this.stdTINHTRANG.Width = 144;
+            this.stdTINHTRANG.Width = 207;
             // 
             // panel5
             // 
@@ -969,7 +1002,7 @@
             this.txbSearchStudent.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSearchStudent.Location = new System.Drawing.Point(3, 48);
             this.txbSearchStudent.Name = "txbSearchStudent";
-            this.txbSearchStudent.Size = new System.Drawing.Size(224, 27);
+            this.txbSearchStudent.Size = new System.Drawing.Size(224, 37);
             this.txbSearchStudent.TabIndex = 1;
             this.txbSearchStudent.TextChanged += new System.EventHandler(this.txbSearchStudent_TextChanged);
             // 
@@ -979,7 +1012,7 @@
             this.lbSearchStudent.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSearchStudent.Location = new System.Drawing.Point(2, 10);
             this.lbSearchStudent.Name = "lbSearchStudent";
-            this.lbSearchStudent.Size = new System.Drawing.Size(143, 20);
+            this.lbSearchStudent.Size = new System.Drawing.Size(205, 29);
             this.lbSearchStudent.TabIndex = 0;
             this.lbSearchStudent.Text = "Tìm kiếm theo tên";
             // 
@@ -1019,7 +1052,7 @@
             "Bảo lưu"});
             this.cbbStudentDepartment.Location = new System.Drawing.Point(766, 7);
             this.cbbStudentDepartment.Name = "cbbStudentDepartment";
-            this.cbbStudentDepartment.Size = new System.Drawing.Size(223, 27);
+            this.cbbStudentDepartment.Size = new System.Drawing.Size(223, 35);
             this.cbbStudentDepartment.TabIndex = 17;
             // 
             // lbStudentDepartment
@@ -1028,7 +1061,7 @@
             this.lbStudentDepartment.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentDepartment.Location = new System.Drawing.Point(679, 13);
             this.lbStudentDepartment.Name = "lbStudentDepartment";
-            this.lbStudentDepartment.Size = new System.Drawing.Size(43, 19);
+            this.lbStudentDepartment.Size = new System.Drawing.Size(64, 27);
             this.lbStudentDepartment.TabIndex = 16;
             this.lbStudentDepartment.Text = "Khoa";
             // 
@@ -1044,7 +1077,7 @@
             "Bảo lưu"});
             this.cbbStudentStatus.Location = new System.Drawing.Point(766, 53);
             this.cbbStudentStatus.Name = "cbbStudentStatus";
-            this.cbbStudentStatus.Size = new System.Drawing.Size(223, 27);
+            this.cbbStudentStatus.Size = new System.Drawing.Size(223, 35);
             this.cbbStudentStatus.TabIndex = 15;
             // 
             // lbStudentStatus
@@ -1053,7 +1086,7 @@
             this.lbStudentStatus.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentStatus.Location = new System.Drawing.Point(679, 56);
             this.lbStudentStatus.Name = "lbStudentStatus";
-            this.lbStudentStatus.Size = new System.Drawing.Size(69, 19);
+            this.lbStudentStatus.Size = new System.Drawing.Size(111, 27);
             this.lbStudentStatus.TabIndex = 12;
             this.lbStudentStatus.Text = "Tình trạng";
             // 
@@ -1062,7 +1095,7 @@
             this.txbStudentPhoneNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbStudentPhoneNumber.Location = new System.Drawing.Point(434, 54);
             this.txbStudentPhoneNumber.Name = "txbStudentPhoneNumber";
-            this.txbStudentPhoneNumber.Size = new System.Drawing.Size(223, 26);
+            this.txbStudentPhoneNumber.Size = new System.Drawing.Size(223, 35);
             this.txbStudentPhoneNumber.TabIndex = 11;
             // 
             // lbStudentPhoneNumber
@@ -1071,7 +1104,7 @@
             this.lbStudentPhoneNumber.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentPhoneNumber.Location = new System.Drawing.Point(337, 56);
             this.lbStudentPhoneNumber.Name = "lbStudentPhoneNumber";
-            this.lbStudentPhoneNumber.Size = new System.Drawing.Size(29, 19);
+            this.lbStudentPhoneNumber.Size = new System.Drawing.Size(43, 27);
             this.lbStudentPhoneNumber.TabIndex = 10;
             this.lbStudentPhoneNumber.Text = "ĐT";
             // 
@@ -1084,7 +1117,7 @@
             "Nữ"});
             this.cbbStudentGender.Location = new System.Drawing.Point(92, 99);
             this.cbbStudentGender.Name = "cbbStudentGender";
-            this.cbbStudentGender.Size = new System.Drawing.Size(223, 27);
+            this.cbbStudentGender.Size = new System.Drawing.Size(223, 35);
             this.cbbStudentGender.TabIndex = 9;
             // 
             // lbStudentAddress
@@ -1093,7 +1126,7 @@
             this.lbStudentAddress.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentAddress.Location = new System.Drawing.Point(337, 104);
             this.lbStudentAddress.Name = "lbStudentAddress";
-            this.lbStudentAddress.Size = new System.Drawing.Size(51, 19);
+            this.lbStudentAddress.Size = new System.Drawing.Size(81, 27);
             this.lbStudentAddress.TabIndex = 8;
             this.lbStudentAddress.Text = "Địa chỉ";
             // 
@@ -1103,7 +1136,7 @@
             this.dtpckStudentDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpckStudentDOB.Location = new System.Drawing.Point(434, 7);
             this.dtpckStudentDOB.Name = "dtpckStudentDOB";
-            this.dtpckStudentDOB.Size = new System.Drawing.Size(223, 26);
+            this.dtpckStudentDOB.Size = new System.Drawing.Size(223, 35);
             this.dtpckStudentDOB.TabIndex = 7;
             // 
             // lbStudentDOB
@@ -1112,7 +1145,7 @@
             this.lbStudentDOB.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentDOB.Location = new System.Drawing.Point(335, 11);
             this.lbStudentDOB.Name = "lbStudentDOB";
-            this.lbStudentDOB.Size = new System.Drawing.Size(69, 19);
+            this.lbStudentDOB.Size = new System.Drawing.Size(108, 27);
             this.lbStudentDOB.TabIndex = 6;
             this.lbStudentDOB.Text = "Ngày sinh";
             // 
@@ -1121,7 +1154,7 @@
             this.txbStudentAddress.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbStudentAddress.Location = new System.Drawing.Point(434, 101);
             this.txbStudentAddress.Name = "txbStudentAddress";
-            this.txbStudentAddress.Size = new System.Drawing.Size(555, 26);
+            this.txbStudentAddress.Size = new System.Drawing.Size(555, 35);
             this.txbStudentAddress.TabIndex = 5;
             // 
             // lbStudentGender
@@ -1130,7 +1163,7 @@
             this.lbStudentGender.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentGender.Location = new System.Drawing.Point(10, 104);
             this.lbStudentGender.Name = "lbStudentGender";
-            this.lbStudentGender.Size = new System.Drawing.Size(35, 19);
+            this.lbStudentGender.Size = new System.Drawing.Size(55, 27);
             this.lbStudentGender.TabIndex = 4;
             this.lbStudentGender.Text = "Phái";
             // 
@@ -1139,7 +1172,7 @@
             this.txbStudentName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbStudentName.Location = new System.Drawing.Point(92, 53);
             this.txbStudentName.Name = "txbStudentName";
-            this.txbStudentName.Size = new System.Drawing.Size(223, 26);
+            this.txbStudentName.Size = new System.Drawing.Size(223, 35);
             this.txbStudentName.TabIndex = 3;
             // 
             // lbStudentName
@@ -1148,7 +1181,7 @@
             this.lbStudentName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentName.Location = new System.Drawing.Point(10, 59);
             this.lbStudentName.Name = "lbStudentName";
-            this.lbStudentName.Size = new System.Drawing.Size(50, 19);
+            this.lbStudentName.Size = new System.Drawing.Size(77, 27);
             this.lbStudentName.TabIndex = 2;
             this.lbStudentName.Text = "Họ tên";
             // 
@@ -1158,7 +1191,7 @@
             this.txbStudentID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbStudentID.Location = new System.Drawing.Point(92, 7);
             this.txbStudentID.Name = "txbStudentID";
-            this.txbStudentID.Size = new System.Drawing.Size(223, 26);
+            this.txbStudentID.Size = new System.Drawing.Size(223, 35);
             this.txbStudentID.TabIndex = 1;
             // 
             // lbStudentID
@@ -1167,7 +1200,7 @@
             this.lbStudentID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbStudentID.Location = new System.Drawing.Point(10, 11);
             this.lbStudentID.Name = "lbStudentID";
-            this.lbStudentID.Size = new System.Drawing.Size(54, 19);
+            this.lbStudentID.Size = new System.Drawing.Size(78, 27);
             this.lbStudentID.TabIndex = 0;
             this.lbStudentID.Text = "Mã SV";
             // 
@@ -1242,6 +1275,7 @@
             this.rgtMASV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtMASV.DataPropertyName = "MASV";
             this.rgtMASV.HeaderText = "MASV";
+            this.rgtMASV.MinimumWidth = 8;
             this.rgtMASV.Name = "rgtMASV";
             this.rgtMASV.ReadOnly = true;
             // 
@@ -1250,6 +1284,7 @@
             this.rgtMAMM.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtMAMM.DataPropertyName = "MAMM";
             this.rgtMAMM.HeaderText = "MAMM";
+            this.rgtMAMM.MinimumWidth = 8;
             this.rgtMAMM.Name = "rgtMAMM";
             this.rgtMAMM.ReadOnly = true;
             // 
@@ -1258,6 +1293,7 @@
             this.rgtDIEMTH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtDIEMTH.DataPropertyName = "DIEMTH";
             this.rgtDIEMTH.HeaderText = "DIEMTH";
+            this.rgtDIEMTH.MinimumWidth = 8;
             this.rgtDIEMTH.Name = "rgtDIEMTH";
             this.rgtDIEMTH.ReadOnly = true;
             // 
@@ -1266,6 +1302,7 @@
             this.rgtDIEMQT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtDIEMQT.DataPropertyName = "DIEMQT";
             this.rgtDIEMQT.HeaderText = "DIEMQT";
+            this.rgtDIEMQT.MinimumWidth = 8;
             this.rgtDIEMQT.Name = "rgtDIEMQT";
             this.rgtDIEMQT.ReadOnly = true;
             // 
@@ -1274,6 +1311,7 @@
             this.rgtDIEMCK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtDIEMCK.DataPropertyName = "DIEMCK";
             this.rgtDIEMCK.HeaderText = "DIEMCK";
+            this.rgtDIEMCK.MinimumWidth = 8;
             this.rgtDIEMCK.Name = "rgtDIEMCK";
             this.rgtDIEMCK.ReadOnly = true;
             // 
@@ -1282,6 +1320,7 @@
             this.rgtDIEMTK.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rgtDIEMTK.DataPropertyName = "DIEMTK";
             this.rgtDIEMTK.HeaderText = "DIEMTK";
+            this.rgtDIEMTK.MinimumWidth = 8;
             this.rgtDIEMTK.Name = "rgtDIEMTK";
             this.rgtDIEMTK.ReadOnly = true;
             // 
@@ -1343,7 +1382,7 @@
             this.txbSearchRegister.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSearchRegister.Location = new System.Drawing.Point(3, 48);
             this.txbSearchRegister.Name = "txbSearchRegister";
-            this.txbSearchRegister.Size = new System.Drawing.Size(224, 27);
+            this.txbSearchRegister.Size = new System.Drawing.Size(224, 37);
             this.txbSearchRegister.TabIndex = 1;
             this.txbSearchRegister.TextChanged += new System.EventHandler(this.txbSearchRegister_TextChanged);
             // 
@@ -1353,7 +1392,7 @@
             this.lbSearchRegister.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSearchRegister.Location = new System.Drawing.Point(2, 10);
             this.lbSearchRegister.Name = "lbSearchRegister";
-            this.lbSearchRegister.Size = new System.Drawing.Size(170, 20);
+            this.lbSearchRegister.Size = new System.Drawing.Size(245, 29);
             this.lbSearchRegister.TabIndex = 0;
             this.lbSearchRegister.Text = "Tìm kiếm theo mã SV";
             // 
@@ -1382,7 +1421,7 @@
             this.txbDiemTK.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDiemTK.Location = new System.Drawing.Point(767, 81);
             this.txbDiemTK.Name = "txbDiemTK";
-            this.txbDiemTK.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemTK.Size = new System.Drawing.Size(223, 35);
             this.txbDiemTK.TabIndex = 18;
             // 
             // txbDiemTH
@@ -1390,7 +1429,7 @@
             this.txbDiemTH.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDiemTH.Location = new System.Drawing.Point(435, 36);
             this.txbDiemTH.Name = "txbDiemTH";
-            this.txbDiemTH.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemTH.Size = new System.Drawing.Size(223, 35);
             this.txbDiemTH.TabIndex = 17;
             // 
             // txbDiemCK
@@ -1398,7 +1437,7 @@
             this.txbDiemCK.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDiemCK.Location = new System.Drawing.Point(767, 35);
             this.txbDiemCK.Name = "txbDiemCK";
-            this.txbDiemCK.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemCK.Size = new System.Drawing.Size(223, 35);
             this.txbDiemCK.TabIndex = 13;
             // 
             // label14
@@ -1407,7 +1446,7 @@
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(679, 41);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(68, 19);
+            this.label14.Size = new System.Drawing.Size(103, 27);
             this.label14.TabIndex = 16;
             this.label14.Text = "Điểm CK";
             // 
@@ -1417,7 +1456,7 @@
             this.label16.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(679, 84);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 19);
+            this.label16.Size = new System.Drawing.Size(101, 27);
             this.label16.TabIndex = 12;
             this.label16.Text = "Điểm TK";
             // 
@@ -1427,7 +1466,7 @@
             this.lbDiemQT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDiemQT.Location = new System.Drawing.Point(337, 84);
             this.lbDiemQT.Name = "lbDiemQT";
-            this.lbDiemQT.Size = new System.Drawing.Size(66, 19);
+            this.lbDiemQT.Size = new System.Drawing.Size(101, 27);
             this.lbDiemQT.TabIndex = 8;
             this.lbDiemQT.Text = "Điểm QT";
             // 
@@ -1437,7 +1476,7 @@
             this.lbDiemTH.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDiemTH.Location = new System.Drawing.Point(338, 39);
             this.lbDiemTH.Name = "lbDiemTH";
-            this.lbDiemTH.Size = new System.Drawing.Size(65, 19);
+            this.lbDiemTH.Size = new System.Drawing.Size(101, 27);
             this.lbDiemTH.TabIndex = 6;
             this.lbDiemTH.Text = "Điểm TH";
             // 
@@ -1446,7 +1485,7 @@
             this.txbDiemQT.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDiemQT.Location = new System.Drawing.Point(435, 81);
             this.txbDiemQT.Name = "txbDiemQT";
-            this.txbDiemQT.Size = new System.Drawing.Size(223, 26);
+            this.txbDiemQT.Size = new System.Drawing.Size(223, 35);
             this.txbDiemQT.TabIndex = 5;
             // 
             // txbRgtOpenSubjectID
@@ -1454,7 +1493,7 @@
             this.txbRgtOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbRgtOpenSubjectID.Location = new System.Drawing.Point(97, 81);
             this.txbRgtOpenSubjectID.Name = "txbRgtOpenSubjectID";
-            this.txbRgtOpenSubjectID.Size = new System.Drawing.Size(223, 26);
+            this.txbRgtOpenSubjectID.Size = new System.Drawing.Size(223, 35);
             this.txbRgtOpenSubjectID.TabIndex = 3;
             // 
             // lbRgtOpenSubjectID
@@ -1463,7 +1502,7 @@
             this.lbRgtOpenSubjectID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRgtOpenSubjectID.Location = new System.Drawing.Point(10, 84);
             this.lbRgtOpenSubjectID.Name = "lbRgtOpenSubjectID";
-            this.lbRgtOpenSubjectID.Size = new System.Drawing.Size(62, 19);
+            this.lbRgtOpenSubjectID.Size = new System.Drawing.Size(92, 27);
             this.lbRgtOpenSubjectID.TabIndex = 2;
             this.lbRgtOpenSubjectID.Text = "Mã MM";
             // 
@@ -1473,7 +1512,7 @@
             this.txbRgtStudentID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbRgtStudentID.Location = new System.Drawing.Point(97, 35);
             this.txbRgtStudentID.Name = "txbRgtStudentID";
-            this.txbRgtStudentID.Size = new System.Drawing.Size(223, 26);
+            this.txbRgtStudentID.Size = new System.Drawing.Size(223, 35);
             this.txbRgtStudentID.TabIndex = 1;
             // 
             // lbRgtStudentID
@@ -1482,7 +1521,7 @@
             this.lbRgtStudentID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbRgtStudentID.Location = new System.Drawing.Point(10, 39);
             this.lbRgtStudentID.Name = "lbRgtStudentID";
-            this.lbRgtStudentID.Size = new System.Drawing.Size(54, 19);
+            this.lbRgtStudentID.Size = new System.Drawing.Size(78, 27);
             this.lbRgtStudentID.TabIndex = 0;
             this.lbRgtStudentID.Text = "Mã SV";
             // 
@@ -1499,9 +1538,81 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // MANV
+            // 
+            this.MANV.DataPropertyName = "MANV";
+            this.MANV.FillWeight = 80F;
+            this.MANV.HeaderText = "Mã NV";
+            this.MANV.MinimumWidth = 8;
+            this.MANV.Name = "MANV";
+            // 
+            // HOTEN
+            // 
+            this.HOTEN.DataPropertyName = "HOTEN";
+            this.HOTEN.FillWeight = 150F;
+            this.HOTEN.HeaderText = "Họ tên";
+            this.HOTEN.MinimumWidth = 8;
+            this.HOTEN.Name = "HOTEN";
+            // 
+            // PHAI
+            // 
+            this.PHAI.DataPropertyName = "PHAI";
+            this.PHAI.FillWeight = 35F;
+            this.PHAI.HeaderText = "Phái";
+            this.PHAI.MinimumWidth = 8;
+            this.PHAI.Name = "PHAI";
+            // 
+            // NGSINH
+            // 
+            this.NGSINH.DataPropertyName = "NGSINH";
+            this.NGSINH.FillWeight = 70F;
+            this.NGSINH.HeaderText = "Ngày sinh";
+            this.NGSINH.MinimumWidth = 8;
+            this.NGSINH.Name = "NGSINH";
+            // 
+            // LUONG
+            // 
+            this.LUONG.DataPropertyName = "LUONG";
+            this.LUONG.FillWeight = 70F;
+            this.LUONG.HeaderText = "Lương";
+            this.LUONG.MinimumWidth = 8;
+            this.LUONG.Name = "LUONG";
+            // 
+            // PHUCAP
+            // 
+            this.PHUCAP.DataPropertyName = "PHUCAP";
+            this.PHUCAP.FillWeight = 70F;
+            this.PHUCAP.HeaderText = "Phụ cấp";
+            this.PHUCAP.MinimumWidth = 8;
+            this.PHUCAP.Name = "PHUCAP";
+            // 
+            // DT
+            // 
+            this.DT.DataPropertyName = "DT";
+            this.DT.FillWeight = 80F;
+            this.DT.HeaderText = "ĐT";
+            this.DT.MinimumWidth = 8;
+            this.DT.Name = "DT";
+            // 
+            // VAITRO
+            // 
+            this.VAITRO.DataPropertyName = "VAITRO";
+            this.VAITRO.FillWeight = 65F;
+            this.VAITRO.HeaderText = "Vai trò";
+            this.VAITRO.MinimumWidth = 8;
+            this.VAITRO.Name = "VAITRO";
+            // 
+            // MADV
+            // 
+            this.MADV.DataPropertyName = "MADV";
+            this.MADV.FillWeight = 65F;
+            this.MADV.HeaderText = "Mã ĐV";
+            this.MADV.MinimumWidth = 8;
+            this.MADV.Name = "MADV";
+            // 
             // UserDashboardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1262, 715);
             this.Controls.Add(this.btnLogOut);
@@ -1667,5 +1778,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rgtDIEMTK;
         private System.Windows.Forms.TextBox txbDiemTH;
         private System.Windows.Forms.TextBox txbDiemTK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MANV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HOTEN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PHAI;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NGSINH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LUONG;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PHUCAP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VAITRO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MADV;
     }
 }

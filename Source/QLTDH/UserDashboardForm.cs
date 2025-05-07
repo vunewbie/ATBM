@@ -123,6 +123,14 @@ namespace QLTDH
             txbEmployeePhone.Text = dtgvEmployee.Rows[e.RowIndex].Cells["DT"].Value.ToString();
             cbbEmployeeRole.Text = dtgvEmployee.Rows[e.RowIndex].Cells["VAITRO"].Value.ToString();
             cbbUnitID.Text = dtgvEmployee.Rows[e.RowIndex].Cells["MADV"].Value.ToString();
+            if (role == "TRGĐV" && !dtgvEmployee.Rows[e.RowIndex].Cells["MANV"].Value.ToString().StartsWith("TRGDV"))
+            {
+                txbEmployeePhone.Enabled = false;
+            }
+            if (role == "TRGĐV" && dtgvEmployee.Rows[e.RowIndex].Cells["MANV"].Value.ToString().StartsWith("TRGDV"))
+            {
+                txbEmployeePhone.Enabled = true;
+            }
         }
 
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
@@ -184,17 +192,36 @@ namespace QLTDH
         }
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txbEmployeeFullname.Text) ||
+            if (this.role != "NVCB" && this.role != "GV" && this.role != "NV PĐT" && this.role != "NV PKT" &&
+                        this.role != "NV CTSV" && this.role != "TRGĐV" && this.role != "NV TCHC")
+            {
+                MessageBox.Show("Bạn không có quyền thêm nhân viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (this.role=="NV TCHC")
+            {
+                if (string.IsNullOrEmpty(txbEmployeeFullname.Text) ||
                 string.IsNullOrEmpty(cbbEmployeeGender.Text) ||
                 string.IsNullOrEmpty(txbEmployeeSalary.Text) ||
                 string.IsNullOrEmpty(txbEmployeeAllowance.Text) ||
                 string.IsNullOrEmpty(txbEmployeePhone.Text) ||
                 string.IsNullOrEmpty(cbbEmployeeRole.Text) ||
                 string.IsNullOrEmpty(cbbUnitID.Text))
-            {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                {
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
+            else
+            {
+                if (string.IsNullOrEmpty(txbEmployeePhone.Text))
+                {
+                    {
+                        MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            } 
 
             try
             {
