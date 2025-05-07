@@ -837,7 +837,7 @@ BEGIN
 END;
 /
 GRANT EXECUTE ON QLTDH.GET_STUDENT_LIST TO GV, SV, "NV PĐT","NV CTSV";
-GRANT SELECT ON QLTDH.DONVI TO "NV CTSV"
+GRANT SELECT ON QLTDH.DONVI TO "NV CTSV";
 
 -- Cập nhật thông tin sinh viên
 CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_STUDENT(
@@ -872,6 +872,42 @@ END;
 /
 GRANT EXECUTE ON QLTDH.UPDATE_STUDENT TO SV, "NV CTSV", "NV PĐT";
 
+--Thêm sinh viên
+CREATE OR REPLACE PROCEDURE QLTDH.INSERT_STUDENT(
+    fullname IN VARCHAR,
+    gender IN VARCHAR2,
+    DOB IN DATE,
+    address IN VARCHAR2,
+    phone IN VARCHAR2,
+    department IN VARCHAR2,
+    role IN VARCHAR2
+)
+AS
+    v_prefix VARCHAR2(20);
+    v_count NUMBER;
+    v_masv VARCHAR2(20);
+    v_departmentID VARCHAR2(20);
+BEGIN
+    IF role = 'NV CTSV' THEN
+        v_prefix := REPLACE(role, ' ', '');
+
+        SELECT COUNT(*) + 1 INTO v_count
+        FROM QLTDH.SINHVIEN
+        WHERE MASV LIKE v_prefix || '%';
+
+        v_masv := v_prefix || LPAD(v_count, 4, '0');
+        
+        SELECT MADV INTO v_departmentID FROM QLTDH.DONVI WHERE TENDV=department and LOAIDV='Khoa';
+        
+        INSERT INTO QLTDH.SINHVIEN(MASV, HOTEN, PHAI, NGSINH, DCHI, DT, KHOA, TINHTRANG)
+        VALUES(v_masv, fullname, gender, DOB, address, phone, v_departmentID, NULL);
+    ELSE
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có nhân viên phòng CTSV mới có quyền thêm sinh viên!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.INSERT_STUDENT TO "NV CTSV";
+
 -- Xoá thông tin sinh viên
 CREATE OR REPLACE PROCEDURE QLTDH.DELETE_STUDENT(
     studentID IN VARCHAR2,
@@ -880,18 +916,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.DELETE_STUDENT(
 AS
 BEGIN
     IF role = 'NV CTSV' THEN
-        BEGIN
-            DELETE FROM QLTDH.SINHVIEN WHERE MASV=studentID;
-        EXCEPTION
-            WHEN OTHERS THEN
-                IF SQLCODE = -2292 THEN -- Foreign key constraint violation error code
-                    RAISE_APPLICATION_ERROR(-20002, 
-                        'Không thể xóa sinh viên vì còn tồn tại dữ liệu liên quan. ' ||
-                        'Vui lòng xóa dữ liệu liên quan trước khi xóa sinh viên.');
-                ELSE
-                    RAISE;
-                END IF;
-        END;
+        DELETE FROM QLTDH.SINHVIEN WHERE MASV=studentID;
     ELSE
         RAISE_APPLICATION_ERROR(-20001, 'Chỉ có nhân viên phòng CTSV mới có quyền xóa thông tin sinh viên!');
     END IF;
@@ -953,3 +978,93 @@ BEGIN
 END;
 /
 GRANT EXECUTE ON QLTDH.UPDATE_REGISTER TO "NV PKT";
+
+-- Kiểm tra xem khoảng cách từ ngày hiện tại đến NgayBD ở bảng MOMON của MAMM đó có lớn hơn 14 hay không
+CREATE OR REPLACE PROCEDURE QLTDH.CHECK_REGISTER_DELETE(
+    openSubjectID IN VARCHAR2,
+    role IN VARCHAR2,
+    result OUT NUMBER
+)
+AS
+    v_current_date DATE;
+    v_start_date DATE;
+    v_days_difference NUMBER;
+BEGIN
+    IF role IN ('SV', 'NV PĐT') THEN
+        -- Lấy ngày hiện tại
+        SELECT SYSDATE INTO v_current_date FROM DUAL;
+
+        -- Lấy ngày bắt đầu từ bảng MOMON
+        SELECT NGAYBD INTO v_start_date FROM QLTDH.MOMON WHERE MAMM = openSubjectID;
+
+        -- Tính khoảng cách giữa hai ngày
+        v_days_difference := v_current_date - v_start_date;
+        IF v_days_difference <= 14 THEN
+            result := 1; -- Có thể xóa
+        ELSE
+            result := 0; -- Không thể xóa
+        END IF;
+    ELSE
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có sinh viên và nhân viên phòng PĐT mới có quyền kiểm tra xoá thông tin đăng ký!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.CHECK_REGISTER_DELETE TO SV, "NV PĐT";
+
+-- Xoá thông tin đăng ký
+CREATE OR REPLACE PROCEDURE QLTDH.DELETE_REGISTER(
+    studentID IN VARCHAR2,
+    openSubjectID IN VARCHAR2,
+    role IN VARCHAR2
+)
+AS 
+BEGIN
+    IF role IN ('SV', 'NV PĐT') THEN
+        DELETE FROM QLTDH.DANGKY WHERE MASV=studentID AND MAMM=openSubjectID;
+    ELSE 
+        RAISE_APPLICATION_ERROR(-20001, 'Chỉ có sinh viên và nhân viên phòng PĐT mới có quyền xóa thông tin đăng ký!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.DELETE_REGISTER TO SV, "NV PĐT";
+
+-- Thêm đăng ký
+CREATE OR REPLACE PROCEDURE QLTDH.INSERT_REGISTER(
+    studentID IN VARCHAR2,
+    openSubjectID IN VARCHAR2,
+    role IN VARCHAR2
+)
+AS
+    v_current_date DATE;
+    v_start_date DATE;
+    v_days_difference NUMBER;
+    v_count NUMBER;
+BEGIN
+    -- Kiểm tra xem sinh viên đã đăng ký môn học này chưa
+    SELECT COUNT(*) INTO v_count FROM QLTDH.DANGKY WHERE MASV = studentID AND MAMM = openSubjectID;
+    IF v_count > 0 THEN
+        RAISE_APPLICATION_ERROR(-20010, 'Sinh viên đã đăng ký môn học này rồi!');
+    END IF;
+
+    IF role IN ('SV', 'NV PĐT') THEN
+        -- Lấy ngày hiện tại
+        SELECT SYSDATE INTO v_current_date FROM DUAL;
+
+        -- Lấy ngày bắt đầu từ bảng MOMON
+        SELECT NGAYBD INTO v_start_date FROM QLTDH.MOMON WHERE MAMM = openSubjectID;
+
+        -- Tính khoảng cách giữa hai ngày
+        v_days_difference := v_current_date - v_start_date;
+        IF v_days_difference <= 14 THEN
+            INSERT INTO QLTDH.DANGKY(MASV, MAMM, DIEMTH, DIEMQT, DIEMCK, DIEMTK) VALUES(studentID, openSubjectID, NULL, NULL, NULL, NULL);
+            COMMIT;
+        ELSE
+            RAISE_APPLICATION_ERROR(-20020, 'Không thể đăng ký môn học này vì đã quá thời gian cho phép!');
+        END IF;
+    ELSE 
+        RAISE_APPLICATION_ERROR(-20030, 'Chỉ có sinh viên và nhân viên phòng PĐT mới có quyền thêm thông tin đăng ký!');
+    END IF;
+END;
+/
+GRANT EXECUTE ON QLTDH.INSERT_REGISTER TO SV, "NV PĐT";
+/

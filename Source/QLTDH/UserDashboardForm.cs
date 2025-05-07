@@ -1,4 +1,5 @@
 ﻿using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -507,41 +508,52 @@ namespace QLTDH
         }
 
 
-        private void LoadStudentLists(string studentName = null)
+        public void LoadStudentList(string studentName = null)
         {
-            try
+            if (this.role == "SV" || this.role == "NV CTSV" || this.role == "NV PĐT" || this.role == "GV")
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                try
                 {
-                    conn.Open();
-                    OracleCommand cmd = new OracleCommand("QLTDH.GET_STUDENT_LIST", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+                        OracleCommand cmd = new OracleCommand("QLTDH.GET_STUDENT_LIST", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = studentName;
-                    cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
+                        cmd.Parameters.Add("name", OracleDbType.Varchar2).Value = studentName;
+                        cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
 
-                    OracleParameter cursorParam = new OracleParameter("student_cursor", OracleDbType.RefCursor);
-                    cursorParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(cursorParam);
+                        OracleParameter cursorParam = new OracleParameter("student_cursor", OracleDbType.RefCursor);
+                        cursorParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(cursorParam);
 
-                    OracleDataReader reader = cmd.ExecuteReader();
+                        OracleDataReader reader = cmd.ExecuteReader();
 
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
 
-                    dgvStudent.AutoGenerateColumns = false;
-                    dgvStudent.DataSource = dt;
+                        dgvStudent.AutoGenerateColumns = false;
+                        dgvStudent.DataSource = dt;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải thông tin sinh viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải thông tin sinh viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void tpgStudent_Enter(object sender, EventArgs e)
         {
-            LoadStudentLists();
+            string studentName = txbSearchStudent.Text.Trim();
+            if (string.IsNullOrEmpty(studentName))
+            {
+                LoadStudentList();
+            }
+            else
+            {
+                LoadStudentList(studentName);
+            }
 
             if (this.role == "SV")
             {
@@ -618,11 +630,11 @@ namespace QLTDH
             string studentName = txbSearchStudent.Text.Trim();
             if (string.IsNullOrEmpty(studentName))
             {
-                LoadStudentLists();
+                LoadStudentList();
             }
             else
             {
-                LoadStudentLists(studentName);
+                LoadStudentList(studentName);
             }
         }
 
@@ -642,6 +654,12 @@ namespace QLTDH
 
         private void btnUpdateStudent_Click(object sender, EventArgs e)
         {
+            if (this.role != "SV" && this.role != "NV CTSV" && this.role != "NV PĐT")
+            {
+                MessageBox.Show("Bạn không có quyền cập nhật thông tin sinh viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (string.IsNullOrEmpty(txbStudentID.Text) ||
                 string.IsNullOrEmpty(txbStudentName.Text) ||
                 string.IsNullOrEmpty(cbbStudentGender.Text) ||
@@ -650,12 +668,6 @@ namespace QLTDH
                 string.IsNullOrEmpty(cbbStudentDepartment.Text))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (this.role != "SV" && this.role != "NV CTSV" && this.role != "NV PĐT")
-            {
-                MessageBox.Show("Bạn không có quyền cập nhật thông tin sinh viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -685,11 +697,11 @@ namespace QLTDH
                     string studentName = txbSearchStudent.Text.Trim();
                     if (string.IsNullOrEmpty(studentName))
                     {
-                        LoadStudentLists();
+                        LoadStudentList();
                     }
                     else
                     {
-                        LoadStudentLists(studentName);
+                        LoadStudentList(studentName);
                     }
                 }
             }
@@ -734,11 +746,11 @@ namespace QLTDH
                         string studentName = txbSearchStudent.Text.Trim();
                         if (string.IsNullOrEmpty(studentName))
                         {
-                            LoadStudentLists();
+                            LoadStudentList();
                         }
                         else
                         {
-                            LoadStudentLists(studentName);
+                            LoadStudentList(studentName);
                         }
                     }
                 }
@@ -756,34 +768,48 @@ namespace QLTDH
             }
         }
 
-
-        private void LoadRegister(string studentID = null)
+        private void btnInsertStudent_Click(object sender, EventArgs e)
         {
-            try
+            if (this.role != "NV CTSV")
             {
-                using (OracleConnection conn = ConnectionManager.CreateConnection())
-                {
-                    conn.Open();
-                    OracleCommand cmd = new OracleCommand("QLTDH.GET_REGISTER_LIST", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("studentID", OracleDbType.Varchar2).Value = studentID;
-                    cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
-
-                    OracleParameter cursorParam = new OracleParameter("register_cursor", OracleDbType.RefCursor);
-                    cursorParam.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(cursorParam);
-
-                    OracleDataReader reader = cmd.ExecuteReader();
-                    DataTable dt = new DataTable();
-                    dt.Load(reader);
-
-                    dgvRegister.AutoGenerateColumns = false;
-                    dgvRegister.DataSource = dt;
-                }
+                MessageBox.Show("Bạn không có quyền thêm sinh viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            catch (Exception ex)
+            InsertStudentForm newInsertStudentForm = new InsertStudentForm(this.role);
+            newInsertStudentForm.Owner = this;
+            newInsertStudentForm.ShowDialog();
+        }
+
+        public void LoadRegisterList(string studentID = null)
+        {
+            if (this.role == "SV" || this.role == "NV PKT" || this.role == "NV PĐT" || this.role == "GV")
             {
-                MessageBox.Show("Lỗi khi tải thông tin đăng ký: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+                        OracleCommand cmd = new OracleCommand("QLTDH.GET_REGISTER_LIST", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("studentID", OracleDbType.Varchar2).Value = studentID;
+                        cmd.Parameters.Add("role", OracleDbType.Varchar2).Value = this.role;
+
+                        OracleParameter cursorParam = new OracleParameter("register_cursor", OracleDbType.RefCursor);
+                        cursorParam.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(cursorParam);
+
+                        OracleDataReader reader = cmd.ExecuteReader();
+                        DataTable dt = new DataTable();
+                        dt.Load(reader);
+
+                        dgvRegister.AutoGenerateColumns = false;
+                        dgvRegister.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải thông tin đăng ký: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void txbSearchRegister_TextChanged(object sender, EventArgs e)
@@ -791,17 +817,25 @@ namespace QLTDH
             string studentID = txbSearchRegister.Text.Trim();
             if (string.IsNullOrEmpty(studentID))
             {
-                LoadRegister();
+                LoadRegisterList();
             }
             else
             {
-                LoadRegister(studentID);
+                LoadRegisterList(studentID);
             }
         }
 
         private void tpgRegister_Enter(object sender, EventArgs e)
         {
-            LoadRegister();
+            string studentID = txbSearchRegister.Text.Trim();
+            if (string.IsNullOrEmpty(studentID))
+            {
+                LoadRegisterList();
+            }
+            else
+            {
+                LoadRegisterList(studentID);
+            }
 
             if (this.role == "SV")
             {
@@ -846,6 +880,12 @@ namespace QLTDH
 
         private void btnUpdateRegister_Click(object sender, EventArgs e)
         {
+            if (this.role != "NV PKT")
+            {
+                MessageBox.Show("Bạn không có quyền cập nhật thông tin đăng ký!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (string.IsNullOrEmpty(txbRgtStudentID.Text) ||
                 string.IsNullOrEmpty(txbRgtOpenSubjectID.Text) ||
                 string.IsNullOrEmpty(txbDiemTH.Text) ||
@@ -854,12 +894,6 @@ namespace QLTDH
                 string.IsNullOrEmpty(txbDiemTK.Text))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (this.role != "NV PKT")
-            {
-                MessageBox.Show("Bạn không có quyền cập nhật thông tin đăng ký!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -886,11 +920,11 @@ namespace QLTDH
                     string studentID = txbSearchRegister.Text.Trim();
                     if (string.IsNullOrEmpty(studentID))
                     {
-                        LoadRegister();
+                        LoadRegisterList();
                     }
                     else
                     {
-                        LoadRegister(studentID);
+                        LoadRegisterList(studentID);
                     }
                 }
             }
@@ -898,6 +932,103 @@ namespace QLTDH
             {
                 MessageBox.Show("Lỗi khi cập nhật thông tin đăng ký: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnDeleteRegister_Click(object sender, EventArgs e)
+        {
+            if (this.role != "NV PĐT" && this.role != "SV")
+            {
+                MessageBox.Show("Bạn không có quyền xóa đăng ký!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txbRgtStudentID.Text) || string.IsNullOrEmpty(txbRgtOpenSubjectID.Text))
+            {
+                MessageBox.Show("Vui lòng lựa chọn đăng ký cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (this.role == "SV" && ConnectionManager.Username != txbRgtStudentID.Text)
+            {
+                MessageBox.Show("Bạn không có quyền xóa đăng ký của sinh viên khác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Kiểm tra xem khoảng cách từ ngày hiện tại đến NgayBD ở bảng MOMON của MAMM đó có lớn hơn 14 hay không
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+                    OracleCommand cmd = new OracleCommand("QLTDH.CHECK_REGISTER_DELETE", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new OracleParameter("openSubjectID", txbRgtOpenSubjectID.Text.Trim()));
+                    cmd.Parameters.Add(new OracleParameter("role", this.role));
+
+                    OracleParameter resultParam = new OracleParameter("result", OracleDbType.Int32);
+                    resultParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(resultParam);
+
+                    cmd.ExecuteNonQuery();
+
+                    int result = ((OracleDecimal)resultParam.Value).ToInt32();
+                    if (result == 0)
+                    {
+                        MessageBox.Show("Không thể xóa đăng ký này vì đã quá thời gian cho phép.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa đăng ký này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+
+                        OracleCommand deleteCmd = new OracleCommand("QLTDH.DELETE_REGISTER", conn);
+                        deleteCmd.CommandType = CommandType.StoredProcedure;
+
+                        deleteCmd.Parameters.Add(new OracleParameter("studentID", txbRgtStudentID.Text.Trim()));
+                        deleteCmd.Parameters.Add(new OracleParameter("openSubjectID", txbRgtOpenSubjectID.Text.Trim()));
+                        deleteCmd.Parameters.Add(new OracleParameter("role", this.role));
+
+                        deleteCmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Xóa đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        string studentID = txbSearchRegister.Text.Trim();
+                        if (string.IsNullOrEmpty(studentID))
+                        {
+                            LoadRegisterList();
+                        }
+                        else
+                        {
+                            LoadRegisterList(studentID);
+                        }
+                    }
+                }
+            }
+            catch (OracleException ex)
+            {
+                if (ex.Number == 2292)
+                {
+                    MessageBox.Show("Không thể xóa đăng ký này vì có liên kết với các bảng khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi xóa đăng ký: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnInsertRegister_Click(object sender, EventArgs e)
+        {
+            if (this.role != "SV" && this.role != "NV PĐT")
+            {
+                MessageBox.Show("Bạn không có quyền thêm đăng ký!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            InsertRegisterForm insertRegisterForm = new InsertRegisterForm(this.role);
+            insertRegisterForm.Owner = this;
+            insertRegisterForm.ShowDialog();
         }
     }
 }

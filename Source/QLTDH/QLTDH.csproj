@@ -145,6 +145,18 @@
     <Compile Include="InsertOpenSubjectForm.Designer.cs">
       <DependentUpon>InsertOpenSubjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertRegisterForm.Designer.cs">
+      <DependentUpon>InsertRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertStudentForm.Designer.cs">
+      <DependentUpon>InsertStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +225,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InsertOpenSubjectForm.resx">
       <DependentUpon>InsertOpenSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertRegisterForm.resx">
+      <DependentUpon>InsertRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertStudentForm.resx">
+      <DependentUpon>InsertStudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

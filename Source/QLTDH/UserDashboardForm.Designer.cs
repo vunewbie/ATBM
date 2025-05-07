@@ -262,11 +262,11 @@
             this.btnDeleteEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteEmployee.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnDeleteEmployee.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(36, 316);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(36, 287);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(157, 45);
             this.btnDeleteEmployee.TabIndex = 5;
-            this.btnDeleteEmployee.Text = "Xóa dữ liệu";
+            this.btnDeleteEmployee.Text = "Xóa nhân viên";
             this.btnDeleteEmployee.UseVisualStyleBackColor = false;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
             // 
@@ -275,7 +275,7 @@
             this.btnUpdateEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdateEmployee.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnUpdateEmployee.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(37, 240);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(37, 211);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(157, 49);
             this.btnUpdateEmployee.TabIndex = 4;
@@ -288,11 +288,11 @@
             this.btnInsertEmployee.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnInsertEmployee.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnInsertEmployee.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertEmployee.Location = new System.Drawing.Point(37, 169);
+            this.btnInsertEmployee.Location = new System.Drawing.Point(37, 140);
             this.btnInsertEmployee.Name = "btnInsertEmployee";
             this.btnInsertEmployee.Size = new System.Drawing.Size(157, 49);
             this.btnInsertEmployee.TabIndex = 3;
-            this.btnInsertEmployee.Text = "Thêm dữ liệu";
+            this.btnInsertEmployee.Text = "Thêm nhân viên";
             this.btnInsertEmployee.UseVisualStyleBackColor = false;
             this.btnInsertEmployee.Click += new System.EventHandler(this.btnInsertEmployee_Click);
             // 
@@ -601,11 +601,11 @@
             this.btnDeleteOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnDeleteOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteOpenSubject.Location = new System.Drawing.Point(36, 316);
+            this.btnDeleteOpenSubject.Location = new System.Drawing.Point(36, 287);
             this.btnDeleteOpenSubject.Name = "btnDeleteOpenSubject";
             this.btnDeleteOpenSubject.Size = new System.Drawing.Size(157, 45);
             this.btnDeleteOpenSubject.TabIndex = 10;
-            this.btnDeleteOpenSubject.Text = "Xóa dữ liệu";
+            this.btnDeleteOpenSubject.Text = "Xóa mở môn";
             this.btnDeleteOpenSubject.UseVisualStyleBackColor = false;
             this.btnDeleteOpenSubject.Click += new System.EventHandler(this.btnDeleteOpenSubject_Click);
             // 
@@ -614,7 +614,7 @@
             this.btnUpdateOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdateOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnUpdateOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateOpenSubject.Location = new System.Drawing.Point(37, 240);
+            this.btnUpdateOpenSubject.Location = new System.Drawing.Point(37, 211);
             this.btnUpdateOpenSubject.Name = "btnUpdateOpenSubject";
             this.btnUpdateOpenSubject.Size = new System.Drawing.Size(157, 49);
             this.btnUpdateOpenSubject.TabIndex = 9;
@@ -627,11 +627,11 @@
             this.btnInsertOpenSubject.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnInsertOpenSubject.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnInsertOpenSubject.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertOpenSubject.Location = new System.Drawing.Point(37, 169);
+            this.btnInsertOpenSubject.Location = new System.Drawing.Point(37, 140);
             this.btnInsertOpenSubject.Name = "btnInsertOpenSubject";
             this.btnInsertOpenSubject.Size = new System.Drawing.Size(157, 49);
             this.btnInsertOpenSubject.TabIndex = 8;
-            this.btnInsertOpenSubject.Text = "Thêm dữ liệu";
+            this.btnInsertOpenSubject.Text = "Thêm mở môn";
             this.btnInsertOpenSubject.UseVisualStyleBackColor = false;
             this.btnInsertOpenSubject.Click += new System.EventHandler(this.btnInsertOpenSubject_Click);
             // 
@@ -929,11 +929,11 @@
             this.btnDeleteStudent.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteStudent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnDeleteStudent.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteStudent.Location = new System.Drawing.Point(36, 283);
+            this.btnDeleteStudent.Location = new System.Drawing.Point(36, 287);
             this.btnDeleteStudent.Name = "btnDeleteStudent";
             this.btnDeleteStudent.Size = new System.Drawing.Size(157, 45);
             this.btnDeleteStudent.TabIndex = 5;
-            this.btnDeleteStudent.Text = "Xóa dữ liệu";
+            this.btnDeleteStudent.Text = "Xóa sinh viên";
             this.btnDeleteStudent.UseVisualStyleBackColor = false;
             this.btnDeleteStudent.Click += new System.EventHandler(this.btnDeleteStudent_Click);
             // 
@@ -942,7 +942,7 @@
             this.btnUpdateStudent.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdateStudent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnUpdateStudent.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateStudent.Location = new System.Drawing.Point(37, 207);
+            this.btnUpdateStudent.Location = new System.Drawing.Point(37, 211);
             this.btnUpdateStudent.Name = "btnUpdateStudent";
             this.btnUpdateStudent.Size = new System.Drawing.Size(157, 49);
             this.btnUpdateStudent.TabIndex = 4;
@@ -955,12 +955,13 @@
             this.btnInsertStudent.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnInsertStudent.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnInsertStudent.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertStudent.Location = new System.Drawing.Point(37, 136);
+            this.btnInsertStudent.Location = new System.Drawing.Point(37, 140);
             this.btnInsertStudent.Name = "btnInsertStudent";
             this.btnInsertStudent.Size = new System.Drawing.Size(157, 49);
             this.btnInsertStudent.TabIndex = 3;
-            this.btnInsertStudent.Text = "Thêm dữ liệu";
+            this.btnInsertStudent.Text = "Thêm sinh viên";
             this.btnInsertStudent.UseVisualStyleBackColor = false;
+            this.btnInsertStudent.Click += new System.EventHandler(this.btnInsertStudent_Click);
             // 
             // txbSearchStudent
             // 
@@ -1302,19 +1303,20 @@
             this.btnDeleteRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnDeleteRegister.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnDeleteRegister.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteRegister.Location = new System.Drawing.Point(36, 285);
+            this.btnDeleteRegister.Location = new System.Drawing.Point(36, 287);
             this.btnDeleteRegister.Name = "btnDeleteRegister";
             this.btnDeleteRegister.Size = new System.Drawing.Size(157, 45);
             this.btnDeleteRegister.TabIndex = 5;
-            this.btnDeleteRegister.Text = "Xóa dữ liệu";
+            this.btnDeleteRegister.Text = "Xóa đăng ký";
             this.btnDeleteRegister.UseVisualStyleBackColor = false;
+            this.btnDeleteRegister.Click += new System.EventHandler(this.btnDeleteRegister_Click);
             // 
             // btnUpdateRegister
             // 
             this.btnUpdateRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpdateRegister.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnUpdateRegister.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateRegister.Location = new System.Drawing.Point(37, 209);
+            this.btnUpdateRegister.Location = new System.Drawing.Point(37, 211);
             this.btnUpdateRegister.Name = "btnUpdateRegister";
             this.btnUpdateRegister.Size = new System.Drawing.Size(157, 49);
             this.btnUpdateRegister.TabIndex = 4;
@@ -1327,12 +1329,13 @@
             this.btnInsertRegister.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnInsertRegister.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.btnInsertRegister.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertRegister.Location = new System.Drawing.Point(37, 138);
+            this.btnInsertRegister.Location = new System.Drawing.Point(37, 140);
             this.btnInsertRegister.Name = "btnInsertRegister";
             this.btnInsertRegister.Size = new System.Drawing.Size(157, 49);
             this.btnInsertRegister.TabIndex = 3;
-            this.btnInsertRegister.Text = "Thêm dữ liệu";
+            this.btnInsertRegister.Text = "Thêm đăng ký";
             this.btnInsertRegister.UseVisualStyleBackColor = false;
+            this.btnInsertRegister.Click += new System.EventHandler(this.btnInsertRegister_Click);
             // 
             // txbSearchRegister
             // 
@@ -1508,7 +1511,7 @@
             this.MinimizeBox = false;
             this.Name = "UserDashboardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Trang người dùng";
+            this.Text = "Dashboard";
             this.tctrlUserDashboard.ResumeLayout(false);
             this.tpgEmployee.ResumeLayout(false);
             this.tlpEmployee.ResumeLayout(false);
