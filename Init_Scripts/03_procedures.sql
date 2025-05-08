@@ -50,7 +50,7 @@ END CHECK_USER_EXISTS;
 
 -- Tạo User
 -- DROP PROCEDURE QLTDH.CREATE_USER;
- CREATE OR REPLACE PROCEDURE QLTDH.CREATE_USER (
+CREATE OR REPLACE PROCEDURE QLTDH.CREATE_USER (
     p_username IN VARCHAR2,
     p_password IN VARCHAR2
 ) 
@@ -629,7 +629,6 @@ BEGIN
     
     -- Xây dựng câu lệnh GRANT ROLE TO USER
     v_sql := 'GRANT "' || p_role || '" TO "' || p_user || '"';
-
     
     -- Thêm WITH ADMIN OPTION nếu cần
     IF p_with_admin_option THEN
