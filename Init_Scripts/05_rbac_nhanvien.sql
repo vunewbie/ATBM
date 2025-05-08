@@ -88,26 +88,6 @@ AS
 -- Cấp quyền cho tất cả các nhân viên
 GRANT SELECT ON QLTDH.EMPLOYEE_GET_PERSONAL_INFO TO "NVCB", "GV", "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", "TRGĐV";
 
-
--- Nhân viên chỉ có thể cập nhật số điện thoại
--- Tạo procedure để nhân viên cập nhật số điện thoại của mình
-CREATE OR REPLACE PROCEDURE QLTDH.EMPLOYEE_UPDATE_PHONE_NUMBER (
-    p_new_phone_number IN VARCHAR2
-)
-AS
-BEGIN
-    UPDATE QLTDH.NHANVIEN
-    SET DT = p_new_phone_number
-    WHERE MANV = SYS_CONTEXT('USERENV', 'SESSION_USER');
-    
-    COMMIT;
-END;
-/
-
--- Cấp quyền thực thi procedure cho các role
-GRANT EXECUTE ON QLTDH.EMPLOYEE_UPDATE_PHONE_NUMBER TO "NVCB", "GV", "NV PĐT", "NV PKT", "NV TCHC", "NV CTSV", "TRGĐV";
-
-
 -- Trưởng đơn vị có quyền xem thông tin nhân viên trong đơn vị
 -- Tạo view để trưởng đơn vị xem thông tin nhân viên trong đơn vị
 CREATE OR REPLACE VIEW QLTDH.EMPLOYEE_UNIT_INFO 

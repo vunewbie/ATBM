@@ -1,11 +1,10 @@
 ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
-SET SERVEROUTPUT ON;
 
 --Sinh viên có thể xem dòng dữ liệu liên quan đến chính mình, có thể sửa các trường địachỉ (ĐCHI), số điện thoại (ĐT) liên quan đến chính mình.
 --Người dùng có vai trò “NV PCTSV” có thể thêm, xóa, sửa thông tin trên quan hệ SINHVIEN. Tuy nhiên, trường TINHTRANG mang giá trị NULL cho đến khi người 
 --dùng với vai trò “NV PĐT” cập nhật thành giá trị mới, cho biết tình trạng học vụ của sinh viên.
 --Người dùng có vai trò “GV” được xem danh sách sinh viên thuộc đơn vị (khoa) mà giảng viên trực thuộc.
+
 -- Tạo hàm policy cho bảng SINHVIEN
 CREATE OR REPLACE FUNCTION QLTDH.SINHVIEN_VPD_POLICY (
     p_schema IN VARCHAR2,
@@ -67,6 +66,7 @@ EXCEPTION
         END IF;
 END;
 /
+
 --tạo chính sách vpd
 BEGIN
     DBMS_RLS.ADD_POLICY (
@@ -116,28 +116,3 @@ GRANT SELECT ON QLTDH.SINHVIEN TO GV;
 GRANT SELECT ON QLTDH.SINHVIEN TO "NV PĐT";
 -- Bổ sung quyền cho NV PĐT để cập nhật TINHTRANG
 GRANT UPDATE(TINHTRANG) ON QLTDH.SINHVIEN TO "NV PĐT";
--- Kiểm tra chính sách VPD
--- Kiểm tra quyền của sinh viên
-CONNECT SV0030/SV0030@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT * FROM QLTDH.SINHVIEN; -- Chỉ thấy dòng của mình
-UPDATE QLTDH.SINHVIEN SET DCHI = '456 Hanoi' WHERE MASV = 'SV0030'; -- Được phép
-UPDATE QLTDH.SINHVIEN SET HOTEN = 'Test' WHERE MASV = 'SV0030'; -- Không được phép
-SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV0030';
--- Kiểm tra quyền của NV CTSV
-CONNECT NVCTSV0001/NVCTSV0001@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT * FROM QLTDH.SINHVIEN; -- Thấy tất cả
-INSERT INTO QLTDH.SINHVIEN (MASV, HOTEN, PHAI, NGSINH, DCHI, DT, KHOA, TINHTRANG)
-VALUES ('SV9999', 'Test SV', 'Nam', TO_DATE('2000-01-01', 'YYYY-MM-DD'), 'Hanoi', '0999999999', 'CNT', 'Đang học'); -- TINHTRANG sẽ thành NULL
-SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV9999';
--- Kiểm tra quyền của GV
-CONNECT GV0001/GV0001@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
-SELECT * FROM QLTDH.SINHVIEN; -- Chỉ thấy sinh viên thuộc khoa của mình
-
--- Kiểm tra quyền của NV PĐT
-CONNECT NVPDT0001/NVPDT0001@localhost:1521/QUANLYTRUONGDAIHOC;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
-UPDATE QLTDH.SINHVIEN SET TINHTRANG = 'Đang học' WHERE MASV = 'SV9999'; -- Được phép
-SELECT * FROM QLTDH.SINHVIEN WHERE MASV = 'SV9999';
-
-
