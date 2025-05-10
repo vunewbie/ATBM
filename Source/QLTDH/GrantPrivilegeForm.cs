@@ -198,14 +198,20 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
-                    string query = "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = \'" + cbbObject.Text.ToString() + '\'';
-                    OracleDataAdapter adapter = new OracleDataAdapter(query, conn);
+
+                    string query = "SELECT column_name FROM USER_TAB_COLUMNS WHERE table_name = :tableName";
+                    OracleCommand cmd = new OracleCommand(query, conn);
+                    cmd.Parameters.Add(new OracleParameter("tableName", cbbObject.Text.ToUpper())); 
+
+                    OracleDataAdapter adapter = new OracleDataAdapter(cmd); 
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+
                     foreach (DataRow row in dataTable.Rows)
                     {
                         cklbAttribute.Items.Add(row["column_name"].ToString());
                     }
+
                     conn.Close();
                 }
             }

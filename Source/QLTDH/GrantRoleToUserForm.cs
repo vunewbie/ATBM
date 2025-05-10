@@ -186,6 +186,7 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
+
                     OracleCommand cmd = new OracleCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "GRANT_ROLE_TO_USER";

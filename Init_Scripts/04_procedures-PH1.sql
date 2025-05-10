@@ -1,5 +1,8 @@
 ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
+
+---------------------------------------------------------------------------------------------------
 -- Xóa toàn bộ procedures đã được tạo bởi QLTDH
+---------------------------------------------------------------------------------------------------
  BEGIN
      FOR rec IN (
          SELECT OBJECT_NAME
@@ -18,8 +21,14 @@ ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
  END;
  /
 
+--=================================================================================================
+-- Procedures cho Winforms Application - phân hệ 1
+--=================================================================================================
+
+
+---------------------------------------------------------------------------------------------------
 -- Lấy danh sách người dùng
--- DROP PROCEDURE QLTDH.GET_USER_LIST;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_USER_LIST (users_cursor OUT SYS_REFCURSOR) 
 AS
 BEGIN
@@ -31,8 +40,9 @@ BEGIN
 END GET_USER_LIST;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Kiểm tra người dùng có tồn tại
--- DROP PROCEDURE QLTDH.CHECK_USER_EXISTS;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.CHECK_USER_EXISTS (
     p_username IN VARCHAR2,
     p_exists OUT VARCHAR2
@@ -48,8 +58,9 @@ BEGIN
 END CHECK_USER_EXISTS;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Tạo User
--- DROP PROCEDURE QLTDH.CREATE_USER;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.CREATE_USER (
     p_username IN VARCHAR2,
     p_password IN VARCHAR2
@@ -74,8 +85,9 @@ BEGIN
 END DELETE_USER;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Cập nhật status cho user
--- DROP PROCEDURE QLTDH.UPDATE_USER_STATUS;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_USER_STATUS (
     p_username IN VARCHAR2,
     p_new_status IN VARCHAR2
@@ -87,8 +99,9 @@ BEGIN
 END UPDATE_USER_STATUS;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Tìm kiếm người dùng
--- DROP PROCEDURE QLTDH.SEARCH_USER;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.SEARCH_USER (
     p_username IN VARCHAR2,
     users_cursor OUT SYS_REFCURSOR
@@ -104,8 +117,9 @@ BEGIN
 END SEARCH_USER;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Lấy danh sách các Role
--- DROP PROCEDURE QLTDH.GET_ROLE_LIST;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_ROLE_LIST (roles_cursor OUT SYS_REFCURSOR) 
 AS
 BEGIN
@@ -117,8 +131,9 @@ BEGIN
 END GET_ROLE_LIST;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Kiểm tra xem Role có tồn tại không
--- DROP PROCEDURE QLTDH.CHECK_ROLE_EXISTS;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.CHECK_ROLE_EXISTS (
     p_role IN VARCHAR2,
     p_exists OUT VARCHAR2
@@ -134,8 +149,9 @@ BEGIN
 END CHECK_ROLE_EXISTS;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Tạo vai trò mới
--- DROP PROCEDURE QLTDH.CREATE_ROLE;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.CREATE_ROLE(
    p_role IN VARCHAR2,
    p_password IN VARCHAR2 DEFAULT NULL
@@ -150,8 +166,9 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Xóa Role
--- DROP PROCEDURE PH1_DELETE_ROLE;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.DELETE_ROLE(
     p_role IN VARCHAR2
 )
@@ -162,8 +179,9 @@ BEGIN
 END DELETE_ROLE;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Cập nhật mật khẩu cho role
--- DROP PROCEDURE QLTDH.UPDATE_ROLE_PASSWORD;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_ROLE_PASSWORD (
     p_role IN VARCHAR2,
     p_password IN VARCHAR2 DEFAULT NULL
@@ -179,8 +197,9 @@ BEGIN
 END UPDATE_ROLE_PASSWORD;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Tìm kiếm Role
--- DROP PROCEDURE QLTDH.SEARCH_ROLE;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.SEARCH_ROLE (
     p_role IN VARCHAR2,
     roles_cursor OUT SYS_REFCURSOR
@@ -196,8 +215,9 @@ BEGIN
 END SEARCH_ROLE;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Lấy danh sách các quyền đã cấp cho user/role trên bảng
--- DROP PROCEDURE PH1_GET_PRIVILEGES_TABLE;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_PRIVILEGES_TABLE (
     p_grantee IN VARCHAR2 DEFAULT NULL,
     table_privileges_cursor OUT SYS_REFCURSOR
@@ -236,8 +256,9 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 -- Lấy danh sách các quyền đã cấp cho user/role trên cột
--- DROP PROCEDURE PH1_GET_PRIVILEGES_COLUMN;
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_PRIVILEGES_COLUMN (
     p_grantee IN VARCHAR2 DEFAULT NULL,
     column_privileges_cursor OUT SYS_REFCURSOR
@@ -276,8 +297,9 @@ BEGIN
 END;
 /
 
-
+---------------------------------------------------------------------------------------------------
 --Lấy ra danh sách tất cả các đối tượng của user/role
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_ALL_OBJECTS_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
     all_objects_cursor OUT SYS_REFCURSOR
@@ -298,7 +320,9 @@ BEGIN
 END;
 /
 
---Load table/view/proc/function for user/role in grantprivilegeform 
+---------------------------------------------------------------------------------------------------
+--Load table/view/proc/function for user/role in grantprivilegeform
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_OBJECT_TYPE_BY_USER_OR_ROLE (
     p_user_or_role IN VARCHAR2,
     p_object IN VARCHAR2, -- Loại đối tượng: TABLE, VIEW, PROCEDURE, FUNCTION
@@ -372,7 +396,9 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --Grant quyền select
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_SELECT_TO_USER_OR_ROLE (
     p_username          IN VARCHAR2,
     p_object            IN VARCHAR2,
@@ -444,7 +470,10 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
 END;
 /
+
+---------------------------------------------------------------------------------------------------
 --Grant quyền update
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_UPDATE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -496,7 +525,9 @@ EXCEPTION
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --GRANT QUYỀN DELETE
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_DELETE_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -530,7 +561,9 @@ EXCEPTION
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --grant quyền insert
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_INSERT_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object IN VARCHAR2,
@@ -564,7 +597,9 @@ EXCEPTION
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --grant quyền execute function/proc cho user/role
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_EXEC_TO_USER_OR_ROLE (
     p_username IN VARCHAR2,
     p_object IN VARCHAR2,       -- Tên function/procedure
@@ -592,7 +627,9 @@ EXCEPTION
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --Cấp role cho user
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GRANT_ROLE_TO_USER (
     p_user IN VARCHAR2,
     p_role IN VARCHAR2,
@@ -648,7 +685,9 @@ EXCEPTION
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --Xem danh sách role đã cấp cho người dùng
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.GET_GRANTED_ROLES (
     p_grantee IN VARCHAR2 DEFAULT NULL,
     granted_roles_cursor OUT SYS_REFCURSOR
@@ -673,7 +712,9 @@ BEGIN
 END;
 /
 
+---------------------------------------------------------------------------------------------------
 --Thu hồi role của user
+---------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE QLTDH.REVOKE_ROLE_FROM_USER (
     p_grantee    IN VARCHAR2,
     p_role       IN VARCHAR2

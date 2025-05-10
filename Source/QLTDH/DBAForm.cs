@@ -165,6 +165,7 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
+
                     //Load column privileges
                     OracleCommand cmd2 = new OracleCommand("GET_PRIVILEGES_COLUMN", conn);
                     cmd2.CommandType = CommandType.StoredProcedure;
@@ -194,7 +195,7 @@ namespace QLTDH
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
-                    
+
                     OracleCommand cmd = new OracleCommand("GET_GRANTED_ROLES", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("p_grantee", OracleDbType.Varchar2).Value = grantee;

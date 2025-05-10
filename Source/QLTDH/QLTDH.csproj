@@ -133,6 +133,30 @@
     <Compile Include="GrantRoleToUserForm.Designer.cs">
       <DependentUpon>GrantRoleToUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertEmployeeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertEmployeeForm.Designer.cs">
+      <DependentUpon>InsertEmployeeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertOpenSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertOpenSubjectForm.Designer.cs">
+      <DependentUpon>InsertOpenSubjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertRegisterForm.Designer.cs">
+      <DependentUpon>InsertRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertStudentForm.Designer.cs">
+      <DependentUpon>InsertStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +183,7 @@
     <Compile Include="RevokeRoleForm.Designer.cs">
       <DependentUpon>RevokeRoleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="RoleManager.cs" />
     <Compile Include="UpdateRolePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +195,12 @@
     </Compile>
     <Compile Include="UpdateUserStatusForm.Designer.cs">
       <DependentUpon>UpdateUserStatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserDashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserDashboardForm.Designer.cs">
+      <DependentUpon>UserDashboardForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CreateRoleForm.resx">
       <DependentUpon>CreateRoleForm.cs</DependentUpon>
@@ -188,6 +219,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GrantRoleToUserForm.resx">
       <DependentUpon>GrantRoleToUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertEmployeeForm.resx">
+      <DependentUpon>InsertEmployeeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertOpenSubjectForm.resx">
+      <DependentUpon>InsertOpenSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertRegisterForm.resx">
+      <DependentUpon>InsertRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertStudentForm.resx">
+      <DependentUpon>InsertStudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -216,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateUserStatusForm.resx">
       <DependentUpon>UpdateUserStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserDashboardForm.resx">
+      <DependentUpon>UserDashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
       <SubType>Designer</SubType>
