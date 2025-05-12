@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,6 +38,14 @@ namespace QLTDH
         {
             // Gọi phương thức để tải dữ liệu privileges
             LoadPrivileges();
+        }
+
+        private void tpageAudit_Enter(object sender, EventArgs e)
+        {
+            cbbSortTime.SelectedIndex = 0;
+            LoadAuditStatus();
+            // Gọi phương thức để tải dữ liệu audit
+            LoadAudit();
         }
 
         // Tải dữ liệu users lên datagridview
@@ -495,6 +504,137 @@ namespace QLTDH
             newRevokeRole.Owner = this;
 
             newRevokeRole.ShowDialog();
+        }
+
+        private void LoadAudit()
+        {
+            string tablename=txbSearchTable.Text.Trim();
+            bool sortTime = true;
+            if (cbbSortTime.Text == "Cũ nhất") sortTime = false;
+            else sortTime = true;
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    OracleCommand cmd = new OracleCommand("LOAD_AUDIT", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("p_table_name", OracleDbType.Varchar2).Value = tablename;
+                    cmd.Parameters.Add("p_sort_time", OracleDbType.Boolean).Value = sortTime;
+                    OracleParameter cursorParam = new OracleParameter("audit_cursor", OracleDbType.RefCursor);
+                    cursorParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(cursorParam);
+
+                    OracleDataReader reader = cmd.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+
+                    dtgvAudit.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void txbSearchTable_TextChanged(object sender, EventArgs e)
+        {
+            LoadAudit();
+        }
+
+        private void cbbSortTime_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAudit();
+        }
+
+        private void LoadAuditStatus()
+        {
+            try
+            {
+                using (OracleConnection conn = ConnectionManager.CreateConnection())
+                {
+                    conn.Open();
+
+                    using (OracleCommand cmd = new OracleCommand("CHECK_AUDIT_STATUS", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("p_status", OracleDbType.Varchar2, 10).Direction = ParameterDirection.Output;
+
+                        cmd.ExecuteNonQuery();
+
+                        string status = cmd.Parameters["p_status"].Value.ToString();
+                        if (status == "TRUE")
+                        {
+                            lblAuditStatus.Text = "Tình trạng: Bật";
+                            btnAudit.Text = "Tắt";
+                        }
+                        else
+                        {
+                            lblAuditStatus.Text = "Tình trạng: Tắt";
+                            btnAudit.Text = "Bật";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải tình trạng audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAudit_Click(object sender, EventArgs e)
+        {
+            if (btnAudit.Text == "Bật")
+            {
+                try
+                {
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+
+                        OracleCommand cmd = new OracleCommand("ENABLE_ALL_AUDIT", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+
+                        if (MessageBox.Show("Bật audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                        {
+                            lblAuditStatus.Text = "Tình trạng: Bật";
+                            btnAudit.Text = "Tắt";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi bật audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                try
+                {
+                    using (OracleConnection conn = ConnectionManager.CreateConnection())
+                    {
+                        conn.Open();
+
+                        OracleCommand cmd = new OracleCommand("DISABLE_ALL_AUDIT", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+
+                        if (MessageBox.Show("Tắt audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                        {
+                            lblAuditStatus.Text = "Tình trạng: Tắt";
+                            btnAudit.Text = "Bật";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tắt audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

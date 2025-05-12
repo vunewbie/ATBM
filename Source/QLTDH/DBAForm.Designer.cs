@@ -32,14 +32,6 @@ namespace QLTDH
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tctrlDBA = new System.Windows.Forms.TabControl();
             this.tpageUsers = new System.Windows.Forms.TabPage();
             this.tlpUsers = new System.Windows.Forms.TableLayoutPanel();
@@ -99,6 +91,14 @@ namespace QLTDH
             this.txbSearchGrantee = new System.Windows.Forms.TextBox();
             this.btnRevokePrivilege = new System.Windows.Forms.Button();
             this.btnGrantPrivilege = new System.Windows.Forms.Button();
+            this.tpageAudit = new System.Windows.Forms.TabPage();
+            this.lblAuditStatus = new System.Windows.Forms.Label();
+            this.cbbSortTime = new System.Windows.Forms.ComboBox();
+            this.lblSortTime = new System.Windows.Forms.Label();
+            this.btnAudit = new System.Windows.Forms.Button();
+            this.lblSearchTable = new System.Windows.Forms.Label();
+            this.txbSearchTable = new System.Windows.Forms.TextBox();
+            this.dtgvAudit = new System.Windows.Forms.DataGridView();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.tctrlDBA.SuspendLayout();
             this.tpageUsers.SuspendLayout();
@@ -119,6 +119,8 @@ namespace QLTDH
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumnPrivilege)).BeginInit();
             this.tpageRole.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRole)).BeginInit();
+            this.tpageAudit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvAudit)).BeginInit();
             this.SuspendLayout();
             // 
             // tctrlDBA
@@ -129,6 +131,7 @@ namespace QLTDH
             this.tctrlDBA.Controls.Add(this.tpageUsers);
             this.tctrlDBA.Controls.Add(this.tpageRoles);
             this.tctrlDBA.Controls.Add(this.tpagePrivileges);
+            this.tctrlDBA.Controls.Add(this.tpageAudit);
             this.tctrlDBA.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tctrlDBA.ItemSize = new System.Drawing.Size(85, 30);
             this.tctrlDBA.Location = new System.Drawing.Point(0, 15);
@@ -174,14 +177,6 @@ namespace QLTDH
             // dgvUsers
             // 
             this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Cursor = System.Windows.Forms.Cursors.Default;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -337,24 +332,8 @@ namespace QLTDH
             // 
             this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoles.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRoles.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRoles.Location = new System.Drawing.Point(8, 9);
             this.dgvRoles.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -553,14 +532,14 @@ namespace QLTDH
             // 
             this.dgvTablePrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvTablePrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTablePrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTablePrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTablePrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tbl_GRANTEE,
@@ -574,14 +553,6 @@ namespace QLTDH
             this.tbl_TYPE,
             this.tbl_INHERITED});
             this.dgvTablePrivilege.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTablePrivilege.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTablePrivilege.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTablePrivilege.Location = new System.Drawing.Point(3, 3);
             this.dgvTablePrivilege.Name = "dgvTablePrivilege";
@@ -598,7 +569,7 @@ namespace QLTDH
             this.tbl_GRANTEE.MinimumWidth = 6;
             this.tbl_GRANTEE.Name = "tbl_GRANTEE";
             this.tbl_GRANTEE.ReadOnly = true;
-            this.tbl_GRANTEE.Width = 164;
+            this.tbl_GRANTEE.Width = 168;
             // 
             // tbl_OWNER
             // 
@@ -706,14 +677,14 @@ namespace QLTDH
             // 
             this.dgvColumnPrivilege.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvColumnPrivilege.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvColumnPrivilege.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvColumnPrivilege.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColumnPrivilege.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_GRANTEE,
@@ -726,25 +697,9 @@ namespace QLTDH
             this.col_COMMON,
             this.col_INHERITED});
             this.dgvColumnPrivilege.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvColumnPrivilege.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgvColumnPrivilege.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvColumnPrivilege.Location = new System.Drawing.Point(3, 3);
             this.dgvColumnPrivilege.Name = "dgvColumnPrivilege";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvColumnPrivilege.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvColumnPrivilege.RowHeadersWidth = 51;
             this.dgvColumnPrivilege.RowTemplate.Height = 30;
             this.dgvColumnPrivilege.Size = new System.Drawing.Size(1165, 563);
@@ -758,7 +713,7 @@ namespace QLTDH
             this.col_GRANTEE.MinimumWidth = 6;
             this.col_GRANTEE.Name = "col_GRANTEE";
             this.col_GRANTEE.ReadOnly = true;
-            this.col_GRANTEE.Width = 164;
+            this.col_GRANTEE.Width = 168;
             // 
             // col_OWNER
             // 
@@ -857,28 +812,12 @@ namespace QLTDH
             this.dtgvRole.AllowUserToAddRows = false;
             this.dtgvRole.AllowUserToDeleteRows = false;
             this.dtgvRole.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvRole.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dtgvRole.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvRole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.GRANTEE,
             this.GRANTED_ROLE,
             this.ADMIN_OPTION,
             this.DEFAULT_ROLE});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Times New Roman", 12F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvRole.DefaultCellStyle = dataGridViewCellStyle10;
             this.dtgvRole.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvRole.Location = new System.Drawing.Point(3, 3);
             this.dtgvRole.Name = "dtgvRole";
@@ -965,6 +904,103 @@ namespace QLTDH
             this.btnGrantPrivilege.UseVisualStyleBackColor = false;
             this.btnGrantPrivilege.Click += new System.EventHandler(this.btnGrantPrivilege_Click);
             // 
+            // tpageAudit
+            // 
+            this.tpageAudit.Controls.Add(this.lblAuditStatus);
+            this.tpageAudit.Controls.Add(this.cbbSortTime);
+            this.tpageAudit.Controls.Add(this.lblSortTime);
+            this.tpageAudit.Controls.Add(this.btnAudit);
+            this.tpageAudit.Controls.Add(this.lblSearchTable);
+            this.tpageAudit.Controls.Add(this.txbSearchTable);
+            this.tpageAudit.Controls.Add(this.dtgvAudit);
+            this.tpageAudit.Location = new System.Drawing.Point(4, 34);
+            this.tpageAudit.Name = "tpageAudit";
+            this.tpageAudit.Size = new System.Drawing.Size(1252, 700);
+            this.tpageAudit.TabIndex = 3;
+            this.tpageAudit.Text = "Audit";
+            this.tpageAudit.UseVisualStyleBackColor = true;
+            this.tpageAudit.Enter += new System.EventHandler(this.tpageAudit_Enter);
+            // 
+            // lblAuditStatus
+            // 
+            this.lblAuditStatus.AutoSize = true;
+            this.lblAuditStatus.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAuditStatus.Location = new System.Drawing.Point(41, 32);
+            this.lblAuditStatus.Name = "lblAuditStatus";
+            this.lblAuditStatus.Size = new System.Drawing.Size(122, 29);
+            this.lblAuditStatus.TabIndex = 15;
+            this.lblAuditStatus.Text = "Tình trạng";
+            // 
+            // cbbSortTime
+            // 
+            this.cbbSortTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSortTime.FormattingEnabled = true;
+            this.cbbSortTime.Items.AddRange(new object[] {
+            "Mới nhất",
+            "Cũ nhất"});
+            this.cbbSortTime.Location = new System.Drawing.Point(828, 35);
+            this.cbbSortTime.Name = "cbbSortTime";
+            this.cbbSortTime.Size = new System.Drawing.Size(174, 37);
+            this.cbbSortTime.TabIndex = 14;
+            this.cbbSortTime.SelectedIndexChanged += new System.EventHandler(this.cbbSortTime_SelectedIndexChanged);
+            // 
+            // lblSortTime
+            // 
+            this.lblSortTime.AutoSize = true;
+            this.lblSortTime.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSortTime.Location = new System.Drawing.Point(823, 9);
+            this.lblSortTime.Name = "lblSortTime";
+            this.lblSortTime.Size = new System.Drawing.Size(194, 29);
+            this.lblSortTime.TabIndex = 13;
+            this.lblSortTime.Text = "Sắp xếp thời gian";
+            // 
+            // btnAudit
+            // 
+            this.btnAudit.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnAudit.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAudit.Location = new System.Drawing.Point(180, 24);
+            this.btnAudit.Name = "btnAudit";
+            this.btnAudit.Size = new System.Drawing.Size(85, 37);
+            this.btnAudit.TabIndex = 12;
+            this.btnAudit.Text = "Nút";
+            this.btnAudit.UseVisualStyleBackColor = false;
+            this.btnAudit.Click += new System.EventHandler(this.btnAudit_Click);
+            // 
+            // lblSearchTable
+            // 
+            this.lblSearchTable.AutoSize = true;
+            this.lblSearchTable.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchTable.Location = new System.Drawing.Point(1023, 9);
+            this.lblSearchTable.Name = "lblSearchTable";
+            this.lblSearchTable.Size = new System.Drawing.Size(262, 29);
+            this.lblSearchTable.TabIndex = 11;
+            this.lblSearchTable.Text = "Tìm kiếm theo tên bảng";
+            // 
+            // txbSearchTable
+            // 
+            this.txbSearchTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchTable.Font = new System.Drawing.Font("Times New Roman", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txbSearchTable.Location = new System.Drawing.Point(1027, 35);
+            this.txbSearchTable.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txbSearchTable.Name = "txbSearchTable";
+            this.txbSearchTable.Size = new System.Drawing.Size(174, 37);
+            this.txbSearchTable.TabIndex = 10;
+            this.txbSearchTable.TextChanged += new System.EventHandler(this.txbSearchTable_TextChanged);
+            // 
+            // dtgvAudit
+            // 
+            this.dtgvAudit.AllowUserToAddRows = false;
+            this.dtgvAudit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtgvAudit.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dtgvAudit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvAudit.Location = new System.Drawing.Point(37, 95);
+            this.dtgvAudit.Name = "dtgvAudit";
+            this.dtgvAudit.RowHeadersVisible = false;
+            this.dtgvAudit.RowHeadersWidth = 62;
+            this.dtgvAudit.RowTemplate.Height = 28;
+            this.dtgvAudit.Size = new System.Drawing.Size(1165, 563);
+            this.dtgvAudit.TabIndex = 0;
+            // 
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1014,6 +1050,9 @@ namespace QLTDH
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumnPrivilege)).EndInit();
             this.tpageRole.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtgvRole)).EndInit();
+            this.tpageAudit.ResumeLayout(false);
+            this.tpageAudit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvAudit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1080,5 +1119,13 @@ namespace QLTDH
         private DataGridViewTextBoxColumn ADMIN_OPTION;
         private DataGridViewTextBoxColumn DEFAULT_ROLE;
         private Button btnRevokeRole;
+        private TabPage tpageAudit;
+        private DataGridView dtgvAudit;
+        private Button btnAudit;
+        private Label lblSearchTable;
+        private TextBox txbSearchTable;
+        private ComboBox cbbSortTime;
+        private Label lblSortTime;
+        private Label lblAuditStatus;
     }
 }
