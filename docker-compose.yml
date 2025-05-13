@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile.db
     ports:
-      - "1522:1521"
+      - "1521:1521"
     environment:
       - ORACLE_PASSWORD=oracle
       - ORACLE_DATABASE=QUANLYTRUONGDAIHOC
