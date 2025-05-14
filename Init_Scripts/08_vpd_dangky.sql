@@ -148,7 +148,7 @@ EXCEPTION
 END;
 /
 -- Áp dụng các policy
-
+BEGIN
     DBMS_RLS.ADD_POLICY(
         object_schema => 'QLTDH',
         object_name   => 'DANGKY',
@@ -199,5 +199,7 @@ BEGIN
 END;
 /
 
-
-
+grant "NV PKT" to NVPKT0001
+--NVPKT0001
+UPDATE QLTDH.DANGKY SET DIEMTH = 6, DIEMCK = 7 WHERE MASV = 'SV0030' AND MAMM = 'MM0001';
+select * from QLTDH.DANGKY where MASV = 'SV0030'
