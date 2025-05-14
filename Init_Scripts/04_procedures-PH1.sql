@@ -159,9 +159,9 @@ CREATE OR REPLACE PROCEDURE QLTDH.CREATE_ROLE(
 AS
 BEGIN
     IF p_password IS NULL THEN
-        EXECUTE IMMEDIATE ('CREATE ROLE ' || p_role); -- PASSWORD_REQUIRED = "NO"
+        EXECUTE IMMEDIATE 'CREATE ROLE "' || p_role || '"'; -- không cần mật khẩu
     ELSE
-        EXECUTE IMMEDIATE ('CREATE ROLE ' || p_role || ' IDENTIFIED BY ' || p_password); -- PASSWORD_REQUIRED = "YES"
+        EXECUTE IMMEDIATE 'CREATE ROLE "' || p_role || '" IDENTIFIED BY "' || p_password || '"';
     END IF;
 END;
 /

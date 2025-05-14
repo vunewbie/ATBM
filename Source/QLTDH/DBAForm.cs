@@ -601,8 +601,9 @@ namespace QLTDH
 
                         if (MessageBox.Show("Bật audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                         {
-                            lblAuditStatus.Text = "Tình trạng: Bật";
-                            btnAudit.Text = "Tắt";
+                            //lblAuditStatus.Text = "Tình trạng: Bật";
+                            //btnAudit.Text = "Tắt";
+                            LoadAuditStatus();
                         }
                     }
                 }
@@ -625,8 +626,9 @@ namespace QLTDH
 
                         if (MessageBox.Show("Tắt audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                         {
-                            lblAuditStatus.Text = "Tình trạng: Tắt";
-                            btnAudit.Text = "Bật";
+                            //lblAuditStatus.Text = "Tình trạng: Tắt";
+                            //btnAudit.Text = "Bật";
+                            LoadAuditStatus();
                         }
                     }
                 }

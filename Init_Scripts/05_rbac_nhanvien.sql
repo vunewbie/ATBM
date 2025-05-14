@@ -22,12 +22,16 @@ END;
 
 -- Tạo các role
 BEGIN
-  FOR r IN (SELECT column_value AS role_name FROM TABLE(sys.dbms_debug_vc2coll('NVCB', 'GV', 'NV PĐT', 'NV PKT', 'NV TCHC', 'NV CTSV', 'TRGĐV', 'SV'))) LOOP
-    EXECUTE IMMEDIATE 'CREATE ROLE "' || r.role_name || '"';
-  END LOOP;
+    QLTDH.CREATE_ROLE('NVCB');
+    QLTDH.CREATE_ROLE('GV');
+    QLTDH.CREATE_ROLE('NV PĐT');
+    QLTDH.CREATE_ROLE('NV PKT');
+    QLTDH.CREATE_ROLE('NV TCHC');
+    QLTDH.CREATE_ROLE('NV CTSV');
+    QLTDH.CREATE_ROLE('TRGĐV');
+    QLTDH.CREATE_ROLE('SV');
 END;
 /
-
 -- Xóa các user nếu tồn tại
 DECLARE
     v_user_exists NUMBER;
