@@ -2,11 +2,62 @@
 ---- 1. Kích hoạt việc ghi nhật ký hệ thống.
 -----------------------------------------------------------------------------------------------------
 CONNECT SYS/oracle@localhost:1521/QUANLYTRUONGDAIHOC AS SYSDBA;
+
+-- Đặt audit_trail trong SPFILE
 ALTER SESSION SET CONTAINER = CDB$ROOT;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
 ALTER SYSTEM SET audit_trail = DB SCOPE = SPFILE;
+
+CONNECT SYS/oracle@localhost:1521/QUANLYTRUONGDAIHOC AS SYSDBA;
 ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
 
+-- Cấp quyền truy cập các bảng dữ liệu audit cho QLTDH
+GRANT SELECT ON SYS.DBA_AUDIT_TRAIL TO QLTDH;
+GRANT SELECT ON SYS.DBA_FGA_AUDIT_TRAIL TO QLTDH;
+GRANT SELECT ON SYS.DBA_AUDIT_POLICIES TO QLTDH;
+
+-- Cấp quyền quản lý FGA
+GRANT EXECUTE ON DBMS_FGA TO QLTDH;
+
+-- Tạo procedure trong schema SYS sử dụng AUTHID DEFINER
+CREATE OR REPLACE PROCEDURE SYS.EXECUTE_AUDIT_FOR_QLTDH(
+    p_audit_command IN VARCHAR2
+) 
+AUTHID DEFINER  -- Chạy với quyền hạn của SYS
+AS 
+BEGIN
+    EXECUTE IMMEDIATE p_audit_command;
+END;
+/
+
+-- Cấp quyền thực thi cho QLTDH
+GRANT EXECUTE ON SYS.EXECUTE_AUDIT_FOR_QLTDH TO QLTDH;
+
+-- Sửa lại procedure ENABLE_ALL_AUDIT trong schema QLTDH
+CREATE OR REPLACE PROCEDURE QLTDH.ENABLE_ALL_AUDIT
+AS 
+BEGIN
+    -- Thực hiện các lệnh audit cụ thể thay vì AUDIT ALL
+    SYS.EXECUTE_AUDIT_FOR_QLTDH('AUDIT ALL BY ACCESS');
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Lỗi khi bật audit: ' || SQLERRM);
+END;
+/
+
+-- Sửa lại procedure DISABLE_ALL_AUDIT trong schema QLTDH
+CREATE OR REPLACE PROCEDURE QLTDH.DISABLE_ALL_AUDIT
+AS 
+BEGIN
+    -- Tắt các lệnh audit cụ thể
+    SYS.EXECUTE_AUDIT_FOR_QLTDH('NOAUDIT ALL');
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Lỗi khi tắt audit: ' || SQLERRM);
+END;
+/
+
+CONNECT QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC;
 ---------------------------------------------------------------------------------------------------
 -- 2. Thực hiện ghi nhật ký hệ thống dùng Standard audit:.
 ---------------------------------------------------------------------------------------------------
@@ -148,26 +199,6 @@ BEGIN
     IF UPPER(v_std_audit_trail) != 'NONE' AND v_fga_count > 0 THEN
         p_status := 'TRUE';
     END IF;
-END;
-/
-
-CREATE OR REPLACE PROCEDURE QLTDH.ENABLE_ALL_AUDIT
-AS 
-BEGIN
-  EXECUTE IMMEDIATE 'AUDIT ALL BY ACCESS';
-EXCEPTION
-  WHEN OTHERS THEN
-    RAISE_APPLICATION_ERROR(-20001, 'Lỗi khi bật audit: ' || SQLERRM);
-END;
-/
-
-CREATE OR REPLACE PROCEDURE QLTDH.DISABLE_ALL_AUDIT
-AS 
-BEGIN
-  EXECUTE IMMEDIATE 'NOAUDIT ALL';
-EXCEPTION
-  WHEN OTHERS THEN
-    RAISE_APPLICATION_ERROR(-20001, 'Lỗi khi tắt audit: ' || SQLERRM);
 END;
 /
 
