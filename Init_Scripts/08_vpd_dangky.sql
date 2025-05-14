@@ -148,7 +148,7 @@ EXCEPTION
 END;
 /
 -- Áp dụng các policy
-
+BEGIN
     DBMS_RLS.ADD_POLICY(
         object_schema => 'QLTDH',
         object_name   => 'DANGKY',
@@ -198,6 +198,3 @@ BEGIN
     END IF;
 END;
 /
-
-
-

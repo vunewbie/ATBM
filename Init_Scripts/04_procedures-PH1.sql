@@ -67,9 +67,9 @@ CREATE OR REPLACE PROCEDURE QLTDH.CREATE_USER (
 ) 
 AS
 BEGIN
-    -- Tạo tài khoản và cấp quyền đăng nhập
-    EXECUTE IMMEDIATE 'CREATE USER ' || p_username || ' IDENTIFIED BY ' || p_password;
-    EXECUTE IMMEDIATE 'GRANT CONNECT TO ' || p_username;
+    -- Tạo user và cấp quyền CONNECT
+    EXECUTE IMMEDIATE 'CREATE USER "' || p_username || '" IDENTIFIED BY "' || p_password || '"';
+    EXECUTE IMMEDIATE 'GRANT CONNECT TO "' || p_username || '"';
 END CREATE_USER;
 /
 
@@ -81,7 +81,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.DELETE_USER(
 AS
 BEGIN
     -- Xóa tài khoản
-    EXECUTE IMMEDIATE 'DROP USER ' || p_username || ' CASCADE';
+    EXECUTE IMMEDIATE 'DROP USER "' || p_username || '" CASCADE';
 END DELETE_USER;
 /
 
@@ -95,7 +95,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_USER_STATUS (
 AS  
 BEGIN
     -- Cập nhật trạng thái tài khoản (thêm dấu chấm phẩy ở cuối)
-    EXECUTE IMMEDIATE 'ALTER USER ' || p_username || ' ACCOUNT ' || p_new_status;
+    EXECUTE IMMEDIATE 'ALTER USER "' || p_username || '" ACCOUNT ' || v_status_upper;
 END UPDATE_USER_STATUS;
 /
 
@@ -175,7 +175,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.DELETE_ROLE(
 AS
 BEGIN
     -- Xóa Role
-    EXECUTE IMMEDIATE 'DROP ROLE ' || p_role;
+    EXECUTE IMMEDIATE 'DROP ROLE "' || p_role || '"';
 END DELETE_ROLE;
 /
 
@@ -189,10 +189,10 @@ CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_ROLE_PASSWORD (
 AS  
 BEGIN
     IF p_password IS NULL THEN
-        EXECUTE IMMEDIATE 'ALTER ROLE ' || p_role || ' NOT IDENTIFIED'; -- PASSWORD NULL
+        EXECUTE IMMEDIATE 'ALTER ROLE "' || p_role || '" NOT IDENTIFIED'; -- PASSWORD NULL
     ELSE
         -- Cập nhật password cho Role
-        EXECUTE IMMEDIATE 'ALTER ROLE ' || p_role || ' IDENTIFIED BY ' || p_password;
+        EXECUTE IMMEDIATE 'ALTER ROLE "' || p_role || '" IDENTIFIED BY ' || p_password;
     END IF;
 END UPDATE_ROLE_PASSWORD;
 /
