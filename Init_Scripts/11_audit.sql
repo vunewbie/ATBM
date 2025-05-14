@@ -6,8 +6,13 @@ CONNECT SYS/oracle@localhost:1521/QUANLYTRUONGDAIHOC AS SYSDBA;
 -- Đặt audit_trail trong SPFILE
 ALTER SESSION SET CONTAINER = CDB$ROOT;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
-ALTER SYSTEM SET audit_trail = DB SCOPE = SPFILE;
+ALTER SYSTEM SET audit_trail = DB SCOPE = BOTH;
+-- Hoặc, bạn có thể đăng ký lại tham số mà không cần khởi động lại toàn bộ database
 ALTER SYSTEM REGISTER;
+
+-- Để thay đổi có hiệu lực, chúng ta sẽ tạm dừng và khởi động lại PDB
+ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC CLOSE IMMEDIATE;
+ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC OPEN;
 ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
 
 -- Cấp quyền truy cập các bảng dữ liệu audit cho QLTDH

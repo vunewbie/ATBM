@@ -66,8 +66,6 @@ INSERT INTO QLTDH.DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PKT', 'Phòng Kh�
 INSERT INTO QLTDH.DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PTTCHC', 'Phòng Tổ chức hành chính', 'Phòng', NULL);
 INSERT INTO QLTDH.DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PCTSV', 'Phòng Công tác sinh viên', 'Phòng', NULL);
 INSERT INTO QLTDH.DONVI (MADV, TENDV, LOAIDV, TRGDV) VALUES ('PKHCN', 'Phòng Khoa học công nghệ', 'Phòng', NULL);
--- Kiểm tra dữ liệu của DONVI
-SELECT * FROM QLTDH.DONVI;
 
 -- Nhân viên
 -- Nhân viên cơ bản (NVCB)
@@ -257,7 +255,6 @@ SET TRGDV = (
     AND nv.MADV = dv.MADV
 );
 COMMIT;
-SELECT * FROM QLTDH.NHANVIEN;
 
 -- Sinh viên
 BEGIN
@@ -292,7 +289,6 @@ BEGIN
     COMMIT;
 END;
 /
-SELECT * FROM QLTDH.SINHVIEN;
 
 -- Học phần
 BEGIN
@@ -321,7 +317,6 @@ BEGIN
    COMMIT;
 END;
 /
-SELECT * FROM QLTDH.HOCPHAN ORDER BY MADV, MAHP;
 
 -- Mở môn
 DECLARE
@@ -357,7 +352,6 @@ BEGIN
    COMMIT;
 END;
 /
-SELECT * FROM QLTDH.MOMON;
 
 -- Đăng ký
 DECLARE
@@ -427,7 +421,6 @@ WHERE dk.MAMM IN (
    WHERE NAM = 2025 AND HK = '2'
 );
 COMMIT;
-SELECT * FROM QLTDH.DANGKY;
 
 
 

@@ -95,7 +95,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_USER_STATUS (
 AS  
 BEGIN
     -- Cập nhật trạng thái tài khoản (thêm dấu chấm phẩy ở cuối)
-    EXECUTE IMMEDIATE 'ALTER USER "' || p_username || '" ACCOUNT ' || v_status_upper;
+    EXECUTE IMMEDIATE 'ALTER USER "' || p_username || '" ACCOUNT ' || p_new_status;
 END UPDATE_USER_STATUS;
 /
 
