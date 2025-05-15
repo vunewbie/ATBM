@@ -283,7 +283,7 @@ GRANT SELECT ON QLTDH.HOCPHAN TO "NV PĐT";
 ---------------------------------------------------------------------------------------------------
 --Xem danh sách mã giảng viên để thêm mới mở môn
 ---------------------------------------------------------------------------------------------------
-CREATE OR REPLACE VIEW v_TeacherID
+CREATE OR REPLACE VIEW QLTDH.v_TeacherID
 AS
     SELECT MANV FROM QLTDH.NHANVIEN WHERE VAITRO='GV';
     
