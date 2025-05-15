@@ -924,22 +924,33 @@ namespace QLTDH
                 return;
             }
 
+            double diemTH = Convert.ToDouble(txbDiemTH.Text.Trim());
+            double diemQT = Convert.ToDouble(txbDiemQT.Text.Trim());
+            double diemCK = Convert.ToDouble(txbDiemCK.Text.Trim());
+            double diemTK = Convert.ToDouble(txbDiemTK.Text.Trim());
+
+            if (diemTH < 0 || diemTH > 10 || diemQT < 0 || diemQT > 10 || diemCK < 0 || diemCK > 10 || diemTK < 0 || diemTK > 10)
+            {
+                MessageBox.Show("Điểm phải nằm trong khoảng từ 0 đến 10!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 using (OracleConnection conn = ConnectionManager.CreateConnection())
                 {
                     conn.Open();
-                    OracleCommand cmd = new OracleCommand("QLTDH.UPDATE_REGISTER", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
+                    OracleCommand cmd = new OracleCommand(
+                        "UPDATE QLTDH.DANGKY " +
+                        "SET DIEMTH = :diemTH, DIEMQT = :diemQT, DIEMCK = :diemCK, DIEMTK = :diemTK " +
+                        "WHERE MASV = :studentID AND MAMM = :openSubjectID", conn);
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Parameters.Add(new OracleParameter("diemTH", diemTH));
+                    cmd.Parameters.Add(new OracleParameter("diemQT", diemQT));
+                    cmd.Parameters.Add(new OracleParameter("diemCK", diemCK));
+                    cmd.Parameters.Add(new OracleParameter("diemTK", diemTK));
                     cmd.Parameters.Add(new OracleParameter("studentID", txbRgtStudentID.Text.Trim()));
                     cmd.Parameters.Add(new OracleParameter("openSubjectID", txbRgtOpenSubjectID.Text.Trim()));
-                    cmd.Parameters.Add(new OracleParameter("diemTH", Convert.ToDouble(txbDiemTH.Text.Trim())));
-                    cmd.Parameters.Add(new OracleParameter("diemQT", Convert.ToDouble(txbDiemQT.Text.Trim())));
-                    cmd.Parameters.Add(new OracleParameter("diemCK", Convert.ToDouble(txbDiemCK.Text.Trim())));
-                    cmd.Parameters.Add(new OracleParameter("diemTK", Convert.ToDouble(txbDiemTK.Text.Trim())));
-                    cmd.Parameters.Add(new OracleParameter("role", this.role));
-
                     cmd.ExecuteNonQuery();
 
                     MessageBox.Show("Cập nhật thông tin đăng ký thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
