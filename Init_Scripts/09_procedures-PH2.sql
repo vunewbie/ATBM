@@ -423,6 +423,7 @@ GRANT EXECUTE ON QLTDH.GET_REGISTER_LIST TO GV, SV, "NV PĐT", "NV PKT";
 ---------------------------------------------------------------------------------------------------
 -- Cập nhật thông tin đăng ký
 ---------------------------------------------------------------------------------------------------
+ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
 CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_REGISTER(
     studentID IN VARCHAR2,
     openSubjectID IN VARCHAR2,
@@ -432,6 +433,7 @@ CREATE OR REPLACE PROCEDURE QLTDH.UPDATE_REGISTER(
     diemTK IN NUMBER,
     role IN VARCHAR2
 )
+AUTHID DEFINER
 AS
 BEGIN
     IF role = 'NV PKT' THEN
@@ -458,7 +460,25 @@ BEGIN
 END;
 /
 GRANT EXECUTE ON QLTDH.UPDATE_REGISTER TO "NV PKT";
-
+show con_name
+--thành công
+UPDATE QLTDH.DANGKY
+SET DIEMTH = 8, DIEMQT = 7, DIEMCK = 9, DIEMTK = 8
+WHERE MASV = 'SV0010' AND MAMM = 'MM0001';
+--không thành công
+BEGIN
+  QLTDH.UPDATE_REGISTER(
+    studentID     => 'SV0010',
+    openSubjectID => 'MM0001',
+    diemTH        => 9,
+    diemQT        => 7.0,
+    diemCK        => 6.5,
+    diemTK        => 7.5,
+    role          => 'NV PKT'
+  );
+END;
+/
+SELECT * FROM QLTDH.DANGKY WHERE MASV='SV0010' AND MAMM='MM0001'
 ---------------------------------------------------------------------------------------------------
 -- Kiểm tra xem khoảng cách từ ngày hiện tại đến NgayBD ở bảng MOMON của MAMM đó có lớn hơn 14 hay không
 ---------------------------------------------------------------------------------------------------

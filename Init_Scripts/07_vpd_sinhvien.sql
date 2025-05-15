@@ -15,7 +15,7 @@ CREATE OR REPLACE FUNCTION QLTDH.SINHVIEN_VPD_POLICY (
     v_madv VARCHAR2(10);
     v_count NUMBER;
 BEGIN
-    IF v_user = 'QLTDH' THEN
+    IF v_user IN ('SYS', 'QLTDH') THEN
         RETURN '1=1';
     END IF;
 
@@ -90,6 +90,11 @@ DECLARE
     v_vaitro VARCHAR2(7);
     v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
 BEGIN
+     -- Nếu user là SYS hoặc QLTDH (người định nghĩa trigger), thì bỏ qua luôn
+    IF v_user IN ('SYS', 'QLTDH') THEN
+        RETURN;
+    END IF;
+    
     -- Lấy vai trò của người dùng
     SELECT GRANTED_ROLE INTO v_vaitro FROM DBA_ROLE_PRIVS WHERE GRANTEE = ''||UPPER(v_user)||'' AND GRANTED_ROLE NOT IN ('CONNECT', 'RESOURCE');
 
