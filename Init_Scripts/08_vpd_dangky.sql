@@ -87,8 +87,8 @@ BEGIN
         RETURN 'MASV = ''' || v_user || ''' AND EXISTS (
             SELECT 1 
             FROM QLTDH.MOMON MM
-            WHERE MM.MAMM = DANGKY.MAMM 
-            AND SYSDATE <= NGAYBD + 14
+            WHERE MM.MAMM = MAMM 
+            AND SYSDATE <= MM.NGAYBD + 14
         )';
     END IF;
     
@@ -99,8 +99,8 @@ BEGIN
         RETURN 'MAMM IN (
             SELECT MM.MAMM
             FROM QLTDH.MOMON MM
-            WHERE MM.MAMM = DANGKY.MAMM 
-            AND SYSDATE <= NGAYBD + 14
+            WHERE MM.MAMM = MAMM 
+            AND SYSDATE <= MM.NGAYBD + 14
         )';
     END IF;
     
@@ -208,5 +208,5 @@ END;
 
 --grant "NV PKT" to NVPKT0001
 ----NVPKT0001
---UPDATE QLTDH.DANGKY SET DIEMTH = 6, DIEMCK = 7 WHERE MASV = 'SV0030' AND MAMM = 'MM0001';
---select * from QLTDH.DANGKY where MASV = 'SV0030'
+UPDATE QLTDH.DANGKY SET DIEMTH = 10, DIEMCK = 7 WHERE MASV = 'SV0030' AND MAMM = 'MM0001';
+select * from QLTDH.DANGKY where MASV = 'SV0030'
