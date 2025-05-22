@@ -1,4 +1,36 @@
-version: "3"
+# version: "3"
+
+# services:
+#   oracledb:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.db
+#     ports:
+#       - "1521:1521"
+#     environment:
+#       - ORACLE_PASSWORD=oracle
+#       - ORACLE_DATABASE=QUANLYTRUONGDAIHOC
+#     volumes:
+#       - oracle-data:/opt/oracle/oradata
+# volumes:
+#   oracle-data:
+
+# version: "3"
+
+# services:
+#   oracledb:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.db
+#     ports:
+#       - "1521:1521"
+#     environment:
+#       - ORACLE_PASSWORD=oracle
+#       - ORACLE_DATABASE=QUANLYTRUONGDAIHOC
+#     volumes:
+#       - oracle-data:/opt/oracle/oradata
+# volumes:
+#   oracle-data:
 
 services:
   oracledb:
@@ -12,5 +44,7 @@ services:
       - ORACLE_DATABASE=QUANLYTRUONGDAIHOC
     volumes:
       - oracle-data:/opt/oracle/oradata
+
 volumes:
   oracle-data:
+

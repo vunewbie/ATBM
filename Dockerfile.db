@@ -5,4 +5,13 @@ ENV ORACLE_DATABASE=QUANLYTRUONGDAIHOC
 
 EXPOSE 1521
 
+# Copy các script SQL vào thư mục startup của Oracle container
 COPY ./Init_Scripts/*.sql /container-entrypoint-initdb.d/
+
+# Copy script turn_on_audit.sh
+COPY ./turn_on_audit.sh /container-entrypoint-initdb.d/99_turn_on_audit.sh
+
+# Đảm bảo script có quyền thực thi
+USER root
+RUN chmod +x /container-entrypoint-initdb.d/99_turn_on_audit.sh
+USER oracle
