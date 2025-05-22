@@ -566,76 +566,14 @@ namespace QLTDH
                         cmd.ExecuteNonQuery();
 
                         string status = cmd.Parameters["p_status"].Value.ToString();
-                        if (status == "TRUE")
-                        {
-                            lblAuditStatus.Text = "Tình trạng: Bật";
-                            btnAudit.Text = "Tắt";
-                        }
-                        else
-                        {
-                            lblAuditStatus.Text = "Tình trạng: Tắt";
-                            btnAudit.Text = "Bật";
-                        }
+                        if (status == "TRUE") lblAuditStatus.Text = "Tình trạng: Bật";
+                        else lblAuditStatus.Text = "Tình trạng: Tắt";
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tải tình trạng audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnAudit_Click(object sender, EventArgs e)
-        {
-            if (btnAudit.Text == "Bật")
-            {
-                try
-                {
-                    using (OracleConnection conn = ConnectionManager.CreateConnection())
-                    {
-                        conn.Open();
-
-                        OracleCommand cmd = new OracleCommand("ENABLE_ALL_AUDIT", conn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.ExecuteNonQuery();
-
-                        if (MessageBox.Show("Bật audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
-                        {
-                            //lblAuditStatus.Text = "Tình trạng: Bật";
-                            //btnAudit.Text = "Tắt";
-                            LoadAuditStatus();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi bật audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                try
-                {
-                    using (OracleConnection conn = ConnectionManager.CreateConnection())
-                    {
-                        conn.Open();
-
-                        OracleCommand cmd = new OracleCommand("DISABLE_ALL_AUDIT", conn);
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.ExecuteNonQuery();
-
-                        if (MessageBox.Show("Tắt audit thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
-                        {
-                            //lblAuditStatus.Text = "Tình trạng: Tắt";
-                            //btnAudit.Text = "Bật";
-                            LoadAuditStatus();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi tắt audit: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
     }
