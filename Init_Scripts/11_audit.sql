@@ -1,43 +1,15 @@
 -----------------------------------------------------------------------------------------------------
----- 1. Kích hoạt việc ghi nhật ký hệ thống.
+---- 1. Cấp quyền audit cho QLTDH.
 -----------------------------------------------------------------------------------------------------
 CONNECT SYS/oracle@localhost:1521/QUANLYTRUONGDAIHOC AS SYSDBA;
 alter session set "_ORACLE_SCRIPT"=true;
 alter session set "_optimizer_filter_pred_pullup"=false; 
--- Đặt audit_trail trong SPFILE
-ALTER SESSION SET CONTAINER = CDB$ROOT;
-SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
-ALTER SYSTEM SET audit_trail = DB SCOPE = BOTH;
--- Hoặc, bạn có thể đăng ký lại tham số mà không cần khởi động lại toàn bộ database
-ALTER SYSTEM REGISTER;
-
--- Để thay đổi có hiệu lực, chúng ta sẽ tạm dừng và khởi động lại PDB
-ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC CLOSE IMMEDIATE;
-ALTER PLUGGABLE DATABASE QUANLYTRUONGDAIHOC OPEN;
-ALTER SESSION SET CONTAINER = QUANLYTRUONGDAIHOC;
 
 -- Cấp quyền truy cập các bảng dữ liệu audit cho QLTDH
 GRANT SELECT ON SYS.DBA_AUDIT_TRAIL TO QLTDH;
 GRANT SELECT ON SYS.DBA_FGA_AUDIT_TRAIL TO QLTDH;
 GRANT SELECT ON SYS.DBA_AUDIT_POLICIES TO QLTDH;
-GRANT SELECT ON SYS.V$PARAMETER TO QLTDH;
-
--- Cấp quyền quản lý FGA
 GRANT EXECUTE ON DBMS_FGA TO QLTDH;
-
--- Tạo procedure trong schema SYS sử dụng AUTHID DEFINER
-CREATE OR REPLACE PROCEDURE SYS.EXECUTE_AUDIT_FOR_QLTDH(
-    p_audit_command IN VARCHAR2
-) 
-AUTHID DEFINER  -- Chạy với quyền hạn của SYS
-AS 
-BEGIN
-    EXECUTE IMMEDIATE p_audit_command;
-END;
-/
-
--- Cấp quyền thực thi cho QLTDH
-GRANT EXECUTE ON SYS.EXECUTE_AUDIT_FOR_QLTDH TO QLTDH;
 
 CONNECT QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC;
 ---------------------------------------------------------------------------------------------------
@@ -174,52 +146,33 @@ END;
 --==============================================================================
 --Hành vi cập nhật quan hệ ĐANGKY tại các trường liên quan đến điểm số nhưng
 --người đó không thuộc vai trò “NV PKT”.
---BEGIN
---  FOR rec IN (SELECT policy_name 
---              FROM DBA_AUDIT_POLICIES 
---              WHERE object_schema = 'QLTDH' 
---              AND object_name = 'DANGKY' 
---              AND policy_name = 'UPDATE_SCORE') 
---  LOOP
---    DBMS_FGA.DROP_POLICY(
---      object_schema => 'QLTDH',    
---      object_name   => 'DANGKY',   
---      policy_name   => 'UPDATE_SCORE'  
---    );
---  END LOOP;
---END;
---/
---
-----Function để check vai trò 
---CREATE OR REPLACE FUNCTION AUDIT_FUNC_ROLE(pTxtUser IN VARCHAR2)
---RETURN PLS_INTEGER
---AS
---  USERROLE VARCHAR2(20);
---BEGIN
---    SELECT GRANTED_ROLE INTO USERROLE FROM DBA_ROLE_PRIVS WHERE GRANTEE = pTxtUser;
---    
---    IF('NV PKT' IN (USERROLE)) THEN
---        RETURN 1;
---    ELSIF('NV TCHC' IN (USERROLE)) THEN
---        RETURN 2;
---    ELSE
---        RETURN 0;
---    END IF;
---END;
---/
---
---BEGIN
---  DBMS_FGA.ADD_POLICY(
---    object_schema   => 'QLTDH',             
---    object_name     => 'DANGKY',              
---    policy_name     => 'UPDATE_SCORE',     
---    audit_condition => 'QLTDH.AUDIT_FUNC_ROLE(USER) = 2 
---                        OR QLTDH.AUDIT_FUNC_ROLE(USER) = 0',
---    audit_column    => 'DIEMTH,DIEMQT,DIEMCK,DIEMTK',  
---    statement_types => 'UPDATE'                
---  );
---END;
---/
+BEGIN
+ FOR rec IN (SELECT policy_name 
+             FROM DBA_AUDIT_POLICIES 
+             WHERE object_schema = 'QLTDH' 
+             AND object_name = 'DANGKY' 
+             AND policy_name = 'UPDATE_SCORE') 
+ LOOP
+   DBMS_FGA.DROP_POLICY(
+     object_schema => 'QLTDH',    
+     object_name   => 'DANGKY',   
+     policy_name   => 'UPDATE_SCORE'  
+   );
+ END LOOP;
+END;
+/
+
+BEGIN
+ DBMS_FGA.ADD_POLICY(
+   object_schema   => 'QLTDH',             
+   object_name     => 'DANGKY',              
+   policy_name     => 'UPDATE_SCORE',     
+   audit_condition => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') NOT LIKE ''NVPKT%''',
+   audit_column    => 'DIEMTH,DIEMQT,DIEMCK,DIEMTK',  
+   statement_types => 'UPDATE'                
+ );
+END;
+/
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
 --SET DIEMTH = 7.0
