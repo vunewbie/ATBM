@@ -2,7 +2,8 @@
 ---- 1. Kích hoạt việc ghi nhật ký hệ thống.
 -----------------------------------------------------------------------------------------------------
 CONNECT SYS/oracle@localhost:1521/QUANLYTRUONGDAIHOC AS SYSDBA;
-
+alter session set "_ORACLE_SCRIPT"=true;
+alter session set "_optimizer_filter_pred_pullup"=false; 
 -- Đặt audit_trail trong SPFILE
 ALTER SESSION SET CONTAINER = CDB$ROOT;
 SELECT SYS_CONTEXT('USERENV', 'CON_NAME'), USER FROM DUAL;
@@ -188,19 +189,38 @@ END;
 --  END LOOP;
 --END;
 --/
+--
+----Function để check vai trò 
+--CREATE OR REPLACE FUNCTION AUDIT_FUNC_ROLE(pTxtUser IN VARCHAR2)
+--RETURN PLS_INTEGER
+--AS
+--  USERROLE VARCHAR2(20);
+--BEGIN
+--    SELECT GRANTED_ROLE INTO USERROLE FROM DBA_ROLE_PRIVS WHERE GRANTEE = pTxtUser;
+--    
+--    IF('NV PKT' IN (USERROLE)) THEN
+--        RETURN 1;
+--    ELSIF('NV TCHC' IN (USERROLE)) THEN
+--        RETURN 2;
+--    ELSE
+--        RETURN 0;
+--    END IF;
+--END;
+--/
+--
 --BEGIN
 --  DBMS_FGA.ADD_POLICY(
 --    object_schema   => 'QLTDH',             
 --    object_name     => 'DANGKY',              
 --    policy_name     => 'UPDATE_SCORE',     
---    audit_condition => 'VAITRO != ''NV PKT''',
+--    audit_condition => 'QLTDH.AUDIT_FUNC_ROLE(USER) = 2 
+--                        OR QLTDH.AUDIT_FUNC_ROLE(USER) = 0',
 --    audit_column    => 'DIEMTH,DIEMQT,DIEMCK,DIEMTK',  
 --    statement_types => 'UPDATE'                
 --  );
 --END;
 --/
-
---Câu lệnh kiểm tra
+----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
 --SET DIEMTH = 7.0
 --WHERE MASV = 'SV0001' AND MAMM='MM0002';
@@ -316,14 +336,25 @@ END;
 --  END LOOP;
 --END;
 --/
+--CREATE OR REPLACE FUNCTION AUDIT_FUNC_NGAYBD(NGAYBD IN DATE)
+--RETURN PLS_INTEGER
+--AS
+--BEGIN
+--    IF SYSDATE < NGAYBD OR SYSDATE > NGAYBD + 14 THEN
+--        RETURN 1;
+--    ELSE 
+--        RETURN 0;
+--    END IF;
+--END;
+--/
 --BEGIN
 --  DBMS_FGA.ADD_POLICY(
 --    object_schema    => 'QLTDH',
 --    object_name      => 'DANGKY',
 --    policy_name      => 'UML_DANGKY',
---    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV', 
+--    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV 
+--                        OR QLTDH.AUDIT_FUNC_NGAYBD(NGAYBD) = 1', 
 --    statement_types  => 'INSERT, UPDATE, DELETE',
---    audit_column     => NULL,
 --    enable           => TRUE
 --  );
 --END;
