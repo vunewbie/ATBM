@@ -421,6 +421,10 @@ WHERE dk.MAMM IN (
    WHERE NAM = 2025 AND HK = '2'
 );
 COMMIT;
+<<<<<<< HEAD
+=======
+/
+>>>>>>> OLS
 
 
 

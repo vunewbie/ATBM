@@ -35,7 +35,7 @@ CREATE OR REPLACE FUNCTION QLTDH.DANGKY_SELECT_POLICY (
     v_vaitro VARCHAR2(7);
 BEGIN
     -- Nếu người dùng là Quản trị viên (QLTDH), không áp dụng chính sách
-    IF v_user = 'QLTDH' THEN
+    IF v_user IN ('SYS', 'QLTDH') THEN
         RETURN '1=1';
     END IF;
 
@@ -71,7 +71,7 @@ CREATE OR REPLACE FUNCTION QLTDH.DANGKY_MODIFY_POLICY (
     v_momon_id NUMBER;  -- ID của môn học
 BEGIN
     -- Nếu người dùng là Quản trị viên (QLTDH), không áp dụng chính sách
-    IF v_user = 'QLTDH' THEN
+    IF v_user IN ('SYS', 'QLTDH') THEN
         RETURN '1=1';
     END IF;
 
@@ -87,8 +87,8 @@ BEGIN
         RETURN 'MASV = ''' || v_user || ''' AND EXISTS (
             SELECT 1 
             FROM QLTDH.MOMON MM
-            WHERE MM.MAMM = DANGKY.MAMM 
-            AND SYSDATE <= NGAYBD + 14
+            WHERE MM.MAMM = MAMM 
+            AND SYSDATE <= MM.NGAYBD + 14
         )';
     END IF;
     
@@ -99,8 +99,8 @@ BEGIN
         RETURN 'MAMM IN (
             SELECT MM.MAMM
             FROM QLTDH.MOMON MM
-            WHERE MM.MAMM = DANGKY.MAMM 
-            AND SYSDATE <= NGAYBD + 14
+            WHERE MM.MAMM = MAMM 
+            AND SYSDATE <= MM.NGAYBD + 14
         )';
     END IF;
     
@@ -173,7 +173,7 @@ BEGIN
 END;
 /
 
-
+--drop trigger sys.TRG_DANGKY_SET_DIEM_NULL
 --Tạo TRIGGER để đảm bảo SV/NV PĐT thêm dữ liệu trong bảng đăng ký thì điểm luôn NULL
 CREATE OR REPLACE TRIGGER TRG_DANGKY_SET_DIEM_NULL
 BEFORE INSERT OR UPDATE ON QLTDH.DANGKY
@@ -182,8 +182,14 @@ DECLARE
     v_vaitro VARCHAR2(7);
     v_user VARCHAR2(30) := SYS_CONTEXT('USERENV', 'SESSION_USER');
 BEGIN
+    -- Nếu user là SYS hoặc QLTDH (người định nghĩa trigger), thì bỏ qua luôn
+    IF v_user IN ('SYS', 'QLTDH') THEN
+        RETURN;
+    END IF;
+    
     -- Lấy vai trò của người dùng
     SELECT GRANTED_ROLE INTO v_vaitro FROM DBA_ROLE_PRIVS WHERE GRANTEE = ''||UPPER(v_user)||'' AND GRANTED_ROLE NOT IN ('CONNECT', 'RESOURCE');
+    DBMS_OUTPUT.PUT_LINE('Vai trò người dùng 1: ' || v_vaitro);
 
     -- Nếu là NV CTSV, đảm bảo TINHTRANG = NULL
     IF v_vaitro IN('SV', 'NV PĐT') THEN
