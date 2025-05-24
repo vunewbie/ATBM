@@ -163,61 +163,62 @@ END;
 /
 
 BEGIN
- DBMS_FGA.ADD_POLICY(
-   object_schema   => 'QLTDH',             
-   object_name     => 'DANGKY',              
-   policy_name     => 'UPDATE_SCORE',     
-   audit_condition => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') NOT LIKE ''NVPKT%''',
-   audit_column    => 'DIEMTH,DIEMQT,DIEMCK,DIEMTK',  
-   statement_types => 'UPDATE'                
- );
+  DBMS_FGA.ADD_POLICY(
+    object_schema   => 'QLTDH',
+    object_name     => 'DANGKY',
+    policy_name     => 'UPDATE_SCORE',
+    audit_condition => 'SYS_CONTEXT(''SYS_SESSION_ROLES'', ''NV PKT'') = ''FALSE''',
+    audit_column    => 'DIEMTH,DIEMQT,DIEMCK,DIEMTK',
+    statement_types => 'UPDATE'
+  );
 END;
 /
+SELECT SYS_CONTEXT('SYS_SESSION_ROLES', 'NV PKT') FROM DUAL;
+
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
 --SET DIEMTH = 7.0
 --WHERE MASV = 'SV0001' AND MAMM='MM0002';
 ----
-----CONNECT NVPKT0001/NVPKT0001@localhost:1521/QUANLYTRUONGDAIHOC;
+----Đăng nhập vào tài khoản NVPKT0001
 ----UPDATE QLTDH.DANGKY
 ----SET DIEMTH = 6.0
 ----WHERE MASV = 'SV0001' AND MAMM='MM0002';
 --
 ----Kiểm tra audit
-----CONNECT QLTDH/admin123@localhost:1521/QUANLYTRUONGDAIHOC;
-----SELECT * FROM DBA_FGA_AUDIT_TRAIL
-----WHERE object_name = 'DANGKY';
+--SELECT * FROM DBA_FGA_AUDIT_TRAIL
+--WHERE object_name = 'DANGKY';
 --
 --
 ----==============================================================================
 ----Hành vi của người dùng (không thuộc vai trò “NV TCHC”) có thể đọc trên
 ----trường LUONG, PHUCAP của người khác ở quan hệ NHANVIEN.
---BEGIN
---  FOR rec IN (SELECT policy_name 
---              FROM DBA_AUDIT_POLICIES 
---              WHERE object_schema = 'QLTDH' 
---              AND object_name = 'NHANVIEN' 
---              AND policy_name = 'SELECT_EMPLOYEE') 
---  LOOP
---    DBMS_FGA.DROP_POLICY(
---      object_schema => 'QLTDH',    
---      object_name   => 'NHANVIEN',   
---      policy_name   => 'SELECT_EMPLOYEE'  
---    );
---  END LOOP;
---END;
---/
---BEGIN
---  DBMS_FGA.ADD_POLICY(
---    object_schema   => 'QLTDH',             
---    object_name     => 'NHANVIEN',              
---    policy_name     => 'SELECT_EMPLOYEE',     
---    audit_condition => 'VAITRO != ''NV TCHC'' AND MANV != SYS_CONTEXT(''USERENV'', ''SESSION_USER'')',
---    audit_column    => 'LUONG,PHUCAP',  
---    statement_types => 'SELECT'                
---  );
---END;
---/
+BEGIN
+  FOR rec IN (SELECT policy_name 
+              FROM DBA_AUDIT_POLICIES 
+              WHERE object_schema = 'QLTDH' 
+              AND object_name = 'NHANVIEN' 
+              AND policy_name = 'SELECT_EMPLOYEE') 
+  LOOP
+    DBMS_FGA.DROP_POLICY(
+      object_schema => 'QLTDH',    
+      object_name   => 'NHANVIEN',   
+      policy_name   => 'SELECT_EMPLOYEE'  
+    );
+  END LOOP;
+END;
+/
+BEGIN
+  DBMS_FGA.ADD_POLICY(
+    object_schema   => 'QLTDH',             
+    object_name     => 'NHANVIEN',              
+    policy_name     => 'SELECT_EMPLOYEE',     
+    audit_condition => 'VAITRO != ''NV TCHC'' AND MANV != SYS_CONTEXT(''USERENV'', ''SESSION_USER'')',
+    audit_column    => 'LUONG,PHUCAP',  
+    statement_types => 'SELECT'                
+  );
+END;
+/
 --
 ----Câu lệnh kiểm tra
 ----GRANT SELECT ON QLTDH.NHANVIEN TO "NVPKT0001";
@@ -232,32 +233,32 @@ END;
 ----==============================================================================
 ----Hành vi của người dùng (không thuộc vai trò “NV TCHC”) cập nhật ở 
 ----quan hệ NHANVIEN.
---BEGIN
---  FOR rec IN (SELECT policy_name 
---              FROM DBA_AUDIT_POLICIES 
---              WHERE object_schema = 'QLTDH' 
---              AND object_name = 'NHANVIEN' 
---              AND policy_name = 'UPDATE_EMPLOYEE') 
---  LOOP
---    DBMS_FGA.DROP_POLICY(
---      object_schema => 'QLTDH',    
---      object_name   => 'NHANVIEN',   
---      policy_name   => 'UPDATE_EMPLOYEE'  
---    );
---  END LOOP;
---END;
---/
---BEGIN
---  DBMS_FGA.ADD_POLICY(
---    object_schema   => 'QLTDH',             
---    object_name     => 'NHANVIEN',              
---    policy_name     => 'UPDATE_EMPLOYEE',     
---    audit_condition => 'VAITRO != ''NV TCHC''',
---    audit_column    => 'HOTEN,PHAI,NGSINH,LUONG,PHUCAP,DT,VAITRO,MADV',  
---    statement_types => 'UPDATE'                
---  );
---END;
---/
+BEGIN
+  FOR rec IN (SELECT policy_name 
+              FROM DBA_AUDIT_POLICIES 
+              WHERE object_schema = 'QLTDH' 
+              AND object_name = 'NHANVIEN' 
+              AND policy_name = 'UPDATE_EMPLOYEE') 
+  LOOP
+    DBMS_FGA.DROP_POLICY(
+      object_schema => 'QLTDH',    
+      object_name   => 'NHANVIEN',   
+      policy_name   => 'UPDATE_EMPLOYEE'  
+    );
+  END LOOP;
+END;
+/
+BEGIN
+  DBMS_FGA.ADD_POLICY(
+    object_schema   => 'QLTDH',             
+    object_name     => 'NHANVIEN',              
+    policy_name     => 'UPDATE_EMPLOYEE',     
+    audit_condition => 'VAITRO != ''NV TCHC''',
+    audit_column    => 'HOTEN,PHAI,NGSINH,LUONG,PHUCAP,DT,VAITRO,MADV',  
+    statement_types => 'UPDATE'                
+  );
+END;
+/
 --
 ----Câu lệnh kiểm tra
 ----GRANT UPDATE ON QLTDH.NHANVIEN TO "NVPKT0001";
@@ -274,45 +275,50 @@ END;
 --Hành vi thêm, xóa, sửa trên quan hệ DANGKY của sinh viên nhưng trên dòng
 --dữ liệu của sinh viên khác hoặc thực hiện hiệu chỉnh đăng ký học phần ngoài
 --thời gian cho phép hiệu chỉnh đăng ký học phần.
---BEGIN
---  FOR rec IN (SELECT policy_name 
---              FROM DBA_AUDIT_POLICIES 
---              WHERE object_schema = 'QLTDH' 
---              AND object_name = 'DANGKY' 
---              AND policy_name = 'UML_DANGKY') 
---  LOOP
---    DBMS_FGA.DROP_POLICY(
---      object_schema => 'QLTDH',    
---      object_name   => 'DANGKY',   
---      policy_name   => 'UML_DANGKY'  
---    );
---  END LOOP;
---END;
---/
---CREATE OR REPLACE FUNCTION AUDIT_FUNC_NGAYBD(NGAYBD IN DATE)
---RETURN PLS_INTEGER
---AS
---BEGIN
---    IF SYSDATE < NGAYBD OR SYSDATE > NGAYBD + 14 THEN
---        RETURN 1;
---    ELSE 
---        RETURN 0;
---    END IF;
---END;
---/
---BEGIN
---  DBMS_FGA.ADD_POLICY(
---    object_schema    => 'QLTDH',
---    object_name      => 'DANGKY',
---    policy_name      => 'UML_DANGKY',
---    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV 
---                        OR QLTDH.AUDIT_FUNC_NGAYBD(NGAYBD) = 1', 
---    statement_types  => 'INSERT, UPDATE, DELETE',
---    enable           => TRUE
---  );
---END;
---/
---
+-- Thêm cột hạn đăng ký vào bảng MOMON
+ALTER TABLE QLTDH.MOMON
+ADD (HANDK DATE);
+
+UPDATE QLTDH.MOMON 
+SET HANDK = NGAYBD + 14
+WHERE NAM = 2025 AND HK = 1;
+
+UPDATE QLTDH.MOMON 
+SET HANDK = NGAYBD + 14
+WHERE NAM = 2025 AND HK = 2;
+
+UPDATE QLTDH.MOMON 
+SET HANDK = NGAYBD + 14
+WHERE NAM = 2025 AND HK = 3;
+
+BEGIN
+  FOR rec IN (SELECT policy_name 
+              FROM DBA_AUDIT_POLICIES 
+              WHERE object_schema = 'QLTDH' 
+              AND object_name = 'DANGKY' 
+              AND policy_name = 'UML_DANGKY') 
+  LOOP
+    DBMS_FGA.DROP_POLICY(
+      object_schema => 'QLTDH',    
+      object_name   => 'DANGKY',   
+      policy_name   => 'UML_DANGKY'  
+    );
+  END LOOP;
+END;
+/
+
+BEGIN
+  DBMS_FGA.ADD_POLICY(
+    object_schema    => 'QLTDH',
+    object_name      => 'DANGKY',
+    policy_name      => 'UML_DANGKY',
+    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV OR SYSDATE < NGAYBD OR SYSDATE > HANDK', 
+    statement_types  => 'INSERT, UPDATE, DELETE',
+    enable           => TRUE
+  );
+END;
+/
+
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
 --SET DIEMCK = 9.5
