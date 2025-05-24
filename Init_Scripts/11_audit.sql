@@ -289,33 +289,50 @@ UPDATE QLTDH.DANGKY d
 SET NGAYBD = (SELECT m.NGAYBD FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM)
 WHERE EXISTS (SELECT 1 FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM);
 
---BEGIN
---  FOR rec IN (SELECT policy_name 
---              FROM DBA_AUDIT_POLICIES 
---              WHERE object_schema = 'QLTDH' 
---              AND object_name = 'DANGKY' 
---              AND policy_name = 'UML_DANGKY') 
---  LOOP
---    DBMS_FGA.DROP_POLICY(
---      object_schema => 'QLTDH',    
---      object_name   => 'DANGKY',   
---      policy_name   => 'UML_DANGKY'  
---    );
---  END LOOP;
---END;
---/
---
---BEGIN
---  DBMS_FGA.ADD_POLICY(
---    object_schema    => 'QLTDH',
---    object_name      => 'DANGKY',
---    policy_name      => 'UML_DANGKY',
---    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV OR SYSDATE < NGAYBD OR SYSDATE > HANDK', 
---    statement_types  => 'INSERT, UPDATE, DELETE',
---    enable           => TRUE
---  );
---END;
---/
+BEGIN
+ FOR rec IN (SELECT policy_name 
+             FROM DBA_AUDIT_POLICIES 
+             WHERE object_schema = 'QLTDH' 
+             AND object_name = 'DANGKY' 
+             AND policy_name = 'UML_DANGKY') 
+ LOOP
+   DBMS_FGA.DROP_POLICY(
+     object_schema => 'QLTDH',    
+     object_name   => 'DANGKY',   
+     policy_name   => 'UML_DANGKY'  
+   );
+ END LOOP;
+END;
+/
+
+CREATE OR REPLACE FUNCTION QLTDH.CHECK_DANGKY_AUDIT_CONDITION (
+  p_masv   IN VARCHAR2,
+  p_ngaybd IN DATE,
+  p_handk  IN DATE
+) RETURN NUMBER IS
+BEGIN
+  IF SYS_CONTEXT('USERENV', 'SESSION_USER') != p_masv OR
+     SYSDATE < p_ngaybd OR
+     SYSDATE > p_handk THEN
+    RETURN 1;
+  ELSE
+    RETURN 0;
+  END IF;
+END;
+/
+
+
+BEGIN
+  DBMS_FGA.ADD_POLICY(
+    object_schema   => 'QLTDH',
+    object_name     => 'DANGKY',
+    policy_name     => 'UML_DANGKY',
+    audit_condition => 'QLTDH.QLTDH.CHECK_DANGKY_AUDIT_CONDITION(MASV, NGAYBD, HANDK) = 1',
+    statement_types => 'INSERT, UPDATE, DELETE',
+    enable          => TRUE
+  );
+END;
+/
 
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
