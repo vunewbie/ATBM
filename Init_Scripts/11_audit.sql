@@ -327,7 +327,7 @@ BEGIN
     object_schema   => 'QLTDH',
     object_name     => 'DANGKY',
     policy_name     => 'UML_DANGKY',
-    audit_condition => 'QLTDH.QLTDH.CHECK_DANGKY_AUDIT_CONDITION(MASV, NGAYBD, HANDK) = 1',
+    audit_condition => 'QLTDH.CHECK_DANGKY_AUDIT_CONDITION(MASV, NGAYBD, HANDK) = 1',
     statement_types => 'INSERT, UPDATE, DELETE',
     enable          => TRUE
   );
