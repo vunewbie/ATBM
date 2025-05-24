@@ -173,7 +173,6 @@ BEGIN
   );
 END;
 /
-SELECT SYS_CONTEXT('SYS_SESSION_ROLES', 'NV PKT') FROM DUAL;
 
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
@@ -275,49 +274,48 @@ END;
 --Hành vi thêm, xóa, sửa trên quan hệ DANGKY của sinh viên nhưng trên dòng
 --dữ liệu của sinh viên khác hoặc thực hiện hiệu chỉnh đăng ký học phần ngoài
 --thời gian cho phép hiệu chỉnh đăng ký học phần.
--- Thêm cột hạn đăng ký vào bảng MOMON
-ALTER TABLE QLTDH.MOMON
+-- Thêm cột hạn đăng ký vào bảng DANGKY
+ALTER TABLE QLTDH.DANGKY
 ADD (HANDK DATE);
 
-UPDATE QLTDH.MOMON 
-SET HANDK = NGAYBD + 14
-WHERE NAM = 2025 AND HK = 1;
+UPDATE QLTDH.DANGKY d
+SET HANDK = (SELECT m.NGAYBD + 14 FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM)
+WHERE EXISTS (SELECT 1 FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM);
 
-UPDATE QLTDH.MOMON 
-SET HANDK = NGAYBD + 14
-WHERE NAM = 2025 AND HK = 2;
+ALTER TABLE QLTDH.DANGKY
+ADD (NGAYBD DATE);
 
-UPDATE QLTDH.MOMON 
-SET HANDK = NGAYBD + 14
-WHERE NAM = 2025 AND HK = 3;
+UPDATE QLTDH.DANGKY d
+SET NGAYBD = (SELECT m.NGAYBD FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM)
+WHERE EXISTS (SELECT 1 FROM QLTDH.MOMON m WHERE m.MAMM = d.MAMM);
 
-BEGIN
-  FOR rec IN (SELECT policy_name 
-              FROM DBA_AUDIT_POLICIES 
-              WHERE object_schema = 'QLTDH' 
-              AND object_name = 'DANGKY' 
-              AND policy_name = 'UML_DANGKY') 
-  LOOP
-    DBMS_FGA.DROP_POLICY(
-      object_schema => 'QLTDH',    
-      object_name   => 'DANGKY',   
-      policy_name   => 'UML_DANGKY'  
-    );
-  END LOOP;
-END;
-/
-
-BEGIN
-  DBMS_FGA.ADD_POLICY(
-    object_schema    => 'QLTDH',
-    object_name      => 'DANGKY',
-    policy_name      => 'UML_DANGKY',
-    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV OR SYSDATE < NGAYBD OR SYSDATE > HANDK', 
-    statement_types  => 'INSERT, UPDATE, DELETE',
-    enable           => TRUE
-  );
-END;
-/
+--BEGIN
+--  FOR rec IN (SELECT policy_name 
+--              FROM DBA_AUDIT_POLICIES 
+--              WHERE object_schema = 'QLTDH' 
+--              AND object_name = 'DANGKY' 
+--              AND policy_name = 'UML_DANGKY') 
+--  LOOP
+--    DBMS_FGA.DROP_POLICY(
+--      object_schema => 'QLTDH',    
+--      object_name   => 'DANGKY',   
+--      policy_name   => 'UML_DANGKY'  
+--    );
+--  END LOOP;
+--END;
+--/
+--
+--BEGIN
+--  DBMS_FGA.ADD_POLICY(
+--    object_schema    => 'QLTDH',
+--    object_name      => 'DANGKY',
+--    policy_name      => 'UML_DANGKY',
+--    audit_condition  => 'SYS_CONTEXT(''USERENV'', ''SESSION_USER'') != MASV OR SYSDATE < NGAYBD OR SYSDATE > HANDK', 
+--    statement_types  => 'INSERT, UPDATE, DELETE',
+--    enable           => TRUE
+--  );
+--END;
+--/
 
 ----Câu lệnh kiểm tra
 --UPDATE QLTDH.DANGKY
